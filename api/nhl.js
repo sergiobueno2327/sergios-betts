@@ -6,7 +6,12 @@ try{
 const sr=await fetch(`https://search.d3.nhle.com/api/v1/search/player?culture=en-us&limit=5&q=${encodeURIComponent(player)}&active=true`);
 const ps=await sr.json();
 if(!ps.length)return res.status(404).json({error:'Not found'});
-const p=ps[0];const id=p.playerId;
+const p=ps[0];
+const id=p.playerId;
+const firstName=p.firstName?.default||p.firstName||'';
+const lastName=p.lastName?.default||p.lastName||'';
+const name=`${firstName} ${lastName}`;
+const lastNameLower=lastName.toLowerCase();
 const dr=await fetch(`https://api-web.nhle.com/v1/player/${id}/landing`);
 const d=await dr.json();
 const s=d.featuredStats?.regularSeason?.subSeason;
@@ -26,6 +31,8 @@ const ppt=s?.powerPlayTimeOnIce?(s.powerPlayTimeOnIce/(s.gamesPlayed||1)):0;
 const ppr=ppt>=120?'PP1':ppt>=30?'PP2':'None';
 const attPG=s?.shots&&s?.gamesPlayed?Math.round(s.shots/s.gamesPlayed*10)/10:null;
 const icf=avgToi&&attPG?Math.round(attPG/avgToi*60*10)/10:null;
+let mpICF=null,xsog=null;
+try{
 const mpRes=await fetch('https://moneypuck.com/moneypuck/playerData/seasonSummary/2025-2026/regular/skaters.csv');
 const mpText=await mpRes.text();
 const mpLines=mpText.split('\n');
@@ -35,13 +42,11 @@ const icfIdx=headers.findIndex(h=>h.trim()==='I_F_shotAttempts');
 const xgIdx=headers.findIndex(h=>h.trim()==='I_F_xGoals');
 const toiIdx=headers.findIndex(h=>h.trim()==='icetime');
 const gpIdx=headers.findIndex(h=>h.trim()==='games_played');
-let mpICF=null,xsog=null;
-const lastName=p.lastName.toLowerCase();
 for(const row of mpLines.slice(1)){
 const cols=row.split(',');
 if(!cols[nameIdx])continue;
-const rowName=cols[nameIdx].toLowerCase().replace(/"/g,'');
-if(rowName.includes(lastName)){
+const rowName=(cols[nameIdx]||'').toLowerCase().replace(/"/g,'');
+if(rowName.includes(lastNameLower)){
 const toi=parseFloat(cols[toiIdx])||1;
 const att=parseFloat(cols[icfIdx])||0;
 const xg=parseFloat(cols[xgIdx])||0;
@@ -51,37 +56,22 @@ xsog=Math.round(xg/gp*10)/10;
 break;
 }
 }
+}catch(e){}
+let news=[],inj=false;
+try{
 const rw=await fetch('https://www.rotowire.com/hockey/rss/news.php');
 const rt=await rw.text();
-const news=[];
 const its=rt.match(/<item>([\s\S]*?)<\/item>/g)||[];
 for(const it of its.slice(0,50)){
 const t=((it.match(/<title>(.*?)<\/title>/)||[])[1]||'').replace(/<[^>]+>/g,'');
 const dc=((it.match(/<description>(.*?)<\/description>/)||[])[1]||'').replace(/<[^>]+>/g,'').slice(0,200);
-if(t.toLowerCase().includes(lastName)||dc.toLowerCase().includes(lastName)){
+if(t.toLowerCase().includes(lastNameLower)||dc.toLowerCase().includes(lastNameLower)){
 news.push({title:t,desc:dc});
 if(news.length>=2)break;
 }
 }
-const inj=news.some(n=>/injur|day-to-day|scratch|out|miss/i.test(n.title+n.desc));
-res.json({
-name:`${p.firstName} ${p.lastName}`,
-team:p.teamAbbrev,
-position:p.positionCode,
-toi:avgToi,
-sogPerGame:s?Math.round(s.shots/s.gamesPlayed*10)/10:null,
-attPerGame:attPG,
-icf60:mpICF||icf,
-xsog,
-ppRole:ppr,
-ppToiPerGame:Math.round(ppt/60*10)/10,
-gamesPlayed:s?.gamesPlayed||null,
-avg,median,
-hitL5:hr(5),
-hitL10:hr(10),
-hitL20:hr(20),
-last5:games.slice(0,5).map(g=>({date:g.gameDate,opp:g.opponentAbbrev,shots:g.shots||0,toi:g.toi})),
-news,injuryFlag:inj
-});
+inj=news.some(n=>/injur|day-to-day|scratch|out|miss/i.test(n.title+n.desc));
+}catch(e){}
+res.json({name,team:p.teamAbbrev,position:p.positionCode,toi:avgToi,sogPerGame:s?Math.round(s.shots/s.gamesPlayed*10)/10:null,attPerGame:attPG,icf60:mpICF||icf,xsog,ppRole:ppr,ppToiPerGame:Math.round(ppt/60*10)/10,gamesPlayed:s?.gamesPlayed||null,avg,median,hitL5:hr(5),hitL10:hr(10),hitL20:hr(20),last5:games.slice(0,5).map(g=>({date:g.gameDate,opp:g.opponentAbbrev,shots:g.shots||0,toi:g.toi})),news,injuryFlag:inj});
 }catch(e){res.status(500).json({error:e.message});}
 }
