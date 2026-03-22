@@ -34,7 +34,7 @@ const attPG=s?.shots&&s?.gamesPlayed?Math.round(s.shots/s.gamesPlayed*10)/10:nul
 const icfCalc=avgToi&&attPG?Math.round(attPG/avgToi*60*10)/10:null;
 let mpICF=null,xsog=null;
 try{
-const mpRes=await fetch('https://moneypuck.com/moneypuck/playerData/seasonSummary/2025-2026/regular/skaters.csv',{headers:{'User-Agent':'Mozilla/5.0','Accept':'text/csv,*/*'}});
+const mpRes=await fetch('https://moneypuck.com/moneypuck/playerData/seasonSummary/2025/regular/skaters.csv',{headers:{'User-Agent':'Mozilla/5.0','Accept':'text/csv,*/*'}});
 const mpText=await mpRes.text();
 const rows=mpText.split('\n');
 const hdrs=rows[0].split(',').map(h=>h.trim().replace(/"/g,''));
