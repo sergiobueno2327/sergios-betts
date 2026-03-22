@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Sergio's Betts -- Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090f;--s1:#0f1018;--s2:#171820;--bd:#22243a;--ac:#00e5a0;--ac2:#00b8ff;--red:#ff3d5a;--warn:#ffd166;--tx:#eceef8;--mu:#5a6080;--card:#111320;--pur:#b16aff}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+.app{max-width:480px;margin:0 auto;padding:0 0 120px}
+.hdr{padding:16px 18px 12px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(8,9,15,.97);backdrop-filter:blur(16px);z-index:100}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;background:linear-gradient(135deg,var(--ac),var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo small{display:block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--mu);-webkit-text-fill-color:var(--mu);margin-top:-3px}
+.hdr-r{text-align:right}
+.hdr-rec{font-family:'DM Mono',monospace;font-size:13px;color:var(--ac)}
+.hdr-wr{font-family:'DM Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:1px}
+.br-card{margin:12px;background:linear-gradient(135deg,rgba(0,229,160,.06),rgba(0,184,255,.06));border:1px solid var(--bd);border-radius:16px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center}
+.br-main{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--ac);line-height:1}
+.br-lbl{font-size:9px;color:var(--mu);letter-spacing:2px;font-family:'DM Mono',monospace;margin-top:2px}
+.br-stats{display:grid;gap:6px;text-align:right}
+.br-stat-val{font-family:'DM Mono',monospace;font-size:13px}
+.br-stat-lbl{font-size:9px;color:var(--mu);letter-spacing:1px;font-family:'DM Mono',monospace}
+.br-stat-val.pos{color:var(--ac)}.br-stat-val.neg{color:var(--red)}.br-stat-val.neu{color:var(--ac2)}
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:0 12px 10px}
+.stat-box{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 8px;text-align:center}
+.stat-val{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;margin-bottom:2px}
+.stat-val.g{color:var(--ac)}.stat-val.r{color:var(--red)}.stat-val.b{color:var(--ac2)}.stat-val.w{color:var(--warn)}
+.stat-lbl{font-size:8px;color:var(--mu);letter-spacing:1px;text-transform:uppercase;font-family:'DM Mono',monospace}
+.mkt-card{margin:0 12px 10px;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden}
+.mkt-hdr{padding:9px 14px;display:flex;align-items:center;gap:7px;background:var(--s2);border-bottom:1px solid var(--bd)}
+.mkt-dot{width:5px;height:5px;border-radius:50%;background:var(--pur);flex-shrink:0}
+.mkt-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--mu);text-transform:uppercase}
+.mkt-body{padding:10px 14px;display:grid;gap:8px}
+.mkt-row{display:flex;align-items:center;gap:8px}
+.mkt-name{font-size:11px;font-family:'DM Mono',monospace;color:var(--tx);width:100px;flex-shrink:0}
+.mkt-bar-wrap{flex:1;height:5px;background:var(--s2);border-radius:100px;overflow:hidden}
+.mkt-bar{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--pur),var(--ac))}
+.mkt-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--ac);width:32px;text-align:right}
+.mkt-rec{font-family:'DM Mono',monospace;font-size:9px;color:var(--mu);width:40px;text-align:right}
+.log-card{margin:0 12px 10px;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden}
+.log-hdr{padding:9px 14px;display:flex;align-items:center;gap:7px;background:var(--s2);border-bottom:1px solid var(--bd)}
+.log-dot{width:5px;height:5px;border-radius:50%;background:var(--ac);flex-shrink:0}
+.log-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--mu);text-transform:uppercase}
+.log-body{padding:12px 14px;display:grid;gap:8px}
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mu);font-family:'DM Mono',monospace}
+.f input,.f select{background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:10px 12px;color:var(--tx);font-size:14px;font-family:'DM Sans',sans-serif;width:100%;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.f input:focus,.f select:focus{border-color:var(--ac)}
+.f input::placeholder{color:var(--mu);font-size:13px}
+.f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 5 5-5' fill='none' stroke='%235a6080' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.log-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:#000;cursor:pointer;margin-top:4px;transition:opacity .2s}
+.log-btn:active{opacity:.8}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
+.bets-card{margin:0 12px 10px;background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden}
+.bets-hdr{padding:9px 14px;display:flex;align-items:center;gap:7px;background:var(--s2);border-bottom:1px solid var(--bd)}
+.bets-dot{width:5px;height:5px;border-radius:50%;background:var(--ac2);flex-shrink:0}
+.bets-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--mu);text-transform:uppercase}
+.bets-count{margin-left:auto;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:10px;background:rgba(0,184,255,.1);color:var(--ac2);letter-spacing:1px}
+.bet-item{padding:11px 14px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;animation:su .3s cubic-bezier(.16,1,.3,1)}
+.bet-item:last-child{border-bottom:none}
+@keyframes su{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+.bet-res{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;flex-shrink:0}
+.bet-res.w{background:rgba(0,229,160,.15);color:var(--ac)}
+.bet-res.l{background:rgba(255,61,90,.15);color:var(--red)}
+.bet-res.p{background:rgba(255,209,102,.15);color:var(--warn)}
+.bet-res.pending{background:rgba(0,184,255,.1);color:var(--ac2)}
+.bet-info{flex:1;min-width:0}
+.bet-player{font-size:13px;font-weight:500;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bet-meta{font-size:10px;color:var(--mu);font-family:'DM Mono',monospace;margin-top:2px}
+.bet-right{text-align:right;flex-shrink:0}
+.bet-stake{font-family:'DM Mono',monospace;font-size:12px;color:var(--tx)}
+.bet-profit{font-family:'DM Mono',monospace;font-size:11px;margin-top:2px}
+.bet-profit.pos{color:var(--ac)}.bet-profit.neg{color:var(--red)}.bet-profit.neu{color:var(--mu)}
+.bet-actions{display:flex;gap:4px;flex-shrink:0}
+.bet-act{width:28px;height:28px;border-radius:7px;border:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:opacity .2s}
+.bet-act:active{opacity:.7}
+.bet-act.win{background:rgba(0,229,160,.15);color:var(--ac)}
+.bet-act.loss{background:rgba(255,61,90,.15);color:var(--red)}
+.bet-act.push{background:rgba(255,209,102,.15);color:var(--warn)}
+.bet-act.del{background:rgba(90,96,128,.15);color:var(--mu)}
+.empty{padding:30px 20px;text-align:center}
+.empty-icon{font-size:32px;margin-bottom:10px}
+.empty-text{font-size:13px;color:var(--mu);font-family:'DM Mono',monospace}
+.filter-row{display:flex;gap:6px;padding:10px 12px 0;overflow-x:auto;scrollbar-width:none}
+.filter-row::-webkit-scrollbar{display:none}
+.filter-tab{flex-shrink:0;padding:5px 12px;border-radius:100px;border:1px solid var(--bd);background:var(--s2);color:var(--mu);font-size:11px;font-family:'DM Mono',monospace;cursor:pointer;transition:all .2s}
+.filter-tab.on{background:var(--ac2);border-color:var(--ac2);color:#000;font-weight:700}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 18px;font-family:'DM Mono',monospace;font-size:12px;color:var(--tx);opacity:0;transition:all .3s;z-index:999;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.win{border-color:var(--ac);color:var(--ac)}
+.toast.loss{border-color:var(--red);color:var(--red)}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="hdr">
+  <div class="logo">Sergio's Betts<small>BET TRACKER</small></div>
+  <div class="hdr-r"><div class="hdr-rec" id="hdrRec">21W-8L</div><div class="hdr-wr" id="hdrWr">72.4% · $181.21</div></div>
+</div>
+<div class="br-card">
+  <div><div class="br-main" id="brMain">$181.21</div><div class="br-lbl">BANKROLL</div></div>
+  <div class="br-stats">
+    <div><div class="br-stat-val pos" id="brProfit">+$0.00</div><div class="br-stat-lbl">PROFIT</div></div>
+    <div><div class="br-stat-val neu" id="brROI">0.0%</div><div class="br-stat-lbl">ROI</div></div>
+    <div><div class="br-stat-val neu" id="brStaked">$0.00</div><div class="br-stat-lbl">STAKED</div></div>
+  </div>
+</div>
+<div class="stats-row">
+  <div class="stat-box"><div class="stat-val g" id="stW">21</div><div class="stat-lbl">WINS</div></div>
+  <div class="stat-box"><div class="stat-val r" id="stL">8</div><div class="stat-lbl">LOSSES</div></div>
+  <div class="stat-box"><div class="stat-val b" id="stWR">72.4%</div><div class="stat-lbl">WIN RATE</div></div>
+  <div class="stat-box"><div class="stat-val w" id="stStr">--</div><div class="stat-lbl">STREAK</div></div>
+</div>
+<div class="mkt-card">
+  <div class="mkt-hdr"><div class="mkt-dot"></div><div class="mkt-title">Market Breakdown</div></div>
+  <div class="mkt-body" id="mktBody"><div style="text-align:center;padding:8px;font-size:11px;color:var(--mu);font-family:'DM Mono',monospace">Log bets to see breakdown</div></div>
+</div>
+<div class="log-card">
+  <div class="log-hdr"><div class="log-dot"></div><div class="log-title">Log New Bet</div></div>
+  <div class="log-body">
+    <div class="f"><label>Player</label><input type="text" id="lPlayer" placeholder="e.g. Marcus Johansson"></div>
+    <div class="fr">
+      <div class="f"><label>Sport</label><select id="lSport"><option value="NHL">🏒 NHL</option><option value="NBA">🏀 NBA</option><option value="MLB">⚾ MLB</option><option value="Tennis">🎾 Tennis</option></select></div>
+      <div class="f"><label>Market</label><select id="lMkt"><option value="SOG Under">SOG Under</option><option value="SOG Over">SOG Over</option><option value="Points">Points</option><option value="Rebounds">Rebounds</option><option value="Assists">Assists</option><option value="Strikeouts">Strikeouts</option><option value="Hits">Hits</option><option value="Match Winner">Match Winner</option><option value="Other">Other</option></select></div>
+    </div>
+    <div class="fr">
+      <div class="f"><label>Line</label><input type="number" id="lLine" placeholder="1.5" step="0.5"></div>
+      <div class="f"><label>Odds</label><input type="number" id="lOdds" placeholder="-110" step="1"></div>
+    </div>
+    <div class="fr">
+      <div class="f"><label>Stake ($)</label><input type="number" id="lStake" placeholder="9.06" step="0.01"></div>
+      <div class="f"><label>Engine Rating</label><input type="number" id="lRating" placeholder="8.61" step="0.01"></div>
+    </div>
+    <div class="f"><label>Opponent (optional)</label><input type="text" id="lOpp" placeholder="e.g. Dallas Stars"></div>
+    <div class="f"><label>Notes (optional)</label><input type="text" id="lNotes" placeholder="e.g. Low-volume under archetype A+"></div>
+    <button class="log-btn" onclick="logBet()">+ LOG BET</button>
+  </div>
+</div>
+<div class="filter-row">
+  <div class="filter-tab on" onclick="setFilter('ALL',this)">ALL</div>
+  <div class="filter-tab" onclick="setFilter('NHL',this)">🏒 NHL</div>
+  <div class="filter-tab" onclick="setFilter('NBA',this)">🏀 NBA</div>
+  <div class="filter-tab" onclick="setFilter('MLB',this)">⚾ MLB</div>
+  <div class="filter-tab" onclick="setFilter('Tennis',this)">🎾 Tennis</div>
+  <div class="filter-tab" onclick="setFilter('WIN',this)">✅ Wins</div>
+  <div class="filter-tab" onclick="setFilter('LOSS',this)">❌ Losses</div>
+</div>
+<div class="bets-card" style="margin-top:10px">
+  <div class="bets-hdr"><div class="bets-dot"></div><div class="bets-title">Bet History</div><div class="bets-count" id="betsCount">0 bets</div></div>
+  <div id="betList"></div>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+let bets=[],bankroll=181.21,startBankroll=181.21,activeFilter='ALL';
+try{const s=localStorage.getItem('sb_tracker');if(s){const d=JSON.parse(s);bets=d.bets||[];bankroll=d.bankroll||181.21;startBankroll=d.startBankroll||181.21;}}catch(e){}
+function save(){try{localStorage.setItem('sb_tracker',JSON.stringify({bets,bankroll,startBankroll}));}catch(e){}}
+function calcPayout(odds,stake){return odds<0?stake*(100/Math.abs(odds)):stake*(odds/100);}
+function logBet(){
+const player=document.getElementById('lPlayer').value.trim();
+const sport=document.getElementById('lSport').value;
+const mkt=document.getElementById('lMkt').value;
+const line=parseFloat(document.getElementById('lLine').value);
+const odds=parseInt(document.getElementById('lOdds').value);
+const stake=parseFloat(document.getElementById('lStake').value);
+const rating=parseFloat(document.getElementById('lRating').value);
+const opp=document.getElementById('lOpp').value.trim();
+const notes=document.getElementById('lNotes').value.trim();
+if(!player){showToast('Enter player name','neu');return;}
+if(isNaN(stake)||stake<=0){showToast('Enter valid stake','neu');return;}
+if(isNaN(odds)){showToast('Enter valid odds','neu');return;}
+const bet={id:Date.now(),player,sport,mkt,line:isNaN(line)?null:line,odds,stake,rating:isNaN(rating)?null:rating,opp,notes,result:'pending',profit:0,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'}),time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})};
+bets.unshift(bet);bankroll-=stake;save();render();
+['lPlayer','lLine','lOdds','lStake','lRating','lOpp','lNotes'].forEach(id=>document.getElementById(id).value='');
+showToast('✅ Bet logged -- '+player,'win');}
+function markResult(id,result){
+const bet=bets.find(b=>b.id===id);if(!bet)return;
+if(bet.result==='win')bankroll-=(bet.stake+bet.profit);
+else if(bet.result==='push')bankroll-=bet.stake;
+if(result==='win'){const p=calcPayout(bet.odds,bet.stake);bet.profit=Math.round(p*100)/100;bankroll+=bet.stake+bet.profit;showToast('🔥 WIN +$'+bet.profit.toFixed(2),'win');}
+else if(result==='loss'){bet.profit=-bet.stake;showToast('❌ Loss -$'+bet.stake.toFixed(2),'loss');}
+else if(result==='push'){bet.profit=0;bankroll+=bet.stake;showToast('Push -- stake returned','neu');}
+bet.result=result;save();render();}
+function deleteBet(id){
+const bet=bets.find(b=>b.id===id);if(!bet)return;
+if(bet.result==='pending')bankroll+=bet.stake;
+else if(bet.result==='win')bankroll-=(bet.stake+bet.profit);
+else if(bet.result==='push')bankroll-=bet.stake;
+bets=bets.filter(b=>b.id!==id);save();render();showToast('Bet removed','neu');}
+function setFilter(f,el){activeFilter=f;document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');render();}
+function render(){
+const wins=bets.filter(b=>b.result==='win').length;
+const losses=bets.filter(b=>b.result==='loss').length;
+const totalWins=21+wins,totalLosses=8+losses,totalBets=totalWins+totalLosses;
+const wr=totalBets>0?((totalWins/totalBets)*100).toFixed(1):'72.4';
+const settled=bets.filter(b=>b.result!=='pending');
+const totalStaked=settled.reduce((s,b)=>s+b.stake,0);
+const totalProfit=settled.reduce((s,b)=>s+b.profit,0);
+const roi=totalStaked>0?((totalProfit/totalStaked)*100).toFixed(1):'0.0';
+let streak=0;
+for(let b of bets){if(b.result==='pending')continue;if(b.result==='win'){if(streak>=0)streak++;else break;}else if(b.result==='loss'){if(streak<=0)streak--;else break;}else break;}
+document.getElementById('stW').textContent=totalWins;
+document.getElementById('stL').textContent=totalLosses;
+document.getElementById('stWR').textContent=wr+'%';
+const strEl=document.getElementById('stStr');
+strEl.textContent=streak>0?'🔥'+streak:streak<0?streak:'--';
+strEl.className='stat-val '+(streak>0?'g':streak<0?'r':'b');
+document.getElementById('brMain').textContent='$'+bankroll.toFixed(2);
+const profitEl=document.getElementById('brProfit');
+profitEl.textContent=(totalProfit>=0?'+':'')+'$'+totalProfit.toFixed(2);
+profitEl.className='br-stat-val '+(totalProfit>=0?'pos':'neg');
+document.getElementById('brROI').textContent=(parseFloat(roi)>=0?'+':'')+roi+'%';
+document.getElementById('brStaked').textContent='$'+totalStaked.toFixed(2);
+document.getElementById('hdrRec').textContent=totalWins+'W-'+totalLosses+'L';
+document.getElementById('hdrWr').textContent=wr+'% · $'+bankroll.toFixed(2);
+const mktMap={};
+settled.forEach(b=>{if(!mktMap[b.mkt])mktMap[b.mkt]={w:0,l:0,profit:0};if(b.result==='win')mktMap[b.mkt].w++;else if(b.result==='loss')mktMap[b.mkt].l++;mktMap[b.mkt].profit+=b.profit;});
+const mktKeys=Object.keys(mktMap);
+document.getElementById('mktBody').innerHTML=mktKeys.length>0?mktKeys.map(k=>{const m=mktMap[k];const total=m.w+m.l;const pct=total>0?Math.round((m.w/total)*100):0;return`<div class="mkt-row"><div class="mkt-name">${k}</div><div class="mkt-bar-wrap"><div class="mkt-bar" style="width:${pct}%"></div></div><div class="mkt-pct">${pct}%</div><div class="mkt-rec">${m.w}W-${m.l}L</div></div>`;}).join(''):'<div style="text-align:center;padding:8px;font-size:11px;color:var(--mu);font-family:\'DM Mono\',monospace">Log bets to see breakdown</div>';
+let filtered=[...bets];
+if(activeFilter==='WIN')filtered=filtered.filter(b=>b.result==='win');
+else if(activeFilter==='LOSS')filtered=filtered.filter(b=>b.result==='loss');
+else if(activeFilter!=='ALL')filtered=filtered.filter(b=>b.sport===activeFilter);
+document.getElementById('betsCount').textContent=filtered.length+' bet'+(filtered.length!==1?'s':'');
+document.getElementById('betList').innerHTML=filtered.length===0?`<div class="empty"><div class="empty-icon">📋</div><div class="empty-text">No bets logged yet.<br>Add your first bet above.</div></div>`:filtered.map(b=>{const resClass=b.result==='win'?'w':b.result==='loss'?'l':b.result==='push'?'p':'pending';const resLabel=b.result==='win'?'WIN':b.result==='loss'?'L':b.result==='push'?'PSH':'⏳';const profitClass=b.profit>0?'pos':b.profit<0?'neg':'neu';const profitText=b.result==='pending'?'Pending':(b.profit>=0?'+':'')+'$'+b.profit.toFixed(2);const oddsStr=b.odds>0?'+'+b.odds:b.odds;const lineStr=b.line?' '+b.line:'';return`<div class="bet-item"><div class="bet-res ${resClass}">${resLabel}</div><div class="bet-info"><div class="bet-player">${b.player}</div><div class="bet-meta">${b.sport} · ${b.mkt}${lineStr} · ${oddsStr} · ${b.date}${b.opp?' vs '+b.opp:''}</div>${b.notes?`<div class="bet-meta" style="color:var(--pur);margin-top:1px">${b.notes}</div>`:''}</div><div class="bet-right"><div class="bet-stake">$${b.stake.toFixed(2)}</div><div class="bet-profit ${profitClass}">${profitText}</div></div>${b.result==='pending'?`<div class="bet-actions"><button class="bet-act win" onclick="markResult(${b.id},'win')">✓</button><button class="bet-act loss" onclick="markResult(${b.id},'loss')">✗</button><button class="bet-act push" onclick="markResult(${b.id},'push')">~</button><button class="bet-act del" onclick="deleteBet(${b.id})">🗑</button></div>`:`<div class="bet-actions"><button class="bet-act del" onclick="deleteBet(${b.id})">🗑</button></div>`}</div>`;}).join('');}
+function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.className='toast '+type+' show';setTimeout(()=>t.classList.remove('show'),2500);}
+render();
+</script>
+</body>
+</html>
