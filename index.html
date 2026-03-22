@@ -26,9 +26,7 @@ body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-h
 .sec-t{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--mu);text-transform:uppercase}
 .sec-badge{margin-left:auto;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:10px;letter-spacing:1px}
 .sec-badge.grn{background:rgba(0,229,160,.1);color:var(--ac)}
-.sec-badge.warn{background:rgba(255,209,102,.1);color:var(--warn)}
 .sec-badge.pur{background:rgba(177,106,255,.1);color:var(--pur)}
-.sec-badge.blue{background:rgba(0,184,255,.1);color:var(--ac2)}
 .fg{padding:12px 14px;display:grid;gap:8px}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
@@ -40,8 +38,7 @@ body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-h
 .f input::placeholder{color:var(--mu);font-size:13px}
 .f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 5 5-5' fill='none' stroke='%235a6080' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
 .src{font-size:10px;color:var(--mu);font-family:'DM Mono',monospace;margin-top:2px}
-.src span{color:var(--ac2)}
-.src span.auto{color:var(--ac)}
+.src span{color:var(--ac2)}.src span.auto{color:var(--ac)}
 .tgs-wrap{padding:4px 14px 8px}
 .tr{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd)}
 .tr:last-child{border-bottom:none}
@@ -84,7 +81,6 @@ body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-h
 .mt{background:var(--card);padding:12px 8px;text-align:center}
 .mv{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;margin-bottom:3px}
 .mv.g{color:var(--ac)}.mv.b{color:var(--ac2)}.mv.w{color:var(--warn)}.mv.r{color:var(--red)}
-.ml{font-size:9px;color:var(--mu);letter-spacing:1px;text-transform:uppercase;font-family:'DM Mono',monospace}
 .kelly-box{padding:16px 18px;background:linear-gradient(135deg,rgba(0,229,160,.08),rgba(0,184,255,.08));border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between}
 .kelly-amt{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--ac);line-height:1}
 .kelly-sub{font-size:10px;color:var(--mu);letter-spacing:1px;margin-top:2px;font-family:'DM Mono',monospace}
@@ -110,13 +106,43 @@ body{background:var(--bg);color:var(--tx);font-family:'DM Sans',sans-serif;min-h
 .br-inp{background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:7px 10px;color:var(--tx);font-size:14px;width:120px;text-align:right;outline:none;font-family:'DM Mono',monospace}
 .br-inp:focus{border-color:var(--ac)}
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none}
-.opp-rank{font-size:10px;font-family:'DM Mono',monospace;padding:3px 8px;border-radius:6px;margin-top:3px;display:inline-block}
-.opp-rank.good{background:rgba(0,229,160,.1);color:var(--ac)}
-.opp-rank.mid{background:rgba(255,209,102,.1);color:var(--warn)}
-.opp-rank.bad{background:rgba(255,61,90,.1);color:var(--red)}
+.arch-box{margin:10px 12px 0;border-radius:14px;overflow:hidden;border:2px solid var(--pur);background:linear-gradient(135deg,rgba(177,106,255,.08),rgba(0,184,255,.06));display:none;animation:su .4s cubic-bezier(.16,1,.3,1)}
+.arch-box.show{display:block}
+.arch-header{padding:10px 14px;display:flex;align-items:center;gap:8px;background:rgba(177,106,255,.12);border-bottom:1px solid rgba(177,106,255,.2)}
+.arch-icon{font-size:18px}
+.arch-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:var(--pur)}
+.arch-grade{margin-left:auto;font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;border-radius:10px;background:rgba(177,106,255,.2);color:var(--pur);letter-spacing:1px}
+.arch-grade.aplus{background:rgba(0,229,160,.2);color:var(--ac)}
+.arch-grade.a{background:rgba(0,184,255,.2);color:var(--ac2)}
+.arch-grade.b{background:rgba(255,209,102,.2);color:var(--warn)}
+.arch-grade.c{background:rgba(255,61,90,.2);color:var(--red)}
+.arch-profile{padding:10px 14px 6px}
+.arch-profile-name{font-family:'DM Mono',monospace;font-size:13px;color:var(--tx);font-weight:500;margin-bottom:4px}
+.arch-profile-desc{font-size:12px;color:var(--mu);line-height:1.5}
+.arch-criteria{padding:6px 14px 10px;display:grid;gap:5px}
+.arch-criterion{display:flex;align-items:center;gap:8px;font-size:12px;font-family:'DM Mono',monospace}
+.arch-criterion.pass{color:var(--ac)}.arch-criterion.fail{color:var(--red)}
+.arch-criterion .ck{width:14px;height:14px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0}
+.arch-criterion.pass .ck{background:rgba(0,229,160,.2)}
+.arch-criterion.fail .ck{background:rgba(255,61,90,.2)}
+.arch-blueprint{margin:0 14px 12px;padding:10px 12px;background:rgba(0,0,0,.3);border-radius:10px;border-left:3px solid var(--pur)}
+.arch-blueprint-title{font-size:9px;letter-spacing:2px;color:var(--pur);font-family:'DM Mono',monospace;margin-bottom:6px}
+.arch-blueprint-text{font-size:12px;color:var(--tx);line-height:1.6}
+.blueprint-box{padding:14px 16px;background:var(--card);border-top:1px solid var(--bd)}
+.blueprint-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--pur);text-transform:uppercase;margin-bottom:10px}
+.blueprint-item{display:flex;gap:8px;padding:5px 0;font-size:12px;line-height:1.5;border-bottom:1px solid rgba(255,255,255,.04)}
+.blueprint-item:last-child{border-bottom:none}
+.blueprint-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--pur);width:18px;flex-shrink:0;padding-top:1px}
+.blueprint-text{color:var(--tx)}
+.blueprint-text span{color:var(--ac);font-weight:600}
+.blueprint-verdict{margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,rgba(0,229,160,.08),rgba(177,106,255,.08));border-radius:10px;font-size:12px;color:var(--tx);line-height:1.6;font-style:italic;border:1px solid rgba(0,229,160,.15)}
+.nav-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(8,9,15,.97);backdrop-filter:blur(16px);border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:8px 0 20px;z-index:200}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 16px;border-radius:10px;cursor:pointer;transition:all .2s;text-decoration:none;color:var(--mu)}
+.nav-item.on{color:var(--ac)}
+.nav-icon{font-size:20px}
+.nav-label{font-size:8px;letter-spacing:1px;font-family:'DM Mono',monospace;text-transform:uppercase}
 </style>
-</head>
-<body>
+</head><body>
 <div class="app">
 <div class="hdr">
   <div class="logo">Sergio's Betts<small>SMART ENGINE v5</small></div>
@@ -126,7 +152,7 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
   <div><div class="br-val" id="brDisp">$181.21</div><div class="br-lbl">BANKROLL</div></div>
   <div><input class="br-inp" type="number" id="brInp" value="181.21" step="0.01" placeholder="Balance" onchange="updateBR()"><div style="font-size:9px;color:var(--mu);text-align:right;margin-top:3px;font-family:'DM Mono',monospace">UPDATE</div></div>
 </div>
-<div class="tabs" id="tabs">
+<div class="tabs">
   <div class="tab on" onclick="setSport('NHL',this)">🏒 NHL</div>
   <div class="tab" onclick="setSport('NBA',this)">🏀 NBA</div>
   <div class="tab" onclick="setSport('MLB',this)">⚾ MLB</div>
@@ -134,159 +160,107 @@ input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-
 </div>
 <div id="injBox" class="inj-box"><div class="inj-title" id="injMsg">⚠️ INJURY ALERT</div></div>
 <div id="newsBox" class="news-box"><div class="news-title">LATEST NEWS</div><div id="newsList"></div></div>
+<div class="arch-box" id="archBox">
+  <div class="arch-header"><div class="arch-icon">🧠</div><div class="arch-title" id="archTitle">ARCHETYPE</div><div class="arch-grade" id="archGrade">A+</div></div>
+  <div class="arch-profile"><div class="arch-profile-name" id="archProfileName"></div><div class="arch-profile-desc" id="archProfileDesc"></div></div>
+  <div class="arch-criteria" id="archCriteria"></div>
+  <div class="arch-blueprint"><div class="arch-blueprint-title">🔥 BLUEPRINT</div><div class="arch-blueprint-text" id="archBlueprint"></div></div>
+</div>
 <div id="formArea"></div>
 <button class="run" onclick="runEngine()">⚡ RUN ENGINE</button>
 <div class="vc" id="verdict">
-  <div class="vh" id="vHero"><div class="db" id="vDec">—</div><div class="vp" id="vPlayer">—</div><div class="vs" id="vSub">—</div></div>
+  <div class="vh" id="vHero"><div class="db" id="vDec">--</div><div class="vp" id="vPlayer">--</div><div class="vs" id="vSub">--</div></div>
   <div class="vm">
-    <div class="mt"><div class="mv g" id="mEdge">—</div><div class="ml">Edge pts</div></div>
-    <div class="mt"><div class="mv b" id="mRating">—</div><div class="ml">Rating</div></div>
-    <div class="mt"><div class="mv" id="mFair">—</div><div class="ml">Fair Odds</div></div>
+    <div class="mt"><div class="mv g" id="mEdge">--</div><div class="ml">Edge pts</div></div>
+    <div class="mt"><div class="mv b" id="mRating">--</div><div class="ml">Rating</div></div>
+    <div class="mt"><div class="mv" id="mFair">--</div><div class="ml">Fair Odds</div></div>
   </div>
   <div class="vm" style="border-top:1px solid var(--bd)">
-    <div class="mt"><div class="mv" id="mTP">—</div><div class="ml">True Prob</div></div>
-    <div class="mt"><div class="mv" id="mIP">—</div><div class="ml">Implied</div></div>
-    <div class="mt"><div class="mv" id="mProj">—</div><div class="ml">Projection</div></div>
+    <div class="mt"><div class="mv" id="mTP">--</div><div class="ml">True Prob</div></div>
+    <div class="mt"><div class="mv" id="mIP">--</div><div class="ml">Implied</div></div>
+    <div class="mt"><div class="mv" id="mProj">--</div><div class="ml">Projection</div></div>
   </div>
   <div class="kelly-box">
     <div><div class="kelly-amt" id="kAmt">$0</div><div class="kelly-sub">KELLY STAKE</div></div>
-    <div class="kelly-r"><div class="kelly-pct" id="kPct">—</div><div class="kelly-info" id="kInfo">—</div></div>
+    <div class="kelly-r"><div class="kelly-pct" id="kPct">--</div><div class="kelly-info" id="kInfo">--</div></div>
   </div>
   <div id="sharpRules" style="display:none;padding:11px 16px;background:var(--card);border-top:1px solid var(--bd)">
     <div class="bt">Sharp Rules Triggered</div><div id="srList"></div>
   </div>
   <div class="vbd"><div class="bt">Score Breakdown</div><div id="scoreBars"></div></div>
   <div class="rfs"><div class="bt">Flags</div><div id="flagList"></div></div>
+  <div class="blueprint-box" id="blueprintBox" style="display:none">
+    <div class="blueprint-title">📋 Why This Should Hit</div>
+    <div id="blueprintList"></div>
+    <div class="blueprint-verdict" id="blueprintVerdict"></div>
+  </div>
   <div class="notes" id="vNotes"></div>
 </div>
-</div><script>
-let sport='NHL',bankroll=181.21,autoData={};
-try{bankroll=parseFloat(localStorage.getItem('sb_br')||'181.21');}catch(e){}
-document.getElementById('brDisp').textContent='$'+bankroll.toFixed(2);
-document.getElementById('brInp').value=bankroll.toFixed(2);
-function updateBR(){const v=parseFloat(document.getElementById('brInp').value);if(!isNaN(v)&&v>0){bankroll=v;try{localStorage.setItem('sb_br',String(v));}catch(e){}document.getElementById('brDisp').textContent='$'+v.toFixed(2);}}
-const mkts={NHL:[['SOG','SOG']],NBA:[['REB','Rebounds'],['AST','Assists'],['PTS','Points']],MLB:[['KS','Strikeouts'],['HITS','Hits'],['ER','Earned Runs'],['OUTS','Outs']],TENNIS:[['ML','Match Winner'],['SPREAD','Set Spread']]};
-function setSport(s,el){sport=s;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');buildForm();document.getElementById('verdict').classList.remove('show');autoData={};}
-function inp(id,lbl,ph,step,src,auto){return`<div class="f"><label>${lbl}</label><input type="number" id="${id}" placeholder="${ph}" step="${step||'any'}" class="${auto?'af':''}"><div class="src">${src?`<span class="${auto?'auto':''}">${auto?'🤖 ':' '}${src}</span>`:''}</div></div>`;}
-function sel(id,lbl,opts,src){return`<div class="f"><label>${lbl}</label><select id="${id}">${opts.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select><div class="src">${src?'<span>'+src+'</span>':''}</div></div>`;}
-function tog(id,lbl,sub){return`<div class="tr"><div><div class="tl">${lbl}</div>${sub?'<div class="ts">'+sub+'</div>':''}</div><label class="tg"><input type="checkbox" id="${id}"><span class="tgs"></span></label></div>`;}
-function ti(id,lbl,ph,src,auto){return`<div class="f"><label>${lbl}</label><input type="text" id="${id}" placeholder="${ph}" class="${auto?'af':''}"><div class="src">${src?`<span class="${auto?'auto':''}">${auto?'🤖 ':' '}${src}</span>`:''}</div></div>`;}
-
-function buildForm(){
-const mktOpts=mkts[sport];
-let h=`<div class="sec"><div class="sec-h"><div class="sec-dot"></div><div class="sec-t">Player + Play</div></div><div class="fg">
-${ti('iPlayer','Player','e.g. Marcus Johansson','')}
-<div class="fr">${sel('iMkt','Market',mktOpts,'')}${sel('iSide','Side',[['Under','Under'],['Over','Over'],['ML','ML']],'')}</div>
-<div class="fr">${inp('iLine','Line','1.5','0.5','Bovada',false)}${inp('iOdds','Odds','-130','1','Bovada',false)}</div>
-${ti('iOpp','Opponent','e.g. Dallas Stars','')}
-<button class="af-btn" id="afBtn" onclick="autoFill()">🤖 AUTO-FILL STATS</button>
-<div class="af-status" id="afStatus"></div>
-</div></div>`;
-
-h+=`<div class="sec"><div class="sec-h"><div class="sec-dot"></div><div class="sec-t">Base Stats</div><div class="sec-badge grn">AUTO + OUTLIERS</div></div><div class="fg">
-<div class="fr">${inp('iAvg','Average','1.2','0.1','NHL API',true)}${inp('iMed','Median','1.0','0.1','NHL API',true)}</div>
-<div class="fr3">${inp('iL5','Hit% L5','0.60','0.05','auto',true)}${inp('iL10','Hit% L10','0.70','0.05','auto',true)}${inp('iL20','Hit% L20','0.65','0.05','auto',true)}</div>
-</div></div>`;
-
-if(sport==='NHL'){h+=`<div class="sec"><div class="sec-h"><div class="sec-dot"></div><div class="sec-t">NHL Advanced</div><div class="sec-badge pur">AUTO + MANUAL</div></div><div class="fg">
-<div class="fr">${inp('nICF','ICF/60','10.5','0.1','moneypuck.com',false)}${inp('nTOI','TOI (min)','14.3','0.1','NHL API',true)}</div>
-<div class="fr">${inp('nSOG','SOG/Game','1.4','0.1','NHL API',true)}${inp('nAtt','Attempts/G','2.7','0.1','NHL API',true)}</div>
-<div class="fr">${sel('nPP','PP Role',[['None','None'],['PP1','PP1'],['PP2','PP2']],'NHL API')}${inp('nXS','xSOG','1.3','0.1','moneypuck.com',false)}</div>
-<div class="fr">${sel('nB2','Back to Back?',[['no','No'],['yes','Yes']],'auto')}${inp('nOR','Opp SOG Rank','2','1','auto',true)}</div>
-</div></div>`;}
-
-if(sport==='NBA'){h+=`<div class="sec"><div class="sec-h"><div class="sec-dot"></div><div class="sec-t">NBA Advanced</div></div><div class="fg">
-<div class="fr">${inp('bMin','Proj Minutes','32','0.5','rotowire.com',false)}${inp('bUsg','Usage Rate %','22','0.1','nba.com',false)}</div>
-<div class="fr">${inp('bReb','Reb Chances','6.0','0.5','cleaningtheglass.com',false)}${inp('bAst','Pot. Assists','8.0','0.5','cleaningtheglass.com',false)}</div>
-<div class="fr">${inp('bDef','Def Rank vs Pos','22','1','nbastuffer.com',false)}${inp('bG7','Games Last 7 Days','2','1','',false)}</div>
-<div class="fr">${inp('bBlow','Blowout Risk (1-10)','3','1','',false)}${sel('bHome','Home/Away?',[['home','Home'],['away','Away']],'')}</div>
-</div></div>`;}
-
-if(sport==='MLB'){h+=`<div class="sec"><div class="sec-h"><div class="sec-dot"></div><div class="sec-t">MLB Stats</div></div><div class="fg">
-<div class="fr">${inp('mInn','Proj Innings','5.8','0.1','rotowire.com',false)}${inp('mLeash','Pitch Leash','95','5','rotowire.com',false)}</div>
-<div class="fr">${inp('mKR','K Rate','0.28','0.01','fangraphs.com',false)}${inp('mWHIP','WHIP','1.10','0.01','fangraphs.com',false)}</div>
-<div class="fr">${inp('mOKR','Opp K Rate','0.24','0.01','fangraphs.com',false)}${sel('mDAN','Day After Night?',[['no','No'],['yes','Yes']],'')}</div>
-<div class="fr">${inp('mPark','Park Factor','1.05','0.01','ballparkpal.com',false)}${inp('mUmp','Umpire (1-10)','5','1','rotowire.com',false)}</div>
-</div></div>`;}
-
-if(sport==='TENNIS'){h+=`<div class="sec"><div class="sec-h"><div class="sec-dot"></div><div class="sec-t">Tennis Data</div></div><div class="fg">
-<div class="fr">${sel('tSurf','Surface',[['hard','Hard'],['clay','Clay'],['grass','Grass']],'')}${inp('tRest','Rest Days','1','1','',false)}</div>
-<div class="fr">${inp('tHold','Hold %','0.72','0.01','tennisabstract.com',false)}${inp('t1st','1st Serve Pts Won','0.68','0.01','',false)}</div>
-<div class="fr">${inp('tRet','Return Pts Won','0.42','0.01','',false)}${inp('tBrk','Break %','0.28','0.01','',false)}</div>
-<div class="fr">${inp('tElo','Surface Elo','1850','10','tennisabstract.com',false)}${inp('tForm','Form L5 (0-1)','0.70','0.05','',false)}</div>
-<div class="fr">${inp('tSets','Last Match Sets','3','1','',false)}${inp('tMtch','Matches This Week','2','1','',false)}</div>
-</div></div>`;}
-
-h+=`<div class="sec"><div class="sec-h"><div class="sec-dot"></div><div class="sec-t">Matchup & Intel</div></div><div class="tgs-wrap">
-${tog('tGood','Good matchup for side','')}${tog('tBad','Bad matchup for side','')}
-${tog('tCLV','CLV friendly entry','Got the best number')}${tog('tLM','Line moving against us','')}
-${tog('tSJ','Suspicious juice','')}${tog('tPub','Public bias risk','')}
-</div></div>
-<div class="sec"><div class="sec-h"><div class="sec-dot"></div><div class="sec-t">Red Flags</div></div><div class="tgs-wrap">
-${tog('rfSpike','Recent spike game','')}${tog('rfMin','Unstable minutes / role','')}
-${tog('rfRole','Role change','')}${tog('rfInj','Injury uncertainty','')}
-${tog('rfProf','Profile conflicts with side','')}${tog('rfTrap','Trap line signal','')}
-${tog('rfEarly','Early season / small sample','')}
-</div></div>`;
-document.getElementById('formArea').innerHTML=h;
-}
-buildForm();
-
-async function autoFill(){
-const player=document.getElementById('iPlayer')?.value?.trim();
-const opp=document.getElementById('iOpp')?.value?.trim();
-const line=document.getElementById('iLine')?.value;
-const side=document.getElementById('iSide')?.value?.toLowerCase();
-if(!player){alert('Enter player name first');return;}
-const btn=document.getElementById('afBtn');
-const status=document.getElementById('afStatus');
-btn.disabled=true;btn.textContent='🔄 Researching...';
-status.className='af-status loading';status.textContent='Pulling stats from NHL API...';
-try{
-const [playerRes,oppRes]=await Promise.all([
-fetch(`/api/nhl?player=${encodeURIComponent(player)}&line=${line||1.5}&side=${side||'under'}`),
-opp?fetch(`/api/opponent?team=${encodeURIComponent(opp.toUpperCase().slice(0,3))}`):Promise.resolve(null)
-]);
-const pd=await playerRes.json();
-if(pd.error)throw new Error(pd.error);
-autoData=pd;
-const setVal=(id,val)=>{const el=document.getElementById(id);if(el&&val!=null){el.value=val;el.classList.add('af');}};
-setVal('iAvg',pd.avg);
-setVal('iMed',pd.median);
-setVal('iL5',pd.hitL5);
-setVal('iL10',pd.hitL10);
-setVal('iL20',pd.hitL20);
-if(sport==='NHL'){
-setVal('nTOI',pd.toi);
-setVal('nSOG',pd.sogPerGame);
-setVal('nAtt',pd.attPerGame);
-if(pd.ppRole){const ppSel=document.getElementById('nPP');if(ppSel)ppSel.value=pd.ppRole;}
-if(pd.b2b!==undefined){const b2Sel=document.getElementById('nB2');if(b2Sel)b2Sel.value=pd.b2b?'yes':'no';}
-}
-if(oppRes){
-const od=await oppRes.json();
-if(!od.error){
-setVal('nOR',od.defensiveRank);
-const rc=od.defensiveRank<=8?'good':od.defensiveRank<=20?'mid':'bad';
-const rl=od.defensiveRank<=8?'Elite defense — under friendly':od.defensiveRank<=20?'Average defense':'Weak defense — over friendly';
-status.innerHTML=`✅ Stats loaded for ${pd.name} · ${pd.team} · ${rl} (Rank #${od.defensiveRank})`;
-}else{status.textContent=`✅ Stats loaded for ${pd.name} · ${pd.team}`;}
-}else{status.textContent=`✅ Stats loaded for ${pd.name} · ${pd.team}`;}
-status.className='af-status success';
-if(pd.injuryFlag&&pd.news?.length){
-document.getElementById('injBox').style.display='block';
-document.getElementById('injMsg').textContent='⚠️ INJURY ALERT: '+pd.news[0].title;
-}
-if(pd.news?.length&&!pd.injuryFlag){
-document.getElementById('newsBox').style.display='block';
-document.getElementById('newsList').innerHTML=pd.news.map(n=>`<div class="news-item"><b>${n.title}</b><br>${n.desc}</div>`).join('');
-}
-}catch(err){
-status.className='af-status error';
-status.textContent='Error: '+err.message;
-}
-btn.disabled=false;btn.textContent='🤖 AUTO-FILL STATS';
-}const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+</div>
+<div class="nav-bar">
+  <a class="nav-item on" href="/"><div class="nav-icon">⚡</div><div class="nav-label">Engine</div></a>
+  <a class="nav-item" href="/checklist.html"><div class="nav-icon">✅</div><div class="nav-label">Checklist</div></a>
+  <a class="nav-item" href="/tracker.html"><div class="nav-icon">📊</div><div class="nav-label">Tracker</div></a>
+</div><body>
+<div class="app">
+<div class="hdr">
+  <div class="logo">Sergio's Betts<small>SMART ENGINE v5</small></div>
+  <div class="hdr-r"><div class="hdr-v" id="stLbl">READY</div><div class="hdr-l">21W-8L · 72.4%</div></div>
+</div>
+<div class="br-box">
+  <div><div class="br-val" id="brDisp">$181.21</div><div class="br-lbl">BANKROLL</div></div>
+  <div><input class="br-inp" type="number" id="brInp" value="181.21" step="0.01" placeholder="Balance" onchange="updateBR()"><div style="font-size:9px;color:var(--mu);text-align:right;margin-top:3px;font-family:'DM Mono',monospace">UPDATE</div></div>
+</div>
+<div class="tabs">
+  <div class="tab on" onclick="setSport('NHL',this)">🏒 NHL</div>
+  <div class="tab" onclick="setSport('NBA',this)">🏀 NBA</div>
+  <div class="tab" onclick="setSport('MLB',this)">⚾ MLB</div>
+  <div class="tab" onclick="setSport('TENNIS',this)">🎾 Tennis</div>
+</div>
+<div id="injBox" class="inj-box"><div class="inj-title" id="injMsg">⚠️ INJURY ALERT</div></div>
+<div id="newsBox" class="news-box"><div class="news-title">LATEST NEWS</div><div id="newsList"></div></div>
+<div class="arch-box" id="archBox">
+  <div class="arch-header"><div class="arch-icon">🧠</div><div class="arch-title" id="archTitle">ARCHETYPE</div><div class="arch-grade" id="archGrade">A+</div></div>
+  <div class="arch-profile"><div class="arch-profile-name" id="archProfileName"></div><div class="arch-profile-desc" id="archProfileDesc"></div></div>
+  <div class="arch-criteria" id="archCriteria"></div>
+  <div class="arch-blueprint"><div class="arch-blueprint-title">🔥 BLUEPRINT</div><div class="arch-blueprint-text" id="archBlueprint"></div></div>
+</div>
+<div id="formArea"></div>
+<button class="run" onclick="runEngine()">⚡ RUN ENGINE</button>
+<div class="vc" id="verdict">
+  <div class="vh" id="vHero"><div class="db" id="vDec">--</div><div class="vp" id="vPlayer">--</div><div class="vs" id="vSub">--</div></div>
+  <div class="vm">
+    <div class="mt"><div class="mv g" id="mEdge">--</div><div class="ml">Edge pts</div></div>
+    <div class="mt"><div class="mv b" id="mRating">--</div><div class="ml">Rating</div></div>
+    <div class="mt"><div class="mv" id="mFair">--</div><div class="ml">Fair Odds</div></div>
+  </div>
+  <div class="vm" style="border-top:1px solid var(--bd)">
+    <div class="mt"><div class="mv" id="mTP">--</div><div class="ml">True Prob</div></div>
+    <div class="mt"><div class="mv" id="mIP">--</div><div class="ml">Implied</div></div>
+    <div class="mt"><div class="mv" id="mProj">--</div><div class="ml">Projection</div></div>
+  </div>
+  <div class="kelly-box">
+    <div><div class="kelly-amt" id="kAmt">$0</div><div class="kelly-sub">KELLY STAKE</div></div>
+    <div class="kelly-r"><div class="kelly-pct" id="kPct">--</div><div class="kelly-info" id="kInfo">--</div></div>
+  </div>
+  <div id="sharpRules" style="display:none;padding:11px 16px;background:var(--card);border-top:1px solid var(--bd)">
+    <div class="bt">Sharp Rules Triggered</div><div id="srList"></div>
+  </div>
+  <div class="vbd"><div class="bt">Score Breakdown</div><div id="scoreBars"></div></div>
+  <div class="rfs"><div class="bt">Flags</div><div id="flagList"></div></div>
+  <div class="blueprint-box" id="blueprintBox" style="display:none">
+    <div class="blueprint-title">📋 Why This Should Hit</div>
+    <div id="blueprintList"></div>
+    <div class="blueprint-verdict" id="blueprintVerdict"></div>
+  </div>
+  <div class="notes" id="vNotes"></div>
+</div>
+</div>
+<div class="nav-bar">
+  <a class="nav-item on" href="/"><div class="nav-icon">⚡</div><div class="nav-label">Engine</div></a>
+  <a class="nav-item" href="/checklist.html"><div class="nav-icon">✅</div><div class="nav-label">Checklist</div></a>
+  <a class="nav-item" href="/tracker.html"><div class="nav-icon">📊</div><div class="nav-label">Tracker</div></a>
+</div>const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
 const r2=x=>Math.round(x*100)/100;
 const avgArr=a=>{const v=a.filter(x=>x!=null&&!isNaN(x));return v.length?v.reduce((a,b)=>a+b,0)/v.length:null};
 const impliedProb=o=>o<0?Math.abs(o)/(Math.abs(o)+100):100/(o+100);
@@ -297,10 +271,10 @@ const sv=id=>document.getElementById(id)?.value||null;
 const bv=id=>document.getElementById(id)?.checked||false;
 function kellyCalc(tp,odds,br){const dec=odds<0?1+(100/Math.abs(odds)):1+(odds/100);const b=dec-1,q=1-tp;const fk=Math.max(0,(b*tp-q)/b);const amt=Math.min(fk*0.25*br,br*0.05);return{pct:r2(fk*25),amt:Math.max(0,amt)};}
 function getSharpRules(p){const r=[];
-if(p.sp==='NHL'&&p.mkt==='SOG'){if(p.b2b==='yes'&&p.side==='under')r.push({t:'B2B + SOG Under — fatigue cuts shot volume',boost:.03});if(p.icf!=null&&p.icf<=11&&p.side==='under')r.push({t:'ICF/60 ≤ 11 — elite under profile',boost:.02});if(p.icf!=null&&p.icf>=20&&p.side==='over')r.push({t:'ICF/60 ≥ 20 — elite over profile',boost:.02});if(p.toi!=null&&p.toi<=14&&p.side==='under')r.push({t:'TOI ≤ 14 min — limited ice time',boost:.02});if(p.pp==='None'&&p.side==='under')r.push({t:'No PP role — zero power play shots',boost:.01});if(p.oppRk!=null&&p.oppRk<=8&&p.side==='under')r.push({t:'Top-8 defensive opponent',boost:.02});}
-if(p.sp==='NBA'){if(p.g7!=null&&p.g7>=4)r.push({t:'4+ games in 7 days — fatigue factor',boost:p.side==='under'?.03:-.02});if(p.blowout!=null&&p.blowout>=7)r.push({t:'High blowout risk',boost:p.side==='under'?.02:-.03});}
-if(p.sp==='MLB'){if(p.dan==='yes'&&p.mkt==='KS'&&p.side==='under')r.push({t:'Day after night game — K under boosted',boost:.03});if(p.leash!=null&&p.leash<=80&&p.mkt==='OUTS'&&p.side==='under')r.push({t:'Short leash — outs under confirmed',boost:.04});}
-if(p.sp==='TENNIS'){if(p.rest!=null&&p.rest===0)r.push({t:'Same-day turnaround — severe fatigue',boost:-.05});if(p.tForm!=null&&p.tForm>=.80)r.push({t:'Hot form — 80%+ win rate L5',boost:.02});}
+if(p.sp==='NHL'&&p.mkt==='SOG'){if(p.b2b==='yes'&&p.side==='under')r.push({t:'B2B + SOG Under -- fatigue cuts shot volume',boost:.03});if(p.icf!=null&&p.icf<=11&&p.side==='under')r.push({t:'ICF/60 ≤ 11 -- elite under profile',boost:.02});if(p.icf!=null&&p.icf>=20&&p.side==='over')r.push({t:'ICF/60 ≥ 20 -- elite over profile',boost:.02});if(p.toi!=null&&p.toi<=14&&p.side==='under')r.push({t:'TOI ≤ 14 min -- limited ice time',boost:.02});if(p.pp==='None'&&p.side==='under')r.push({t:'No PP role -- zero power play shots',boost:.01});if(p.oppRk!=null&&p.oppRk<=8&&p.side==='under')r.push({t:'Top-8 defensive opponent',boost:.02});}
+if(p.sp==='NBA'){if(p.g7!=null&&p.g7>=4)r.push({t:'4+ games in 7 days -- fatigue factor',boost:p.side==='under'?.03:-.02});if(p.blowout!=null&&p.blowout>=7)r.push({t:'High blowout risk',boost:p.side==='under'?.02:-.03});}
+if(p.sp==='MLB'){if(p.dan==='yes'&&p.mkt==='KS'&&p.side==='under')r.push({t:'Day after night game -- K under boosted',boost:.03});if(p.leash!=null&&p.leash<=80&&p.mkt==='OUTS'&&p.side==='under')r.push({t:'Short leash -- outs under confirmed',boost:.04});}
+if(p.sp==='TENNIS'){if(p.rest!=null&&p.rest===0)r.push({t:'Same-day turnaround -- severe fatigue',boost:-.05});if(p.tForm!=null&&p.tForm>=.80)r.push({t:'Hot form -- 80%+ win rate L5',boost:.02});}
 return r;}
 function calcProjection(p){
 if(p.sp==='NHL'&&p.mkt==='SOG'){let pts=[];if(p.avg!=null)pts.push(p.avg*.40);if(p.med!=null)pts.push(p.med*.25);if(p.sog!=null)pts.push(p.sog*.20);if(p.att!=null&&p.sog!=null&&p.att>0){const c=cl(p.sog/p.att,.25,.75);pts.push(p.att*c*.15);}let pr=pts.length?pts.reduce((a,b)=>a+b,0):avgArr([p.avg,p.med])||1;if(p.xsog!=null&&p.sog!=null)pr+=(p.xsog-p.sog)*.3;if(p.pp==='PP1')pr+=.15;else if(p.pp==='PP2')pr+=.05;if(p.icf!=null){if(p.icf>=20)pr+=.20;else if(p.icf>=17)pr+=.10;else if(p.icf<=11)pr-=.15;else if(p.icf<=13)pr-=.05;}if(p.b2b==='yes')pr-=.12;if(p.good)pr+=p.side==='under'?-.10:.10;if(p.bad)pr+=p.side==='under'?.10:-.10;return Math.max(0,r2(pr));}
@@ -316,6 +290,23 @@ let mat=6.5;if(bv('tGood'))mat+=1.5;if(bv('tBad'))mat-=1.5;if(p.sp==='NHL'&&p.op
 const ed=(tp-ip)*100;let mkt=5.0;if(ed>=9)mkt+=4.0;else if(ed>=7)mkt+=3.0;else if(ed>=5)mkt+=2.0;else if(ed>=3)mkt+=1.0;else if(ed<0)mkt-=2.5;if(bv('tCLV'))mkt+=.5;if(bv('tLM'))mkt-=1.0;if(bv('tSJ'))mkt-=.8;mkt=cl(mkt,1,10);
 let tr=6.0;const tv=[p.l5,p.l10,p.l20].filter(v=>v!=null);if(tv.length){const ta=avgArr(tv);if(ta>=.75)tr+=2.0;else if(ta>=.65)tr+=1.2;else if(ta>=.55)tr+=.5;else tr-=.8;}if(p.med!=null&&p.line!=null){if((p.side==='under'&&p.med<p.line)||(p.side==='over'&&p.med>p.line))tr+=1.0;}tr=cl(tr,1,10);
 const raw=opp*.25+role*.20+mat*.20+mkt*.20+tr*.15;const pen=rf.pts<=1?0:rf.pts<=3?.5:rf.pts<=5?1.0:1.5;return{opp:r2(opp),role:r2(role),mat:r2(mat),mkt:r2(mkt),tr:r2(tr),adj:r2(cl(raw-pen,1,10))};}
+function buildBlueprint(p,pr,tp,ip,sc,sr,rf){
+const reasons=[];
+if(p.line!=null){const gap=r2(p.line-pr);if(p.side==='under'&&pr<p.line)reasons.push({n:'1',text:`Projection of <span>${pr}</span> sits ${gap} below the line of ${p.line} -- most likely outcome clears the under`});else if(p.side==='over'&&pr>p.line)reasons.push({n:'1',text:`Projection of <span>${pr}</span> sits ${r2(pr-p.line)} above the line -- trajectory favors the over`});}
+if(p.med!=null&&p.line!=null){if(p.side==='under'&&p.med<=p.line)reasons.push({n:'2',text:`Median of <span>${p.med}</span> is at or below the line -- typical game result already cashes`});else if(p.side==='over'&&p.med>=p.line)reasons.push({n:'2',text:`Median of <span>${p.med}</span> clears the line -- typical output wins`});}
+if(p.sp==='NHL'){if(p.toi!=null&&p.toi<=16&&p.side==='under')reasons.push({n:'3',text:`TOI of <span>${p.toi} min</span> caps opportunity -- limited ice time = limited shots`});if(p.pp!=='PP1'&&p.side==='under')reasons.push({n:'4',text:`<span>${p.pp==='None'?'No PP role':'PP2 role'}</span> -- no power play boost, ceiling stays low`});if(p.icf!=null&&p.icf<=13&&p.side==='under')reasons.push({n:'5',text:`ICF/60 of <span>${p.icf}</span> from MoneyPuck -- not generating chances at high rate`});if(p.att!=null&&p.att<=2.5&&p.side==='under')reasons.push({n:'6',text:`Only <span>${p.att} attempts/game</span> -- not enough volume to hit 2+ SOG consistently`});}
+sr.forEach((r,i)=>reasons.push({n:String(reasons.length+1),text:`Sharp rule: <span>${r.t}</span>`}));
+if(p.oppRk!=null&&p.oppRk<=8&&p.side==='under')reasons.push({n:String(reasons.length+1),text:`Facing <span>top-${p.oppRk} defense</span> -- elite opponent suppresses shot attempts`});
+const edgePct=r2((tp-ip)*100);
+if(edgePct>=5)reasons.push({n:String(reasons.length+1),text:`True prob <span>${pct(tp)}</span> vs implied <span>${pct(ip)}</span> -- real <span>+${edgePct}pt edge</span> over the book`});
+if(rf.lvl==='Clean')reasons.push({n:String(reasons.length+1),text:`<span>Zero red flags</span> -- no role changes, no spikes, no injury concerns`});
+let verdict='';
+if(p.sp==='NHL'&&p.side==='under'){const parts=[];if(p.att!=null&&p.att<=2.5)parts.push('low volume');if(p.toi!=null&&p.toi<=16)parts.push('limited ice time');if(p.pp!=='PP1')parts.push('no PP boost');if(p.med!=null&&p.line!=null&&p.med<=p.line)parts.push('median under the line');if(rf.lvl==='Clean')parts.push('clean flags');verdict=`You didn't win because of luck. You won because ${parts.join(' + ')} = the opportunity ceiling was always going to stay under. That's sharp betting.`;}
+else{verdict=`Edge of +${r2((tp-ip)*100)}pts with ${sc.adj}/10 rating and ${rf.lvl.toLowerCase()} flags. The numbers confirm the play.`;}
+if(reasons.length===0){document.getElementById('blueprintBox').style.display='none';return;}
+document.getElementById('blueprintBox').style.display='block';
+document.getElementById('blueprintList').innerHTML=reasons.map(r=>`<div class="blueprint-item"><div class="blueprint-num">${r.n}.</div><div class="blueprint-text">${r.text}</div></div>`).join('');
+document.getElementById('blueprintVerdict').textContent=verdict;}
 function runEngine(){
 const mkt=sv('iMkt'),sideRaw=sv('iSide'),side=sideRaw?sideRaw.toLowerCase():'under';
 const odds=parseInt(document.getElementById('iOdds')?.value)||(-110);
@@ -338,13 +329,15 @@ document.getElementById('mRating').textContent=sc.adj;document.getElementById('m
 document.getElementById('mTP').textContent=pct(tp);document.getElementById('mIP').textContent=pct(ip);document.getElementById('mProj').textContent=r2(pr);
 document.getElementById('kAmt').textContent=dec==='PASS'?'$0':'$'+stk.toFixed(2);
 document.getElementById('kPct').textContent=dec==='PASS'?'PASS':k.pct+'%';
-document.getElementById('kInfo').textContent=dec==='PASS'?'No edge — pass':'of $'+bankroll.toFixed(2)+' · ¼ Kelly';
+document.getElementById('kInfo').textContent=dec==='PASS'?'No edge -- pass':'of $'+bankroll.toFixed(2)+' · ¼ Kelly';
 if(sr.length>0){document.getElementById('sharpRules').style.display='block';document.getElementById('srList').innerHTML=sr.map(r=>`<div style="display:flex;align-items:center;gap:7px;padding:4px 0;font-size:12px;color:var(--pur)"><div style="width:5px;height:5px;border-radius:50%;background:var(--pur);flex-shrink:0"></div>${r.t}</div>`).join('');}else document.getElementById('sharpRules').style.display='none';
 document.getElementById('scoreBars').innerHTML=[['Opportunity',sc.opp],['Role Stab.',sc.role],['Matchup',sc.mat],['Mkt Price',sc.mkt],['Trend/Form',sc.tr]].map(([l,v])=>`<div class="sbr"><div class="sbl">${l}</div><div class="sbt"><div class="sbf" style="width:${v*10}%"></div></div><div class="sbv">${v}</div></div>`).join('');
-const allF=[...rf.flags];if(!rf.flags.length)allF.push({t:'Clean — no red flags',c:'green'});
+const allF=[...rf.flags];if(!rf.flags.length)allF.push({t:'Clean -- no red flags',c:'green'});
 document.getElementById('flagList').innerHTML=allF.map(f=>`<div class="fi ${f.c}"><div class="fd ${f.c}"></div>${f.t}</div>`).join('');
+buildBlueprint(p,pr,tp,ip,sc,sr,rf);
 document.getElementById('vNotes').textContent=`Proj: ${r2(pr)} vs line ${p.line||'N/A'} · Edge: ${ep}pts · ${tier} · True: ${pct(tp)} · Implied: ${pct(ip)} · Rating: ${sc.adj}/10 · Kelly: $${stk.toFixed(2)} · Flags: ${rf.lvl} (${rf.pts}pts)`;
 document.getElementById('stLbl').textContent=dec;
+detectArchetype();
 const vc=document.getElementById('verdict');vc.classList.add('show');
 setTimeout(()=>vc.scrollIntoView({behavior:'smooth',block:'nearest'}),100);}
 </script>
