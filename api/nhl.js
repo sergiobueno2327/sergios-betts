@@ -15,13 +15,11 @@ const d=await dr.json();
 const s=d.featuredStats?.regularSeason?.subSeason;
 const gl=await fetch(`https://api-web.nhle.com/v1/player/${id}/game-log/20252026/2`);
 const gd=await gl.json();
-const games=gd.gameLog||[];
-const sogs=games.map(g=>g.shots||0);
-const atts=games.map(g=>g.shotAttempts||g.shots||0);
-const toisRaw=games.map(g=>{if(!g.toi)return 0;const pts=g.toi.split(':');return parseInt(pts[0])*60+parseInt(pts[1]);});
-const totalToi=toisRaw.reduce((a,b)=>a+b,0);
-const totalAtt=atts.reduce((a,b)=>a+b,0);
-const icfCalc=totalToi>0?Math.round((totalAtt/totalToi)*3600*10)/10:null;
+const allGames=gd.gameLog||[];
+const validGames=allGames.filter(g=>g.toi&&g.toi!=='00:00'&&g.toi!=='0:00');
+const sogs=validGames.map(g=>g.shots||0);
+const toisRaw=validGames.map(g=>{const pts=g.toi.split(':');return parseInt(pts[0])*60+parseInt(pts[1]);});
+const totalToiSec=toisRaw.reduce((a,b)=>a+b,0);
 const recentTois=toisRaw.slice(0,10).map(t=>t/60);
 const avgToi=recentTois.length?Math.round(recentTois.reduce((a,b)=>a+b,0)/recentTois.length*10)/10:null;
 const lineNum=parseFloat(line)||1.5;
@@ -33,29 +31,24 @@ const srt=[...sogSlice].sort((a,b)=>a-b);
 const median=srt.length?srt[Math.floor(srt.length/2)]:null;
 const ppt=s?.powerPlayTimeOnIce?(s.powerPlayTimeOnIce/(s.gamesPlayed||1)):0;
 const ppr=ppt>=120?'PP1':ppt>=30?'PP2':'None';
-const attPG=totalAtt&&games.length?Math.round(totalAtt/games.length*10)/10:null;
-let xsog=null;
-try{
-const mpRes=await fetch('https://moneypuck.com/moneypuck/playerData/seasonSummary/2025/regular/skaters.csv',{headers:{'User-Agent':'Mozilla/5.0'}});
-const mpText=await mpRes.text();
-const rows=mpText.split('\n');
-const hdrs=rows[0].split(',').map(h=>h.trim().replace(/"/g,''));
-const col=n=>hdrs.indexOf(n);
-const nc=col('name'),xc=col('I_F_xGoals'),gc=col('games_played'),sc=col('situation');
-for(const row of rows.slice(1)){
-const c=row.split(',');
-if(!c[nc])continue;
-const rn=(c[nc]||'').toLowerCase().replace(/"/g,'');
-const sit=(c[sc]||'').toLowerCase().replace(/"/g,'');
-if(sit!=='all')continue;
-if(rn.includes(lnLow)){
-const xg=parseFloat(c[xc])||0;
-const gp=parseFloat(c[gc])||1;
-xsog=Math.round(xg/gp*10)/10;
-break;
+const sogTotal=s?.shots||0;
+const gpTotal=s?.gamesPlayed||1;
+const sogPG=Math.round(sogTotal/gpTotal*10)/10;
+const attPG=validGames.length?Math.round(validGames.reduce((a,g)=>a+(g.shots||0),0)/validGames.length*10)/10:null;
+const icfCalc=totalToiSec>0&&attPG?Math.round(attPG/(totalToiSec/validGames.length/60)*60*10)/10:null;
+const schedRes=await fetch(`https://api-web.nhle.com/v1/club-schedule/${p.teamAbbrev}/week/now`);
+const schedData=await schedRes.json();
+const games2=schedData.games||[];
+const today=new Date().toISOString().split('T')[0];
+let b2b=false;
+for(let i=0;i<games2.length-1;i++){
+if(games2[i].gameDate===today&&i>0){
+const prev=new Date(games2[i-1].gameDate);
+const curr=new Date(games2[i].gameDate);
+const diff=(curr-prev)/(1000*60*60*24);
+if(diff===1)b2b=true;
 }
 }
-}catch(e){}
 let news=[],inj=false;
 try{
 const rw=await fetch('https://www.rotowire.com/hockey/rss/news.php',{headers:{'User-Agent':'Mozilla/5.0'}});
@@ -71,6 +64,27 @@ if(news.length>=2)break;
 }
 inj=news.some(n=>/injur|day-to-day|scratch|out|miss/i.test(n.title+n.desc));
 }catch(e){}
-res.json({name:fullName,team:p.teamAbbrev,position:p.positionCode,toi:avgToi,sogPerGame:s?Math.round(s.shots/s.gamesPlayed*10)/10:null,attPerGame:attPG,icf60:icfCalc,xsog,ppRole:ppr,ppToiPerGame:Math.round(ppt/60*10)/10,gamesPlayed:s?.gamesPlayed||null,avg,median,hitL5:hr(5),hitL10:hr(10),hitL20:hr(20),last5:games.slice(0,5).map(g=>({date:g.gameDate,opp:g.opponentAbbrev,shots:g.shots||0,toi:g.toi})),news,injuryFlag:inj,totalGames:games.length});
+res.json({
+name:fullName,
+team:p.teamAbbrev,
+position:p.positionCode,
+toi:avgToi,
+sogPerGame:sogPG,
+attPerGame:attPG,
+icf60:icfCalc,
+ppRole:ppr,
+ppToiPerGame:Math.round(ppt/60*10)/10,
+gamesPlayed:gpTotal,
+avg,
+median,
+hitL5:hr(5),
+hitL10:hr(10),
+hitL20:hr(20),
+b2b,
+last5:validGames.slice(0,5).map(g=>({date:g.gameDate,opp:g.opponentAbbrev,shots:g.shots||0,toi:g.toi})),
+news,
+injuryFlag:inj,
+validGames:validGames.length
+});
 }catch(e){res.status(500).json({error:e.message});}
 }
