@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Sergio's Betts -- Checklist</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icon.svg">
+<meta name="theme-color" content="#00e5a0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Betts">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#08090f;--s1:#0f1018;--s2:#171820;--bd:#22243a;--ac:#00e5a0;--ac2:#00b8ff;--red:#ff3d5a;--warn:#ffd166;--tx:#eceef8;--mu:#5a6080;--card:#111320;--pur:#b16aff}
@@ -208,5 +215,6 @@ function goToEngine(){window.location.href='/';}
 function resetAll(){LAYERS.forEach(l=>{l.criteria.forEach(c=>{state[l.id][c.id]=null;});});buildLayers();updateProgress();document.getElementById('verdictCard').classList.remove('show');document.getElementById('hdrStatus').textContent='0/6';document.getElementById('progressCount').textContent='0 of 6 layers clear';document.getElementById('progressFill').style.width='0%';document.getElementById('bPlayer').value='';document.getElementById('bLine').value='';}
 buildLayers();
 </script>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js');</script>
 </body>
 </html>
