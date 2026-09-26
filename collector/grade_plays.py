@@ -9,7 +9,7 @@ For every ungraded play in the ledger export it computes:
   ret         per-contract return: (100-entry)/entry if W, -1 if L (0 if not filled / void)
   pnl         real-money plays only: stake * ret - fee
 
-Usage: ODDSPAPI_KEY=... python3 grade_plays.py LEDGER_DIR SNAPSHOT_ROOT_or_- OUT.json
+Usage: ODDSPAPI_KEY=... python3 grade_plays.py LEDGER_DIR SNAPSHOT_ROOT_or_- OUT.json [--passes]\n  --passes grades a 'passes' export counterfactually (price = entry, else ask for YES / 100-bid for NO).
   Pinnacle close comes from OddsPapi historical odds (exact close); saved snapshots are a fallback.
   LEDGER_DIR    = folder of ledger JSON docs (ArtifactData list with out_dir -> .../bets/*.json)
   SNAPSHOT_ROOT = odds-history checkout (contains data/YYYY-MM-DD/*_pinnacle.jsonl.gz)
@@ -284,6 +284,24 @@ def grade(play, root, now):
     return out
 
 
+def grade_pass(p, root, now):
+    """Counterfactual grade for a logged PASS: what would have happened at the price we passed on."""
+    q = dict(p)
+    if q.get('entry') is None:
+        if q.get('side', '').upper() == 'NO':
+            q['entry'] = 100 - float(q['bid']) if q.get('bid') is not None else None
+        else:
+            q['entry'] = q.get('ask')
+    if q.get('entry') is None or not q.get('side'):
+        return {'gradeNote': 'pass lacks side/price'}
+    q.update(orderType='taker', stake=0, status='pass')
+    u = grade(q, root, now)
+    if u and u.get('result') in ('W', 'L'):
+        u['result'] = 'Would have won' if u['result'] == 'W' else 'Would have lost'
+        u['passPrice'] = q['entry']
+    return u
+
+
 def report(plays):
     groups = {}
     for p in plays:
@@ -305,14 +323,17 @@ def report(plays):
 
 def main():
     ledger, root, out_fn = sys.argv[1:4]
+    passes_mode = '--passes' in sys.argv   # grade a 'passes' export counterfactually
     now = datetime.datetime.now(datetime.timezone.utc)
     docs = {os.path.basename(fn)[:-5]: json.load(open(fn)) for fn in glob.glob(os.path.join(ledger, '*.json'))}
     updates = {}
     for did, p in sorted(docs.items()):
-        if p.get('graded') or 'pass' in str(p.get('status', '')).lower():
+        if p.get('graded') or (not passes_mode and 'pass' in str(p.get('status', '')).lower()):
             continue
+        if passes_mode and p.get('result'):
+            continue   # already graded by hand
         try:
-            u = grade(p, root, now)
+            u = grade_pass(p, root, now) if passes_mode else grade(p, root, now)
         except Exception as e:  # never let one play break the run
             u = {'gradeNote': f'grader error: {e}'}
         if u:
@@ -320,7 +341,14 @@ def main():
             docs[did] = {**p, **u}
             print(did, json.dumps(u))
     json.dump(updates, open(out_fn, 'w'), indent=1)
-    print('\n'.join(['--- CLV report (all graded, filled plays) ---'] + report(list(docs.values()))))
+    if passes_mode:
+        g = [d for d in docs.values() if str(d.get('result', '')).startswith('Would')]
+        w = sum(str(d['result']).startswith('Would have won') for d in g)
+        c = [d['clvPinn'] for d in g if d.get('clvPinn') is not None]
+        print(f"--- Passes: {len(g)} graded | would have won {w} / lost {len(g) - w}"
+              + (f" | avg Pinnacle CLV at pass price {statistics.mean(c):+.2f} (n {len(c)})" if c else '') + ' ---')
+    else:
+        print('\n'.join(['--- CLV report (all graded, filled plays) ---'] + report(list(docs.values()))))
 
 
 if __name__ == '__main__':
