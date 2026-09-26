@@ -15,6 +15,7 @@ K, W_OPP, R_NB, GAMMA = 30, 1.0, 30, 0.15
 BLEND = {'REB': (0.35, -0.02), 'AST': (0.25, 0.00)}
 SERIES = {'REB': 'KXNBAREB', 'AST': 'KXNBAAST'}
 EDGE_MIN, ZONE = 0.03, (0.35, 0.75)
+BETA_START = 7.0   # REB only: minutes += 7.0 x (starts today - start rate L10). Stage 2 PASSED 2026-09-26; AST failed.
 
 def get(url, headers=None, tries=3):
     for a in range(tries):
@@ -59,7 +60,7 @@ def season_game_ids(start, end):
     return [x for r in res for x in r]
 
 def box(gid):
-    fn = f'{CACHE}/b_{gid}.json'
+    fn = f'{CACHE}/b2_{gid}.json'   # b2 = includes starter flag
     if os.path.exists(fn): return json.load(open(fn))
     j = get(f"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event={gid}")
     if not j: return None
@@ -73,7 +74,7 @@ def box(gid):
             try: mn = float(s.get('minutes') or 0)
             except ValueError: mn = 0
             if mn <= 0: continue
-            rows.append(dict(pid=a['athlete']['id'], name=a['athlete']['displayName'], team=ab, opp=opp, min=mn, REB=int(s.get('rebounds', 0)), AST=int(s.get('assists', 0))))
+            rows.append(dict(pid=a['athlete']['id'], name=a['athlete']['displayName'], team=ab, opp=opp, min=mn, starter=bool(a.get('starter')), REB=int(s.get('rebounds', 0)), AST=int(s.get('assists', 0))))
     out = dict(id=gid, date=comp['date'][:10], rows=rows); json.dump(out, open(fn, 'w')); return out
 
 def load_history(today):
@@ -92,7 +93,7 @@ def build_state(G):
         for t in {r['team'] for r in g['rows']}: team_games[t].append({r['pid'] for r in g['rows'] if r['team'] == t})
     return hist, allow, lgc, team_games
 
-def player_mu(pid, opp, state, injured_ids, team):
+def player_mu(pid, opp, state, injured_ids, team, start_today=None):
     hist, allow, lgc, team_games = state; h = hist[pid]
     if len(h) < 10: return None
     wins = [(0.35, h), (0.30, h[-20:]), (0.25, h[-10:]), (0.10, h[-5:])]
@@ -108,11 +109,17 @@ def player_mu(pid, opp, state, injured_ids, team):
         a = allow[opp]; f = 1 + W_OPP * ((a[st] / a['min']) / (lgc[st] / lgc['min']) - 1) if a['min'] else 1
         miss = sum(statistics.mean(x[st] for x in hist[p][-10:]) for p in rot)
         out[st] = (rate * f, GAMMA * miss * share)
-    return dict(mhat=mhat, sd=sd, st=out, n_out=len(rot))
+    res = dict(mhat=mhat, sd=sd, st=out, n_out=len(rot))
+    if start_today is not None and all('starter' in x for x in h[-10:]):
+        srate = statistics.mean(x['starter'] for x in h[-10:])
+        res['mhat_REB'] = mhat + BETA_START * (int(start_today) - srate)
+        res['role_change'] = abs(int(start_today) - srate) >= 0.5
+    return res
 
 def prob(m, st, k):
     rate, add = m['st'][st]
-    return sum(w * nb_sf(k, rate * max(m['mhat'] + z * m['sd'], 1) + add, R_NB) for z, w in GH)
+    mh = m.get('mhat_' + st, m['mhat'])
+    return sum(w * nb_sf(k, rate * max(mh + z * m['sd'], 1) + add, R_NB) for z, w in GH)
 
 # ---------- 3. live inputs ----------
 def todays_games(day):
@@ -195,6 +202,13 @@ def injury_diff(minutes=75, at=None):
     for c in ch: print(c)
     return ch
 
+def lineups(day):
+    """{nrm_name: True/False starter} for `day`. Source: RotoWire nba-lineups.php (reachable; other lineup sites block us).
+    Parser pending: page is empty in the offseason — build + verify against real pages in NBA preseason (early Oct 2026).
+    Until then returns {} and the starter adjustment is simply off."""
+    lineups.source = 'not wired yet (RotoWire reader pending NBA preseason)'
+    return {}
+
 # ---------- 4. scan ----------
 def scan(day):
     games = [g for g in todays_games(day) if g['state'] == 'pre']
@@ -204,6 +218,7 @@ def scan(day):
     for pid, h in hist.items(): byname[nrm(h[-1]['name'])] = pid
     inj = injuries(); out_ids = [pid for pid, h in hist.items() if nrm(h[-1]['name']) in inj and inj[nrm(h[-1]['name'])][1] in ('Out', 'Doubtful')]
     teams = {g['home']: g['away'] for g in games} | {g['away']: g['home'] for g in games}
+    starters = lineups(day)
     P = pinnacle_props(); plays = []; seen = 0
     for st in ('REB', 'AST'):
         w, c = BLEND[st]
@@ -212,7 +227,7 @@ def scan(day):
             if not pid or pid in out_ids: continue
             team = hist[pid][-1]['team']
             if team not in teams: continue
-            mod = player_mu(pid, teams[team], state, out_ids, team)
+            mod = player_mu(pid, teams[team], state, out_ids, team, start_today=starters.get(nrm(m['name'])))
             if not mod: continue
             pin = P.get((nrm(m['name']), st, m['line']))
             seen += 1
@@ -223,9 +238,9 @@ def scan(day):
                 edge = fair - limit
                 if edge >= EDGE_MIN and ZONE[0] <= limit <= ZONE[1]:
                     plays.append(dict(stat=st, player=m['name'], line=f"{m['k']}+", side=side, limit=round(limit * 100), bid_ask=f"{m['bid']*100:.0f}/{m['ask']*100:.0f}",
-                                      model=round(pm * 100, 1), pinnacle=round(pin * 100, 1), blend=round(blend * 100, 1), edge=round(edge * 100, 1), teammates_out=mod['n_out']))
+                                      model=round(pm * 100, 1), role_change=mod.get('role_change', False), pinnacle=round(pin * 100, 1), blend=round(blend * 100, 1), edge=round(edge * 100, 1), teammates_out=mod['n_out']))
     plays.sort(key=lambda p: -p['edge'])
-    print(f"{day}: {len(games)} games | injuries: {injuries.source} | Kalshi REB/AST markets matched to model {seen} | Pinnacle props {len(P)} | plays {len(plays)}")
+    print(f"{day}: {len(games)} games | injuries: {injuries.source} | lineups: {lineups.source} | Kalshi REB/AST markets matched to model {seen} | Pinnacle props {len(P)} | plays {len(plays)}")
     for p in plays: print(p)
     return plays
 
