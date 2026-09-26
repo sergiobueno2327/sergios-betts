@@ -9,7 +9,8 @@ For every ungraded play in the ledger export it computes:
   ret         per-contract return: (100-entry)/entry if W, -1 if L (0 if not filled / void)
   pnl         real-money plays only: stake * ret - fee
 
-Usage: python3 grade_plays.py LEDGER_DIR SNAPSHOT_ROOT OUT.json
+Usage: ODDSPAPI_KEY=... python3 grade_plays.py LEDGER_DIR SNAPSHOT_ROOT_or_- OUT.json
+  Pinnacle close comes from OddsPapi historical odds (exact close); saved snapshots are a fallback.
   LEDGER_DIR    = folder of ledger JSON docs (ArtifactData list with out_dir -> .../bets/*.json)
   SNAPSHOT_ROOT = odds-history checkout (contains data/YYYY-MM-DD/*_pinnacle.jsonl.gz)
   OUT.json      = {doc_id: fields_to_update}; also prints a per-market CLV report.
@@ -26,6 +27,15 @@ No API keys needed (Kalshi public API + saved snapshots).
 import datetime, glob, gzip, json, math, os, statistics, sys, time, unicodedata, re, urllib.request
 
 B = 'https://api.elections.kalshi.com/trade-api/v2'
+OP = 'https://api.oddspapi.io/v4'
+OP_KEY = os.environ.get('ODDSPAPI_KEY', '')
+OP_SPORT = {'NFL': (14, 'NFL'), 'NCAAF': (14, 'NCAA'), 'NBA': (11, 'NBA'), 'WNBA': (11, 'WNBA'), 'NCAAB': (11, 'NCAA'),
+            'MLB': (13, 'MLB'), 'NHL': (15, 'NHL'), 'Tennis': (12, None)}
+OP_UNIT = {'receptions': 'receptions', 'receivingyards': 'receivingyards', 'rushattempts': 'rushattempts', 'rushingyards': 'rushyards',
+           'passcompletions': 'passcompletions', 'passattempts': 'passattempts', 'passingyards': 'passyards', 'touchdownpasses': 'tdpasses',
+           'interceptions': 'interceptions', 'rebounds': 'rebounds', 'assists': 'assists', 'points': 'points', 'hits': 'hits', 'bases': 'bases',
+           'homeruns': 'homeruns', 'strikeouts': 'strikeouts', 'outs': 'outs', 'shotsongoal': 'shotsongoal', 'saves': 'saves'}
+_op_cache = {}
 
 
 def get(u):
@@ -121,6 +131,92 @@ def pinnacle_close(root, play, start):
     return None, 'no matching snapshot before start'
 
 
+def op_get(path):
+    """OddsPapi GET with pacing + rate-limit retry (free tier ~1 req/s). Cached per run."""
+    if path in _op_cache:
+        return _op_cache[path]
+    url = f"{OP}/{path}{'&' if '?' in path else '?'}apiKey={OP_KEY}"
+    for a in range(6):
+        time.sleep(1.3)
+        try:
+            j = json.load(urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'curl/8'}), timeout=90))
+        except Exception:
+            j = None
+        if isinstance(j, dict) and 'error' in j:
+            time.sleep(3 * (a + 1)); continue
+        if j is not None:
+            _op_cache[path] = j
+            return j
+    return None
+
+
+def pinnacle_close_op(play, start):
+    """Pinnacle closing no-vig (our side) from OddsPapi historical odds: last Pinnacle quote before start."""
+    spec, sp = play.get('pinn') or {}, OP_SPORT.get(play.get('sport'))
+    if not (OP_KEY and spec and sp):
+        return None, 'oddspapi: no key/spec/sport'
+    sid, league = sp
+    d0 = (start - datetime.timedelta(hours=14)).date().isoformat()
+    d1 = ((start + datetime.timedelta(hours=14)).date() + datetime.timedelta(days=1)).isoformat()   # 'to' is exclusive
+    fx = op_get(f'fixtures?sportId={sid}&from={d0}&to={d1}') or []
+    who = nrm(spec.get('who'))
+    window = 8 * 3600 if sid == 12 else 5400   # tennis order of play shifts by hours
+    cand = [f for f in fx if abs((ts(f['startTime']) - start).total_seconds()) <= window
+            and (league is None or league in (f.get('tournamentName') or ''))]
+    unit = spec['mkt'].split(':', 1)[1] if spec['mkt'].startswith('prop:') else None
+    if not unit:  # game market: participant name must match
+        cand = [f for f in cand if who in nrm(f.get('participant1Name')) + '|' + nrm(f.get('participant2Name'))]
+    mk = op_get(f'markets?sportId={sid}') or []
+    if unit:
+        mtype = 'playertotals-' + OP_UNIT.get(nrm(unit), nrm(unit))
+    elif spec['mkt'] == 'total':
+        mtype = 'totals-games' if sid == 12 else 'totals'
+    else:
+        mtype = 'moneyline'
+    mids = {str(m['marketId']): m for m in mk if m.get('marketType') == mtype and str(m.get('period')) == 'result'
+            and (spec['mkt'] == 'ml' or abs(float(m.get('handicap') or 0) - float(spec.get('line') or 0)) < 1e-6)}
+    if not mids:
+        return None, f'oddspapi: no market {mtype} line {spec.get("line")}'
+    for f in cand[:12]:
+        cut = ts(f['trueStartTime']) if f.get('trueStartTime') else start   # actual first serve / kickoff when known
+        h = op_get(f"historical-odds?fixtureId={f['fixtureId']}&bookmakers=pinnacle") or {}
+        markets = (((h.get('bookmakers') or {}).get('pinnacle') or {}).get('markets') or {})
+        pid = '0'
+        if unit:
+            pl = op_get(f"players?sportId={sid}&tournamentId={f['tournamentId']}") or {}
+            names = {}
+            for t in (pl.get('participants') or {}).values():
+                for x in t.get('players', []):
+                    n = x['playerName']
+                    if ',' in n:
+                        l, fn = n.split(',', 1); n = fn.strip() + ' ' + l.strip()
+                    names[str(x['playerId'])] = nrm(n)
+            pids = [k for k, v in names.items() if v == who]
+            if not pids:
+                continue
+            pid = pids[0]
+        last = {}
+        for mid, mv in markets.items():
+            if mid not in mids:
+                continue
+            oname = {str(o['outcomeId']): o['outcomeName'] for o in mids[mid]['outcomes']}
+            for oid, ov in (mv.get('outcomes') or {}).items():
+                qs = [q for q in (ov.get('players') or {}).get(pid, []) if q.get('price') and q['createdAt'] < cut.strftime('%Y-%m-%dT%H:%M:%S')]
+                if qs:
+                    last[oname.get(oid, oid)] = qs[-1]
+        if spec['mkt'] == 'ml' and '1' in last and '2' in last:
+            p1 = power_devig(last['1']['price'], last['2']['price'])
+            home_is_1 = who in nrm(f.get('participant1Name'))
+            p = p1 if (spec.get('team', 'home') == 'home') == home_is_1 else 1 - p1
+            pinnacle_close_op.cut = cut
+            return (p if play['side'] == 'YES' else 1 - p), 'oddspapi ' + max(last['1']['createdAt'], last['2']['createdAt'])
+        if 'Over' in last and 'Under' in last:
+            po = power_devig(last['Over']['price'], last['Under']['price'])
+            pinnacle_close_op.cut = cut
+            return (po if play['side'] == 'YES' else 1 - po), 'oddspapi ' + max(last['Over']['createdAt'], last['Under']['createdAt'])
+    return None, f'oddspapi: not found ({len(cand)} candidate games)'
+
+
 def grade(play, root, now):
     out = {}
     tk = play.get('kalshi_ticker')
@@ -133,6 +229,10 @@ def grade(play, root, now):
     if now < start:
         return None  # not started yet
     side, entry = play['side'].upper(), float(play['entry'])
+    pinnacle_close_op.cut = None
+    pc, pnote = pinnacle_close_op(play, start)
+    if pinnacle_close_op.cut:
+        start = pinnacle_close_op.cut   # actual start (tennis order of play etc.)
     # Kalshi close: last 1-min candle before start (fallback hourly)
     cs = candles(tk, start.timestamp() - 3 * 3600, start.timestamp(), 1) or candles(tk, start.timestamp() - 48 * 3600, start.timestamp(), 60)
     kc = None
@@ -156,7 +256,13 @@ def grade(play, root, now):
         out['filled'] = filled
     else:
         out['filled'] = True
-    pc, pnote = pinnacle_close(root, play, start)
+    if pc is None and root and os.path.isdir(os.path.join(root, 'data')):
+        pc2, pnote2 = pinnacle_close(root, play, start)
+        if pc2 is not None:
+            pc, pnote = pc2, 'snapshot ' + pnote2
+        else:
+            pnote = f'{pnote}; {pnote2}'
+
     out['pinnClose'] = round(pc * 100, 1) if pc is not None else None
     out['pinnCloseAt'] = pnote
     out['clvPinn'] = round(pc * 100 - entry, 1) if pc is not None else None
