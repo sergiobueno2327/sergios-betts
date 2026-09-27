@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sergio's Betts — Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF1F5; --sheet:#F8FAFC; --ink:#1B2A41; --muted:#5A6B82; --grid:#CBD5E1;
+  --win:#1F7A5A; --loss:#B3372E; --wait:#9A7412; --accent:#2F5D8C;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --paper:#111925; --sheet:#18222F; --ink:#E4EAF2; --muted:#93A3B8; --grid:#2A3748;
+  --win:#4CB38A; --loss:#E0675C; --wait:#D2A63A; --accent:#7FA8D6; } }
+:root[data-theme="dark"]{
+  --paper:#111925; --sheet:#18222F; --ink:#E4EAF2; --muted:#93A3B8; --grid:#2A3748;
+  --win:#4CB38A; --loss:#E0675C; --wait:#D2A63A; --accent:#7FA8D6; }
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.45 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px);background-size:100% 28px;background-attachment:fixed}
+.num,.big{font-family:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+header{background:var(--sheet);border:1px solid var(--grid);border-radius:6px;padding:18px 18px 16px}
+h1{font:600 1.05rem/1.2 "Source Sans 3",sans-serif;margin:0 0 12px;color:var(--muted)}
+.hero{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.big{font-size:4.2rem;font-weight:700;line-height:.9;letter-spacing:-.5px}
+.big.pos{color:var(--win)} .big.neg{color:var(--loss)}
+.hero-cap{color:var(--muted);font-size:.95rem;padding-bottom:6px}
+.sample{margin-top:14px}
+.track{height:8px;border-radius:4px;background:var(--grid);overflow:hidden}
+.fill{height:100%;background:var(--accent)}
+.sample p{margin:6px 0 0;font-size:.88rem;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px;border-top:1px solid var(--grid);padding-top:12px}
+.stats div{min-width:0}
+.stats b{display:block;font-family:"Barlow Condensed","Arial Narrow",sans-serif;font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums}
+.stats span{font-size:.78rem;color:var(--muted)}
+nav{display:flex;gap:6px;margin:18px 0 10px}
+nav button{flex:1;font:600 .95rem "Source Sans 3",sans-serif;padding:10px 6px;border-radius:6px;border:1px solid var(--grid);
+  background:var(--sheet);color:var(--muted);cursor:pointer}
+nav button[aria-selected="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row{background:var(--sheet);border:1px solid var(--grid);border-left:4px solid var(--wait);border-radius:6px;padding:12px 14px;margin-bottom:8px}
+.row.W{border-left-color:var(--win)} .row.L{border-left-color:var(--loss)} .row.P{border-left-color:var(--muted)}
+.row .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.row .who{font-weight:700}
+.row .res{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:1.15rem;white-space:nowrap}
+.res.W{color:var(--win)} .res.L{color:var(--loss)} .res.wait{color:var(--wait)}
+.row .sub{color:var(--muted);font-size:.88rem;margin-top:2px}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.kv div{font-size:.75rem;color:var(--muted)}
+.kv b{display:block;color:var(--ink);font-family:"Barlow Condensed",sans-serif;font-size:1.1rem;font-weight:600}
+.note{margin-top:8px;font-size:.85rem;color:var(--muted)}
+.empty{background:var(--sheet);border:1px dashed var(--grid);border-radius:6px;padding:18px;color:var(--muted)}
+.wrap{overflow-x:auto;background:var(--sheet);border:1px solid var(--grid);border-radius:6px}
+table{border-collapse:collapse;width:100%;min-width:420px}
+th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums}
+th{font-size:.8rem;color:var(--muted);font-weight:600}
+th:first-child,td:first-child{text-align:left}
+.foot{margin-top:18px;font-size:.8rem;color:var(--muted)}
+@media (max-width:380px){.stats{grid-template-columns:repeat(2,1fr)}.big{font-size:3.4rem}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Sergio's Betts · closing line value</h1>
+    <div class="hero">
+      <div class="big" id="clv">—</div>
+      <div class="hero-cap" id="clvcap">avg CLV per bet, in points</div>
+    </div>
+    <div class="sample">
+      <div class="track"><div class="fill" id="fill" style="width:0%"></div></div>
+      <p id="samplecap">0 of 50 settled bets before CLV says anything about skill</p>
+    </div>
+    <div class="stats">
+      <div><b id="beat">—</b><span>beat the close</span></div>
+      <div><b id="rec">0–0</b><span>record</span></div>
+      <div><b id="units">0.00</b><span>units</span></div>
+      <div><b id="pl">$0</b><span>profit / loss</span></div>
+    </div>
+  </header>
+
+  <nav role="tablist">
+    <button role="tab" aria-selected="true" data-tab="bets">Bets</button>
+    <button role="tab" aria-selected="false" data-tab="paper">Paper B</button>
+    <button role="tab" aria-selected="false" data-tab="passes">Passes</button>
+    <button role="tab" aria-selected="false" data-tab="cal">Calibration</button>
+  </nav>
+
+  <section id="bets"></section>
+  <section id="paper" hidden></section>
+  <section id="passes" hidden></section>
+  <section id="cal" hidden></section>
+
+  <p class="foot" id="status">Loading ledger…</p>
+</main>
+<script>
+const UNIT=25;
+let bets=[],allBets=[],passes=[];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const f1=x=>(x>0?'+':'')+x.toFixed(1);
+const num=x=>typeof x==='number'&&isFinite(x);
+
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  ['bets','paper','passes','cal'].forEach(t=>$(t).hidden=t!==b.dataset.tab);
+});
+
+// CLV source priority: an explicit `close` (older/manual entries) > `pinnClose`
+// (the rulebook's stated verdict metric -- Pinnacle's closing no-vig) > `kalshiClose`
+// (fallback venue close). The nightly grader writes pinnClose/kalshiClose, not `close`,
+// so this fallback chain is what makes graded plays actually show up here. Fixed 2026-09-27.
+function closeOf(b){
+  if(num(b.close))return b.close;
+  if(num(b.pinnClose))return b.pinnClose;
+  if(num(b.kalshiClose))return b.kalshiClose;
+  return null;
+}
+function clvOf(b){const c=closeOf(b);return num(b.entry)&&c!==null?c-b.entry:null}
+function plOf(b){
+  if(!num(b.entry)||!num(b.stake))return 0;
+  if(b.result==='W')return b.stake*(100-b.entry)/b.entry-(b.fee||0);
+  if(b.result==='L')return -b.stake-(b.fee||0);
+  return 0;
+}
+function card(b){
+    const clv=clvOf(b),res=b.result==='W'||b.result==='L'?b.result:null;
+    const label=res?(res==='W'?'Won ':'Lost ')+(plOf(b)>=0?'+$':'−$')+Math.abs(plOf(b)).toFixed(2):(b.status||'Pending');
+    return `<article class="row ${res||''}">
+      <div class="top"><span class="who">${esc(b.player)} ${esc(b.market)} ${esc(b.side)}</span><span class="res ${res||'wait'}">${esc(label)}</span></div>
+      <div class="sub">${esc(b.date)} · ${esc(b.game)} · Track ${esc(b.track)} ${esc(b.tier||'')} · ${esc(b.orderType||'')}</div>
+      <div class="kv">
+        <div>${b.track==='B'?'Fair':'Model'}<b>${b.track==='B'?(num(b.fair)?b.fair.toFixed(1):'—'):(num(b.model)?b.model.toFixed(1)+'%':'—')}</b></div>
+        <div>${b.track==='B'?'Source':'Fair'}<b>${b.track==='B'?esc(b.fairSource||'—'):(num(b.fair)?b.fair.toFixed(1):'—')}</b></div>
+        <div>Entry<b>${num(b.entry)?b.entry+'¢':(num(b.maxLimit)?'≤'+b.maxLimit+'¢':'—')}</b></div>
+        <div>CLV<b>${clv===null?'—':f1(clv)}</b></div>
+      </div>
+      ${b.note?`<div class="note">${esc(b.note)}</div>`:''}
+    </article>`}
+function render(){
+  const paper=bets.filter(b=>b.track==='B');
+  const pc=paper.map(clvOf).filter(v=>v!==null);
+  const pavg=pc.length?pc.reduce((a,b)=>a+b,0)/pc.length:null, pbeat=pc.length?100*pc.filter(v=>v>0).length/pc.length:null;
+  const ok=(c,t)=>c?'<b style="color:var(--win)">met</b>':'<b style="color:var(--muted)">'+t+'</b>';
+  const sortedP=[...paper].sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  $('paper').innerHTML=`<div class="row P" style="border-left-color:var(--accent)">
+      <div class="top"><span class="who">Graduation to live</span><span class="res" style="color:var(--accent)">${pc.length} / 50</span></div>
+      <div class="kv">
+        <div>Plays with close<b>${pc.length}</b></div>
+        <div>Avg CLV<b>${pavg===null?'—':f1(pavg)}</b></div>
+        <div>Beat close<b>${pbeat===null?'—':Math.round(pbeat)+'%'}</b></div>
+        <div>Status${ok(pc.length>=50&&pavg>=1&&pbeat>=55,'paper')}</div>
+      </div>
+      <div class="note">Goes live at 0.5u flat after 50 plays with avg CLV ≥ +1 pt and ≥55% beating the close. No money at stake until then.</div>
+    </div>`+(sortedP.length?sortedP.map(card).join(''):'<div class="empty">No paper plays yet. Track B needs a gap of ≥3 pts vs Pinnacle or ≥5 vs US consensus, net of fee, at a limit price.</div>');
+  bets=bets.filter(b=>b.track!=='B');
+  const settled=bets.filter(b=>b.result==='W'||b.result==='L');
+  const withClv=bets.map(clvOf).filter(v=>v!==null);
+  const avg=withClv.length?withClv.reduce((a,b)=>a+b,0)/withClv.length:null;
+  const c=$('clv');c.textContent=avg===null?'—':f1(avg);
+  c.className='big'+(avg>0?' pos':avg<0?' neg':'');
+  $('clvcap').textContent=withClv.length?`avg CLV per bet, in points · ${withClv.length} with a close`:'avg CLV per bet, in points · no closes yet';
+  const n=settled.length;$('fill').style.width=Math.min(100,n/50*100)+'%';
+  $('samplecap').textContent=n>=50?`${n} settled bets — sample is large enough to judge skill by CLV`:`${n} of 50 settled bets before CLV says anything about skill`;
+  $('beat').textContent=withClv.length?Math.round(100*withClv.filter(v=>v>0).length/withClv.length)+'%':'—';
+  const w=settled.filter(b=>b.result==='W').length;$('rec').textContent=`${w}–${n-w}`;
+  const pl=bets.reduce((a,b)=>a+plOf(b),0);
+  $('units').textContent=(pl/UNIT>=0?'+':'')+(pl/UNIT).toFixed(2);
+  $('pl').textContent=(pl<0?'−$':'$')+Math.abs(pl).toFixed(2);
+
+  const sb=[...bets].sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  $('bets').innerHTML=sb.length?sb.map(card).join(''):'<div class="empty">No bets logged yet. Place a bet and tell Claude your entry price to add it here.</div>';
+
+  const sp=[...passes].sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  $('passes').innerHTML=sp.length?sp.map(p=>`<article class="row P">
+      <div class="top"><span class="who">${esc(p.player)} ${esc(p.market)} ${esc(p.side)}</span><span class="res" style="color:var(--muted)">${p.track==='B'?'Paper B · no entry':'Passed'}</span></div>
+      <div class="sub">${esc(p.date)} · ${esc(p.game)}</div>
+      <div class="kv">
+        <div>Model<b>${num(p.model)?p.model.toFixed(1)+'%':'—'}</b></div>
+        <div>Fair<b>${num(p.fair)?p.fair.toFixed(1):'—'}</b></div>
+        <div>Bid / ask<b>${esc(p.bid??'—')} / ${esc(p.ask??'—')}</b></div>
+        <div>Result<b>${esc(p.result||'—')}</b></div>
+      </div>
+      ${p.reason?`<div class="note">${esc(p.reason)}</div>`:''}
+    </article>`).join(''):'<div class="empty">No passes logged yet.</div>';
+
+  const buckets=[[35,45],[45,50],[50,55],[55,60],[60,65],[65,70],[70,75],[75,101]];
+  const all=[...settled,...passes.filter(p=>p.result==='W'||p.result==='L')].filter(x=>num(x.model));
+  const rows=buckets.map(([lo,hi])=>{
+    const g=all.filter(x=>x.model>=lo&&x.model<hi);
+    if(!g.length)return null;
+    const exp=g.reduce((a,x)=>a+x.model,0)/g.length, hit=100*g.filter(x=>x.result==='W').length/g.length;
+    return `<tr><td>${lo}–${hi>100?'100':hi}%</td><td>${g.length}</td><td>${exp.toFixed(1)}%</td><td>${hit.toFixed(0)}%</td><td>${f1(hit-exp)}</td></tr>`;
+  }).filter(Boolean);
+  $('cal').innerHTML=rows.length?`<div class="wrap"><table><thead><tr><th>Model bucket</th><th>n</th><th>Model avg</th><th>Actual</th><th>Gap</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>
+    <p class="foot">Bets and settled passes both count. Small buckets are noise until each has 20+ plays.</p>`
+    :'<div class="empty">Calibration fills in once bets and passes settle.</div>';
+}
+render();
+
+(async()=>{
+  const db=await claude.use("db");
+  if(!db){$('status').textContent='Ledger data is unavailable in this view.';return;}
+  const err=e=>{$('status').textContent='Ledger stopped updating ('+e.code+'). Reopen the page to reconnect.'};
+  db.collection("bets").onSnapshot(s=>{allBets=s.docs.map(d=>d.data());bets=allBets.slice();render();$('status').textContent='Live. Claude updates this ledger from your chat.'},err);
+  db.collection("passes").onSnapshot(s=>{passes=s.docs.map(d=>d.data());bets=allBets.slice();render();},err);
+})();
+</script>
+</body>
+</html>
