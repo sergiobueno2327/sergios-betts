@@ -38,10 +38,10 @@ OP_UNIT = {'receptions': 'receptions', 'receivingyards': 'receivingyards', 'rush
 _op_cache = {}
 
 
-def get(u):
+def get(u, headers=None):
     for a in range(5):
         try:
-            return json.load(urllib.request.urlopen(urllib.request.Request(u), timeout=40))
+            return json.load(urllib.request.urlopen(urllib.request.Request(u, headers=headers or {}), timeout=40))
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 return None
@@ -227,6 +227,94 @@ def pinnacle_close_op(play, start):
     return None, f'oddspapi: not found ({len(cand)} candidate games)'
 
 
+def nhl_actual_sog(spec, start):
+    """Real shots-on-goal for a ticker-less NHL SOG play (Novig/ProphetX/Fliff/PrizePicks --
+    Kalshi carries no NHL SOG market at all, confirmed repeatedly). Built 2026-09-28 to close the
+    gap nhl_scan.py's to_ledger_docs docstring flagged: these plays got clvPinn but no result/W-L
+    at all, since grade()'s only settlement source was Kalshi. NHL API boxscore only gives
+    'F. Lastname', not a full first name, so matching is by team + last name (unique within one
+    game's ~40 players in practice)."""
+    who_last = nrm((spec.get('who') or '').split()[-1])
+    if not who_last:
+        return None, 'no player name in pinn spec'
+    for d in (start.date(), start.date() - datetime.timedelta(days=1), start.date() + datetime.timedelta(days=1)):
+        j = get(f"https://api-web.nhle.com/v1/score/{d.isoformat()}", headers={'User-Agent': 'curl/8'}) or {}
+        for g in j.get('games', []):
+            if g.get('gameState') not in ('FINAL', 'OFF'):
+                continue
+            gt = ts(g['startTimeUTC']) if g.get('startTimeUTC') else None
+            if gt and abs((gt - start).total_seconds()) > 6 * 3600:
+                continue
+            gid = g['id']
+            box = get(f"https://api-web.nhle.com/v1/gamecenter/{gid}/boxscore", headers={'User-Agent': 'curl/8'}) or {}
+            hits = []
+            for side in ('homeTeam', 'awayTeam'):
+                for grp in ('forwards', 'defense'):
+                    for p in ((box.get('playerByGameStats') or {}).get(side, {}) or {}).get(grp, []) or []:
+                        nm = (p.get('name') or {}).get('default', '')
+                        last = nrm(nm.split('.', 1)[-1].strip()) if '.' in nm else nrm(nm)
+                        if last == who_last:
+                            hits.append(p)
+            if len(hits) == 1:
+                return int(hits[0].get('sog', 0) or 0), f'nhl boxscore game {gid}'
+            if len(hits) > 1:
+                return None, f'ambiguous name match ({len(hits)} players named {who_last}) in game {gid}'
+    return None, 'no matching finished NHL game/player found'
+
+
+def mlb_actual_stat(spec, start):
+    """Real hits/total-bases for a ticker-less MLB Track B play (softness_scan.py, a player Kalshi
+    doesn't list at all -- confirmed different from most MLB Track B plays, which DO have a
+    kalshi_ticker even when the entry price came from Novig/etc, since Kalshi still lists and
+    settles the equivalent Hits market for most players). Built 2026-09-28, same gap class as
+    NHL SOG above."""
+    unit = (spec.get('mkt') or '')
+    stat_key = {'prop:Hits': 'hits', 'prop:Bases': 'totalBases'}.get(unit)
+    if not stat_key:
+        return None, f'no stat mapping for {unit}'
+    who = nrm(spec.get('who'))
+    day = start.date().isoformat()
+    j = get(f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={day}") or {}
+    found_no_pa = None
+    for dt in j.get('dates', []):
+        for g in dt.get('games', []):
+            if (g.get('status') or {}).get('abstractGameState') != 'Final':
+                continue
+            gpk = g['gamePk']
+            live = get(f"https://statsapi.mlb.com/api/v1.1/game/{gpk}/feed/live") or {}
+            box = ((live.get('liveData') or {}).get('boxscore') or {}).get('teams') or {}
+            for side in ('home', 'away'):
+                for pdata in ((box.get(side) or {}).get('players') or {}).values():
+                    nm = (pdata.get('person') or {}).get('fullName', '')
+                    if nrm(nm) == who:
+                        val = ((pdata.get('stats') or {}).get('batting') or {}).get(stat_key)
+                        if val is not None:
+                            return int(val), f'mlb boxscore game {gpk}'
+                        found_no_pa = gpk   # on the roster/game but no batting stats recorded (DNP/no PA)
+    if found_no_pa is not None:
+        return None, f'player found in game {found_no_pa} but has no batting stats (did not play / no PA) -- likely void, not gradable as W/L'
+    return None, 'no matching finished MLB game/player found'
+
+
+def real_result(play, start):
+    """Dispatch to the right real-world-outcome fetcher for a ticker-less play, by sport + market.
+    Returns (win: bool, note: str) or (None, note) if no path exists / nothing found yet."""
+    spec = play.get('pinn') or {}
+    sport = play.get('sport')
+    if sport == 'NHL' and spec.get('mkt') == 'prop:Shots On Goal':
+        val, note = nhl_actual_sog(spec, start)
+    elif sport == 'MLB' and spec.get('mkt') in ('prop:Hits', 'prop:Bases'):
+        val, note = mlb_actual_stat(spec, start)
+    else:
+        return None, 'no real-outcome path for this sport/market'
+    if val is None:
+        return None, note
+    line = float(spec.get('line'))
+    over = val > line   # push impossible at a .5 line
+    win = over if play['side'].upper() == 'YES' else not over
+    return win, f'{note}, actual {val} vs line {line}'
+
+
 def grade(play, root, now):
     out = {}
     tk = play.get('kalshi_ticker')
@@ -291,7 +379,19 @@ def grade(play, root, now):
     out['clvPinn'] = round(pc * 100 - entry, 1) if pc is not None else None
     out['clvKalshi'] = round(kc - entry, 1) if kc is not None else None
     if not m:
-        out['gradeNote'] = 'CLV computed via Pinnacle close; no Kalshi ticker (non-Kalshi venue) — no result/W-L available'
+        # Real-world-outcome grading, added 2026-09-28: ticker-less plays (NHL SOG always;
+        # occasional MLB Track B players Kalshi doesn't list) used to stop here with clvPinn but
+        # no result/W-L at all. Now try the actual game box score before giving up.
+        win, rnote = real_result(play, start)
+        out['filled'] = True
+        if win is None:
+            out['gradeNote'] = f'CLV computed via Pinnacle close; no Kalshi ticker — result: {rnote}'
+            return out
+        out['result'] = 'W' if win else 'L'
+        out['ret'] = round((100 - entry) / entry, 4) if win else -1.0
+        out['graded'] = True
+        out['gradedAt'] = now.strftime('%Y-%m-%dT%H:%MZ')
+        out['gradeNote'] = f'graded via real-world result (no Kalshi ticker): {rnote}'
         return out
     res = (m.get('result') or '').lower()
     if m.get('status') in ('finalized', 'settled') and res in ('yes', 'no'):
