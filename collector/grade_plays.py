@@ -179,8 +179,18 @@ def pinnacle_close_op(play, start):
         return None, f'oddspapi: no market {mtype} line {spec.get("line")}'
     for f in cand[:12]:
         cut = ts(f['trueStartTime']) if f.get('trueStartTime') else start   # actual first serve / kickoff when known
-        h = op_get(f"historical-odds?fixtureId={f['fixtureId']}&bookmakers=pinnacle") or {}
-        markets = (((h.get('bookmakers') or {}).get('pinnacle') or {}).get('markets') or {})
+        # BUG FOUND + FIXED 2026-09-28: this used bare "bookmakers=pinnacle" and looked up the
+        # response under key 'pinnacle'. Under the paid plan (same cutover as the 3 scan scripts)
+        # bare "pinnacle" 403s RESTRICTED_ACCESS -- confirmed live -- and even a successful call
+        # keys its response "pinnacle+30", not "pinnacle", so the dict lookup would have missed
+        # regardless. Net effect: pinnacle_close_op() has been failing 100% of the time since the
+        # 2026-09-28 cutover (every call falls through all 6 retries, burning real time, then
+        # returns nothing) -- the nightly grader's clvPinn (the system's verdict metric) has
+        # likely been null for every play graded since then, silently, unless the snapshot
+        # fallback below happened to cover it. Real slug is "pinnacle+30", URL-encoded as the
+        # literal '+' decodes to a space server-side and 400s (same gotcha as the 3 scan scripts).
+        h = op_get(f"historical-odds?fixtureId={f['fixtureId']}&bookmakers=pinnacle%2B30") or {}
+        markets = (((h.get('bookmakers') or {}).get('pinnacle+30') or {}).get('markets') or {})
         pid = '0'
         if unit:
             pl = op_get(f"players?sportId={sid}&tournamentId={f['tournamentId']}") or {}
