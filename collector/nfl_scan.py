@@ -326,6 +326,24 @@ def kalshi_price(series_ticker, dtag, away, home, norm_player_name, line):
     return None
 
 
+def kalshi_ticker(series_ticker, dtag, away, home, norm_player_name, line):
+    """Same match logic as kalshi_price (player name from `title`, floor_strike == the Pinnacle
+    line) but returns the market's own `ticker` field, for logging to the ledger's kalshi_ticker
+    grader field -- built 2026-09-28 alongside to_ledger_docs, confirmed live against a real
+    market (KXNFLREC-26SEP28PHICHI-CHIDSWIFT4-2, D'Andre Swift 2+ receptions, matched floor_strike
+    1.5 -> no_ask 0.39, same play manually logged before this function existed)."""
+    for m in kalshi_series_markets(series_ticker, dtag, away, home):
+        title = m.get('title', '')
+        pname = title.split(':')[0].strip()
+        if nrm(pname) != norm_player_name:
+            continue
+        fs = m.get('floor_strike')
+        if fs is None or abs(float(fs) - line) > 0.01:
+            continue
+        return m.get('ticker')
+    return None
+
+
 # ---------- scan ----------
 def scan(edge_min_override=None):
     edge_min = edge_min_override or EDGE_MIN_PIN
@@ -386,10 +404,13 @@ def scan(edge_min_override=None):
                 if team is None:
                     continue
                 for side, edge, price, venue in candidates:
+                    et_dt = datetime.datetime.fromisoformat(fx['start'].replace('Z', '+00:00')).astimezone(ZoneInfo('America/New_York'))
                     plays.append(dict(game=f"{fx['away']}@{fx['home']}", team=team, start=fx['start'], stat=stat,
                                        player=pin['name'], line=pin['line'], side=side, venue=venue,
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
-                                       price=round(price * 100, 1), edge=round(edge * 100, 1), pinn_unit=pinn_unit))
+                                       price=round(price * 100, 1), edge=round(edge * 100, 1), pinn_unit=pinn_unit,
+                                       date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
+                                       away=fx['away'], home=fx['home']))
         time.sleep(0.3)
 
     plays.sort(key=lambda p: -p['edge'])
@@ -399,5 +420,54 @@ def scan(edge_min_override=None):
     return plays
 
 
+def to_ledger_docs(plays):
+    """Turn flagged Track B plays into ledger-ready docs (rulebook grader fields: kalshi_ticker,
+    start, pinn, side, sport). Built 2026-09-28 -- nfl_scan.py's docstring had claimed a --write
+    flag existed since it was written, but neither --write nor this function actually existed;
+    caught only because a real play (D'Andre Swift receptions Under 1.5) had to be logged by hand
+    first. Mirrors softness_scan.py/nhl_scan.py's to_ledger_docs. Unlike NHL SOG (confirmed no
+    Kalshi market at all), NFL player props DO have a Kalshi venue for most stats (KX-prefixed
+    series in STAT_MARKETS) -- when a play's venue is 'kalshi', look up the real ticker via
+    kalshi_ticker() so the nightly grader can settle it directly; for a non-Kalshi venue
+    (novig/fliff/prophetx/prizepicks) kalshi_ticker is left null with a note, same as
+    softness_scan.py's non-Kalshi case -- these plays get CLV via grade_plays.py's real_result()
+    path if one gets added for NFL stats (not built yet, same gap NHL SOG had until 2026-09-28)."""
+    docs = {}
+    for p in plays:
+        slug = p['player'].split()[-1].lower()
+        line_tag = str(p['line']).replace('.', '')
+        side_tag = 'o' if p['side'] == 'Over' else 'u'
+        doc_id = f"{p['date']}-nfl-{slug}-{p['stat']}{line_tag}-{side_tag}"
+        if doc_id in docs and docs[doc_id]['data']['edge'] <= p['edge']:
+            continue
+        side = 'YES' if p['side'] == 'Over' else 'NO'
+        ticker = None
+        if p['venue'] == 'kalshi':
+            ticker = kalshi_ticker(p['kalshi_series'], p['dtag'], p['away'], p['home'], nrm(p['player']), p['line'])
+        note = f"NFL Track B scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p['fair']}c."
+        if p['venue'] != 'kalshi':
+            note += f" Bet placed on {p['venue']}, not Kalshi -- needs manual {p['venue']} close for CLV, not a Kalshi close."
+        elif not ticker:
+            note += " Kalshi ticker lookup failed -- needs manual kalshi_ticker before grading."
+        docs[doc_id] = dict(id=doc_id, data=dict(
+            date=p['date'], game=p['game'], player=p['player'], market=f"{p['pinn_unit']} {p['side']} {p['line']}",
+            entry=p['price'], fair=p['fair'],
+            fairSource=f'Pinnacle no-vig (OddsPapi, nfl_scan.py) vs {p["venue"]}',
+            edge=p['edge'], side=side, sport='NFL', track='B', stake=0, fee=0,
+            orderType='maker' if p['venue'] == 'kalshi' else 'taker',
+            kalshi_ticker=ticker, start=p['start'],
+            pinn=dict(who=p['player'], mkt=f"prop:{p['pinn_unit']}", line=p['line']),
+            status=f"Paper — Track B scan, pending fill ({p['venue']})" if ticker or p['venue'] != 'kalshi' else 'Paper — needs kalshi_ticker',
+            note=note, close=None, result=None, zone='35–75'))
+    return list(docs.values())
+
+
 if __name__ == '__main__':
-    scan()
+    plays = scan()
+    if '--write' in sys.argv:
+        outpath = sys.argv[sys.argv.index('--write') + 1]
+        docs = to_ledger_docs(plays)
+        with open(outpath, 'w') as fh:
+            json.dump(docs, fh, indent=2)
+        print(f'\nWrote {len(docs)} ledger-ready docs to {outpath}')
+        print('Not written to the ledger yet -- the calling session still does the ArtifactData batch write.')
