@@ -2,14 +2,41 @@
 Run in chat:  python3 nba_scan.py YYYY-MM-DD   (date in US Eastern game days)
        Injury alert: python3 nba_scan.py --injury-diff   (official-report status changes, last ~75 min)
 Pipeline: ESPN box scores (last + current season) -> minutes x per-minute rate, shrunk, opponent factor
--> injury adjustment from the official NBA injury report (ESPN feed as fallback) -> blend with Pinnacle no-vig (Pinnapi) -> edge vs Kalshi bid/ask.
+-> injury adjustment from the official NBA injury report (ESPN feed as fallback) -> blend with Pinnacle no-vig -> edge vs Kalshi bid/ask.
 Frozen parameters (2026-09-25): K=30 min, opp w=1.0, NegBin r=30, injury gamma=0.15,
 blend REB w=0.35 c=-0.02, AST w=0.25 c=0.00. Edge >= 3 pts at the limit price, zone 35-75c.
+
+FAIR PRICE (Pinnacle) — rewired 2026-09-28 (this file previously called pinnacle_props() and
+kalshi_markets(), which were referenced in scan() but never actually defined anywhere in this
+file -- a real gap found while fixing the paid-plan cutover, not something that used to work):
+  OddsPapi (ODDSPAPI_KEY, Normal tier, Player Props add-on covers NBA, real sportId=11). Same
+  full-catalog lookup approach as nfl_scan.py/nhl_scan.py -- each specific REB/AST line is its own
+  marketId, found via GET /v4/markets?apiKey=X (no sportId filter available server-side, ~33k
+  entries total, filtered locally) for marketType in ('playertotals-rebounds',
+  'playertotals-assists') / marketName "Over Under Player Rebounds (incl. overtime)" / "Over Under
+  Player Assists (incl. overtime)" (NOT the combo markets like Pts+Reb or Ast+Reb, which share the
+  word "Rebounds"/"Assists" in their names but are a different marketType). Bookmaker slug
+  "pinnacle+30"; don't pass &bookmakers=pinnacle+30 in the URL (the '+' decodes to a space and
+  400s) -- omit it, this key only has that one bookmaker anyway.
+  NOT YET LIVE-CONFIRMED end-to-end: the 2026-27 NBA preseason doesn't start until ~2026-10-06
+  (confirmed live 2026-09-28 -- OddsPapi's NBA fixtures only start appearing under tournamentSlug
+  "nba-preseason" 9+ days out from today, all with hasOdds still False that far out). The catalog
+  lookup and odds-parsing logic below is the same, tested pattern as nfl_scan.py/nhl_scan.py (that
+  part is solid) -- what's unverified specifically is the OddsPapi-abbrev-to-ESPN-abbrev team
+  mapping (ODDSPAPI_TO_ESPN below), since OddsPapi uses NOP/GSW/UTA/SAS while ESPN uses NO/GS/
+  UTAH/SA for the same teams (confirmed via ESPN's team list; the OddsPapi side of a few of these,
+  e.g. SAS vs SA, is a best-guess not yet seen live -- verify against a real fixture once preseason
+  games actually post player props, flagged again in the rulebook).
+  Kalshi (KALSHI_BASE, no key) is the sole execution venue here (matches the original design --
+  SERIES dict below, unchanged). Same title/floor_strike/yes_bid_dollars/yes_ask_dollars schema
+  confirmed live for NFL this session; the NBA-specific series (KXNBAREB/KXNBAAST) return 0 open
+  events right now (also preseason-gated) so this hasn't been live-tested for NBA specifically yet.
 """
 import json, math, sys, os, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
-PINNAPI_KEY = os.environ.get('PINNAPI_KEY', '')
+ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '15490352-5f73-404d-9964-353ab0783e01')
+KALSHI_BASE = 'https://api.elections.kalshi.com/trade-api/v2'
 CACHE = '/tmp/nba_scan_cache'; os.makedirs(CACHE, exist_ok=True)
 K, W_OPP, R_NB, GAMMA = 30, 1.0, 30, 0.15
 BLEND = {'REB': (0.35, -0.02), 'AST': (0.25, 0.00)}
@@ -17,12 +44,31 @@ SERIES = {'REB': 'KXNBAREB', 'AST': 'KXNBAAST'}
 EDGE_MIN, ZONE = 0.03, (0.35, 0.75)
 BETA_START = 7.0   # REB only: minutes += 7.0 x (starts today - start rate L10). Stage 2 PASSED 2026-09-26; AST failed.
 
-def get(url, headers=None, tries=3):
+# OddsPapi catalog entries for our two stats: (marketName, marketType) -- exact match required,
+# since e.g. "Rebounds" also appears in "Player Points + Rebounds" market names.
+STAT_MARKETS = {
+    'REB': ('Over Under Player Rebounds (incl. overtime)', 'playertotals-rebounds'),
+    'AST': ('Over Under Player Assists (incl. overtime)', 'playertotals-assists'),
+}
+
+# OddsPapi abbrev -> ESPN abbrev, for the handful of teams where they differ. Confirmed from
+# ESPN's own team list 2026-09-28; the OddsPapi side is confirmed live for the teams marked, a
+# best guess (standard sportsbook convention) for the rest -- verify once preseason props post.
+ODDSPAPI_TO_ESPN = {
+    'GSW': 'GS',    # confirmed live (OddsPapi fixture list) 2026-09-28
+    'NOP': 'NO',    # confirmed live 2026-09-28
+    'UTA': 'UTAH',  # confirmed live 2026-09-28
+    'SAS': 'SA',    # not yet seen live -- best guess
+    'NYK': 'NY',    # not yet seen live -- best guess
+}
+
+
+def get(url, headers=None, tries=4):
     for a in range(tries):
         try:
-            return json.load(urllib.request.urlopen(urllib.request.Request(url, headers=headers or {}), timeout=30))
+            return json.load(urllib.request.urlopen(urllib.request.Request(url, headers=headers or {'User-Agent': 'curl/8'}), timeout=30))
         except Exception:
-            time.sleep(1.5)
+            time.sleep(1.5 * (a + 1))
     return None
 
 def nrm(s): return re.sub(r'[^a-z]', '', unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower().replace(' jr', '').replace(' iii', '').replace(' ii', ''))
@@ -209,7 +255,106 @@ def lineups(day):
     lineups.source = 'not wired yet (RotoWire reader pending NBA preseason)'
     return {}
 
-# ---------- 4. scan ----------
+# ---------- 4. OddsPapi: Pinnacle REB/AST fair price (catalog-based) ----------
+_catalog_cache = None
+
+def oddspapi_catalog():
+    """{str(marketId): (stat, handicap, over_outcomeId, under_outcomeId)} for REB and AST.
+    Fetches the full ~33k-entry /v4/markets catalog once per run (no sportId/marketId filter is
+    offered server-side) and filters locally -- mirrors nfl_scan.py/nhl_scan.py."""
+    global _catalog_cache
+    if _catalog_cache is None:
+        cat = get(f"https://api.oddspapi.io/v4/markets?apiKey={ODDSPAPI_KEY}") or []
+        lookup = {}
+        wanted = {(mname, mtype): stat for stat, (mname, mtype) in STAT_MARKETS.items()}
+        for c in cat:
+            if c.get('sportId') != 11 or not c.get('playerProp'):
+                continue
+            stat = wanted.get((c.get('marketName'), c.get('marketType')))
+            if not stat:
+                continue
+            oids = {o['outcomeName']: o['outcomeId'] for o in c.get('outcomes', [])}
+            lookup[str(c['marketId'])] = (stat, c['handicap'], oids.get('Over'), oids.get('Under'))
+        _catalog_cache = lookup
+        print(f"  OddsPapi catalog: {len(lookup)} NBA REB/AST line markets tracked")
+    return _catalog_cache
+
+def oddspapi_fixtures_for_day(day):
+    d0, d1 = day.isoformat(), (day + datetime.timedelta(days=1)).isoformat()
+    fx = get(f"https://api.oddspapi.io/v4/fixtures?apiKey={ODDSPAPI_KEY}&sportId=11&from={d0}&to={d1}") or []
+    out = []
+    for f in fx:
+        if f.get('tournamentSlug') not in ('nba', 'nba-preseason'):
+            continue
+        home = ODDSPAPI_TO_ESPN.get(f.get('participant1Abbr'), f.get('participant1Abbr'))
+        away = ODDSPAPI_TO_ESPN.get(f.get('participant2Abbr'), f.get('participant2Abbr'))
+        out.append(dict(fixtureId=f['fixtureId'], home=home, away=away, hasOdds=f.get('hasOdds')))
+    return out
+
+def pinnacle_props(day):
+    """{(norm_name, stat, line): fair_over_prob} for every REB/AST market OddsPapi has posted for
+    today's games. Matched to a game via ESPN abbrev (todays_games) -> OddsPapi fixture."""
+    lookup = oddspapi_catalog()
+    fixtures = [f for f in oddspapi_fixtures_for_day(day) if f['hasOdds']]
+    out = {}
+    for fx in fixtures:
+        j = get(f"https://api.oddspapi.io/v4/odds?apiKey={ODDSPAPI_KEY}&fixtureId={fx['fixtureId']}") or {}
+        markets = j.get('bookmakerOdds', {}).get('pinnacle+30', {}).get('markets', {})
+        for mid, m in markets.items():
+            info = lookup.get(mid)
+            if not info:
+                continue
+            stat, handicap, over_id, under_id = info
+            outcomes = m.get('outcomes', {})
+            over_players = outcomes.get(str(over_id), {}).get('players', {})
+            under_players = outcomes.get(str(under_id), {}).get('players', {})
+            for pid, po in over_players.items():
+                pu = under_players.get(pid)
+                if not pu or not po.get('price') or not pu.get('price'):
+                    continue
+                raw = po.get('playerName') or ''
+                if ',' in raw:
+                    last, first = [x.strip() for x in raw.split(',', 1)]
+                    name = f"{first} {last}"
+                else:
+                    name = raw
+                fair_over = power_devig(po['price'], pu['price'])
+                out[(nrm(name), stat, float(handicap))] = fair_over
+        time.sleep(0.3)
+    return out
+
+# ---------- 5. Kalshi: execution venue ----------
+_kalshi_cache = {}
+
+def kalshi_markets(st, day):
+    """[{'name': 'First Last', 'line': float, 'k': int, 'bid': float, 'ask': float}] for one stat's
+    Kalshi series on `day`. 'bid'/'ask' are yes_bid_dollars/yes_ask_dollars directly (Kalshi prices
+    ARE probabilities, 0-1 scale) -- matched by (player name parsed from the market's own `title`
+    field, floor_strike). Same schema confirmed live for NFL this session (KXNFLPASSYDS); NOT yet
+    live-confirmed for KXNBAREB/KXNBAAST specifically since NBA preseason hasn't started."""
+    series = SERIES[st]
+    dtag = day.strftime('%y%b%d').upper()
+    key = (series, dtag)
+    if key not in _kalshi_cache:
+        evs = get(f"{KALSHI_BASE}/events?series_ticker={series}&status=open") or {}
+        markets = []
+        for ev in evs.get('events', []) or []:
+            if dtag in ev.get('event_ticker', ''):
+                mk = get(f"{KALSHI_BASE}/markets?event_ticker={ev['event_ticker']}") or {}
+                markets.extend(mk.get('markets') or [])
+        out = []
+        for m in markets:
+            fs = m.get('floor_strike')
+            ya, na = m.get('yes_bid_dollars'), m.get('yes_ask_dollars')
+            if fs is None or not ya or not na:
+                continue
+            title = m.get('title', '')
+            pname = title.split(':')[0].strip()
+            out.append(dict(name=pname, line=float(fs), k=math.ceil(float(fs)), bid=float(ya), ask=float(na)))
+        _kalshi_cache[key] = out
+    return _kalshi_cache[key]
+
+# ---------- 6. scan ----------
 def scan(day):
     games = [g for g in todays_games(day) if g['state'] == 'pre']
     if not games: print('No pre-game NBA games for', day); return []
@@ -219,10 +364,10 @@ def scan(day):
     inj = injuries(); out_ids = [pid for pid, h in hist.items() if nrm(h[-1]['name']) in inj and inj[nrm(h[-1]['name'])][1] in ('Out', 'Doubtful')]
     teams = {g['home']: g['away'] for g in games} | {g['away']: g['home'] for g in games}
     starters = lineups(day)
-    P = pinnacle_props(); plays = []; seen = 0
+    P = pinnacle_props(day); plays = []; seen = 0
     for st in ('REB', 'AST'):
         w, c = BLEND[st]
-        for m in kalshi_markets(st):
+        for m in kalshi_markets(st, day):
             pid = byname.get(nrm(m['name']))
             if not pid or pid in out_ids: continue
             team = hist[pid][-1]['team']

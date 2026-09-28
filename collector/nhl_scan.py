@@ -8,41 +8,50 @@ vs Pinnacle (rulebook closing-line test: w_model = 0.00) — it's used only as (
 Under if the model favors Over by >=3pts even though Pinnacle-vs-exec shows an edge, and (b) a pricer
 for players Pinnacle doesn't list (Route 3, paper/unconfirmed). NHL SOG = Unders only. Overs = no bet.
 
-FAIR-PRICE / EXECUTION SOURCES — status as of 2026-09-27, checked live, not assumed:
-  1. SportsGameOdds Pro trial (SGO_KEY, expires 2026-10-04 — dead after that, key was cancelled,
-     access runs out at end of billing period). Confirmed REAL market-key pattern by pulling actual
-     NHL events today:
-       oddID  shots_onGoal-{PLAYER_NAME}_1_NHL-game-ou-{over|under}
-       byBookmaker keys seen for this market: pinnacle, fliff, draftkings, fanduel, betmgm, etc.
-     Checked THREE separate dates (2026-09-27 preseason, 2025-11-10, 2026-03-05 regular season) for
-     novig / prophetexchange coverage of the shots_onGoal market specifically — neither ever appeared,
-     even though Novig confirmed live in-app for tonight's game (Sergio's screenshot). So: SGO gives
-     us Pinnacle (fair) + Fliff (one real execution venue) for NHL SOG. It does NOT give us Novig or
-     ProphetX for this market — don't assume it does just because it works for other sports/markets.
-     Also checked: preseason games (gameType 1, happening right now) mostly have ZERO Pinnacte SOG
-     data (thin exhibition markets) — of 3 preseason games sampled, only 1 had any Pinnacle SOG price
-     at all. Real usable Pinnacle SOG coverage needs regular-season games (gameType 2), which for
-     2026-27 likely start after the SGO trial is already dead. So this path may end up being useless
-     in practice for THIS season's live scan — confirm regular-season start date vs Oct 4 before
-     counting on it.
-  2. OddsPapi (ODDSPAPI_KEY) — paid Normal tier w/ Player Props add-on, sports scoped to include NHL
-     (rulebook Track B paid-plan note). sportId / marketId for the NHL Shots On Goal O/U market are
-     NOT hardcoded here because they have NOT been discovered yet — the free-tier key has returned
-     429 REQUEST_LIMIT_EXCEEDED every time it's been tried this session, including on the lightweight
-     /v4/sports lookup, so the paid tier is not confirmed active. discover_oddspapi_nhl_ids() below
-     hits /v4/sports + /v4/markets and prints what it finds — run that FIRST once the paid plan is
-     confirmed live, read the real NHL sportId and the real Shots On Goal marketId from its output,
-     and hardcode them at the top of this file (mirroring softness_scan.py's HITS_MARKET_OVER/UNDER
-     pattern) before trusting oddspapi_sog_odds(). Novig slug there is 'novig.us', ProphetX is
-     'prophetx' (confirmed working slugs from softness_scan.py, just not yet confirmed for THIS sport).
+FAIR PRICE + EXECUTION VENUES — rewired 2026-09-28 off the SportsGameOdds trial (dies 2026-10-04)
+onto the paid-plan pipeline (same pattern as nfl_scan.py, confirmed live against real 2026-27
+season-opener games this session):
+  1. Pinnacle fair price: OddsPapi (ODDSPAPI_KEY, Normal tier, Player Props add-on covers NHL,
+     real sportId=15). Shots On Goal is catalog marketName "Over Under Player Shots On Goal (incl.
+     overtime)" / marketType "playertotals-shotsongoal" (9 line variants in the full /v4/markets
+     catalog, e.g. marketId=15136/handicap=0.5) — found via the same full-catalog lookup approach
+     as nfl_scan.py (each specific SOG line is its own marketId, not one fixed line like MLB's
+     HITS_MARKET). Bookmaker slug is "pinnacle+30"; this key's plan is Pinnacle-only on OddsPapi
+     (confirmed live 2026-09-28: requesting novig.us/fliff/kalshi here 400s RESTRICTED_ACCESS) —
+     venues come from The Odds API instead, per the actual purchase split. NB: don't pass
+     &bookmakers=pinnacle+30 in the URL -- the '+' decodes to a space server-side and 400s; omit
+     the param entirely (this key only has access to pinnacle+30 anyway, so it's the default).
+     Real finding 2026-09-28: the 2026-27 regular season already started (games from 2026-09-29 on
+     carry tournamentSlug=='nhl' with hasOdds=True) -- the old assumption that the season starts
+     "after the SGO trial is already dead" was wrong; check hasOdds/startTime, not a guessed
+     season-start date. Also confirmed: player props (including SOG) don't post on OddsPapi until
+     roughly 24-48h before puck drop even once the game-level markets go live -- a fixture with no
+     SOG entries yet isn't a bug, it's just too early to have them.
+  2. Execution venues (Novig, Fliff, ProphetX, PrizePicks): The Odds API (THEODDSAPI_KEY, new 20K
+     tier key -- NOT the old free-tier key). Real market key: player_shots_on_goal. Same
+     /v4/sports/icehockey_nhl/events/{id}/odds?bookmakers=...&markets=player_shots_on_goal
+     &oddsFormat=decimal schema as NFL -- bookmakers[].markets[].outcomes[] = {name, description
+     (player full name), price, point}.
+  3. Kalshi: confirmed on 3 separate dates this season (preseason + two regular-season samples)
+     that Kalshi carries NO shots-on-goal market for NHL at all -- not a gap to fix, it just
+     doesn't exist there. Not called here.
 
-Usage: python3 nhl_scan.py YYYY-MM-DD [--edge 3] [--discover-oddspapi]
+Known OddsPapi quirk (confirmed live 2026-09-28, not yet fully understood): the /v4/fixtures
+response for a given sportId/date range is NOT perfectly consistent call-to-call -- repeated calls
+seconds apart sometimes returned 5 real NHL games for 2026-09-29, sometimes only 3 (2 missing
+entirely), and hasOdds/statusName have both been seen to flip between calls on the same fixture
+(same issue independently confirmed in nfl_scan.py). Don't treat one run's fixture list as
+complete or authoritative -- a game silently missing from one run should show up on the next
+scheduled re-run as OddsPapi's cache catches up. This is a real, observed platform quirk, not
+guessed, and not something this script can fix client-side beyond the retry/backoff already in
+get().
+
+Usage: python3 nhl_scan.py YYYY-MM-DD [--edge 3]
 """
 import json, math, os, sys, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
-SGO_KEY = os.environ.get('SGO_KEY', 'bb9cfaece214108ec95bde6bd1b910a5')  # trial — dead 2026-10-04
-SGO_EXPIRES = datetime.date(2026, 10, 4)
+THEODDSAPI_KEY = os.environ.get('THEODDSAPI_KEY', '0d93d28b93af9cf80cfcb2630cf09ac5')  # new 20K-tier key
 ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '15490352-5f73-404d-9964-353ab0783e01')
 CACHE = '/tmp/nhl_scan_cache'
 os.makedirs(CACHE, exist_ok=True)
@@ -57,18 +66,34 @@ NHL_TEAMS = ['ANA', 'BOS', 'BUF', 'CGY', 'CAR', 'CHI', 'COL', 'CBJ', 'DAL', 'DET
              'MIN', 'MTL', 'NSH', 'NJD', 'NYI', 'NYR', 'OTT', 'PHI', 'PIT', 'SJS', 'SEA', 'STL', 'TBL',
              'TOR', 'UTA', 'VAN', 'VGK', 'WSH', 'WPG']
 
+# NHL abbrev -> The Odds API's full team name (for matching a fixture to an Odds-API event). Real
+# names confirmed live 2026-09-28 -- note "Montréal Canadiens" (accent), "Utah Mammoth" (the
+# team's actual current name, not "Utah Hockey Club"), "St Louis Blues" (no period).
+ODDSAPI_TEAM_NAME = {
+    'ANA': 'Anaheim Ducks', 'BOS': 'Boston Bruins', 'BUF': 'Buffalo Sabres', 'CGY': 'Calgary Flames',
+    'CAR': 'Carolina Hurricanes', 'CHI': 'Chicago Blackhawks', 'COL': 'Colorado Avalanche',
+    'CBJ': 'Columbus Blue Jackets', 'DAL': 'Dallas Stars', 'DET': 'Detroit Red Wings',
+    'EDM': 'Edmonton Oilers', 'FLA': 'Florida Panthers', 'LAK': 'Los Angeles Kings',
+    'MIN': 'Minnesota Wild', 'MTL': 'Montréal Canadiens', 'NSH': 'Nashville Predators',
+    'NJD': 'New Jersey Devils', 'NYI': 'New York Islanders', 'NYR': 'New York Rangers',
+    'OTT': 'Ottawa Senators', 'PHI': 'Philadelphia Flyers', 'PIT': 'Pittsburgh Penguins',
+    'SJS': 'San Jose Sharks', 'SEA': 'Seattle Kraken', 'STL': 'St Louis Blues',
+    'TBL': 'Tampa Bay Lightning', 'TOR': 'Toronto Maple Leafs', 'UTA': 'Utah Mammoth',
+    'VAN': 'Vancouver Canucks', 'VGK': 'Vegas Golden Knights', 'WSH': 'Washington Capitals',
+    'WPG': 'Winnipeg Jets',
+}
 
-def get(url, headers=None, tries=3):
-    """NHL API (api-web.nhle.com) blocks Python's default User-Agent with a 403 -- confirmed
-    2026-09-27, same issue as Pinnapi (see rulebook Credits & pulls). Always send curl/8 unless
-    the caller passes its own headers (SGO needs x-api-key instead)."""
+
+def get(url, headers=None, tries=4):
+    """NHL API (api-web.nhle.com) and OddsPapi both block Python's default User-Agent with a 403
+    -- always send curl/8."""
     h = {'User-Agent': 'curl/8'}
     h.update(headers or {})
-    for _ in range(tries):
+    for a in range(tries):
         try:
             return json.load(urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=30))
         except Exception:
-            time.sleep(1.5)
+            time.sleep(1.5 * (a + 1))
     return None
 
 
@@ -235,62 +260,111 @@ def prob_over(m, k):
     return sum(w * nb_sf(k, m['rate'] * max(m['mhat'] + z * m['sd'], 1), R_NB) for z, w in GH)
 
 
-# ---------- 3. Pinnacle fair + execution venues ----------
-def sgo_events(day, league='NHL'):
+# ---------- 3. OddsPapi: Pinnacle SOG fair price (catalog-based) ----------
+_catalog_cache = None
+SOG_MARKET_NAME = 'Over Under Player Shots On Goal (incl. overtime)'
+SOG_MARKET_TYPE = 'playertotals-shotsongoal'
+
+
+def oddspapi_catalog():
+    """{str(marketId): (handicap, over_outcomeId, under_outcomeId)} for the NHL SOG O/U market.
+    Fetches the full ~33k-entry /v4/markets catalog once per run (no sportId/marketId filter is
+    offered by the endpoint itself) and filters locally -- mirrors nfl_scan.py."""
+    global _catalog_cache
+    if _catalog_cache is None:
+        cat = get(f"https://api.oddspapi.io/v4/markets?apiKey={ODDSPAPI_KEY}") or []
+        lookup = {}
+        for c in cat:
+            if c.get('sportId') != 15 or not c.get('playerProp'):
+                continue
+            if c.get('marketName') != SOG_MARKET_NAME or c.get('marketType') != SOG_MARKET_TYPE:
+                continue
+            oids = {o['outcomeName']: o['outcomeId'] for o in c.get('outcomes', [])}
+            lookup[str(c['marketId'])] = (c['handicap'], oids.get('Over'), oids.get('Under'))
+        _catalog_cache = lookup
+        print(f"  OddsPapi catalog: {len(lookup)} NHL SOG line markets tracked")
+    return _catalog_cache
+
+
+def oddspapi_fixtures_for_day(day):
     d0, d1 = day.isoformat(), (day + datetime.timedelta(days=1)).isoformat()
-    j = get(f"https://api.sportsgameodds.com/v2/events?leagueID={league}&startsAfter={d0}&startsBefore={d1}&limit=50",
-            headers={'x-api-key': SGO_KEY}) or {}
-    return j.get('data', []) if j.get('success') else []
-
-
-def sgo_sog_odds(event_id):
-    """{(norm_name, line): {venue_slug: fair_under_prob}} for one event's shots_onGoal market.
-    Confirmed 2026-09-27: only pinnacle + fliff actually carry this market on SGO for NHL — novig
-    and prophetexchange were checked on 3 separate dates and never present. Don't assume otherwise."""
-    j = get(f"https://api.sportsgameodds.com/v2/events?eventID={event_id}&oddsAvailable=true",
-            headers={'x-api-key': SGO_KEY}) or {}
-    if not j.get('success') or not j.get('data'):
-        return {}
-    odds = j['data'][0].get('odds', {})
-    out = {}
-    for k, v in odds.items():
-        if not (k.startswith('shots_onGoal-') and k.endswith('-game-ou-over')):
-            continue
-        v_u = odds.get(k.replace('-over', '-under'))
-        if not v_u:
-            continue
-        raw = v.get('statEntityID', '')  # e.g. AARON_EKBLAD_1_NHL
-        name = raw.rsplit('_', 2)[0].replace('_', ' ').title() if raw.endswith('_NHL') else raw
-        line = v.get('bookOverUnder') or v.get('fairOverUnder')
-        if line is None:
-            continue
-        for slug in ('pinnacle', 'fliff', 'novig', 'prophetexchange'):
-            bo, bu = v.get('byBookmaker', {}).get(slug), v_u.get('byBookmaker', {}).get(slug)
-            if not bo or not bu:
-                continue
-            po, pu = american_to_prob(bo.get('odds')), american_to_prob(bu.get('odds'))
-            if po is None or pu is None:
-                continue
-            fair_over = devig_power(po, pu)
-            out.setdefault((nrm(name), float(line)), {})[slug] = round(1 - fair_over, 4)  # UNDER fair prob
+    fx = get(f"https://api.oddspapi.io/v4/fixtures?apiKey={ODDSPAPI_KEY}&sportId=15&from={d0}&to={d1}") or []
+    out = []
+    for f in fx:
+        if f.get('tournamentSlug') != 'nhl':
+            continue  # sportId=15 also carries AHL/KHL/juniors/women's -- real NHL only
+        out.append(dict(fixtureId=f['fixtureId'], home=f.get('participant1Abbr'), away=f.get('participant2Abbr'),
+                         start=f.get('startTime'), hasOdds=f.get('hasOdds')))
     return out
 
 
-def discover_oddspapi_nhl_ids():
-    """Run this FIRST once the OddsPapi paid tier is confirmed live. Prints the sports list (find
-    NHL's sportId) and, once you have it, look up its markets to find the Shots On Goal O/U
-    marketId — then hardcode both at the top of this file. Every attempt this session has 429'd,
-    so nothing here is a guess; it's unverified and left that way on purpose."""
-    if not ODDSPAPI_KEY:
-        print('No ODDSPAPI_KEY set.')
-        return None
-    sports = get(f"https://api.oddspapi.io/v4/sports?apiKey={ODDSPAPI_KEY}")
-    print('sports response (look for NHL / Ice Hockey):')
-    print(json.dumps(sports, indent=2)[:3000] if sports else '(no response / still 429)')
-    return sports
+def oddspapi_pinnacle_sog(fixture_id):
+    """{norm_name: {'name': 'First Last', 'line': float, 'fair_under': prob}} -- UNDER fair prob
+    specifically, since NHL SOG = Unders only per the rulebook (Overs = no bet)."""
+    lookup = oddspapi_catalog()
+    # NB: don't pass &bookmakers=pinnacle+30 -- the '+' decodes to a space server-side and 400s
+    # ("Invalid bookmakers: pinnacle 30", found live 2026-09-28). This key's plan only has access
+    # to pinnacle+30 anyway, so omitting the param returns it directly.
+    j = get(f"https://api.oddspapi.io/v4/odds?apiKey={ODDSPAPI_KEY}&fixtureId={fixture_id}") or {}
+    markets = j.get('bookmakerOdds', {}).get('pinnacle+30', {}).get('markets', {})
+    out = {}
+    for mid, m in markets.items():
+        info = lookup.get(mid)
+        if not info:
+            continue
+        handicap, over_id, under_id = info
+        outcomes = m.get('outcomes', {})
+        over_players = outcomes.get(str(over_id), {}).get('players', {})
+        under_players = outcomes.get(str(under_id), {}).get('players', {})
+        for pid, po in over_players.items():
+            pu = under_players.get(pid)
+            if not pu or not po.get('price') or not pu.get('price'):
+                continue
+            raw = po.get('playerName') or ''
+            if ',' in raw:
+                last, first = [x.strip() for x in raw.split(',', 1)]
+                name = f"{first} {last}"
+            else:
+                name = raw
+            fair_over = devig_power(1.0 / po['price'], 1.0 / pu['price'])
+            out[nrm(name)] = dict(name=name, line=float(handicap), fair_under=1 - fair_over)
+    return out
 
 
-# ---------- 4. scan ----------
+# ---------- 4. The Odds API: Novig / Fliff / ProphetX / PrizePicks ----------
+def oddsapi_events_for_week():
+    return get(f"https://api.the-odds-api.com/v4/sports/icehockey_nhl/events?apiKey={THEODDSAPI_KEY}") or []
+
+
+def match_oddsapi_event(events, home_abbr, away_abbr):
+    home_full, away_full = ODDSAPI_TEAM_NAME.get(home_abbr), ODDSAPI_TEAM_NAME.get(away_abbr)
+    for e in events:
+        if e.get('home_team') == home_full and e.get('away_team') == away_full:
+            return e['id']
+    return None
+
+
+def oddsapi_sog_venues(event_id):
+    """{norm_name: {line: {'venue': slug, 'under': prob}}} -- raw one-sided UNDER price, NOT
+    de-vigged (matches nfl_scan.py / softness_scan.py -- de-vigging an execution venue would erase
+    the mispricing Track B is looking for)."""
+    url = (f"https://api.the-odds-api.com/v4/sports/icehockey_nhl/events/{event_id}/odds"
+           f"?apiKey={THEODDSAPI_KEY}&bookmakers=novig,fliff,prophetx,prizepicks&markets=player_shots_on_goal&oddsFormat=decimal")
+    j = get(url) or {}
+    out = collections.defaultdict(dict)
+    for bm in j.get('bookmakers', []):
+        venue = bm['key']
+        for mkt in bm.get('markets', []):
+            if mkt.get('key') != 'player_shots_on_goal':
+                continue
+            for o in mkt.get('outcomes', []):
+                if o.get('name') != 'Under' or not o.get('price') or o.get('point') is None or not o.get('description'):
+                    continue
+                out[nrm(o['description'])][float(o['point'])] = dict(venue=venue, under=1.0 / o['price'])
+    return out
+
+
+# ---------- 5. scan ----------
 def todays_games(day):
     j = get(f"https://api-web.nhle.com/v1/score/{day:%Y-%m-%d}") or {}
     return [dict(id=g['id'], home=g['homeTeam']['abbrev'], away=g['awayTeam']['abbrev'],
@@ -303,47 +377,44 @@ def scan(day):
     if not games:
         print('No upcoming NHL games for', day, '(or none returned pre-game state)')
         return []
-    if day > SGO_EXPIRES:
-        print(f'WARNING: SGO trial key expired {SGO_EXPIRES} — no Pinnacle/Fliff data available from that path anymore.')
 
     G = load_history(day)
     state = build_state(G)
     hist = state[0]
     print(f"{day}: {len(games)} NHL games | history: {len(G)} games / {len(hist)} players tracked")
 
-    sgo_evs = {e['eventID']: e for e in sgo_events(day)}
+    oddspapi_fx = {(f['home'], f['away']): f for f in oddspapi_fixtures_for_day(day) if f['hasOdds']}
+    oddsapi_events = oddsapi_events_for_week()
     plays = []
     for g in games:
-        # match SGO event by team names
-        ev_id = None
-        for eid, ev in sgo_evs.items():
-            th, ta = ev.get('teams', {}).get('home', {}), ev.get('teams', {}).get('away', {})
-            if th.get('names', {}).get('short') == g['home'] and ta.get('names', {}).get('short') == g['away']:
-                ev_id = eid
-                break
-        if not ev_id:
-            print(f"  {g['away']}@{g['home']}: no matching SGO event (or trial dead) — skip")
+        fx = oddspapi_fx.get((g['home'], g['away']))
+        if not fx:
+            print(f"  {g['away']}@{g['home']}: no OddsPapi fixture with odds yet for this game -- skip")
             continue
-        odds = sgo_sog_odds(ev_id)
-        if not odds:
-            print(f"  {g['away']}@{g['home']}: no Pinnacle SOG data on SGO for this game (likely too early/thin)")
+        pin = oddspapi_pinnacle_sog(fx['fixtureId'])
+        if not pin:
+            print(f"  {g['away']}@{g['home']}: no Pinnacle SOG data yet (props usually post 24-48h out) -- skip")
             continue
+        event_id = match_oddsapi_event(oddsapi_events, g['home'], g['away'])
+        venues = oddsapi_sog_venues(event_id) if event_id else {}
+        if not event_id:
+            print(f"  {g['away']}@{g['home']}: no matching event on The Odds API -- no execution venue for this game")
+
         season = g['season'] or (day.year * 10000 + day.year + 1 if day.month >= 7 else (day.year - 1) * 10000 + day.year)
         home_roster, away_roster = roster(g['home'], str(season)), roster(g['away'], str(season))
         name_to_pid = {nrm(n): (pid, g['home']) for pid, n in home_roster.items()}
         name_to_pid.update({nrm(n): (pid, g['away']) for pid, n in away_roster.items()})
 
-        for (norm_name, line), venues in odds.items():
-            fair_under = venues.get('pinnacle')
-            if fair_under is None:
-                continue  # no Pinnacle anchor -> not scanned here (would be Route 3 / model-priced, TODO)
+        for norm_name, p in pin.items():
+            fair_under, line = p['fair_under'], p['line']
             exec_venue, exec_price = None, None
-            for slug in ('fliff', 'novig', 'prophetexchange'):
-                if slug in venues:
-                    exec_venue, exec_price = slug, venues[slug]
-                    break
+            for exec_line, info in venues.get(norm_name, {}).items():
+                if abs(exec_line - line) > 0.01:
+                    continue  # different line than Pinnacle's -- not a clean comparison, skip
+                exec_venue, exec_price = info['venue'], info['under']
+                break
             if exec_venue is None:
-                continue  # Pinnacle listed it but no execution venue quoted it -- nothing to bet
+                continue  # Pinnacle listed it but no execution venue quoted this exact line
             edge = fair_under - exec_price
             if edge < EDGE_MIN_PIN:  # Pinnacle-based bar (Track B rule)
                 continue
@@ -356,7 +427,7 @@ def scan(day):
                     model_over = prob_over(m, math.ceil(line))
                     if model_over - (1 - fair_under) >= 0.03:  # model strongly favors Over -> filter out this Under
                         continue
-            plays.append(dict(game=f"{g['away']}@{g['home']}", player=norm_name, line=line, venue=exec_venue,
+            plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue=exec_venue,
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
                                edge=round(edge * 100, 1)))
     plays.sort(key=lambda p: -p['edge'])
@@ -367,8 +438,5 @@ def scan(day):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1 and sys.argv[1] == '--discover-oddspapi':
-        discover_oddspapi_nhl_ids()
-    else:
-        d = datetime.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else datetime.date.today()
-        scan(d)
+    d = datetime.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else datetime.date.today()
+    scan(d)
