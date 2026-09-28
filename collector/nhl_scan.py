@@ -368,7 +368,8 @@ def oddsapi_sog_venues(event_id):
 def todays_games(day):
     j = get(f"https://api-web.nhle.com/v1/score/{day:%Y-%m-%d}") or {}
     return [dict(id=g['id'], home=g['homeTeam']['abbrev'], away=g['awayTeam']['abbrev'],
-                 season=g.get('season'), gameType=g.get('gameType'), state=g.get('gameState'))
+                 season=g.get('season'), gameType=g.get('gameType'), state=g.get('gameState'),
+                 start=g.get('startTimeUTC'))
             for g in j.get('games', [])]
 
 
@@ -429,7 +430,7 @@ def scan(day):
                         continue
             plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue=exec_venue,
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
-                               edge=round(edge * 100, 1)))
+                               edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat()))
     plays.sort(key=lambda p: -p['edge'])
     print(f"\n{len(plays)} Under plays clear the Pinnacle-based edge bar (>= {EDGE_MIN_PIN*100:.0f}pts):")
     for p in plays:
@@ -437,6 +438,45 @@ def scan(day):
     return plays
 
 
+def to_ledger_docs(plays):
+    """Turn flagged Under plays into ledger-ready docs (rulebook grader fields: kalshi_ticker,
+    start, pinn, side, sport). Mirrors softness_scan.py's to_ledger_docs -- built 2026-09-28,
+    NHL had never had this despite the script existing since 2026-09-27 (flagged as a known gap
+    in the rulebook). kalshi_ticker is ALWAYS null here, not a lookup failure: confirmed
+    repeatedly (2026-09-25, rechecked 2026-09-27, rechecked again 2026-09-28) that Kalshi carries
+    no NHL shots-on-goal market at all -- the execution venue is always Novig/ProphetX/Fliff/
+    PrizePicks via The Odds API (see `venue` on each play), never Kalshi. The nightly grader
+    (collector/grade_plays.py) needs its own venue-close-price step for these rather than a
+    Kalshi close -- not built yet, same gap softness_scan.py has for its non-Kalshi plays."""
+    docs = {}
+    for p in plays:
+        slug = p['player'].split()[-1].lower()
+        doc_id = f"{p['date']}-nhl-{slug}-sog{str(p['line']).replace('.', '')}-u"
+        if doc_id in docs and docs[doc_id]['data']['edge'] <= p['edge']:
+            continue
+        note = f"NHL SOG scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p['fair_under']}c (Under)."
+        note += f" Bet placed on {p['venue']}, not Kalshi -- Kalshi carries no NHL SOG market (confirmed repeatedly); needs manual {p['venue']} close for CLV, not a Kalshi close."
+        if not p['start']:
+            note += " Start time missing from NHL API response -- check before logging."
+        docs[doc_id] = dict(id=doc_id, data=dict(
+            date=p['date'], game=p['game'], player=p['player'], market=f"Shots On Goal {p['line']}",
+            entry=p['price_under'], fair=p['fair_under'],
+            fairSource=f'Pinnacle no-vig SOG (OddsPapi, nhl_scan.py) vs {p["venue"]}',
+            edge=p['edge'], side='NO', sport='NHL', track='B', stake=0, fee=0, orderType='taker',
+            kalshi_ticker=None, start=p['start'],
+            pinn=dict(who=p['player'], mkt='prop:Shots On Goal', line=p['line']),
+            status=f"Paper — daily scan, pending fill ({p['venue']})",
+            note=note, close=None, result=None, zone='35–75'))
+    return list(docs.values())
+
+
 if __name__ == '__main__':
     d = datetime.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else datetime.date.today()
-    scan(d)
+    plays = scan(d)
+    if '--write' in sys.argv:
+        outpath = sys.argv[sys.argv.index('--write') + 1]
+        docs = to_ledger_docs(plays)
+        with open(outpath, 'w') as fh:
+            json.dump(docs, fh, indent=2)
+        print(f'\nWrote {len(docs)} ledger-ready docs to {outpath} (kalshi_ticker always null -- see to_ledger_docs docstring)')
+        print('Not written to the ledger yet -- the calling session still does the ArtifactData batch write.')
