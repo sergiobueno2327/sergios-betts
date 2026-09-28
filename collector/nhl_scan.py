@@ -298,6 +298,36 @@ def oddspapi_fixtures_for_day(day):
     return out
 
 
+PLAYER_ID_CACHE_PATH = os.path.join(os.path.dirname(__file__), 'data', 'oddspapi_player_id_cache.json')
+
+
+def _load_player_id_cache():
+    """{sportId(str): {playerId(str): 'First Last'}} -- persistent, built as a free byproduct of
+    every live oddspapi_pinnacle_sog() call (added 2026-09-28). REASON: confirmed live 2026-09-28
+    that OddsPapi's /v4/historical-odds endpoint (needed to re-run the NHL SOG backtest against
+    the paid plan's real data) never includes playerName -- only a numeric playerId -- and NO
+    REST endpoint resolves that id to a name (checked /v4/participants, /v4/fixture,
+    /v4/historical-odds with a playerId filter; confirmed via OddsPapi's own docs pages for
+    historical-odds, participants, and the websocket API too -- only the LIVE /v4/odds endpoint
+    carries playerName, and only for current/future fixtures). Since these numeric ids are stable
+    per real player (confirmed by design intent, not yet independently cross-checked across two
+    live pulls of the same player), caching every id->name pair seen on a live pull turns each
+    day's scan into a standing crosswalk -- by a few weeks into the season this becomes real,
+    freshly-sourced data usable for an actual backtest, instead of trying to force the historical
+    endpoint to do something it structurally can't."""
+    try:
+        with open(PLAYER_ID_CACHE_PATH) as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def _save_player_id_cache(cache):
+    os.makedirs(os.path.dirname(PLAYER_ID_CACHE_PATH), exist_ok=True)
+    with open(PLAYER_ID_CACHE_PATH, 'w') as f:
+        json.dump(cache, f, indent=1, sort_keys=True)
+
+
 def oddspapi_pinnacle_sog(fixture_id):
     """{norm_name: {'name': 'First Last', 'line': float, 'fair_under': prob}} -- UNDER fair prob
     specifically, since NHL SOG = Unders only per the rulebook (Overs = no bet)."""
@@ -308,6 +338,9 @@ def oddspapi_pinnacle_sog(fixture_id):
     j = get(f"https://api.oddspapi.io/v4/odds?apiKey={ODDSPAPI_KEY}&fixtureId={fixture_id}") or {}
     markets = j.get('bookmakerOdds', {}).get('pinnacle+30', {}).get('markets', {})
     out = {}
+    cache = _load_player_id_cache()
+    sport_cache = cache.setdefault('15', {})
+    cache_dirty = False
     for mid, m in markets.items():
         info = lookup.get(mid)
         if not info:
@@ -326,8 +359,13 @@ def oddspapi_pinnacle_sog(fixture_id):
                 name = f"{first} {last}"
             else:
                 name = raw
+            if name and sport_cache.get(pid) != name:
+                sport_cache[pid] = name
+                cache_dirty = True
             fair_over = devig_power(1.0 / po['price'], 1.0 / pu['price'])
             out[nrm(name)] = dict(name=name, line=float(handicap), fair_under=1 - fair_over)
+    if cache_dirty:
+        _save_player_id_cache(cache)
     return out
 
 
