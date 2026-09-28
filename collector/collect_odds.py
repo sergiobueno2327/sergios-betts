@@ -22,11 +22,14 @@ Coverage per run:
     "<line>/under" for totals) and flags the primary quote via mainLine=true (alt lines are
     also returned in the same call at no extra request cost, and are kept here with
     mainLine=false for anyone who wants the full menu later).
-    NOTE (unverified assumption): spread rows store OddsPapi's own printed magnitude/sign for
-    each side as-is (e.g. "-3.5/home" and "-3.5/away" were both observed under the same
-    marketId in one live NFL alt-line check) -- the true signed-per-side convention wasn't
-    independently decoded this session. Treat `line` as OddsPapi's raw reported number, not a
-    verified signed spread, until someone checks it against a known closing line.
+    RESOLVED 2026-09-28: spread `line` is now a verified signed number, not OddsPapi's raw
+    printed string. bookmakerOutcomeId's sign turned out to be unreliable on alt lines (e.g.
+    "-3.5/home" and "-3.5/away" both observed under the same marketId -- same magnitude, no
+    negation on the away side). Fix: resolve spreads via the /v4/markets catalog instead (see
+    spread_catalog() in this file) -- each catalog marketId's `handicap` field is always
+    participant1/home's own signed line, and away is always its exact negated mirror. Verified
+    against 2 independent completed real NFL games with known results (BUF 41 DET 31: home
+    favored ~-3.5 pregame, matches; ATL 3 CAR 34: home a big live underdog, matches).
     Also unverified: the period tag "0" = full/incl.-overtime was only directly confirmed live
     for NFL; NBA/NHL are assumed consistent with the platform-wide catalog (all three sports'
     catalog entries share the same 'period':'result' tag) but not independently re-tested.
@@ -85,8 +88,9 @@ GAME_MARKET_NAMES = {
          'spreads': 'Handicap (incl. overtime and penalties)',
          'totals': 'Total (incl. overtime and penalties)'},
 }
-# kept only for documentation/cross-check -- game rows are decoded directly from
-# bookmakerOutcomeId at odds-fetch time, not from this catalog (see module docstring).
+# Used directly for spreads (see spread_catalog()) to resolve the marketName filter below;
+# moneyline/totals still decode straight from bookmakerOutcomeId at odds-fetch time (reliable
+# for those two -- see module docstring).
 
 # Player-prop (marketName, marketType) pairs per sportId -- same values as
 # nfl_scan.py/nba_scan.py/nhl_scan.py's STAT_MARKETS, kept in sync manually.
@@ -132,30 +136,57 @@ def get(url, headers=None, tries=4):
 
 
 _prop_catalog_cache = None
+_spread_catalog_cache = None
 
 
 def prop_catalog():
     """marketId(str) -> (sportId, stat, handicap, over_outcomeId, under_outcomeId). Built once
     per run from OddsPapi's full /v4/markets catalog (~33k entries across all sports) -- 1 call
-    total, not per-sport. Same pattern as the 3 scan scripts."""
-    global _prop_catalog_cache
+    total, not per-sport. Same pattern as the 3 scan scripts. As a side effect, also populates
+    _spread_catalog_cache (see spread_catalog() below) from the same pass -- no extra API call.
+    """
+    global _prop_catalog_cache, _spread_catalog_cache
     if _prop_catalog_cache is not None:
         return _prop_catalog_cache
     markets = get(f'{ODDSPAPI_BASE}/markets?apiKey={ODDSPAPI_KEY}') or []
     cat = {}
+    spread_cat = {}
     for m in markets:
         sid = m.get('sportId')
-        if sid not in PROP_MARKETS or not m.get('playerProp'):
-            continue
-        for stat, (mname, mtype) in PROP_MARKETS[sid].items():
-            if m.get('marketName') == mname and m.get('marketType') == mtype:
-                outs = m.get('outcomes') or []
-                over_id = next((o['outcomeId'] for o in outs if o['outcomeName'] == 'Over'), None)
-                under_id = next((o['outcomeId'] for o in outs if o['outcomeName'] == 'Under'), None)
-                if over_id and under_id:
-                    cat[str(m['marketId'])] = (sid, stat, m.get('handicap'), over_id, under_id)
+        if sid in PROP_MARKETS and m.get('playerProp'):
+            for stat, (mname, mtype) in PROP_MARKETS[sid].items():
+                if m.get('marketName') == mname and m.get('marketType') == mtype:
+                    outs = m.get('outcomes') or []
+                    over_id = next((o['outcomeId'] for o in outs if o['outcomeName'] == 'Over'), None)
+                    under_id = next((o['outcomeId'] for o in outs if o['outcomeName'] == 'Under'), None)
+                    if over_id and under_id:
+                        cat[str(m['marketId'])] = (sid, stat, m.get('handicap'), over_id, under_id)
+        if sid in GAME_MARKET_NAMES and not m.get('playerProp') and m.get('marketType') == 'spreads' \
+                and m.get('marketName') == GAME_MARKET_NAMES[sid]['spreads']:
+            # RESOLVED 2026-09-28 (see module docstring): bookmakerOutcomeId's printed sign is
+            # unreliable for the away/"2" side of an alt-line spread (observed printing the same
+            # magnitude as the home/"1" side instead of the negated mirror). The catalog itself
+            # is unambiguous and was verified against 2 independent completed real NFL games
+            # (BUF 41 DET 31, ATL 3 CAR 34): outcomeName "1" is always participant1 == home, its
+            # `handicap` field is that team's own signed line, and outcomeName "2" (away) is
+            # always the exact negated mirror. Build home/away signed line per (marketId,
+            # outcomeId) here so pinnacle_rows_for_fixture never has to parse boid for spreads.
+            handicap = m.get('handicap')
+            for o in (m.get('outcomes') or []):
+                side = 'home' if o.get('outcomeName') == '1' else 'away'
+                line = handicap if side == 'home' else (-handicap if handicap is not None else None)
+                spread_cat[(str(m['marketId']), o['outcomeId'])] = (side, line)
     _prop_catalog_cache = cat
+    _spread_catalog_cache = spread_cat
     return cat
+
+
+def spread_catalog():
+    """(marketId(str), outcomeId(int)) -> (side 'home'|'away', signed line). Populated as a side
+    effect of prop_catalog() -- call that first (pinnacle_rows() already does)."""
+    if _spread_catalog_cache is None:
+        prop_catalog()
+    return _spread_catalog_cache
 
 
 def oddspapi_fixtures(sport_id, days=3):
@@ -200,14 +231,30 @@ def pinnacle_rows_for_fixture(ts, sport_id, league, fx, catalog):
         mtype = parts[-1] if parts else ''
         period = parts[-2] if len(parts) > 1 else ''
         if mtype in _GAME_MKT_LABEL and period == '0':
+            scat = spread_catalog() if mtype == 'spreads' else None
             for oid, o in m.get('outcomes', {}).items():
                 p = (o.get('players') or {}).get('0')
                 if not p or not p.get('active'):
                     continue
                 boid = p.get('bookmakerOutcomeId') or ''
                 if mtype == 'moneyline':
+                    # boid is a plain "home"/"away" literal here -- reliable, no sign involved.
                     sel, line = boid, None
-                else:
+                elif mtype == 'spreads':
+                    # boid's sign is unreliable for alt lines (see spread_catalog() docstring) --
+                    # resolve side + signed line from the catalog by (marketId, outcomeId)
+                    # instead of parsing the string. Falls back to the old parse if a market
+                    # wasn't in the catalog pass (shouldn't happen for in-scope sports/markets).
+                    got = scat.get((mid, int(oid))) if scat else None
+                    if got:
+                        sel, line = got
+                    else:
+                        line_str, _, sel = boid.rpartition('/')
+                        try:
+                            line = float(line_str)
+                        except ValueError:
+                            line = None
+                else:  # totals -- "<line>/over" or "<line>/under", magnitude is unsigned, fine as-is
                     line_str, _, sel = boid.rpartition('/')
                     try:
                         line = float(line_str)
