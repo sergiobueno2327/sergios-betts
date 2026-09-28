@@ -297,11 +297,30 @@ def oddspapi_fixtures_for_day(day):
         out.append(dict(fixtureId=f['fixtureId'], home=home, away=away, hasOdds=f.get('hasOdds')))
     return out
 
-def pinnacle_props(day):
+def pinnacle_props(day, games):
     """{(norm_name, stat, line): fair_over_prob} for every REB/AST market OddsPapi has posted for
-    today's games. Matched to a game via ESPN abbrev (todays_games) -> OddsPapi fixture."""
+    today's games. Matched to a game via ESPN abbrev (todays_games) -> OddsPapi fixture.
+
+    BUG FOUND + FIXED 2026-09-28: this docstring already claimed the ESPN-abbrev match happened,
+    but the code never actually did it -- oddspapi_fixtures_for_day() computed home/away via
+    ODDSPAPI_TO_ESPN (the mapping fully confirmed earlier today) and then nothing downstream ever
+    read those fields; every fixture OddsPapi returned for the day got pulled regardless. Harmless
+    while NBA odds are dark (nothing to mis-pull), but it means the abbrev mapping was doing
+    nothing and, once real odds post, the same OddsPapi /v4/fixtures date-range inconsistency
+    already confirmed live in nfl_scan.py/nhl_scan.py (repeated calls returning a different subset
+    of a day's games, disagreeing on which UTC day a fixture belongs to) had no guard here at all --
+    a fixture that lands on the wrong side of a UTC-day boundary could get silently included or
+    excluded with nothing cross-checking it against the real ESPN slate. Fixed: now takes `games`
+    (todays_games(day) output) and only pulls a fixture whose OddsPapi->ESPN-mapped team pair
+    actually matches a real ESPN game today; mismatches are printed so a mapping gap doesn't fail
+    silently the way WAS/WSH did before it was caught."""
     lookup = oddspapi_catalog()
-    fixtures = [f for f in oddspapi_fixtures_for_day(day) if f['hasOdds']]
+    espn_pairs = {frozenset((g['home'], g['away'])) for g in games}
+    all_fixtures = [f for f in oddspapi_fixtures_for_day(day) if f['hasOdds']]
+    fixtures = [f for f in all_fixtures if frozenset((f['home'], f['away'])) in espn_pairs]
+    skipped = [f"{f['away']}@{f['home']}" for f in all_fixtures if f not in fixtures]
+    if skipped:
+        print(f"  OddsPapi fixtures skipped (no matching ESPN game today): {skipped}")
     out = {}
     for fx in fixtures:
         j = get(f"https://api.oddspapi.io/v4/odds?apiKey={ODDSPAPI_KEY}&fixtureId={fx['fixtureId']}") or {}
@@ -370,7 +389,7 @@ def scan(day):
     inj = injuries(); out_ids = [pid for pid, h in hist.items() if nrm(h[-1]['name']) in inj and inj[nrm(h[-1]['name'])][1] in ('Out', 'Doubtful')]
     teams = {g['home']: g['away'] for g in games} | {g['away']: g['home'] for g in games}
     starters = lineups(day)
-    P = pinnacle_props(day); plays = []; seen = 0
+    P = pinnacle_props(day, games); plays = []; seen = 0
     for st in ('REB', 'AST'):
         w, c = BLEND[st]
         for m in kalshi_markets(st, day):
