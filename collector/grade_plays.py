@@ -230,11 +230,23 @@ def pinnacle_close_op(play, start):
 def grade(play, root, now):
     out = {}
     tk = play.get('kalshi_ticker')
-    if not tk:
-        return {'gradeNote': 'needs kalshi_ticker'}
-    m = market(tk)
-    if not m:
-        return {'gradeNote': f'Kalshi market {tk} not found'}
+    m = None
+    # BUG FOUND + FIXED 2026-09-28 (2nd audit pass, same day): this used to hard-require
+    # kalshi_ticker up front and bail with "needs kalshi_ticker" before ever calling
+    # pinnacle_close_op() -- even for a play whose own logged note says it's a non-Kalshi-venue
+    # prop (e.g. Novig-only) and explicitly expects "grader will still resolve pinnClose/CLV".
+    # Confirmed live: 2026-09-27-sabato-hits-o sat with gradeNote "needs kalshi_ticker" and no
+    # clvPinn ever computed, contradicting its own note. There's no automated source for W/L on
+    # a non-Kalshi venue (no settlement feed to poll), so result/ret/pnl/graded still require a
+    # Kalshi ticker -- but CLV (the actual verdict metric) doesn't depend on Kalshi at all and
+    # was being needlessly blocked by this. Fixed: without a ticker, skip everything
+    # Kalshi-specific (kalshiClose, fill check, result) and still compute pinnClose/clvPinn.
+    if tk:
+        m = market(tk)
+        if not m:
+            return {'gradeNote': f'Kalshi market {tk} not found'}
+    elif not play.get('start'):
+        return {'gradeNote': 'needs kalshi_ticker or start'}
     start = ts(play['start']) if play.get('start') else ts(m.get('occurrence_datetime') or m['close_time'])
     if now < start:
         return None  # not started yet
@@ -243,29 +255,30 @@ def grade(play, root, now):
     pc, pnote = pinnacle_close_op(play, start)
     if pinnacle_close_op.cut:
         start = pinnacle_close_op.cut   # actual start (tennis order of play etc.)
-    # Kalshi close: last 1-min candle before start (fallback hourly)
-    cs = candles(tk, start.timestamp() - 3 * 3600, start.timestamp(), 1) or candles(tk, start.timestamp() - 48 * 3600, start.timestamp(), 60)
     kc = None
-    for c in reversed(cs):
-        b, a = f(c.get('yes_bid', {}).get('close_dollars')), f(c.get('yes_ask', {}).get('close_dollars'))
-        if b and a and 0 < b < a < 1:
-            mid = (a + b) / 2
-            kc = round((mid if side == 'YES' else 1 - mid) * 100, 1)
-            break
-    out['kalshiClose'] = kc
-    # Fill check for maker / paper orders: any trade at or through our limit between logging and start
-    maker = play.get('orderType') == 'maker' or 'pending fill' in str(play.get('status', '')).lower()
-    if maker:
-        t0 = ts(play['date'] + 'T00:00:00Z').timestamp()
-        hc = candles(tk, t0, start.timestamp(), 60)
-        lim = entry / 100
-        if side == 'YES':
-            filled = any(f(c.get('price', {}).get('low_dollars')) is not None and f(c['price']['low_dollars']) <= lim for c in hc)
-        else:
-            filled = any(f(c.get('price', {}).get('high_dollars')) is not None and f(c['price']['high_dollars']) >= 1 - lim for c in hc)
-        out['filled'] = filled
-    else:
-        out['filled'] = True
+    out['kalshiClose'] = None
+    out['filled'] = True
+    if m:
+        # Kalshi close: last 1-min candle before start (fallback hourly)
+        cs = candles(tk, start.timestamp() - 3 * 3600, start.timestamp(), 1) or candles(tk, start.timestamp() - 48 * 3600, start.timestamp(), 60)
+        for c in reversed(cs):
+            b, a = f(c.get('yes_bid', {}).get('close_dollars')), f(c.get('yes_ask', {}).get('close_dollars'))
+            if b and a and 0 < b < a < 1:
+                mid = (a + b) / 2
+                kc = round((mid if side == 'YES' else 1 - mid) * 100, 1)
+                break
+        out['kalshiClose'] = kc
+        # Fill check for maker / paper orders: any trade at or through our limit between logging and start
+        maker = play.get('orderType') == 'maker' or 'pending fill' in str(play.get('status', '')).lower()
+        if maker:
+            t0 = ts(play['date'] + 'T00:00:00Z').timestamp()
+            hc = candles(tk, t0, start.timestamp(), 60)
+            lim = entry / 100
+            if side == 'YES':
+                filled = any(f(c.get('price', {}).get('low_dollars')) is not None and f(c['price']['low_dollars']) <= lim for c in hc)
+            else:
+                filled = any(f(c.get('price', {}).get('high_dollars')) is not None and f(c['price']['high_dollars']) >= 1 - lim for c in hc)
+            out['filled'] = filled
     if pc is None and root and os.path.isdir(os.path.join(root, 'data')):
         pc2, pnote2 = pinnacle_close(root, play, start)
         if pc2 is not None:
@@ -277,6 +290,9 @@ def grade(play, root, now):
     out['pinnCloseAt'] = pnote
     out['clvPinn'] = round(pc * 100 - entry, 1) if pc is not None else None
     out['clvKalshi'] = round(kc - entry, 1) if kc is not None else None
+    if not m:
+        out['gradeNote'] = 'CLV computed via Pinnacle close; no Kalshi ticker (non-Kalshi venue) — no result/W-L available'
+        return out
     res = (m.get('result') or '').lower()
     if m.get('status') in ('finalized', 'settled') and res in ('yes', 'no'):
         win = (res == 'yes') == (side == 'YES')
