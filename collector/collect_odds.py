@@ -66,7 +66,7 @@ fixture window (see oddspapi_fixtures) if it gets close to the cap.
 """
 import gzip, json, os, sys, time, datetime, urllib.request
 
-ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '15490352-5f73-404d-9964-353ab0783e01')
+ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '')
 ODDSPAPI_BASE = 'https://api.oddspapi.io/v4'
 KALSHI = 'https://api.elections.kalshi.com/trade-api/v2'
 
