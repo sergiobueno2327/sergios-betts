@@ -22,11 +22,12 @@ file -- a real gap found while fixing the paid-plan cutover, not something that 
   (confirmed live 2026-09-28 -- OddsPapi's NBA fixtures only start appearing under tournamentSlug
   "nba-preseason" 9+ days out from today, all with hasOdds still False that far out). The catalog
   lookup and odds-parsing logic below is the same, tested pattern as nfl_scan.py/nhl_scan.py (that
-  part is solid) -- what's unverified specifically is the OddsPapi-abbrev-to-ESPN-abbrev team
-  mapping (ODDSPAPI_TO_ESPN below), since OddsPapi uses NOP/GSW/UTA/SAS while ESPN uses NO/GS/
-  UTAH/SA for the same teams (confirmed via ESPN's team list; the OddsPapi side of a few of these,
-  e.g. SAS vs SA, is a best-guess not yet seen live -- verify against a real fixture once preseason
-  games actually post player props, flagged again in the rulebook).
+  part is solid). The OddsPapi-abbrev-to-ESPN-abbrev team mapping (ODDSPAPI_TO_ESPN below) is now
+  FULLY CONFIRMED (2026-09-28, all 30 teams, via real historical NBA fixtures matched by franchise
+  name) -- no longer a guess for any team. What's still genuinely unverified is only the live
+  odds-parsing path itself end-to-end (mechanically tested clean against real near-future
+  fixture/catalog data, but hasn't seen an actual live prop yet -- re-verify once preseason props
+  post).
   Kalshi (KALSHI_BASE, no key) is the sole execution venue here (matches the original design --
   SERIES dict below, unchanged). Same title/floor_strike/yes_bid_dollars/yes_ask_dollars schema
   confirmed live for NFL this session; the NBA-specific series (KXNBAREB/KXNBAAST) return 0 open
@@ -51,15 +52,20 @@ STAT_MARKETS = {
     'AST': ('Over Under Player Assists (incl. overtime)', 'playertotals-assists'),
 }
 
-# OddsPapi abbrev -> ESPN abbrev, for the handful of teams where they differ. Confirmed from
-# ESPN's own team list 2026-09-28; the OddsPapi side is confirmed live for the teams marked, a
-# best guess (standard sportsbook convention) for the rest -- verify once preseason props post.
+# OddsPapi abbrev -> ESPN abbrev, for the teams where they differ. FULLY CONFIRMED 2026-09-28
+# by cross-referencing OddsPapi's own fixture list (all 30 teams' abbrevs, pulled from real
+# Feb/Mar/Apr 2026 NBA fixtures, matched by full franchise name) against ESPN's team list --
+# not a guess for any entry anymore. Real bug caught doing this: WAS->WSH was missing entirely
+# (not even flagged as unconfirmed before) -- would have silently broken Washington Wizards
+# REB/AST plays (ESPN roster lookup for "WAS" fails; ESPN's own abbrev is "WSH"). SAS->SA and
+# NYK->NY, previously flagged "best guess, not yet seen live," are now confirmed correct too.
 ODDSPAPI_TO_ESPN = {
-    'GSW': 'GS',    # confirmed live (OddsPapi fixture list) 2026-09-28
-    'NOP': 'NO',    # confirmed live 2026-09-28
-    'UTA': 'UTAH',  # confirmed live 2026-09-28
-    'SAS': 'SA',    # not yet seen live -- best guess
-    'NYK': 'NY',    # not yet seen live -- best guess
+    'GSW': 'GS',
+    'NOP': 'NO',
+    'UTA': 'UTAH',
+    'SAS': 'SA',
+    'NYK': 'NY',
+    'WAS': 'WSH',
 }
 
 
