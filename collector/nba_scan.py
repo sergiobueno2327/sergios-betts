@@ -36,7 +36,7 @@ file -- a real gap found while fixing the paid-plan cutover, not something that 
 import json, math, sys, os, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
-ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '15490352-5f73-404d-9964-353ab0783e01')
+ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '')
 KALSHI_BASE = 'https://api.elections.kalshi.com/trade-api/v2'
 CACHE = '/tmp/nba_scan_cache'; os.makedirs(CACHE, exist_ok=True)
 K, W_OPP, R_NB, GAMMA = 30, 1.0, 30, 0.15

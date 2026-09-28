@@ -53,8 +53,8 @@ from memory, never from just trusting the data provider's own team label.
 import json, math, os, sys, time, re, unicodedata, datetime, collections, urllib.request
 from zoneinfo import ZoneInfo
 
-THEODDSAPI_KEY = os.environ.get('THEODDSAPI_KEY', '0d93d28b93af9cf80cfcb2630cf09ac5')  # new 20K-tier key
-ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '15490352-5f73-404d-9964-353ab0783e01')
+THEODDSAPI_KEY = os.environ.get('THEODDSAPI_KEY', '')
+ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '')
 KALSHI_BASE = 'https://api.elections.kalshi.com/trade-api/v2'
 
 EDGE_MIN_PIN, EDGE_MIN_EXCH = 0.03, 0.04  # Track B bars: Pinnacle-based >=3pts, exchange-based >=4pts
