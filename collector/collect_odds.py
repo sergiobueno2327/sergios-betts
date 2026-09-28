@@ -1,104 +1,258 @@
 """Sergio's Betts — odds history collector (one snapshot per run).
 
-Saves Pinnacle (via Pinnapi) and Kalshi prices for in-scope sports so we build our own
-open-to-close history for backtests and CLV grading.
+REWIRED 2026-09-28: Pinnapi is suspended; this now pulls Pinnacle via OddsPapi for the 3
+sports actually live in Sergio's Betts (NBA, NFL, NHL) plus Kalshi execution-venue prices for
+those sports and college football/basketball. Scope decisions made explicitly with Sergio
+2026-09-28:
+  - MLB: DROPPED. OddsPapi has no MLB access at all (sportId=13 403s under this plan). The
+    Odds API DOES carry Pinnacle MLB game lines (confirmed live) but NOT Pinnacle MLB player
+    props (batter_hits/batter_total_bases -- confirmed live, checked us/us2/us_ex/eu/uk/au
+    regions, only DraftKings/Fanatics/ProphetX/Novig/PointsBetAU have them, no Pinnacle). Since
+    softness_scan.py's whole point is the player prop and MLB season is ending this week
+    anyway, MLB got dropped rather than rebuilt on a soft-book (DraftKings) fair source.
+  - Tennis: DROPPED. Never an active track in this system -- leftover scope from the old
+    Pinnapi-era collector, which pulled it just because Pinnapi's fixtures endpoint made it
+    free to include. Revisit either if circumstances change.
 
-Usage:  PINNAPI_KEY=... python3 collect_odds.py OUT_DIR
+Coverage per run:
+  Game lines (moneyline/spread/total, full game incl. overtime) for NBA/NFL/NHL via OddsPapi.
+    Confirmed live 2026-09-28: game-level markets don't need the catalog lookup player props
+    do -- OddsPapi embeds the line and side directly in each outcome's bookmakerOutcomeId
+    ("home"/"away" for moneyline, "<line>/home"|"<line>/away" for spreads, "<line>/over"|
+    "<line>/under" for totals) and flags the primary quote via mainLine=true (alt lines are
+    also returned in the same call at no extra request cost, and are kept here with
+    mainLine=false for anyone who wants the full menu later).
+    NOTE (unverified assumption): spread rows store OddsPapi's own printed magnitude/sign for
+    each side as-is (e.g. "-3.5/home" and "-3.5/away" were both observed under the same
+    marketId in one live NFL alt-line check) -- the true signed-per-side convention wasn't
+    independently decoded this session. Treat `line` as OddsPapi's raw reported number, not a
+    verified signed spread, until someone checks it against a known closing line.
+    Also unverified: the period tag "0" = full/incl.-overtime was only directly confirmed live
+    for NFL; NBA/NHL are assumed consistent with the platform-wide catalog (all three sports'
+    catalog entries share the same 'period':'result' tag) but not independently re-tested.
+  Player props for the exact stats each sport's scan script trades (NFL: 9 stats, NBA: REB/AST,
+  NHL: SOG) via the same OddsPapi /v4/markets catalog pattern as nfl_scan.py/nba_scan.py/
+  nhl_scan.py -- built once per run, ~33k markets across all sports, filtered locally.
+  Kalshi prices for the sports/leagues still in scope (dropped KXMLB*/KXATP*/KXWTA* series).
+
+Usage:  ODDSPAPI_KEY=... python3 collect_odds.py OUT_DIR
 Writes: OUT_DIR/data/YYYY-MM-DD/HHMMZ_pinnacle.jsonl.gz and HHMMZ_kalshi.jsonl.gz
         (UTC date/time of the snapshot). Prints a one-line summary.
 
 Row formats (one JSON object per line):
-  pinnacle: {ts, sport, league, eid, parent, starts, home, away, mkt, per, sel, line, price, max}
-     mkt = ml | spread | total | tt_home | tt_away | prop:<unit> ; per = 0 game, 1 first half/period ...
+  pinnacle: {ts, sport, fid, home, away, mkt, per, sel, line, price, priceAmerican, player,
+             mainLine, limit}
+     mkt = moneyline | spread | total | prop:<unit>
+     player = null for game-level markets, "First Last" for player props
      price = decimal odds (raw, with vig). De-vig later.
   kalshi:   {ts, series, event, ticker, title, sub, strike, close_time, bid, ask, last, vol, oi}
      bid/ask in dollars (Yes side). No bid = 1 - yes ask.
 No API keys are stored in this file or the output.
+
+Known OddsPapi quirk (see nfl_scan.py/nhl_scan.py docstrings for full detail): /v4/fixtures
+results aren't fully consistent call-to-call -- trust startTime vs wall clock, not statusName;
+treat any single run's fixture list as potentially incomplete (scheduled re-runs self-heal).
+
+Quota note: OddsPapi's Normal tier is 5,000 req/month, shared across every script in this
+project (the 3 scan scripts, the nightly grader, and this collector). Unlike the old Pinnapi
+collector (1 call per sport, odds embedded in the fixtures response), OddsPapi splits
+fixtures from odds, so this collector spends 1 fixtures call/sport (3) + 1 odds call per
+in-scope game found each run. At several runs/day across a full NFL/NBA/NHL slate this can
+add up -- watch usage via the weekly health check and cut the run cadence or the days-ahead
+fixture window (see oddspapi_fixtures) if it gets close to the cap.
 """
 import gzip, json, os, sys, time, datetime, urllib.request
 
-PINNAPI_KEY = os.environ.get('PINNAPI_KEY', '')
-PINN_SPORTS = {2: 'Tennis', 3: 'Basketball', 4: 'Hockey', 5: 'Football', 6: 'Baseball'}
-PINN_LEAGUES = ('NBA', 'WNBA', 'NHL', 'NFL', 'NCAA', 'MLB', 'ATP', 'WTA', 'Challenger')
-KALSHI_SERIES = [
-    # NBA / WNBA
-    'KXNBAREB', 'KXNBAAST', 'KXNBAPTS', 'KXNBA3PT', 'KXNBAGAME', 'KXNBASPREAD', 'KXNBATOTAL',
-    'KXWNBAREB', 'KXWNBAAST', 'KXWNBAPTS', 'KXWNBA3PT',
-    # MLB
-    'KXMLBHIT', 'KXMLBTB', 'KXMLBKS', 'KXMLBHRR', 'KXMLBHR', 'KXMLBOUTS', 'KXMLBGAME', 'KXMLBTOTAL', 'KXMLBSPREAD',
-    # NFL
-    'KXNFLPASSYDS', 'KXNFLPASSCOMP', 'KXNFLPASSATT', 'KXNFLPASSTDS', 'KXNFLPASSINT', 'KXNFLREC', 'KXNFLRECYDS',
-    'KXNFLRSHATT', 'KXNFLRSHYDS', 'KXNFLANYTD', 'KXNFLGAME', 'KXNFLSPREAD', 'KXNFLTOTAL',
-    # NHL
-    'KXNHLGOAL', 'KXNHLPTS', 'KXNHLAST', 'KXNHLSAVE', 'KXNHLGAME', 'KXNHLTOTAL', 'KXNHLSPREAD',
-    # College
-    'KXNCAAFGAME', 'KXNCAAFSPREAD', 'KXNCAAFTOTAL', 'KXNCAAMBGAME', 'KXNCAAMBSPREAD', 'KXNCAAMBTOTAL',
-    # Tennis
-    'KXATPMATCH', 'KXWTAMATCH', 'KXATPCHALLENGERMATCH', 'KXWTACHALLENGERMATCH', 'KXATPGAMETOTAL', 'KXWTAGTOTAL',
-    'KXATPGAMESPREAD',
-]
-AUTO_SERIES_KEYWORDS = ('SOG', 'SHOTS')  # auto-add any new NHL shots-on-goal series Kalshi lists
+ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '15490352-5f73-404d-9964-353ab0783e01')
+ODDSPAPI_BASE = 'https://api.oddspapi.io/v4'
 KALSHI = 'https://api.elections.kalshi.com/trade-api/v2'
 
+# sportId -> (tournamentSlugs to keep, short league label)
+SPORTS = {
+    11: (('nba', 'nba-preseason'), 'NBA'),
+    14: (('nfl',), 'NFL'),
+    15: (('nhl',), 'NHL'),
+}
 
-def get(url, headers=None, tries=3):
+# Full-game (incl. overtime) marketName per sportId -- confirmed live 2026-09-28 against
+# OddsPapi's /v4/markets catalog; naming genuinely differs per sport, don't assume they match.
+GAME_MARKET_NAMES = {
+    11: {'moneyline': 'Winner (incl. overtime)', 'spreads': 'Handicap (incl. overtime)',
+         'totals': 'Over Under (incl. overtime)'},
+    14: {'moneyline': 'Winner (incl. overtime)', 'spreads': 'Handicap (incl. overtime)',
+         'totals': 'Total (incl. overtime)'},
+    15: {'moneyline': 'Winner (incl. overtime and penalties)',
+         'spreads': 'Handicap (incl. overtime and penalties)',
+         'totals': 'Total (incl. overtime and penalties)'},
+}
+# kept only for documentation/cross-check -- game rows are decoded directly from
+# bookmakerOutcomeId at odds-fetch time, not from this catalog (see module docstring).
+
+# Player-prop (marketName, marketType) pairs per sportId -- same values as
+# nfl_scan.py/nba_scan.py/nhl_scan.py's STAT_MARKETS, kept in sync manually.
+PROP_MARKETS = {
+    14: {  # NFL
+        'interceptions': ('Over Under Player Interceptions (incl. overtime)', 'playertotals-interceptions'),
+        'passing_yards': ('Over Under Pass Yards (incl. overtime)', 'playertotals-passyards'),
+        'passing_completions': ('Over Under Pass Completions (incl. overtime)', 'playertotals-passcompletions'),
+        'passing_attempts': ('Over Under Pass Attempts (incl. overtime)', 'playertotals-passattempts'),
+        'passing_touchdowns': ('Over Under Player TD Passes (incl. overtime)', 'playertotals-tdpasses'),
+        'receiving_yards': ('Over Under Player Receiving Yards (incl. overtime)', 'playertotals-receivingyards'),
+        'receptions': ('Over Under Player Receptions (incl. overtime)', 'playertotals-receptions'),
+        'rushing_yards': ('Over Under Rush Yards (incl. overtime)', 'playertotals-rushyards'),
+        'rushing_attempts': ('Over Under Rush Attempts (incl. overtime)', 'playertotals-rushattempts'),
+    },
+    11: {'REB': ('Over Under Player Rebounds (incl. overtime)', 'playertotals-rebounds'),
+         'AST': ('Over Under Player Assists (incl. overtime)', 'playertotals-assists')},
+    15: {'SOG': ('Over Under Player Shots On Goal (incl. overtime)', 'playertotals-shotsongoal')},
+}
+
+KALSHI_SERIES = [
+    # NBA
+    'KXNBAREB', 'KXNBAAST', 'KXNBAPTS', 'KXNBA3PT', 'KXNBAGAME', 'KXNBASPREAD', 'KXNBATOTAL',
+    # NFL
+    'KXNFLPASSYDS', 'KXNFLPASSCOMP', 'KXNFLPASSATT', 'KXNFLPASSTDS', 'KXNFLPASSINT', 'KXNFLREC',
+    'KXNFLRECYDS', 'KXNFLRSHATT', 'KXNFLRSHYDS', 'KXNFLANYTD', 'KXNFLGAME', 'KXNFLSPREAD', 'KXNFLTOTAL',
+    # NHL
+    'KXNHLGOAL', 'KXNHLPTS', 'KXNHLAST', 'KXNHLSAVE', 'KXNHLGAME', 'KXNHLTOTAL', 'KXNHLSPREAD',
+    # College football/basketball -- same OddsPapi sportIds as NFL/NBA, cheap to keep alongside
+    'KXNCAAFGAME', 'KXNCAAFSPREAD', 'KXNCAAFTOTAL', 'KXNCAAMBGAME', 'KXNCAAMBSPREAD', 'KXNCAAMBTOTAL',
+]
+AUTO_SERIES_KEYWORDS = ('SOG', 'SHOTS')  # auto-add any new NHL shots-on-goal series Kalshi lists
+
+
+def get(url, headers=None, tries=4):
     for a in range(tries):
         try:
-            return json.load(urllib.request.urlopen(urllib.request.Request(url, headers=headers or {}), timeout=40))
+            req = urllib.request.Request(url, headers=headers or {'User-Agent': 'curl/8'})
+            return json.load(urllib.request.urlopen(req, timeout=30))
         except Exception:
-            time.sleep(2 * (a + 1))
+            time.sleep(1.5 * (a + 1))
     return None
+
+
+_prop_catalog_cache = None
+
+
+def prop_catalog():
+    """marketId(str) -> (sportId, stat, handicap, over_outcomeId, under_outcomeId). Built once
+    per run from OddsPapi's full /v4/markets catalog (~33k entries across all sports) -- 1 call
+    total, not per-sport. Same pattern as the 3 scan scripts."""
+    global _prop_catalog_cache
+    if _prop_catalog_cache is not None:
+        return _prop_catalog_cache
+    markets = get(f'{ODDSPAPI_BASE}/markets?apiKey={ODDSPAPI_KEY}') or []
+    cat = {}
+    for m in markets:
+        sid = m.get('sportId')
+        if sid not in PROP_MARKETS or not m.get('playerProp'):
+            continue
+        for stat, (mname, mtype) in PROP_MARKETS[sid].items():
+            if m.get('marketName') == mname and m.get('marketType') == mtype:
+                outs = m.get('outcomes') or []
+                over_id = next((o['outcomeId'] for o in outs if o['outcomeName'] == 'Over'), None)
+                under_id = next((o['outcomeId'] for o in outs if o['outcomeName'] == 'Under'), None)
+                if over_id and under_id:
+                    cat[str(m['marketId'])] = (sid, stat, m.get('handicap'), over_id, under_id)
+    _prop_catalog_cache = cat
+    return cat
+
+
+def oddspapi_fixtures(sport_id, days=3):
+    """Fixtures with odds, not yet started, for this sport's real league(s) only (OddsPapi
+    shares one sportId across many tournaments -- e.g. sportId=14 mixes nfl/ncaa/cfl)."""
+    d0 = datetime.date.today().isoformat()
+    d1 = (datetime.date.today() + datetime.timedelta(days=days)).isoformat()
+    fx = get(f'{ODDSPAPI_BASE}/fixtures?apiKey={ODDSPAPI_KEY}&sportId={sport_id}&from={d0}&to={d1}') or []
+    slugs, _ = SPORTS[sport_id]
+    now = datetime.datetime.now(datetime.timezone.utc)
+    out = []
+    for f in fx:
+        if f.get('tournamentSlug') not in slugs or not f.get('hasOdds'):
+            continue
+        st = f.get('startTime') or ''
+        try:
+            start = datetime.datetime.fromisoformat(st.replace('Z', '+00:00'))
+        except ValueError:
+            continue
+        if start <= now:
+            continue  # started/stale -- pregame open-to-close history only
+        out.append(f)
+    return out
+
+
+_GAME_MKT_LABEL = {'moneyline': 'moneyline', 'spreads': 'spread', 'totals': 'total'}
+
+
+def pinnacle_rows_for_fixture(ts, sport_id, league, fx, catalog):
+    fid = fx['fixtureId']
+    home, away = fx.get('participant1Abbr'), fx.get('participant2Abbr')
+    d = get(f'{ODDSPAPI_BASE}/odds?apiKey={ODDSPAPI_KEY}&fixtureId={fid}')  # no bookmakers= param
+    # (pinnacle+30 has a "+" that URL-encodes to a space and 400s if passed explicitly -- the
+    # key's plan only has that one bookmaker anyway, so omitting the param returns it by default)
+    if not d:
+        return []
+    pin = (d.get('bookmakerOdds') or {}).get('pinnacle+30', {}).get('markets', {})
+    rows = []
+    for mid, m in pin.items():
+        bmid = m.get('bookmakerMarketId', '')
+        parts = bmid.split('/')
+        mtype = parts[-1] if parts else ''
+        period = parts[-2] if len(parts) > 1 else ''
+        if mtype in _GAME_MKT_LABEL and period == '0':
+            for oid, o in m.get('outcomes', {}).items():
+                p = (o.get('players') or {}).get('0')
+                if not p or not p.get('active'):
+                    continue
+                boid = p.get('bookmakerOutcomeId') or ''
+                if mtype == 'moneyline':
+                    sel, line = boid, None
+                else:
+                    line_str, _, sel = boid.rpartition('/')
+                    try:
+                        line = float(line_str)
+                    except ValueError:
+                        line = None
+                rows.append(dict(ts=ts, sport=league, fid=fid, home=home, away=away,
+                                  mkt=_GAME_MKT_LABEL[mtype], per=0, sel=sel, line=line,
+                                  price=p.get('price'), priceAmerican=p.get('priceAmerican'),
+                                  player=None, mainLine=p.get('mainLine'), limit=p.get('limit')))
+            continue
+        cat = catalog.get(mid)
+        if not cat:
+            continue
+        csid, stat, handicap, over_id, under_id = cat
+        if csid != sport_id:
+            continue
+        for side, oid in (('Over', over_id), ('Under', under_id)):
+            o = m.get('outcomes', {}).get(str(oid), {})
+            for pid, p in (o.get('players') or {}).items():
+                if not p.get('active'):
+                    continue
+                nm = p.get('playerName') or ''
+                if ',' in nm:
+                    last, first = [x.strip() for x in nm.split(',', 1)]
+                    nm = f'{first} {last}'
+                rows.append(dict(ts=ts, sport=league, fid=fid, home=home, away=away,
+                                  mkt=f'prop:{stat}', per=0, sel=side, line=handicap,
+                                  price=p.get('price'), priceAmerican=p.get('priceAmerican'),
+                                  player=nm, mainLine=p.get('mainLine'), limit=p.get('limit')))
+    return rows
 
 
 def pinnacle_rows(ts):
     rows, calls = [], 0
-    if not PINNAPI_KEY:
+    if not ODDSPAPI_KEY:
         return rows, calls
-    for sid, sname in PINN_SPORTS.items():
-        j = get(f'https://pinnapi.com/kit/v1/prematch/fixtures?sport_id={sid}&include_specials=1',
-                {'x-portal-apikey': PINNAPI_KEY, 'User-Agent': 'curl/8'}) or {}  # Pinnapi 403s Python's default UA (fixed 2026-09-25)
+    catalog = prop_catalog()
+    calls += 1
+    for sid, (slugs, league) in SPORTS.items():
+        fixtures = oddspapi_fixtures(sid)
         calls += 1
-        for e in j.get('events', []):
-            lg = e.get('league_name') or ''
-            if not any(k in lg for k in PINN_LEAGUES):
-                continue
-            base = dict(ts=ts, sport=sname, league=lg, eid=e.get('event_id'), parent=e.get('parent_id'),
-                        starts=e.get('starts'), home=e.get('home'), away=e.get('away'))
-            cat = e.get('special_category')
-            if cat:  # props / specials
-                if cat not in ('Player Props', 'Game Props'):
-                    continue  # skip futures
-                unit = e.get('special_units') or ''
-                for per, mlist in (e.get('special_markets') or {}).items():
-                    for m in mlist:
-                        for p in m.get('prices', []):
-                            if p.get('price'):
-                                rows.append(dict(base, mkt=f'prop:{unit}', special=e.get('special'), per=per.replace('num_', ''),
-                                                 sel=p.get('name'), line=p.get('points'), price=p['price'], max=m.get('max_risk')))
-                continue
-            for per, P in (e.get('periods') or {}).items():
-                if P.get('status') not in (None, 'open'):
-                    continue
-                n = str(P.get('number', per.replace('num_', '')))
-                meta = P.get('meta') or {}
-                ml = P.get('money_line') or {}
-                for sel in ('home', 'away', 'draw'):
-                    if ml.get(sel):
-                        rows.append(dict(base, mkt='ml', per=n, sel=sel, line=None, price=ml[sel], max=meta.get('max_money_line')))
-                for s in (P.get('spreads') or {}).values():
-                    for sel in ('home', 'away'):
-                        if s.get(sel):
-                            rows.append(dict(base, mkt='spread', per=n, sel=sel, line=s.get('hdp'), price=s[sel], max=s.get('max')))
-                for t in (P.get('totals') or {}).values():
-                    for sel in ('over', 'under'):
-                        if t.get(sel):
-                            rows.append(dict(base, mkt='total', per=n, sel=sel, line=t.get('points'), price=t[sel], max=t.get('max')))
-                for side, tts in (P.get('team_totals') or {}).items():
-                    for t in (tts or {}).values():
-                        for sel in ('over', 'under'):
-                            if t.get(sel):
-                                rows.append(dict(base, mkt=f'tt_{side}', per=n, sel=sel, line=t.get('points'), price=t[sel], max=t.get('max')))
-        time.sleep(1)
+        for fx in fixtures:
+            rows.extend(pinnacle_rows_for_fixture(ts, sid, league, fx, catalog))
+            calls += 1
+            time.sleep(0.3)
     return rows, calls
 
 
@@ -121,10 +275,10 @@ def kalshi_rows(ts):
                         continue
                     f = lambda k: float(m.get(k) or 0)
                     rows.append(dict(ts=ts, series=st, event=e.get('event_ticker'), ticker=m.get('ticker'),
-                                     title=m.get('title'), sub=m.get('yes_sub_title'), strike=m.get('floor_strike'),
-                                     close_time=m.get('close_time'), bid=f('yes_bid_dollars'), ask=f('yes_ask_dollars'),
-                                     last=f('last_price_dollars'), vol=m.get('volume_fp') or m.get('volume'),
-                                     oi=m.get('open_interest_fp') or m.get('open_interest')))
+                                      title=m.get('title'), sub=m.get('yes_sub_title'), strike=m.get('floor_strike'),
+                                      close_time=m.get('close_time'), bid=f('yes_bid_dollars'), ask=f('yes_ask_dollars'),
+                                      last=f('last_price_dollars'), vol=m.get('volume_fp') or m.get('volume'),
+                                      oi=m.get('open_interest_fp') or m.get('open_interest')))
             cur = d.get('cursor')
             if not cur or not d.get('events'):
                 break
@@ -153,9 +307,9 @@ def main():
         dump(stem + '_kalshi.jsonl.gz', kr)
     leagues = {}
     for r in pr:
-        leagues[r['league']] = leagues.get(r['league'], 0) + 1
+        leagues[r['sport']] = leagues.get(r['sport'], 0) + 1
     top = ', '.join(f'{k} {v}' for k, v in sorted(leagues.items(), key=lambda x: -x[1])[:6])
-    print(f'{ts} pinnacle rows {len(pr)} ({calls} Pinnapi calls{"" if PINNAPI_KEY else ", NO KEY"}) [{top}] | '
+    print(f'{ts} pinnacle rows {len(pr)} ({calls} OddsPapi calls{"" if ODDSPAPI_KEY else ", NO KEY"}) [{top}] | '
           f'kalshi rows {len(kr)}' + (f' | NEW NHL SOG SERIES: {new_sog}' if new_sog else ''))
 
 
