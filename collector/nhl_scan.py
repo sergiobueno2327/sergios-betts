@@ -51,7 +51,7 @@ Usage: python3 nhl_scan.py YYYY-MM-DD [--edge 3]
 import json, math, os, sys, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
-THEODDSAPI_KEY = os.environ.get('THEODDSAPI_KEY', '')  # new 20K-tier key -- no hardcoded fallback (2026-09-29 cleanup, same violation class as collect_odds.py's 2026-09-28 fix)
+THEODDSAPI_KEY = os.environ.get('THEODDSAPI_KEY', '')
 ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '')
 CACHE = '/tmp/nhl_scan_cache'
 os.makedirs(CACHE, exist_ok=True)
@@ -303,7 +303,18 @@ PLAYER_ID_CACHE_PATH = os.path.join(os.path.dirname(__file__), 'data', 'oddspapi
 
 def _load_player_id_cache():
     """{sportId(str): {playerId(str): 'First Last'}} -- persistent, built as a free byproduct of
-    every live oddspapi_pinnacle_sog() call (added 2026-09-28)."""
+    every live oddspapi_pinnacle_sog() call (added 2026-09-28). REASON: confirmed live 2026-09-28
+    that OddsPapi's /v4/historical-odds endpoint (needed to re-run the NHL SOG backtest against
+    the paid plan's real data) never includes playerName -- only a numeric playerId -- and NO
+    REST endpoint resolves that id to a name (checked /v4/participants, /v4/fixture,
+    /v4/historical-odds with a playerId filter; confirmed via OddsPapi's own docs pages for
+    historical-odds, participants, and the websocket API too -- only the LIVE /v4/odds endpoint
+    carries playerName, and only for current/future fixtures). Since these numeric ids are stable
+    per real player (confirmed by design intent, not yet independently cross-checked across two
+    live pulls of the same player), caching every id->name pair seen on a live pull turns each
+    day's scan into a standing crosswalk -- by a few weeks into the season this becomes real,
+    freshly-sourced data usable for an actual backtest, instead of trying to force the historical
+    endpoint to do something it structurally can't."""
     try:
         with open(PLAYER_ID_CACHE_PATH) as f:
             return json.load(f)
@@ -321,6 +332,9 @@ def oddspapi_pinnacle_sog(fixture_id):
     """{norm_name: {'name': 'First Last', 'line': float, 'fair_under': prob}} -- UNDER fair prob
     specifically, since NHL SOG = Unders only per the rulebook (Overs = no bet)."""
     lookup = oddspapi_catalog()
+    # NB: don't pass &bookmakers=pinnacle+30 -- the '+' decodes to a space server-side and 400s
+    # ("Invalid bookmakers: pinnacle 30", found live 2026-09-28). This key's plan only has access
+    # to pinnacle+30 anyway, so omitting the param returns it directly.
     j = get(f"https://api.oddspapi.io/v4/odds?apiKey={ODDSPAPI_KEY}&fixtureId={fixture_id}") or {}
     markets = j.get('bookmakerOdds', {}).get('pinnacle+30', {}).get('markets', {})
     out = {}
@@ -464,7 +478,14 @@ def scan(day):
 
 def to_ledger_docs(plays):
     """Turn flagged Under plays into ledger-ready docs (rulebook grader fields: kalshi_ticker,
-    start, pinn, side, sport)."""
+    start, pinn, side, sport). Mirrors softness_scan.py's to_ledger_docs -- built 2026-09-28,
+    NHL had never had this despite the script existing since 2026-09-27 (flagged as a known gap
+    in the rulebook). kalshi_ticker is ALWAYS null here, not a lookup failure: confirmed
+    repeatedly (2026-09-25, rechecked 2026-09-27, rechecked again 2026-09-28) that Kalshi carries
+    no NHL shots-on-goal market at all -- the execution venue is always Novig/ProphetX/Fliff/
+    PrizePicks via The Odds API (see `venue` on each play), never Kalshi. The nightly grader
+    (collector/grade_plays.py) needs its own venue-close-price step for these rather than a
+    Kalshi close -- not built yet, same gap softness_scan.py has for its non-Kalshi plays."""
     docs = {}
     for p in plays:
         slug = p['player'].split()[-1].lower()
