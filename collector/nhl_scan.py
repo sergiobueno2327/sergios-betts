@@ -51,8 +51,8 @@ Usage: python3 nhl_scan.py YYYY-MM-DD [--edge 3]
 import json, math, os, sys, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
-THEODDSAPI_KEY = os.environ.get('THEODDSAPI_KEY', '0d93d28b93af9cf80cfcb2630cf09ac5')  # new 20K-tier key
-ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '15490352-5f73-404d-9964-353ab0783e01')
+THEODDSAPI_KEY = os.environ.get('THEODDSAPI_KEY', '')  # new 20K-tier key -- no hardcoded fallback (2026-09-29 cleanup, same violation class as collect_odds.py's 2026-09-28 fix)
+ODDSPAPI_KEY = os.environ.get('ODDSPAPI_KEY', '')
 CACHE = '/tmp/nhl_scan_cache'
 os.makedirs(CACHE, exist_ok=True)
 
