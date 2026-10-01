@@ -286,6 +286,19 @@ def oddspapi_catalog():
     return _catalog_cache
 
 
+# OddsPapi's own team abbreviations don't always match the NHL API's (NHL_TEAMS above) -- confirmed
+# live 2026-10-01 by diffing OddsPapi's full NHL fixture abbrev set against NHL_TEAMS: OddsPapi uses
+# LA/NJ/SJ/TB where the NHL API (and this script's games/roster lookups) use LAK/NJD/SJS/TBL. All other
+# 28 team abbreviations matched exactly across a 7-day fixture sample. REAL BUG this caused (found
+# 2026-10-01): oddspapi_fixtures_for_day's output was keyed on OddsPapi's own abbrevs, so
+# scan()'s `oddspapi_fx.get((g['home'], g['away']))` lookup (keyed on NHL API abbrevs) silently
+# missed every Devils/Kings/Sharks/Lightning game since the OddsPapi rewire (2026-09-28) -- e.g.
+# 2026-10-01's PHI@NJD and TBL@NYR both had real OddsPapi fixtures with hasOdds=True, but were
+# printed as "no OddsPapi fixture with odds yet" and skipped entirely, never reaching the Pinnacle
+# SOG pull at all. Not a timing issue -- a silent abbreviation mismatch.
+ODDSPAPI_TO_NHL_ABBR = {'LA': 'LAK', 'NJ': 'NJD', 'SJ': 'SJS', 'TB': 'TBL'}
+
+
 def oddspapi_fixtures_for_day(day):
     d0, d1 = day.isoformat(), (day + datetime.timedelta(days=1)).isoformat()
     fx = get(f"https://api.oddspapi.io/v4/fixtures?apiKey={ODDSPAPI_KEY}&sportId=15&from={d0}&to={d1}") or []
@@ -293,7 +306,9 @@ def oddspapi_fixtures_for_day(day):
     for f in fx:
         if f.get('tournamentSlug') != 'nhl':
             continue  # sportId=15 also carries AHL/KHL/juniors/women's -- real NHL only
-        out.append(dict(fixtureId=f['fixtureId'], home=f.get('participant1Abbr'), away=f.get('participant2Abbr'),
+        home = ODDSPAPI_TO_NHL_ABBR.get(f.get('participant1Abbr'), f.get('participant1Abbr'))
+        away = ODDSPAPI_TO_NHL_ABBR.get(f.get('participant2Abbr'), f.get('participant2Abbr'))
+        out.append(dict(fixtureId=f['fixtureId'], home=home, away=away,
                          start=f.get('startTime'), hasOdds=f.get('hasOdds')))
     return out
 
