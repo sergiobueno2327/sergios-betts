@@ -438,7 +438,7 @@ def to_ledger_docs(plays):
         line_tag = str(p['line']).replace('.', '')
         side_tag = 'o' if p['side'] == 'Over' else 'u'
         doc_id = f"{p['date']}-nfl-{slug}-{p['stat']}{line_tag}-{side_tag}"
-        if doc_id in docs and docs[doc_id]['data']['edge'] <= p['edge']:
+        if doc_id in docs and docs[doc_id]['data']['edge'] >= p['edge']:
             continue
         side = 'YES' if p['side'] == 'Over' else 'NO'
         ticker = None
