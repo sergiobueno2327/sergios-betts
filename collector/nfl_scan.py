@@ -50,6 +50,7 @@ Gate 1 mandatory check (rulebook, added 2026-09-27 after the Kyler Murray/Arizon
 player's CURRENT team is verified against a live ESPN roster pull before a play is logged — never
 from memory, never from just trusting the data provider's own team label.
 """
+import pin_move
 import json, math, os, sys, time, re, unicodedata, datetime, collections, urllib.request
 from zoneinfo import ZoneInfo
 
@@ -370,6 +371,9 @@ def scan(edge_min_override=None):
 
         for stat, (mname, mtype, oa_key, kalshi_series, pinn_unit) in STAT_MARKETS.items():
             for norm_name, pin in pin_by_stat.get(stat, {}).items():
+                _pk = pin_move.key('NFL', f"{fx['away']}@{fx['home']}", pin['name'], stat, pin['line'])
+                _pm = pin_move.move(_pk, pin['fair_over'])
+                pin_move.record(_pk, pin['fair_over'])
                 candidates = []
                 for line, info in venue_by_stat.get(stat, {}).get(norm_name, {}).items():
                     if abs(line - pin['line']) > 0.01:
@@ -410,7 +414,8 @@ def scan(edge_min_override=None):
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
                                        price=round(price * 100, 1), edge=round(edge * 100, 1), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
-                                       away=fx['away'], home=fx['home']))
+                                       away=fx['away'], home=fx['home'],
+                                       pin_move=(None if _pm is None else round(_pm if side == 'Over' else -_pm, 1))))
         time.sleep(0.3)
 
     plays.sort(key=lambda p: -p['edge'])
@@ -444,7 +449,7 @@ def to_ledger_docs(plays):
         ticker = None
         if p['venue'] == 'kalshi':
             ticker = kalshi_ticker(p['kalshi_series'], p['dtag'], p['away'], p['home'], nrm(p['player']), p['line'])
-        note = f"NFL Track B scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p['fair']}c."
+        note = f"NFL Track B scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p['fair']}c. Pin move toward our side (24h): {p.get('pin_move')}pts."
         if p['venue'] != 'kalshi':
             note += f" Bet placed on {p['venue']}, not Kalshi -- needs manual {p['venue']} close for CLV, not a Kalshi close."
         elif not ticker:
@@ -458,7 +463,7 @@ def to_ledger_docs(plays):
             kalshi_ticker=ticker, start=p['start'],
             pinn=dict(who=p['player'], mkt=f"prop:{p['pinn_unit']}", line=p['line']),
             status=f"Paper — Track B scan, pending fill ({p['venue']})" if ticker or p['venue'] != 'kalshi' else 'Paper — needs kalshi_ticker',
-            note=note, close=None, result=None, zone='35–75'))
+            note=note, close=None, result=None, zone='35–75', pinMove=p.get('pin_move')))
     return list(docs.values())
 
 
