@@ -401,12 +401,17 @@ def match_oddsapi_event(events, home_abbr, away_abbr):
     return None
 
 
+def _books():
+    from nfl_scan import ODDSAPI_VENUES  # shared, env-overridable (BETTS_BOOKS), widened 2026-10-04
+    return ODDSAPI_VENUES
+
+
 def oddsapi_sog_venues(event_id):
     """{norm_name: {line: {'venue': slug, 'under': prob}}} -- raw one-sided UNDER price, NOT
     de-vigged (matches nfl_scan.py / softness_scan.py -- de-vigging an execution venue would erase
     the mispricing Track B is looking for)."""
     url = (f"https://api.the-odds-api.com/v4/sports/icehockey_nhl/events/{event_id}/odds"
-           f"?apiKey={THEODDSAPI_KEY}&bookmakers=novig,fliff,prophetx,prizepicks&markets=player_shots_on_goal&oddsFormat=decimal")
+           f"?apiKey={THEODDSAPI_KEY}&bookmakers={','.join(_books())}&markets=player_shots_on_goal&oddsFormat=decimal")
     j = get(url) or {}
     out = collections.defaultdict(dict)
     for bm in j.get('bookmakers', []):
@@ -417,7 +422,9 @@ def oddsapi_sog_venues(event_id):
             for o in mkt.get('outcomes', []):
                 if o.get('name') != 'Under' or not o.get('price') or o.get('point') is None or not o.get('description'):
                     continue
-                out[nrm(o['description'])][float(o['point'])] = dict(venue=venue, under=1.0 / o['price'])
+                prev = out[nrm(o['description'])].get(float(o['point']))
+                if prev is None or 1.0 / o['price'] < prev['under']:  # keep the BEST (cheapest) Under across all books
+                    out[nrm(o['description'])][float(o['point'])] = dict(venue=venue, under=1.0 / o['price'])
     return out
 
 

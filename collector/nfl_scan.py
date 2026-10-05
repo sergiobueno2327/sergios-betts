@@ -124,6 +124,32 @@ def nrm(s):
     return re.sub(r'[^a-z]', '', unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower())
 
 
+def merge_best(cur, venue, over=None, under=None):
+    """Keep the BEST (lowest implied prob = cheapest) price per side across ALL books, with the book that
+    offers it. Fixed 2026-10-04: previously only the LAST book's price per line survived, and books quoting
+    only one side were dropped, so the scan evaluated one arbitrary book per line."""
+    cur = cur or dict(venue=venue, over=None, under=None, over_venue=None, under_venue=None)
+    if over is not None and (cur['over'] is None or over < cur['over']):
+        cur['over'], cur['over_venue'] = over, venue
+    if under is not None and (cur['under'] is None or under < cur['under']):
+        cur['under'], cur['under_venue'] = under, venue
+    cur['venue'] = cur['over_venue'] or cur['under_venue'] or venue
+    return cur
+
+
+def side_candidates(info, fair_over, edge_min, zone):
+    """[(side, edge, price, venue)] for each side of a merged-best venue dict that clears the bar."""
+    out = []
+    for side, key in (('Over', 'over'), ('Under', 'under')):
+        price = info.get(key)
+        if price is None:
+            continue
+        edge = (fair_over if side == 'Over' else 1 - fair_over) - price
+        if edge >= edge_min and zone[0] <= price <= zone[1]:
+            out.append((side, edge, price, info.get(key + '_venue') or info['venue']))
+    return out
+
+
 def american_to_prob(american):
     try:
         a = float(american)
@@ -285,8 +311,7 @@ def oddsapi_venue_odds(event_id):
                     continue
                 by_pl[(nrm(o['description']), float(o['point']))][o['name']] = 1.0 / o['price']
             for (norm_name, line), sides in by_pl.items():
-                if 'Over' in sides and 'Under' in sides:
-                    out[stat][norm_name][line] = dict(venue=venue, over=sides['Over'], under=sides['Under'])
+                out[stat][norm_name][line] = merge_best(out[stat][norm_name].get(line), venue, sides.get('Over'), sides.get('Under'))
     return out
 
 
@@ -385,10 +410,7 @@ def scan(edge_min_override=None):
                 for line, info in venue_by_stat.get(stat, {}).get(norm_name, {}).items():
                     if abs(line - pin['line']) > 0.01:
                         continue  # different line than Pinnacle's -- not a clean comparison, skip
-                    edge_over, edge_under = pin['fair_over'] - info['over'], (1 - pin['fair_over']) - info['under']
-                    for side, edge, price in (('Over', edge_over, info['over']), ('Under', edge_under, info['under'])):
-                        if edge >= edge_min and ZONE[0] <= price <= ZONE[1]:
-                            candidates.append((side, edge, price, info['venue']))
+                    candidates.extend(side_candidates(info, pin['fair_over'], edge_min, ZONE))
                 kp = kalshi_price(kalshi_series, dtag, fx['away'], fx['home'], norm_name, pin['line'])
                 if kp:
                     edge_over, edge_under = pin['fair_over'] - kp['over'], (1 - pin['fair_over']) - kp['under']

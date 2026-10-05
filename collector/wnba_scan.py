@@ -33,7 +33,7 @@ import json, os, sys, time, datetime, collections
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from nfl_scan import MAX_PIN_VIG  # market-width filter
+from nfl_scan import MAX_PIN_VIG, merge_best, side_candidates  # market-width filter + best-price helpers
 from nfl_scan import (  # reuse generic, sport-agnostic pieces unchanged
     get, nrm, devig_power, kalshi_date_tag, kalshi_series_markets, kalshi_price, kalshi_ticker,
     _not_kicked_off,
@@ -122,7 +122,7 @@ def pinnacle_and_venue_odds(event_id):
                     continue
                 by_pl[(nrm(o['description']), float(o['point']), o['description'])][o['name']] = o['price']
             for (norm_name, line, raw_name), sides in by_pl.items():
-                if 'Over' not in sides or 'Under' not in sides:
+                if venue == 'pinnacle' and ('Over' not in sides or 'Under' not in sides):
                     continue
                 if venue == 'pinnacle':
                     p_over = 1 / american_to_decimal(sides['Over'])
@@ -132,9 +132,9 @@ def pinnacle_and_venue_odds(event_id):
                 else:
                     # execution venues: raw one-sided implied prob, NOT de-vigged (de-vigging an
                     # execution venue would erase the mispricing Track B looks for).
-                    over_p = 1 / american_to_decimal(sides['Over'])
-                    under_p = 1 / american_to_decimal(sides['Under'])
-                    venue_by_stat[stat][norm_name][line] = dict(venue=venue, over=over_p, under=under_p)
+                    over_p = 1 / american_to_decimal(sides['Over']) if 'Over' in sides else None
+                    under_p = 1 / american_to_decimal(sides['Under']) if 'Under' in sides else None
+                    venue_by_stat[stat][norm_name][line] = merge_best(venue_by_stat[stat][norm_name].get(line), venue, over_p, under_p)
     return pin_by_stat, venue_by_stat
 
 
@@ -167,11 +167,7 @@ def scan(edge_min_override=None):
                 for line, info in venue_by_stat.get(stat, {}).get(norm_name, {}).items():
                     if abs(line - pin['line']) > 0.01:
                         continue
-                    edge_over = pin['fair_over'] - info['over']
-                    edge_under = (1 - pin['fair_over']) - info['under']
-                    for side, edge, price in (('Over', edge_over, info['over']), ('Under', edge_under, info['under'])):
-                        if edge >= edge_min and ZONE[0] <= price <= ZONE[1]:
-                            candidates.append((side, edge, price, info['venue']))
+                    candidates.extend(side_candidates(info, pin['fair_over'], edge_min, ZONE))
                 kp = kalshi_price(kalshi_series, dtag, away, home, norm_name, pin['line'])
                 if kp:
                     edge_over = pin['fair_over'] - kp['over']
