@@ -541,6 +541,10 @@ def to_ledger_docs(plays):
 if __name__ == '__main__':
     d = datetime.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else datetime.date.today()
     plays = scan(d)
+    try:
+        import adverse_flag; adverse_flag.annotate_plays(plays)  # info-only, non-blocking
+    except Exception as e:
+        print('adverse_flag skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
         docs = to_ledger_docs(plays)

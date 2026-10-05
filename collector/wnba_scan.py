@@ -249,6 +249,10 @@ def to_ledger_docs(plays):
 
 if __name__ == '__main__':
     plays = scan()
+    try:
+        import adverse_flag; adverse_flag.annotate_plays(plays)  # info-only, non-blocking
+    except Exception as e:
+        print('adverse_flag skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
         docs = to_ledger_docs(plays)
