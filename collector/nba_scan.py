@@ -33,6 +33,7 @@ file -- a real gap found while fixing the paid-plan cutover, not something that 
   confirmed live for NFL this session; the NBA-specific series (KXNBAREB/KXNBAAST) return 0 open
   events right now (also preseason-gated) so this hasn't been live-tested for NBA specifically yet.
 """
+import pin_move
 import json, math, sys, os, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
@@ -343,6 +344,8 @@ def pinnacle_props(day, games):
                     name = f"{first} {last}"
                 else:
                     name = raw
+                if 1.0 / po['price'] + 1.0 / pu['price'] - 1 > MAX_PIN_VIG:
+                    continue  # WIDE MARKET: Pinnacle unsure -> no sharp anchor
                 fair_over = power_devig(po['price'], pu['price'])
                 out[(nrm(name), stat, float(handicap))] = fair_over
         time.sleep(0.3)
@@ -380,6 +383,9 @@ def kalshi_markets(st, day):
     return _kalshi_cache[key]
 
 # ---------- 6. scan ----------
+MAX_PIN_VIG = 0.08  # market-width filter (added 2026-10-04): skip props where Pinnacle's two-sided margin > 8%
+
+
 def scan(day):
     games = [g for g in todays_games(day) if g['state'] == 'pre']
     if not games: print('No pre-game NBA games for', day); return []
@@ -402,13 +408,17 @@ def scan(day):
             pin = P.get((nrm(m['name']), st, m['line']))
             seen += 1
             if pin is None: continue            # no sharp anchor -> Route 3 paper only, skipped here
+            _pk = pin_move.key('NBA', day.isoformat(), m['name'], st, m['line'])
+            _pm = pin_move.move(_pk, pin)
+            pin_move.record(_pk, pin)
             pm = prob(mod, st, m['k']); blend = sg(w * lg(pm) + (1 - w) * lg(pin) + c)
             for side, fair, limit in (('YES', blend, m['bid'] + 0.01), ('NO', 1 - blend, (1 - m['ask']) + 0.01)):
                 if m['bid'] <= 0 or m['ask'] <= 0: continue
                 edge = fair - limit
                 if edge >= EDGE_MIN and ZONE[0] <= limit <= ZONE[1]:
                     plays.append(dict(stat=st, player=m['name'], line=f"{m['k']}+", side=side, limit=round(limit * 100), bid_ask=f"{m['bid']*100:.0f}/{m['ask']*100:.0f}",
-                                      model=round(pm * 100, 1), role_change=mod.get('role_change', False), pinnacle=round(pin * 100, 1), blend=round(blend * 100, 1), edge=round(edge * 100, 1), teammates_out=mod['n_out']))
+                                      model=round(pm * 100, 1), role_change=mod.get('role_change', False), pinnacle=round(pin * 100, 1), blend=round(blend * 100, 1), edge=round(edge * 100, 1), teammates_out=mod['n_out'],
+                                      pin_move=(None if _pm is None else round(_pm if side == 'YES' else -_pm, 1))))
     plays.sort(key=lambda p: -p['edge'])
     print(f"{day}: {len(games)} games | injuries: {injuries.source} | lineups: {lineups.source} | Kalshi REB/AST markets matched to model {seen} | Pinnacle props {len(P)} | plays {len(plays)}")
     for p in plays: print(p)

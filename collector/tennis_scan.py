@@ -20,6 +20,7 @@ from nfl_scan import get, nrm, devig_power, american_to_prob, KALSHI_BASE, ZONE
 KEY = os.environ.get('THEODDSAPI_KEY', '')
 OA = 'https://api.the-odds-api.com/v4'
 EDGE_MIN = 0.03
+MAX_PIN_VIG = 0.08  # market-width filter: skip Pinnacle two-sided markets with margin > 8%
 VENUES = ('novig', 'fliff', 'prophetx', 'prizepicks')
 
 
@@ -63,6 +64,8 @@ def kalshi_book():
 
 def devig_pair(a, b):
     pa, pb = american_to_prob(a), american_to_prob(b)
+    if pa + pb - 1 > MAX_PIN_VIG:
+        return None, None  # WIDE MARKET
     fa = devig_power(pa, pb)
     return fa, 1 - fa
 
@@ -94,13 +97,19 @@ def scan(edge_min=EDGE_MIN):
                 outs = m['outcomes']
                 if m['key'] == 'h2h' and len(outs) == 2:
                     fa, fb = devig_pair(outs[0]['price'], outs[1]['price'])
+                    if fa is None:
+                        continue
                     fair[('h2h', 0)] = {outs[0]['name']: fa, outs[1]['name']: fb}
                 elif m['key'] == 'spreads' and len(outs) == 2:
                     # same |point| both sides; keyed by the first outcome's signed point
                     fa, fb = devig_pair(outs[0]['price'], outs[1]['price'])
+                    if fa is None:
+                        continue
                     fair[('spread', abs(outs[0]['point']))] = {(outs[0]['name'], outs[0]['point']): fa, (outs[1]['name'], outs[1]['point']): fb}
                 elif m['key'] == 'totals' and len(outs) == 2:
                     fa, fb = devig_pair(outs[0]['price'], outs[1]['price'])
+                    if fa is None:
+                        continue
                     fair[('total', outs[0]['point'])] = {outs[0]['name']: fa, outs[1]['name']: fb}
             # --- candidate venue prices ---
             cands = []  # (market_desc, side_desc, fair_p, price, venue, extra)

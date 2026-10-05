@@ -27,6 +27,7 @@ OA = 'https://api.the-odds-api.com/v4'
 VENUES = ('novig', 'kalshi', 'prophetx', 'fliff')
 REF_EXCLUDE = {'pinnacle', 'prizepicks', 'underdog', 'betr_us_dfs'}
 MIN_REF = 3
+MAX_PIN_VIG = 0.08  # market-width filter
 CFG = {
     'nfl': dict(sport='americanfootball_nfl', label='NFL', markets={
         'player_receptions': 1.5, 'player_reception_yds': 8.0, 'player_rush_yds': 8.0, 'player_pass_yds': 15.0,
@@ -69,6 +70,8 @@ def scan(which='nfl', edge_min=0.03, days=3):
             if not mains:
                 continue
             Lp, sp = mains[0]
+            if sp['Over'] + sp['Under'] - 1 > MAX_PIN_VIG:
+                continue  # WIDE MARKET
             f_over = devig_power(sp['Over'], sp['Under'])
             max_shift = cfg['markets'][stat]
             for vk in VENUES:

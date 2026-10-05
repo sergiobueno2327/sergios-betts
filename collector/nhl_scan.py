@@ -48,6 +48,7 @@ get().
 
 Usage: python3 nhl_scan.py YYYY-MM-DD [--edge 3]
 """
+import pin_move
 import json, math, os, sys, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
@@ -59,6 +60,7 @@ os.makedirs(CACHE, exist_ok=True)
 # Frozen params (rulebook NHL SOG model, backtested 2026-09-25)
 WINS = (0.35, 0.30, 0.25, 0.10)          # season / L20 / L10 / L5 windows (TOI and rate both)
 K_RATE, W_OPP, R_NB = 120, 0.5, 40        # shrink window (min), opponent-allowed factor weight, NegBin r (~Poisson)
+MAX_PIN_VIG = 0.08  # market-width filter (added 2026-10-04): skip props where Pinnacle's two-sided margin > 8%
 EDGE_MIN_PIN, EDGE_MIN_EXCH = 0.03, 0.04  # Track B bars: Pinnacle-based >=3pts, exchange-based >=4pts
 ZONE = (0.35, 0.75)
 GH = [(-1.3556, 0.1995), (0.0, 0.6005), (1.3556, 0.1995)]  # 3-pt Gauss-Hermite (same as nba_scan.py)
@@ -377,6 +379,8 @@ def oddspapi_pinnacle_sog(fixture_id):
             if name and sport_cache.get(pid) != name:
                 sport_cache[pid] = name
                 cache_dirty = True
+            if 1.0 / po['price'] + 1.0 / pu['price'] - 1 > MAX_PIN_VIG:
+                continue  # WIDE MARKET: Pinnacle unsure -> no sharp anchor
             fair_over = devig_power(1.0 / po['price'], 1.0 / pu['price'])
             out[nrm(name)] = dict(name=name, line=float(handicap), fair_under=1 - fair_over)
     if cache_dirty:
@@ -461,6 +465,9 @@ def scan(day):
 
         for norm_name, p in pin.items():
             fair_under, line = p['fair_under'], p['line']
+            _pk = pin_move.key('NHL', f"{g['away']}@{g['home']}", p['name'], 'sog', line)
+            _pm = pin_move.move(_pk, 1 - fair_under)
+            pin_move.record(_pk, 1 - fair_under)
             exec_venue, exec_price = None, None
             for exec_line, info in venues.get(norm_name, {}).items():
                 if abs(exec_line - line) > 0.01:
@@ -483,7 +490,8 @@ def scan(day):
                         continue
             plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue=exec_venue,
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
-                               edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat()))
+                               edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat(),
+                               pin_move=(None if _pm is None else round(-_pm, 1))))
     plays.sort(key=lambda p: -p['edge'])
     print(f"\n{len(plays)} Under plays clear the Pinnacle-based edge bar (>= {EDGE_MIN_PIN*100:.0f}pts):")
     for p in plays:
