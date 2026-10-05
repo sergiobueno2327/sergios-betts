@@ -33,6 +33,7 @@ import json, os, sys, time, datetime, collections
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from nfl_scan import MAX_PIN_VIG  # market-width filter
 from nfl_scan import (  # reuse generic, sport-agnostic pieces unchanged
     get, nrm, devig_power, kalshi_date_tag, kalshi_series_markets, kalshi_price, kalshi_ticker,
     _not_kicked_off,
@@ -127,7 +128,7 @@ def pinnacle_and_venue_odds(event_id):
                     p_over = 1 / american_to_decimal(sides['Over'])
                     p_under = 1 / american_to_decimal(sides['Under'])
                     fair_over = devig_power(p_over, p_under)
-                    pin_by_stat[stat][norm_name] = dict(name=raw_name, line=line, fair_over=fair_over)
+                    pin_by_stat[stat][norm_name] = dict(name=raw_name, line=line, fair_over=fair_over, vig=round(p_over + p_under - 1, 4))
                 else:
                     # execution venues: raw one-sided implied prob, NOT de-vigged (de-vigging an
                     # execution venue would erase the mispricing Track B looks for).
@@ -195,6 +196,9 @@ def scan(edge_min_override=None):
                 team = team_check_cache[pin['name']]
                 if team is None:
                     continue
+                if pin.get('vig', 0) > MAX_PIN_VIG:
+                    print(f"  WIDE MARKET skip: {pin['name']} {stat} {pin['line']} -- Pinnacle vig {pin['vig']*100:.1f}% > {MAX_PIN_VIG*100:.0f}%")
+                    continue
                 for side, edge, price, venue in candidates:
                     et_dt = datetime.datetime.fromisoformat(ev['commence_time'].replace('Z', '+00:00')).astimezone(ZoneInfo('America/New_York'))
                     plays.append(dict(game=f"{away}@{home}", team=team, start=ev['commence_time'], stat=stat,
@@ -202,7 +206,7 @@ def scan(edge_min_override=None):
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
                                        price=round(price * 100, 1), edge=round(edge * 100, 1), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
-                                       away=away, home=home,
+                                       away=away, home=home, pin_vig=pin.get('vig'),
                                        pin_move=(None if _pm is None else round(_pm if side == 'Over' else -_pm, 1))))
         time.sleep(0.3)
 

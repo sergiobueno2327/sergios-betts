@@ -60,6 +60,7 @@ KALSHI_BASE = 'https://api.elections.kalshi.com/trade-api/v2'
 
 EDGE_MIN_PIN, EDGE_MIN_EXCH = 0.03, 0.04  # Track B bars: Pinnacle-based >=3pts, exchange-based >=4pts
 ZONE = (0.35, 0.75)
+MAX_PIN_VIG = 0.08  # market-width filter (added 2026-10-04): skip plays where Pinnacle's own two-sided margin > 8% (low sharp confidence)
 ODDSAPI_VENUES = ('novig', 'fliff', 'prophetx', 'prizepicks')  # Kalshi handled separately (direct API)
 
 # stat -> (OddsPapi marketName, OddsPapi marketType, The Odds API market key, Kalshi series
@@ -239,7 +240,8 @@ def oddspapi_pinnacle_odds(fixture_id):
             else:
                 name = raw
             fair_over = devig_power(1.0 / po['price'], 1.0 / pu['price'])
-            out[stat][nrm(name)] = dict(name=name, line=float(handicap), fair_over=fair_over)
+            out[stat][nrm(name)] = dict(name=name, line=float(handicap), fair_over=fair_over,
+                                         vig=round(1.0 / po['price'] + 1.0 / pu['price'] - 1, 4))
     return out
 
 
@@ -407,6 +409,9 @@ def scan(edge_min_override=None):
                 team = team_check_cache[pin['name']]
                 if team is None:
                     continue
+                if pin.get('vig', 0) > MAX_PIN_VIG:
+                    print(f"  WIDE MARKET skip: {pin['name']} {stat} {pin['line']} -- Pinnacle vig {pin['vig']*100:.1f}% > {MAX_PIN_VIG*100:.0f}%")
+                    continue
                 for side, edge, price, venue in candidates:
                     et_dt = datetime.datetime.fromisoformat(fx['start'].replace('Z', '+00:00')).astimezone(ZoneInfo('America/New_York'))
                     plays.append(dict(game=f"{fx['away']}@{fx['home']}", team=team, start=fx['start'], stat=stat,
@@ -414,7 +419,7 @@ def scan(edge_min_override=None):
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
                                        price=round(price * 100, 1), edge=round(edge * 100, 1), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
-                                       away=fx['away'], home=fx['home'],
+                                       away=fx['away'], home=fx['home'], pin_vig=pin.get('vig'),
                                        pin_move=(None if _pm is None else round(_pm if side == 'Over' else -_pm, 1))))
         time.sleep(0.3)
 
