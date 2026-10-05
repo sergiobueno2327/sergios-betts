@@ -21,7 +21,7 @@ KEY = os.environ.get('THEODDSAPI_KEY', '')
 OA = 'https://api.the-odds-api.com/v4'
 EDGE_MIN = 0.03
 MAX_PIN_VIG = 0.08  # market-width filter: skip Pinnacle two-sided markets with margin > 8%
-VENUES = ('novig', 'fliff', 'prophetx', 'prizepicks')
+from nfl_scan import ODDSAPI_VENUES as VENUES
 
 
 def last(name):

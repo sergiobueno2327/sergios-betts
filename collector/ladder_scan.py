@@ -24,7 +24,8 @@ from nfl_scan import get, devig_power, american_to_prob, ZONE
 
 KEY = os.environ.get('THEODDSAPI_KEY', '')
 OA = 'https://api.the-odds-api.com/v4'
-VENUES = ('novig', 'kalshi', 'prophetx', 'fliff')
+from nfl_scan import ODDSAPI_VENUES
+VENUES = ('kalshi',) + tuple(ODDSAPI_VENUES)
 REF_EXCLUDE = {'pinnacle', 'prizepicks', 'underdog', 'betr_us_dfs'}
 MIN_REF = 3
 MAX_PIN_VIG = 0.08  # market-width filter

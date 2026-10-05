@@ -45,7 +45,7 @@ if not THEODDSAPI_KEY:
 
 EDGE_MIN_PIN = 0.03  # Track B bar: Pinnacle-based >=3pts (same as NFL)
 ZONE = (0.35, 0.75)
-ODDSAPI_VENUES = ('novig', 'fliff', 'prophetx', 'prizepicks')
+from nfl_scan import ODDSAPI_VENUES  # shared, env-overridable (BETTS_BOOKS)
 
 # stat -> (The Odds API market key, Kalshi series ticker, Pinnacle-unit label for the rulebook's
 # grader `pinn.mkt` field). Confirmed live 2026-10-04 against NY@ATL (event

@@ -61,7 +61,12 @@ KALSHI_BASE = 'https://api.elections.kalshi.com/trade-api/v2'
 EDGE_MIN_PIN, EDGE_MIN_EXCH = 0.03, 0.04  # Track B bars: Pinnacle-based >=3pts, exchange-based >=4pts
 ZONE = (0.35, 0.75)
 MAX_PIN_VIG = 0.08  # market-width filter (added 2026-10-04): skip plays where Pinnacle's own two-sided margin > 8% (low sharp confidence)
-ODDSAPI_VENUES = ('novig', 'fliff', 'prophetx', 'prizepicks')  # Kalshi handled separately (direct API)
+# Execution venues (Kalshi handled separately via its direct API). Widened 2026-10-04 at Sergio's request: he can bet at ANY book, not
+# just exchanges, so scans take the best price across all of these (venue is tagged on every play). Override with env BETTS_BOOKS=a,b,c
+# (The Odds API bookmaker keys) once Sergio gives his exact list/state. DFS apps (prizepicks/underdog) are pick'em style, kept only prizepicks.
+_DEFAULT_BOOKS = ('novig,fliff,prophetx,prizepicks,draftkings,fanduel,betmgm,williamhill_us,espnbet,betrivers,hardrockbet,fanatics,'
+                  'bovada,betonlineag,courtside,ballybet,betparx')
+ODDSAPI_VENUES = tuple(b for b in os.environ.get('BETTS_BOOKS', _DEFAULT_BOOKS).split(',') if b)
 
 # stat -> (OddsPapi marketName, OddsPapi marketType, The Odds API market key, Kalshi series
 # ticker, Pinnacle-unit label for the rulebook's grader `pinn.mkt` field). All confirmed real
