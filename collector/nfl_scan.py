@@ -406,6 +406,11 @@ def scan(edge_min_override=None):
             continue
         event_id = match_oddsapi_event(oddsapi_events, fx['home'], fx['away'])
         venue_by_stat = oddsapi_venue_odds(event_id) if event_id else {}
+        try:
+            import ref_books
+            _ref = ref_books.ref_fairs('americanfootball_nfl', event_id, [v[2] for v in STAT_MARKETS.values()]) if event_id else {}
+        except Exception as e:
+            print('ref_books skipped:', e); _ref = {}
         if not event_id:
             print(f"  {fx['away']}@{fx['home']}: no matching event on The Odds API -- Kalshi-only for this game")
         dtag = kalshi_date_tag(fx['start'])
@@ -452,6 +457,8 @@ def scan(edge_min_override=None):
                 _alt = {}
                 if kp and kp.get('over') and kp.get('under'):
                     _alt['kalshi'] = round(kp['over'] / (kp['over'] + kp['under']) * 100, 1)
+                for _bk, _f in _ref.get((oa_key, norm_name, pin['line']), {}).items():
+                    _alt[_bk] = round(_f * 100, 1)
                 for side, edge, price, venue in candidates:
                     et_dt = datetime.datetime.fromisoformat(fx['start'].replace('Z', '+00:00')).astimezone(ZoneInfo('America/New_York'))
                     plays.append(dict(game=f"{fx['away']}@{fx['home']}", team=team, start=fx['start'], stat=stat,

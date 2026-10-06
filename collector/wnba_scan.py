@@ -160,6 +160,11 @@ def scan(edge_min_override=None):
             print(f"  {away_full} @ {home_full}: unrecognized team name -- skip")
             continue
         pin_by_stat, venue_by_stat = pinnacle_and_venue_odds(ev['id'])
+        try:
+            import ref_books
+            _ref = ref_books.ref_fairs('basketball_wnba', ev['id'], [v[0] for v in STAT_MARKETS.values()])
+        except Exception as e:
+            print('ref_books skipped:', e); _ref = {}
         if not any(pin_by_stat.values()):
             print(f"  {away}@{home}: no Pinnacle player-prop odds yet -- skip")
             continue
@@ -203,6 +208,7 @@ def scan(edge_min_override=None):
                 if pin.get('vig', 0) > MAX_PIN_VIG:
                     print(f"  WIDE MARKET skip: {pin['name']} {stat} {pin['line']} -- Pinnacle vig {pin['vig']*100:.1f}% > {MAX_PIN_VIG*100:.0f}%")
                     continue
+                _alt = {_bk: round(_f * 100, 1) for _bk, _f in _ref.get((oa_key, norm_name, pin['line']), {}).items()}
                 for side, edge, price, venue in candidates:
                     et_dt = datetime.datetime.fromisoformat(ev['commence_time'].replace('Z', '+00:00')).astimezone(ZoneInfo('America/New_York'))
                     plays.append(dict(game=f"{away}@{home}", team=team, start=ev['commence_time'], stat=stat,
@@ -211,6 +217,7 @@ def scan(edge_min_override=None):
                                        price=round(price * 100, 1), edge=round(edge * 100, 1), label=pp_fliff.label(venue, edge), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
                                        away=away, home=home, pin_vig=pin.get('vig'),
+                                       alt_fairs={k: (v if side == 'Over' else round(100 - v, 1)) for k, v in _alt.items()},
                                        pin_move=(None if _pm is None else round(_pm if side == 'Over' else -_pm, 1))))
         time.sleep(0.3)
 
@@ -261,6 +268,10 @@ if __name__ == '__main__':
         import adverse_flag; adverse_flag.annotate_plays(plays)  # info-only, non-blocking
     except Exception as e:
         print('adverse_flag skipped:', e)
+    try:
+        import consensus_flag; consensus_flag.annotate_plays(plays)  # info-only, non-blocking
+    except Exception as e:
+        print('consensus_flag skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
         docs = to_ledger_docs(plays)
