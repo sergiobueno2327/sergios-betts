@@ -65,8 +65,10 @@ MAX_PIN_VIG = 0.08  # market-width filter (added 2026-10-04): skip plays where P
 # Execution venues (Kalshi handled separately via its direct API). Widened 2026-10-04 at Sergio's request: he can bet at ANY book, not
 # just exchanges, so scans take the best price across all of these (venue is tagged on every play). Override with env BETTS_BOOKS=a,b,c
 # (The Odds API bookmaker keys) once Sergio gives his exact list/state. DFS apps (prizepicks/underdog) are pick'em style, kept only prizepicks.
-_DEFAULT_BOOKS = ('novig,fliff,prophetx,prizepicks,draftkings,fanduel,betmgm,williamhill_us,espnbet,betrivers,hardrockbet,fanatics,'
-                  'bovada,betonlineag,courtside,ballybet,betparx')
+# LOCKED 2026-10-05 to Sergio's actual linked accounts (Upside 'Linked Accounts' screenshot): Active = DK Pick6, Fliff, Kalshi, Novig,
+# PrizePicks, Sleeper, Underdog (+1 cut off at top); Needs attention = Onyx (invalid credentials), ProphetX (2FA error) -> ProphetX dropped
+# until fixed. Kalshi is pulled directly. DK Pick6 / Sleeper / Underdog are pick'em apps with no tradable price in the APIs (manual only).
+_DEFAULT_BOOKS = 'novig,fliff,prizepicks'
 ODDSAPI_VENUES = tuple(b for b in os.environ.get('BETTS_BOOKS', _DEFAULT_BOOKS).split(',') if b)
 
 # stat -> (OddsPapi marketName, OddsPapi marketType, The Odds API market key, Kalshi series
