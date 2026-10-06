@@ -2,8 +2,8 @@
 
 PrizePicks: fixed multipliers, no shifting odds. Every leg is assumed to go into a 5- or 6-leg FLEX slip
 (5-leg 10x/2x/0.4x -> break-even 54.25%/leg; 6-leg 25x/2x/0.4x -> 54.21%/leg, both solved from the payout
-tables; locked at 54.3% = -119). ASSUMPTION: payout tables are PrizePicks' standard Flex payouts as of
-2026-10 -- they change, re-verify in the app. Legs are treated as independent (correlated legs in one game
+tables; locked at 54.3% = -119). VALIDATED by Sergio 2026-10-05 in the app (re-verify if PrizePicks changes
+them). Legs are treated as independent (correlated legs in one game
 break that).
   Track B target : Pinnacle de-vigged fair >= 57.3%  (54.3 + the 3.0 pt bar)
   Track B2 (paper): 56.3% <= fair < 57.3%            (2.0-3.0 pt band, cost basis 54.3)
