@@ -5,6 +5,9 @@ Each DFS leg (The Odds API, books prizepicks + underdog) is compared with Pinnac
   Underdog 2-pick Standard 3.5x break-even 53.5%: LIVE >= 56.5%, B2 paper 55.5-56.5 (legs from different games).
 Labels: LIVE / B2 (Pinnacle clears), "+FD agrees" when FanDuel fair also clears the same bar, FD-ONLY (paper, never live) when only
 FanDuel clears and Pinnacle has no price/does not clear. NHL SOG Overs are paper-only. Printed NEAR lines are >= 54.5% on either book.
+LINE-SHIFT (added 2026-10-06, Sergio-approved): a DFS leg whose line differs from Pinnacle's gets a shifted fair estimate
+(Pinnacle fair at its own line + median Over-prob delta across >= 3 OTHER books posting both lines, same method as ladder_scan.py).
+These print as "LINE-SHIFT (paper)" when the estimate reaches the B2 floor; they never go live (shifted estimates carry more error).
 Run: set -a && source .env && set +a && python3 collector/dfs_scan.py [hours=72]
 """
 import os, sys, datetime, collections
@@ -24,6 +27,10 @@ S = {
 }
 TH = {'prizepicks': (0.573, 0.563), 'underdog': (0.565, 0.555)}
 MAX_FD_VIG = 0.14
+MAX_SHIFT = {'icehockey_nhl': 1.0, 'baseball_mlb': 1.0, 'americanfootball_nfl': 8.0, 'basketball_wnba': 3.0, 'basketball_nba': 3.0}
+MIN_REF = 3
+REF_EXCLUDE = {'pinnacle', 'prizepicks', 'underdog', 'betr_us_dfs'}
+import statistics
 
 
 def fair_pair(prices, cap):
@@ -39,6 +46,7 @@ def fair_pair(prices, cap):
 def main(hours=72):
     now = datetime.datetime.now(datetime.timezone.utc)
     out = []
+    shifts = []
     n = collections.Counter()
     for sp, mk in S.items():
         for e in get(f'{B}/sports/{sp}/events?apiKey={KEY}') or []:
@@ -61,6 +69,11 @@ def main(hours=72):
                 fp, mp = fair_pair(pin.get((mkk, pl, line)), MAX_PIN_VIG)
                 ff, _ = fair_pair(fd.get((mkk, pl, line)), MAX_FD_VIG)
                 if fp is None and ff is None:
+                    cand = [(abs(l - line), l) for (m2, p2, l) in pin if m2 == mkk and p2 == pl and 0 < abs(l - line) <= MAX_SHIFT[sp]
+                            and fair_pair(pin[(m2, p2, l)], MAX_PIN_VIG)[0] is not None]
+                    if cand:
+                        lp = min(cand)[1]
+                        shifts.append((sp, e, bk, mkk, pl, line, lp, fair_pair(pin[(mkk, pl, lp)], MAX_PIN_VIG)[0]))
                     continue
                 live, b2 = TH[bk]
                 for side in ('Over', 'Under'):
@@ -80,6 +93,32 @@ def main(hours=72):
                         cls += ' [NHL Over: paper only]'
                     out.append((best, bk, f"{e['away_team']}@{e['home_team']}", e['commence_time'], pl, mkk, side, line,
                                 None if f1 is None else round(f1 * 100, 1), None if f2 is None else round(f2 * 100, 1), cls))
+    # ---- line-shift pass ----
+    by_ev = collections.defaultdict(list)
+    for sh in shifts:
+        by_ev[(sh[0], sh[1]['id'])].append(sh)
+    for (sp, eid), items in by_ev.items():
+        mks = sorted({it[3] for it in items})
+        mk2 = ','.join(mks + [m + '_alternate' for m in mks])
+        j = get(f"{B}/sports/{sp}/events/{eid}/odds?apiKey={KEY}&regions=us,us2,us_ex,eu&markets={mk2}&oddsFormat=american") or {}
+        lad = collections.defaultdict(lambda: collections.defaultdict(dict))  # (mkt,player) -> book -> line -> Over prob
+        for bm in j.get('bookmakers', []):
+            if bm['key'] in REF_EXCLUDE: continue
+            for m in bm.get('markets', []):
+                base = m['key'].replace('_alternate', '')
+                for o in m.get('outcomes', []):
+                    if o.get('name') == 'Over' and o.get('point') is not None and o.get('price') is not None and o.get('description'):
+                        lad[(base, o['description'])][bm['key']][float(o['point'])] = a(o['price'])
+        for (sp_, e, bk, mkk, pl, line, lp, fo) in items:
+            deltas = [bl[line] - bl[lp] for bl in lad.get((mkk, pl), {}).values() if line in bl and lp in bl]
+            if len(deltas) < MIN_REF: continue
+            est_over = fo + statistics.median(deltas)
+            live, b2 = TH[bk]
+            for side in ('Over', 'Under'):
+                f = est_over if side == 'Over' else 1 - est_over
+                if f >= b2 - 1e-9 and f <= 0.80:
+                    out.append((f, bk, f"{e['away_team']}@{e['home_team']}", e['commence_time'], pl, mkk, side, line,
+                                round(f * 100, 1), None, f"LINE-SHIFT (paper) from Pinnacle line {lp}, {len(deltas)} ref books"))
     out.sort(key=lambda r: -r[0])
     for r in out:
         print(f"{r[1]} | {r[2]} {r[3]} | {r[4]} {r[5]} {r[6]} {r[7]} | Pinnacle {r[8]}% | FanDuel {r[9]}% | {r[10]}")
