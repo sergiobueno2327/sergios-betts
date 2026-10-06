@@ -51,6 +51,7 @@ player's CURRENT team is verified against a live ESPN roster pull before a play 
 from memory, never from just trusting the data provider's own team label.
 """
 import pin_move
+import pp_fliff
 import json, math, os, sys, time, re, unicodedata, datetime, collections, urllib.request
 from zoneinfo import ZoneInfo
 
@@ -311,7 +312,15 @@ def oddsapi_venue_odds(event_id):
                     continue
                 by_pl[(nrm(o['description']), float(o['point']))][o['name']] = 1.0 / o['price']
             for (norm_name, line), sides in by_pl.items():
-                out[stat][norm_name][line] = merge_best(out[stat][norm_name].get(line), venue, sides.get('Over'), sides.get('Under'))
+                if venue == 'prizepicks':  # fixed-payout DFS: not a price -- only record that the leg is offered (see pp_fliff.py)
+                    cur = out[stat][norm_name].get(line) or dict(venue=venue, over=None, under=None, over_venue=None, under_venue=None)
+                    cur['pp_over'], cur['pp_under'] = 'Over' in sides, 'Under' in sides
+                    out[stat][norm_name][line] = cur
+                    continue
+                cur = merge_best(out[stat][norm_name].get(line), venue, sides.get('Over'), sides.get('Under'))
+                if venue == 'fliff':
+                    cur['fliff_over'], cur['fliff_under'] = sides.get('Over'), sides.get('Under')
+                out[stat][norm_name][line] = cur
     return out
 
 
@@ -411,6 +420,7 @@ def scan(edge_min_override=None):
                     if abs(line - pin['line']) > 0.01:
                         continue  # different line than Pinnacle's -- not a clean comparison, skip
                     candidates.extend(side_candidates(info, pin['fair_over'], edge_min, ZONE))
+                    candidates.extend(c for c in pp_fliff.extra_candidates(info, pin['fair_over']) if c not in candidates)
                 kp = kalshi_price(kalshi_series, dtag, fx['away'], fx['home'], norm_name, pin['line'])
                 if kp:
                     edge_over, edge_under = pin['fair_over'] - kp['over'], (1 - pin['fair_over']) - kp['under']
@@ -444,7 +454,7 @@ def scan(edge_min_override=None):
                     plays.append(dict(game=f"{fx['away']}@{fx['home']}", team=team, start=fx['start'], stat=stat,
                                        player=pin['name'], line=pin['line'], side=side, venue=venue,
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
-                                       price=round(price * 100, 1), edge=round(edge * 100, 1), pinn_unit=pinn_unit,
+                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=pp_fliff.label(venue, edge), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
                                        away=fx['away'], home=fx['home'], pin_vig=pin.get('vig'),
                                        pin_move=(None if _pm is None else round(_pm if side == 'Over' else -_pm, 1))))
@@ -490,11 +500,12 @@ def to_ledger_docs(plays):
             date=p['date'], game=p['game'], player=p['player'], market=f"{p['pinn_unit']} {p['side']} {p['line']}",
             entry=p['price'], fair=p['fair'],
             fairSource=f'Pinnacle no-vig (OddsPapi, nfl_scan.py) vs {p["venue"]}',
-            edge=p['edge'], side=side, sport='NFL', track='B', stake=0, fee=0,
+            edge=p['edge'], side=side, sport='NFL', track=('B2' if pp_fliff.is_b2(p.get('label')) else 'B'), stake=0, fee=0,
+            tier=('B2' if pp_fliff.is_b2(p.get('label')) else None), label=p.get('label'),
             orderType='maker' if p['venue'] == 'kalshi' else 'taker',
             kalshi_ticker=ticker, start=p['start'],
             pinn=dict(who=p['player'], mkt=f"prop:{p['pinn_unit']}", line=p['line']),
-            status=f"Paper — Track B scan, pending fill ({p['venue']})" if ticker or p['venue'] != 'kalshi' else 'Paper — needs kalshi_ticker',
+            status=(f"Paper — {p['label']}" if p.get('label') else f"Paper — Track B scan, pending fill ({p['venue']})") if ticker or p['venue'] != 'kalshi' else 'Paper — needs kalshi_ticker',
             note=note, close=None, result=None, zone='35–75', pinMove=p.get('pin_move')))
     return list(docs.values())
 

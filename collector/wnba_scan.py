@@ -33,6 +33,7 @@ import json, os, sys, time, datetime, collections
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import pp_fliff
 from nfl_scan import MAX_PIN_VIG, merge_best, side_candidates  # market-width filter + best-price helpers
 from nfl_scan import (  # reuse generic, sport-agnostic pieces unchanged
     get, nrm, devig_power, kalshi_date_tag, kalshi_series_markets, kalshi_price, kalshi_ticker,
@@ -134,7 +135,15 @@ def pinnacle_and_venue_odds(event_id):
                     # execution venue would erase the mispricing Track B looks for).
                     over_p = 1 / american_to_decimal(sides['Over']) if 'Over' in sides else None
                     under_p = 1 / american_to_decimal(sides['Under']) if 'Under' in sides else None
-                    venue_by_stat[stat][norm_name][line] = merge_best(venue_by_stat[stat][norm_name].get(line), venue, over_p, under_p)
+                    if venue == 'prizepicks':  # fixed-payout DFS, see pp_fliff.py
+                        cur = venue_by_stat[stat][norm_name].get(line) or dict(venue=venue, over=None, under=None, over_venue=None, under_venue=None)
+                        cur['pp_over'], cur['pp_under'] = 'Over' in sides, 'Under' in sides
+                        venue_by_stat[stat][norm_name][line] = cur
+                        continue
+                    cur = merge_best(venue_by_stat[stat][norm_name].get(line), venue, over_p, under_p)
+                    if venue == 'fliff':
+                        cur['fliff_over'], cur['fliff_under'] = over_p, under_p
+                    venue_by_stat[stat][norm_name][line] = cur
     return pin_by_stat, venue_by_stat
 
 
@@ -168,6 +177,7 @@ def scan(edge_min_override=None):
                     if abs(line - pin['line']) > 0.01:
                         continue
                     candidates.extend(side_candidates(info, pin['fair_over'], edge_min, ZONE))
+                    candidates.extend(c for c in pp_fliff.extra_candidates(info, pin['fair_over']) if c not in candidates)
                 kp = kalshi_price(kalshi_series, dtag, away, home, norm_name, pin['line'])
                 if kp:
                     edge_over = pin['fair_over'] - kp['over']
@@ -200,7 +210,7 @@ def scan(edge_min_override=None):
                     plays.append(dict(game=f"{away}@{home}", team=team, start=ev['commence_time'], stat=stat,
                                        player=pin['name'], line=pin['line'], side=side, venue=venue,
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
-                                       price=round(price * 100, 1), edge=round(edge * 100, 1), pinn_unit=pinn_unit,
+                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=pp_fliff.label(venue, edge), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
                                        away=away, home=home, pin_vig=pin.get('vig'),
                                        pin_move=(None if _pm is None else round(_pm if side == 'Over' else -_pm, 1))))
@@ -238,7 +248,7 @@ def to_ledger_docs(plays):
             date=p['date'], game=p['game'], player=p['player'], market=f"{p['pinn_unit']} {p['side']} {p['line']}",
             entry=p['price'], fair=p['fair'],
             fairSource=f'Pinnacle no-vig (The Odds API, wnba_scan.py) vs {p["venue"]}',
-            edge=p['edge'], side=side, sport='WNBA', track='B', stake=0, fee=0,
+            edge=p['edge'], side=side, sport='WNBA', track=('B2' if pp_fliff.is_b2(p.get('label')) else 'B'), stake=0, fee=0, label=p.get('label'),
             orderType='maker' if p['venue'] == 'kalshi' else 'taker',
             kalshi_ticker=ticker, start=p['start'],
             pinn=dict(who=p['player'], mkt=f"prop:{p['pinn_unit']}", line=p['line']),
