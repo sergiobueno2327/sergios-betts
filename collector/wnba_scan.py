@@ -141,8 +141,6 @@ def pinnacle_and_venue_odds(event_id):
                         venue_by_stat[stat][norm_name][line] = cur
                         continue
                     cur = merge_best(venue_by_stat[stat][norm_name].get(line), venue, over_p, under_p)
-                    if venue == 'fliff':
-                        cur['fliff_over'], cur['fliff_under'] = over_p, under_p
                     venue_by_stat[stat][norm_name][line] = cur
     return pin_by_stat, venue_by_stat
 

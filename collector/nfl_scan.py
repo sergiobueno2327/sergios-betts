@@ -320,8 +320,6 @@ def oddsapi_venue_odds(event_id):
                     out[stat][norm_name][line] = cur
                     continue
                 cur = merge_best(out[stat][norm_name].get(line), venue, sides.get('Over'), sides.get('Under'))
-                if venue == 'fliff':
-                    cur['fliff_over'], cur['fliff_under'] = sides.get('Over'), sides.get('Under')
                 out[stat][norm_name][line] = cur
     return out
 
