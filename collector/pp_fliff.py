@@ -48,3 +48,28 @@ def label(venue, edge):
 
 def is_b2(lbl):
     return bool(lbl) and 'B2' in lbl
+
+
+# ---- Underdog Fantasy (added 2026-10-05): MANUAL screenshot checks only, not in any API feed or scan ----
+UD_BREAKEVEN = 0.535              # per-leg break-even from the Upside "need 53.5%" header (about -115 American; NOT -122)
+UD_BAR = UD_BREAKEVEN + 0.03      # 0.565: live Track B needs Pinnacle de-vigged fair >= 56.5%
+UD_B2_LO = UD_BREAKEVEN + 0.02    # 0.555: paper B2 for 55.5% <= fair < 56.5%
+
+
+def underdog_class(fair):
+    """fair = Pinnacle de-vigged fair prob (0-1) of the leg's side. Returns (edge_pts, label)."""
+    e = round(fair - UD_BREAKEVEN, 4)
+    if fair >= UD_BAR - 1e-9:
+        return e, "UNDERDOG TRACK B TARGET (manual)"
+    if fair >= UD_B2_LO - 1e-9:
+        return e, "UNDERDOG B2 (paper, 53.5c basis)"
+    return e, "PASS"
+
+
+if __name__ == '__main__':
+    import sys
+    from nfl_scan import devig_power, american_to_prob
+    # python3 pp_fliff.py ud <pin_side_american> <pin_other_side_american>   e.g.  ud -142 107
+    if len(sys.argv) == 4 and sys.argv[1] == 'ud':
+        f = devig_power(american_to_prob(sys.argv[2]), american_to_prob(sys.argv[3]))
+        print(round(f * 100, 1), underdog_class(f))
