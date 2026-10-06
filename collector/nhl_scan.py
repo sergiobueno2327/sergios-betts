@@ -506,6 +506,7 @@ def scan(day):
             edge = fair_under - exec_price
             if edge < EDGE_MIN_PIN:  # Pinnacle-based bar (Track B rule)
                 continue
+            model_gap = None  # 2026-10-06: the shot model is an INFO flag only (was a veto that hid Coleman U2.5, a clean Pinnacle+market-consensus edge); Pinnacle decides
             match = name_to_pid.get(norm_name)
             if match:
                 pid, team = match
@@ -513,16 +514,19 @@ def scan(day):
                 m = player_mu(pid, opp, state)
                 if m:
                     model_over = prob_over(m, math.ceil(line))
-                    if model_over - (1 - fair_under) >= 0.03:  # model strongly favors Over -> filter out this Under
-                        continue
+                    if model_over - (1 - fair_under) >= 0.03:
+                        model_gap = round((model_over - (1 - fair_under)) * 100, 1)
             plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue=exec_venue,
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
                                edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat(),
-                               pin_move=(None if _pm is None else round(-_pm, 1))))
+                               pin_move=(None if _pm is None else round(-_pm, 1)), model_gap=model_gap))
     plays.sort(key=lambda p: -p['edge'])
     print(f"\n{len(plays)} Under plays clear the Pinnacle-based edge bar (>= {EDGE_MIN_PIN*100:.0f}pts):")
     for p in plays:
         print(p)
+    for p in plays:
+        if p.get('model_gap'):
+            print(f"  [INFO model gap] {p['player']} Under {p['line']}: in-house shot model has the Over {p['model_gap']} pts above Pinnacle's Over. Non-blocking; Pinnacle still decides.")
     return plays
 
 
