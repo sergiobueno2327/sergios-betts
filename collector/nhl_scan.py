@@ -49,6 +49,7 @@ get().
 Usage: python3 nhl_scan.py YYYY-MM-DD [--edge 3]
 """
 import pin_move
+import pp_fliff
 import json, math, os, sys, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
@@ -406,6 +407,9 @@ def _books():
     return ODDSAPI_VENUES
 
 
+_PP = {}  # (event_id, norm_name, line) -> {'over': True, 'under': True} for PrizePicks legs
+
+
 def oddsapi_sog_venues(event_id):
     """{norm_name: {line: {'venue': slug, 'under': prob}}} -- raw one-sided UNDER price, NOT
     de-vigged (matches nfl_scan.py / softness_scan.py -- de-vigging an execution venue would erase
@@ -420,6 +424,10 @@ def oddsapi_sog_venues(event_id):
             if mkt.get('key') != 'player_shots_on_goal':
                 continue
             for o in mkt.get('outcomes', []):
+                if venue == 'prizepicks' and o.get('name') in ('Over', 'Under') and o.get('point') is not None and o.get('description'):
+                    # fixed-payout DFS: record only that the leg is offered (see pp_fliff.py); not a price
+                    _PP.setdefault((event_id, nrm(o['description']), float(o['point'])), {})[o['name'].lower()] = True
+                    continue
                 if o.get('name') != 'Under' or not o.get('price') or o.get('point') is None or not o.get('description'):
                     continue
                 prev = out[nrm(o['description'])].get(float(o['point']))
@@ -475,6 +483,18 @@ def scan(day):
             _pk = pin_move.key('NHL', f"{g['away']}@{g['home']}", p['name'], 'sog', line)
             _pm = pin_move.move(_pk, 1 - fair_under)
             pin_move.record(_pk, 1 - fair_under)
+            pp = _PP.get((event_id, norm_name, float(line))) if event_id else None
+            for pside in ('Over', 'Under'):  # PrizePicks fixed-cost legs (54.3c Flex basis): Track B >= 57.3 fair, B2 56.3-57.3
+                if not (pp and pp.get(pside.lower())):
+                    continue
+                pfair = (1 - fair_under) if pside == 'Over' else fair_under
+                if pp_fliff.PP_B2_LO - 1e-9 <= pfair <= 0.75:
+                    pedge = pfair - pp_fliff.PP_BREAKEVEN
+                    plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue='prizepicks', side=pside,
+                                       fair=round(pfair * 100, 1), price=round(pp_fliff.PP_BREAKEVEN * 100, 1),
+                                       fair_under=round(fair_under * 100, 1), price_under=round(pp_fliff.PP_BREAKEVEN * 100, 1),
+                                       edge=round(pedge * 100, 1), label=pp_fliff.label('prizepicks', pedge),
+                                       start=g.get('start'), date=day.isoformat(), pin_move=None))
             exec_venue, exec_price = None, None
             for exec_line, info in venues.get(norm_name, {}).items():
                 if abs(exec_line - line) > 0.01:
@@ -519,22 +539,26 @@ def to_ledger_docs(plays):
     docs = {}
     for p in plays:
         slug = p['player'].split()[-1].lower()
-        doc_id = f"{p['date']}-nhl-{slug}-sog{str(p['line']).replace('.', '')}-u"
-        if doc_id in docs and docs[doc_id]['data']['edge'] <= p['edge']:
+        pside = p.get('side', 'Under')  # PrizePicks legs (pp_fliff.py) can be Over or Under; Track B plays are Under
+        doc_id = f"{p['date']}-nhl-{slug}-sog{str(p['line']).replace('.', '')}-{'o' if pside == 'Over' else 'u'}"
+        if doc_id in docs and docs[doc_id]['data']['edge'] >= p['edge']:  # keep the HIGHER edge (was inverted: kept the lower)
             continue
-        note = f"NHL SOG scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p['fair_under']}c (Under)."
+        b2 = pp_fliff.is_b2(p.get('label'))
+        note = f"NHL SOG scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p.get('fair', p['fair_under'])}c ({pside})."
+        if p.get('label'):
+            note += f" {p['label']}; cost basis {p['price_under']}c (fixed PrizePicks Flex break-even)."
         note += f" Bet placed on {p['venue']}, not Kalshi -- Kalshi carries no NHL SOG market (confirmed repeatedly); needs manual {p['venue']} close for CLV, not a Kalshi close."
         if not p['start']:
             note += " Start time missing from NHL API response -- check before logging."
         docs[doc_id] = dict(id=doc_id, data=dict(
             date=p['date'], game=p['game'], player=p['player'], market=f"Shots On Goal {p['line']}",
-            entry=p['price_under'], fair=p['fair_under'],
+            entry=p['price'] if 'price' in p else p['price_under'], fair=p.get('fair', p['fair_under']),
             fairSource=f'Pinnacle no-vig SOG (OddsPapi, nhl_scan.py) vs {p["venue"]}',
-            edge=p['edge'], side='NO', sport='NHL', track='B', stake=0, fee=0, orderType='taker',
+            edge=p['edge'], side='YES' if pside == 'Over' else 'NO', sport='NHL', track='B2' if b2 else 'B', stake=0, fee=0, orderType='taker',
             kalshi_ticker=None, start=p['start'],
             pinn=dict(who=p['player'], mkt='prop:Shots On Goal', line=p['line']),
-            status=f"Paper — daily scan, pending fill ({p['venue']})",
-            note=note, close=None, result=None, zone='35–75'))
+            status=(f"Paper — {p['label']}" if p.get('label') else f"Paper — daily scan, pending fill ({p['venue']})"),
+            note=note, close=None, result=None, zone='35–75', tier='B2' if b2 else None, label=p.get('label')))
     return list(docs.values())
 
 
