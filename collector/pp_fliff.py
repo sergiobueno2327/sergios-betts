@@ -51,7 +51,7 @@ def is_b2(lbl):
 
 
 # ---- Underdog Fantasy (added 2026-10-05): MANUAL screenshot checks only, not in any API feed or scan ----
-UD_BREAKEVEN = 0.535              # per-leg break-even from the Upside "need 53.5%" header (about -115 American; NOT -122)
+UD_BREAKEVEN = 0.535              # LOCKED 2026-10-05: 2-Pick STANDARD only, 3.5x (Sergio-confirmed); sqrt(1/3.5)=53.45%, used as 53.5% (~-115 American). Both legs different games.
 UD_BAR = UD_BREAKEVEN + 0.03      # 0.565: live Track B needs Pinnacle de-vigged fair >= 56.5%
 UD_B2_LO = UD_BREAKEVEN + 0.02    # 0.555: paper B2 for 55.5% <= fair < 56.5%
 
