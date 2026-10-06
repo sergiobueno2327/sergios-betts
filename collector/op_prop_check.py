@@ -1,6 +1,7 @@
 """Live Pinnacle prop re-check via OddsPapi (for screenshot plays The Odds API can't price). Added 2026-10-06.
 Usage: python3 op_prop_check.py NHL 2026-10-06 MIN BUF Thompson assists 0.5 [cost_pct]
-  sport NHL only for now; market keyword matched against OddsPapi marketType (assists, shotsongoal, points, saves ...).
+  sport NHL, NFL or NBA (MLB is NOT possible: OddsPapi returns 403 for MLB on this plan -- use Odds API or a screenshot).
+  For NFL/NBA pass AWAY HOME as abbreviations or name fragments (e.g. TB DAL, or Buccaneers Cowboys); market keyword matched against OddsPapi marketType (NHL: assists, shotsongoal, points, saves; NFL: rushyards, receptions, receivingyards, passyards, rushattempts ...).
 Prints Pinnacle Over/Under decimal prices, the price's last-update time (STALE if > 3h old), de-vigged fair for BOTH sides,
 and the edge vs cost_pct (cost for the side you'd bet, in %, e.g. 54.3 for PrizePicks Flex) if given.
 Needs ODDSPAPI_KEY in the environment (source .env). Never prints or writes the key.
@@ -12,14 +13,27 @@ import nhl_scan as N
 
 def main():
     sport, day, away, home, who, mkt, line = sys.argv[1:8]
+    sport = sport.upper()
+    if sport == 'MLB':
+        print('OddsPapi has no MLB access on this plan (403). Use The Odds API (batter_total_bases, pitcher_strikeouts) or a Pinnacle screenshot.'); return
+    SID = {'NHL': 15, 'NFL': 14, 'NBA': 11}
+    if sport not in SID: print('sport must be NHL, NFL or NBA'); return
     cost = float(sys.argv[8]) if len(sys.argv) > 8 else None
     K = N.ODDSPAPI_KEY
     look = {}
     for c in get(f"https://api.oddspapi.io/v4/markets?apiKey={K}") or []:
-        if c.get('sportId') == 15 and c.get('playerProp') and mkt.lower() in (c.get('marketType') or '').lower() and abs(float(c['handicap']) - float(line)) < 1e-6:
+        if c.get('sportId') == SID[sport] and c.get('playerProp') and mkt.lower() in (c.get('marketType') or '').lower() and abs(float(c['handicap']) - float(line)) < 1e-6:
             oids = {o['outcomeName']: o['outcomeId'] for o in c.get('outcomes', [])}
             look[str(c['marketId'])] = (oids.get('Over'), oids.get('Under'))
-    fx = [f for f in N.oddspapi_fixtures_for_day(datetime.date.fromisoformat(day)) if (f.get('away'), f.get('home')) == (away, home)]
+    if sport == 'NHL':
+        fx = [f for f in N.oddspapi_fixtures_for_day(datetime.date.fromisoformat(day)) if (f.get('away'), f.get('home')) == (away, home)]
+    else:
+        d = datetime.date.fromisoformat(day)
+        raw = get(f"https://api.oddspapi.io/v4/fixtures?apiKey={K}&sportId={SID[sport]}&from={d.isoformat()}&to={(d + datetime.timedelta(days=1)).isoformat()}") or []
+        def hit(f, frag):
+            frag = frag.lower()
+            return any(frag == (f.get(k) or '').lower() or frag in (f.get(k2) or '').lower() for k in ('participant1Abbr', 'participant2Abbr') for k2 in ('participant1Name', 'participant2Name'))
+        fx = [f for f in raw if f.get('hasOdds') and hit(f, away) and hit(f, home)]
     if not fx: print('no OddsPapi fixture for', away, home); return
     j = get(f"https://api.oddspapi.io/v4/odds?apiKey={K}&fixtureId={fx[0]['fixtureId']}") or {}
     for mid, m in j.get('bookmakerOdds', {}).get('pinnacle+30', {}).get('markets', {}).items():
