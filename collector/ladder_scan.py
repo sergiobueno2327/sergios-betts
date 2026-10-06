@@ -129,6 +129,10 @@ if __name__ == '__main__':
     which = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] in CFG else 'nfl'
     em = float(sys.argv[sys.argv.index('--min-edge') + 1]) if '--min-edge' in sys.argv else 0.03
     pl = scan(which, em)
+    try:
+        import player_conflict; pl = player_conflict.resolve(pl)
+    except Exception as e:
+        print('player_conflict skipped:', e)
     if '--write' in sys.argv:
         out = sys.argv[sys.argv.index('--write') + 1]
         json.dump(to_ledger_docs(pl), open(out, 'w'), indent=1)

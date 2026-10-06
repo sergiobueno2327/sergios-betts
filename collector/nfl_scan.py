@@ -524,6 +524,10 @@ def to_ledger_docs(plays):
 if __name__ == '__main__':
     plays = scan()
     try:
+        import player_conflict; plays = player_conflict.resolve(plays)  # no opposite sides / one-market-per-player guard
+    except Exception as e:
+        print('player_conflict skipped:', e)
+    try:
         import adverse_flag; adverse_flag.annotate_plays(plays)  # info-only, non-blocking
     except Exception as e:
         print('adverse_flag skipped:', e)

@@ -566,6 +566,10 @@ if __name__ == '__main__':
     d = datetime.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else datetime.date.today()
     plays = scan(d)
     try:
+        import player_conflict; plays = player_conflict.resolve(plays)  # no opposite sides / one-market-per-player guard
+    except Exception as e:
+        print('player_conflict skipped:', e)
+    try:
         import adverse_flag; adverse_flag.annotate_plays(plays)  # info-only, non-blocking
     except Exception as e:
         print('adverse_flag skipped:', e)

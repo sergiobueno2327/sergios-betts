@@ -39,6 +39,31 @@ def stat_key(market):
         if any(m == a.replace(' ', '').replace('_', '') for a in alts): return k
     return None
 
+_box_cache, _day_cache = {}, {}
+
+def nfl_actual(play, start_iso):
+    """(value, note) for a play's NFL stat from ESPN box scores, or (None, why). Used by grade_plays.real_result."""
+    sk = stat_key(play.get('market', ''))
+    if not sk: return None, 'unsupported NFL market'
+    who = nrm(play.get('player', ''))
+    start = datetime.datetime.fromisoformat(start_iso.replace('Z', '+00:00'))
+    if start > datetime.datetime.now(datetime.timezone.utc): return None, 'not started'
+    for off in (0, -1):
+        day = (start + datetime.timedelta(days=off)).strftime('%Y%m%d')
+        if day not in _day_cache:
+            try: _day_cache[day] = get(f"https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates={day}")['events']
+            except Exception: _day_cache[day] = []
+        for e in _day_cache[day]:
+            if e['status']['type']['name'] != 'STATUS_FINAL': continue
+            if e['id'] not in _box_cache:
+                try: _box_cache[e['id']] = box_stats(e['id'])
+                except Exception: _box_cache[e['id']] = {}
+            b = _box_cache[e['id']]
+            if who in b and sk in b[who]:
+                return b[who][sk], f"ESPN box score {e['shortName']}"
+    return None, 'player not in a final ESPN box score (DNP or game not final)'
+
+
 if __name__ == '__main__':
     led, outd, ids = sys.argv[1], sys.argv[2], sys.argv[3].split(',')
     incl = '--include-invalidated' in sys.argv

@@ -296,6 +296,10 @@ def mlb_actual_stat(spec, start):
     return None, 'no matching finished MLB game/player found'
 
 
+def start_iso_of(play):
+    return play.get('start') or ''
+
+
 def real_result(play, start):
     """Dispatch to the right real-world-outcome fetcher for a ticker-less play, by sport + market.
     Returns (win: bool, note: str) or (None, note) if no path exists / nothing found yet."""
@@ -305,11 +309,21 @@ def real_result(play, start):
         val, note = nhl_actual_sog(spec, start)
     elif sport == 'MLB' and spec.get('mkt') in ('prop:Hits', 'prop:Bases'):
         val, note = mlb_actual_stat(spec, start)
+    elif sport == 'NFL':
+        import grade_nfl_espn
+        val, note = grade_nfl_espn.nfl_actual(play, start_iso_of(play))
     else:
         return None, 'no real-outcome path for this sport/market'
     if val is None:
         return None, note
-    line = float(spec.get('line'))
+    line = spec.get('line')
+    if line is None:  # B3 / line-shift docs carry the line only in the market text
+        import re as _re
+        _m = _re.search(r'(?:over|under)\s+([\d.]+)\s*$', play.get('market', ''), _re.I)
+        line = float(_m.group(1)) if _m else None
+    if line is None:
+        return None, 'no line found'
+    line = float(line)
     over = val > line   # push impossible at a .5 line
     win = over if play['side'].upper() == 'YES' else not over
     return win, f'{note}, actual {val} vs line {line}'
