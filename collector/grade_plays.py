@@ -128,7 +128,7 @@ def independent_close(play, start, minutes=10):
         if abs((ts(e['commence_time']) - start).total_seconds()) > 2400:
             continue
         j = _oa_get(f"{OA}/historical/sports/{sport}/events/{e['id']}/odds?apiKey={OA_KEY}&date={snap}"
-                    f"&bookmakers=pinnacle&markets={mk}&oddsFormat=american")
+                    f"&bookmakers=pinnacle&markets={mk}&oddsFormat=decimal")
         if not j:
             continue
         px = {}
@@ -138,8 +138,7 @@ def independent_close(play, start, minutes=10):
                     if nrm(o.get('description')) == who and o.get('point') == line:
                         px[o['name']] = o['price']
         if len(px) == 2:
-            a2p = lambda a: 100 / (a + 100) if a > 0 else -a / (-a + 100)
-            fo = power_devig(a2p(px['Over']), a2p(px['Under']))
+            fo = power_devig(px['Over'], px['Under'])   # decimal odds
             return (fo if play['side'] == 'YES' else 1 - fo), 'oddsapi-historical ' + str(j.get('timestamp'))
     return None, 'independent: player/line not in snapshot'
 
