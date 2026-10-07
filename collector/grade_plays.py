@@ -460,6 +460,9 @@ def grade(play, root, now):
     out['pinnCloseAgeMin'] = age
     out['pinnClose'] = round(pc * 100, 1) if pc is not None else None
     out['pinnCloseAt'] = pnote
+    if re.search(r'standing down|stood down|never filled|never executed', str(play.get('note', '')).lower()):
+        out['filled'] = False   # stood down before kickoff: never entered, so its CLV is not evidence
+        out['closeIndependent'] = False
     out['clvPinn'] = round(pc * 100 - entry, 1) if pc is not None else None
     out['clvKalshi'] = round(kc - entry, 1) if kc is not None else None
     if not m:
@@ -513,8 +516,12 @@ def grade_pass(p, root, now):
 
 
 def report(plays):
-    groups = {}
+    groups, seen = {}, set()
     for p in plays:
+        dk = (p.get('sport'), nrm((p.get('pinn') or {}).get('who') or p.get('player')), p.get('market'), p.get('game'), p.get('date'))
+        if dk in seen:
+            continue   # re-check scans log the same play twice; count it once
+        seen.add(dk)
         if p.get('clvPinn') is None or p.get('filled') is False or p.get('closeIndependent') is False:
             continue   # non-independent closes (stale / == entry fair) are not CLV evidence
         key = f"{p.get('sport')} {'Track ' + p.get('track', '?')} {p.get('market', '').split()[0] if p.get('track') == 'A' else ''}".strip()
@@ -525,7 +532,7 @@ def report(plays):
         se = statistics.pstdev(c) / math.sqrt(len(c)) if len(c) > 1 else float('nan')
         beat = sum(x > 0 for x in c) / len(c) * 100
         rs = [p['ret'] for p in ps if p.get('ret') is not None]
-        lines.append(f"{k}: n {len(c)} | Pinnacle CLV {statistics.mean(c):+.2f} ±{se:.2f} | beat close {beat:.0f}%"
+        lines.append(f"{k}: n {len(c)} | Pinnacle CLV {statistics.mean(c):+.2f} (median {statistics.median(c):+.2f}) ±{se:.2f} | beat close {beat:.0f}%"
                      + (f" | ROI {statistics.mean(rs) * 100:+.1f}% (n {len(rs)})" if rs else '')
                      + (' | checkpoint: FIRST READ' if len(c) >= 100 else '') + (' | checkpoint: DECISION' if len(c) >= 300 else ''))
     return lines
