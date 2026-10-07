@@ -93,6 +93,57 @@ def f(x):
         return None
 
 
+OA_KEY = os.environ.get('THEODDSAPI_KEY', '')
+OA = 'https://api.the-odds-api.com/v4'
+OA_SPORT = {'NHL': 'icehockey_nhl', 'MLB': 'baseball_mlb', 'WNBA': 'basketball_wnba', 'NFL': 'americanfootball_nfl'}
+OA_MKT = {'Shots On Goal': 'player_shots_on_goal', 'Total Bases': 'batter_total_bases', 'Rebounds': 'player_rebounds',
+          'Assists': 'player_assists', 'Points': 'player_points', 'Hits Allowed': 'pitcher_hits_allowed',
+          'Receptions': 'player_receptions', 'Rush Attempts': 'player_rush_attempts', 'Receiving Yards': 'player_reception_yds',
+          'Pass Attempts': 'player_pass_attempts', 'Passing Yards': 'player_pass_yds', 'Interceptions': 'player_pass_interceptions',
+          'Pass Completions': 'player_pass_completions', 'Rushing Yards': 'player_rush_yds', 'Touchdown Passes': 'player_pass_tds'}
+STALE_MIN = 30   # a Pinnacle quote older than this at kickoff is not a close (OddsPapi only stores price CHANGES)
+
+
+def _oa_get(u):
+    try:
+        return json.load(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'curl/8'}), timeout=60))
+    except Exception:
+        return None
+
+
+def independent_close(play, start, minutes=10):
+    """Pinnacle no-vig close (our side) from an Odds API historical snapshot at start-10min.
+    Independent of the entry-time scan and of OddsPapi's change-only history. None if not covered."""
+    spec = play.get('pinn') or {}
+    sport = OA_SPORT.get(play.get('sport'))
+    mk = OA_MKT.get(str(spec.get('mkt', '')).split(':')[-1])
+    if not (OA_KEY and sport and mk and spec.get('line') is not None):
+        return None, 'independent: no key/mapping'
+    snap = (start - datetime.timedelta(minutes=minutes)).strftime('%Y-%m-%dT%H:%M:%SZ')
+    evs = _oa_get(f'{OA}/historical/sports/{sport}/events?apiKey={OA_KEY}&date={snap}')
+    if not evs:
+        return None, 'independent: no events'
+    who, line = nrm(spec.get('who')), float(spec['line'])
+    for e in evs.get('data', []):
+        if abs((ts(e['commence_time']) - start).total_seconds()) > 2400:
+            continue
+        j = _oa_get(f"{OA}/historical/sports/{sport}/events/{e['id']}/odds?apiKey={OA_KEY}&date={snap}"
+                    f"&bookmakers=pinnacle&markets={mk}&oddsFormat=american")
+        if not j:
+            continue
+        px = {}
+        for b in j['data'].get('bookmakers', []):
+            for m in b['markets']:
+                for o in m['outcomes']:
+                    if nrm(o.get('description')) == who and o.get('point') == line:
+                        px[o['name']] = o['price']
+        if len(px) == 2:
+            a2p = lambda a: 100 / (a + 100) if a > 0 else -a / (-a + 100)
+            fo = power_devig(a2p(px['Over']), a2p(px['Under']))
+            return (fo if play['side'] == 'YES' else 1 - fo), 'oddsapi-historical ' + str(j.get('timestamp'))
+    return None, 'independent: player/line not in snapshot'
+
+
 def pinnacle_close(root, play, start):
     spec = play.get('pinn')
     if not spec:
@@ -388,6 +439,26 @@ def grade(play, root, now):
         else:
             pnote = f'{pnote}; {pnote2}'
 
+    # CLV integrity (2026-10-06): OddsPapi history stores only price CHANGES, so "last quote before start" can be
+    # days old, and the snapshot fallback can return the entry-time scan itself. Either makes clvPinn == edge,
+    # which is not a close. Record the quote age, prefer an independent T-10 snapshot, and flag what stays unverified.
+    age = None
+    m_ts = re.search(r'(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)', str(pnote))
+    if pc is not None and m_ts:
+        try:
+            age = round((start - ts(m_ts.group(1) + 'Z')).total_seconds() / 60, 1)
+        except Exception:
+            age = None
+    fair0 = f(play.get('fair'))
+    stale = pc is not None and (age is None or age > STALE_MIN or (fair0 is not None and abs(pc * 100 - fair0) <= 0.15))
+    if pc is None or stale:
+        ic, inote = independent_close(play, start)
+        if ic is not None:
+            pc, pnote, stale = ic, inote, False
+        elif pc is not None:
+            pnote = f'{pnote} [STALE/UNVERIFIED: quote age {age} min; {inote}]'
+    out['closeIndependent'] = bool(pc is not None and not stale)
+    out['pinnCloseAgeMin'] = age
     out['pinnClose'] = round(pc * 100, 1) if pc is not None else None
     out['pinnCloseAt'] = pnote
     out['clvPinn'] = round(pc * 100 - entry, 1) if pc is not None else None
@@ -445,8 +516,8 @@ def grade_pass(p, root, now):
 def report(plays):
     groups = {}
     for p in plays:
-        if p.get('clvPinn') is None or p.get('filled') is False:
-            continue
+        if p.get('clvPinn') is None or p.get('filled') is False or p.get('closeIndependent') is False:
+            continue   # non-independent closes (stale / == entry fair) are not CLV evidence
         key = f"{p.get('sport')} {'Track ' + p.get('track', '?')} {p.get('market', '').split()[0] if p.get('track') == 'A' else ''}".strip()
         groups.setdefault(key, []).append(p)
     lines = []
