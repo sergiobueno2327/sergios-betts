@@ -8,6 +8,7 @@ FanDuel clears and Pinnacle has no price/does not clear. NHL SOG Overs are paper
 LINE-SHIFT (added 2026-10-06, Sergio-approved): a DFS leg whose line differs from Pinnacle's gets a shifted fair estimate
 (Pinnacle fair at its own line + median Over-prob delta across >= 3 OTHER books posting both lines, same method as ladder_scan.py).
 These print as "LINE-SHIFT (paper)" when the estimate reaches the B2 floor; they never go live (shifted estimates carry more error).
+College football (added 2026-10-07): NCAAF has no Pinnacle/Novig player props in either feed, so college legs can only ever be FD-ONLY (paper, never live) off FanDuel's two-sided fair.
 Run: set -a && source .env && set +a && python3 collector/dfs_scan.py [hours=72]
 """
 import os, sys, datetime, collections
@@ -22,12 +23,13 @@ S = {
  'icehockey_nhl': 'player_shots_on_goal,player_points,player_goals,player_assists',
  'baseball_mlb': 'pitcher_strikeouts,batter_total_bases,batter_hits,pitcher_outs,pitcher_hits_allowed,pitcher_earned_runs',
  'americanfootball_nfl': 'player_receptions,player_reception_yds,player_rush_yds,player_rush_attempts,player_pass_yds,player_pass_attempts,player_pass_completions,player_pass_tds,player_rush_reception_yds',
+ 'americanfootball_ncaaf': 'player_receptions,player_reception_yds,player_rush_yds,player_rush_attempts,player_pass_yds,player_pass_attempts,player_pass_completions,player_pass_tds',
  'basketball_wnba': 'player_points,player_rebounds,player_assists,player_points_rebounds_assists,player_threes',
  'basketball_nba': 'player_points,player_rebounds,player_assists,player_points_rebounds_assists,player_threes',
 }
 TH = {'prizepicks': (0.573, 0.563), 'underdog': (0.565, 0.555)}
 MAX_FD_VIG = 0.14
-MAX_SHIFT = {'icehockey_nhl': 1.0, 'baseball_mlb': 1.0, 'americanfootball_nfl': 8.0, 'basketball_wnba': 3.0, 'basketball_nba': 3.0}
+MAX_SHIFT = {'icehockey_nhl': 1.0, 'baseball_mlb': 1.0, 'americanfootball_nfl': 8.0, 'americanfootball_ncaaf': 8.0, 'basketball_wnba': 3.0, 'basketball_nba': 3.0}
 MIN_REF = 3
 REF_EXCLUDE = {'pinnacle', 'prizepicks', 'underdog', 'betr_us_dfs'}
 import statistics
