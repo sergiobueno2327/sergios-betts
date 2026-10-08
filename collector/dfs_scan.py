@@ -82,7 +82,7 @@ def main(hours=72):
                     f1 = None if fp is None else (fp if side == 'Over' else 1 - fp)
                     f2 = None if ff is None else (ff if side == 'Over' else 1 - ff)
                     best = max(x for x in (f1, f2) if x is not None)
-                    if best < 0.545:
+                    if best < float(os.environ.get('DFS_MIN', '0.545')):
                         continue
                     if f1 is not None and f1 >= b2 - 1e-9:
                         cls = 'LIVE' if f1 >= live - 1e-9 else 'B2'
