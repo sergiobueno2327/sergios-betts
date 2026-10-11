@@ -114,6 +114,7 @@ def _oa_get(u):
 def independent_close(play, start, minutes=10):
     """Pinnacle no-vig close (our side) from an Odds API historical snapshot at start-10min.
     Independent of the entry-time scan and of OddsPapi's change-only history. None if not covered."""
+    independent_close.age = None
     spec = play.get('pinn') or {}
     sport = OA_SPORT.get(play.get('sport'))
     mk = OA_MKT.get(str(spec.get('mkt', '')).split(':')[-1])
@@ -139,6 +140,13 @@ def independent_close(play, start, minutes=10):
                         px[o['name']] = o['price']
         if len(px) == 2:
             fo = power_devig(px['Over'], px['Under'])   # decimal odds
+            try:
+                sage = round((start - ts(str(j.get('timestamp')))).total_seconds() / 60, 1)
+            except Exception:
+                sage = None
+            if sage is None or sage > STALE_MIN:   # fix 2026-10-11: API returns the last snapshot <= date, which can be hours old
+                return None, f"independent: snapshot {j.get('timestamp')} is {sage} min before start (> {STALE_MIN})"
+            independent_close.age = sage
             return (fo if play['side'] == 'YES' else 1 - fo), 'oddsapi-historical ' + str(j.get('timestamp'))
     return None, 'independent: player/line not in snapshot'
 
@@ -409,7 +417,8 @@ def grade(play, root, now):
         start = pinnacle_close_op.cut   # actual start (tennis order of play etc.)
     kc = None
     out['kalshiClose'] = None
-    out['filled'] = True
+    prior_filled = play.get('filled')
+    out['filled'] = prior_filled if prior_filled is not None else True
     if m:
         # Kalshi close: last 1-min candle before start (fallback hourly)
         cs = candles(tk, start.timestamp() - 3 * 3600, start.timestamp(), 1) or candles(tk, start.timestamp() - 48 * 3600, start.timestamp(), 60)
@@ -454,13 +463,14 @@ def grade(play, root, now):
         ic, inote = independent_close(play, start)
         if ic is not None:
             pc, pnote, stale = ic, inote, False
+            age = independent_close.age
         elif pc is not None:
             pnote = f'{pnote} [STALE/UNVERIFIED: quote age {age} min; {inote}]'
     out['closeIndependent'] = bool(pc is not None and not stale)
     out['pinnCloseAgeMin'] = age
     out['pinnClose'] = round(pc * 100, 1) if pc is not None else None
     out['pinnCloseAt'] = pnote
-    if re.search(r'standing down|stood down|never filled|never executed', str(play.get('note', '')).lower()):
+    if prior_filled is False or re.search(r'standing down|stood down|never filled|never executed|never matched|canceled|cancelled|unfilled|expired at tip', (str(play.get('note', '')) + ' ' + str(play.get('status', ''))).lower()):
         out['filled'] = False   # stood down before kickoff: never entered, so its CLV is not evidence
         out['closeIndependent'] = False
     out['clvPinn'] = round(pc * 100 - entry, 1) if pc is not None else None
@@ -470,7 +480,10 @@ def grade(play, root, now):
         # occasional MLB Track B players Kalshi doesn't list) used to stop here with clvPinn but
         # no result/W-L at all. Now try the actual game box score before giving up.
         win, rnote = real_result(play, start)
-        out['filled'] = True
+        # fix 2026-10-11: ticker-less plays have no fill evidence; keep the ledger's value (None stays None)
+        out['filled'] = prior_filled
+        if re.search(r'never filled|never matched|canceled|cancelled|unfilled|expired at tip', (str(play.get('note', '')) + ' ' + str(play.get('status', ''))).lower()):
+            out['filled'] = False
         if win is None:
             out['gradeNote'] = f'CLV computed via Pinnacle close; no Kalshi ticker — result: {rnote}'
             return out
@@ -522,7 +535,7 @@ def report(plays):
         if dk in seen:
             continue   # re-check scans log the same play twice; count it once
         seen.add(dk)
-        if p.get('clvPinn') is None or p.get('filled') is False or p.get('closeIndependent') is False:
+        if p.get('clvPinn') is None or p.get('filled') is not True or p.get('closeIndependent') is not True:
             continue   # non-independent closes (stale / == entry fair) are not CLV evidence
         key = f"{p.get('sport')} {'Track ' + p.get('track', '?')} {p.get('market', '').split()[0] if p.get('track') == 'A' else ''}".strip()
         groups.setdefault(key, []).append(p)
