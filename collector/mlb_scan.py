@@ -7,6 +7,7 @@ Pinnacle margin <= 8%. Both sides scanned. Novig voids if the player does not pl
 INFO consensus flag only. Run: python3 mlb_scan.py   (needs THEODDSAPI_KEY; source .env)
 """
 import os, sys, datetime, collections
+from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from nfl_scan import get, nrm, devig_power, american_to_prob, MAX_PIN_VIG
 import consensus_flag, player_conflict, ref_books
@@ -55,15 +56,67 @@ def main(hours=30):
                                   edge=round(edge * 100, 1), pin_vig=round(vig, 4), alt_fairs=alt,
                                   label='TRACK B (live)' if edge >= LIVE - 1e-9 else 'B2 (paper, stake 0)'))
     plays.sort(key=lambda p: -p['edge'])
+    return plays
+
+
+def report(plays):
     for p in plays:
         print(f"{p['label']}: {p['player']} {p['stat']} {p['side']} {p['line']} | {p['game']} start {p['start']} | novig {p['price']}c vs Pinnacle fair {p['fair']}% | edge +{p['edge']} | margin {p['pin_vig']*100:.1f}%")
+
+
+_ABBR = {'pitcher_strikeouts': 'k', 'batter_total_bases': 'tb', 'pitcher_hits_allowed': 'hitsallowed'}
+_UNIT = {'pitcher_strikeouts': 'Strikeouts', 'batter_total_bases': 'Bases', 'pitcher_hits_allowed': 'Hits Allowed'}
+
+
+def to_ledger_docs(plays):
+    """MLB is PAPER ONLY (rulebook): stake 0 always. >=3.0 -> track 'MLB-paper', 2.0-<3.0 -> 'B2'. Best edge per doc id kept (>=)."""
+    docs = {}
+    for p in plays:
+        b2 = p['edge'] < 3.0
+        date = datetime.datetime.fromisoformat(p['start'].replace('Z', '+00:00')).astimezone(ZoneInfo('America/New_York')).date().isoformat()
+        slug = p['player'].split()[-1].lower()
+        doc_id = f"{date}-{'b2-' if b2 else ''}mlb-{slug}-{_ABBR[p['market']]}{str(p['line']).replace('.', '')}-{'o' if p['side'] == 'Over' else 'u'}"
+        if doc_id in docs and docs[doc_id]['data']['edge'] >= p['edge']:
+            continue
+        docs[doc_id] = dict(id=doc_id, data=dict(
+            date=date, game=p['game'], player=p['player'], market=f"{p['stat']} {p['side']} {p['line']}",
+            entry=p['price'], fair=p['fair'], fairSource='Pinnacle no-vig live (The Odds API, mlb_scan.py) vs novig',
+            edge=p['edge'], side='YES' if p['side'] == 'Over' else 'NO', sport='MLB', track='B2' if b2 else 'MLB-paper',
+            stake=0, fee=0, label=p.get('label'), orderType='taker', kalshi_ticker=None, start=p['start'],
+            pinn=dict(who=p['player'], mkt=f"prop:{_UNIT[p['market']]}", line=p['line']),
+            status=f"Paper — {p.get('label')}", note=f"MLB scan {date}. Edge +{p['edge']}pts vs novig. Pinnacle fair {p['fair']}c. Paper only; DNP voids on Novig.",
+            close=None, result=None, zone='35–75', pinMove=None))
+    return list(docs.values())
+
+
+def run(hours=30):
+    import json
+    plays = main(hours)
+    for p in plays:
+        p['label'] = None  # label is re-derived after the live gate
+    try:
+        import live_pin_verify; plays = live_pin_verify.verify(plays, 'baseball_mlb', lambda p: p['market'])
+    except Exception as e:
+        print('live_pin_verify FAILED -> no plays passed:', e); plays = []
+    for p in plays:
+        p['label'] = 'TRACK B (live-eligible, MLB paper)' if p['edge'] >= 3.0 - 1e-9 else 'B2 paper'
     try:
         plays = player_conflict.resolve(plays)
     except Exception as ex:
         print('player_conflict skipped:', ex)
-    consensus_flag.annotate_plays(plays)
-    print(f"\n{sum(p['edge'] >= 3 for p in plays)} live and {sum(p['edge'] < 3 for p in plays)} B2 MLB plays. Reminder: DNP voids on Novig; confirm lineup status if posted.")
+    consensus_flag.annotate_plays(plays)  # conflict -> downgraded to B2 paper, never blocks
+    report(plays)
+    if '--write' in sys.argv:
+        out = sys.argv[sys.argv.index('--write') + 1]
+        docs = to_ledger_docs(plays)
+        try:
+            consensus_flag.tag_docs(docs, plays)
+        except Exception as e:
+            print('consensus tag skipped:', e)
+        json.dump(docs, open(out, 'w'), indent=2)
+        print(f'\nWrote {len(docs)} ledger-ready docs to {out}\nNot written to the ledger yet -- the calling session still does the ArtifactData batch write.')
+    print(f"\n{sum(p['edge'] >= 3 for p in plays)} live-eligible (paper) and {sum(p['edge'] < 3 for p in plays)} B2 MLB plays. Reminder: DNP voids on Novig; confirm lineup status if posted.")
 
 
 if __name__ == '__main__':
-    main()
+    run()
