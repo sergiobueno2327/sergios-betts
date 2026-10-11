@@ -147,6 +147,7 @@ def pinnacle_and_venue_odds(event_id):
 
 def scan(edge_min_override=None):
     edge_min = edge_min_override or EDGE_MIN_PIN
+    collect_min = min(edge_min, 0.02)  # B2 paper band (2.0-<3.0 pts) is collected too (rulebook: B2 auto-logged, stake 0)
     events = [e for e in oddsapi_events_this_week() if _not_kicked_off(e['commence_time'])]
     print(f"{len(events)} upcoming WNBA games with live odds (The Odds API)")
     plays = []
@@ -179,14 +180,14 @@ def scan(edge_min_override=None):
                 for line, info in venue_by_stat.get(stat, {}).get(norm_name, {}).items():
                     if abs(line - pin['line']) > 0.01:
                         continue
-                    candidates.extend(side_candidates(info, pin['fair_over'], edge_min, ZONE))
+                    candidates.extend(side_candidates(info, pin['fair_over'], collect_min, ZONE))
                     candidates.extend(c for c in pp_fliff.extra_candidates(info, pin['fair_over']) if c not in candidates)
                 kp = kalshi_price(kalshi_series, dtag, away, home, norm_name, pin['line'])
                 if kp:
                     edge_over = pin['fair_over'] - kp['over']
                     edge_under = (1 - pin['fair_over']) - kp['under']
                     for side, edge, price in (('Over', edge_over, kp['over']), ('Under', edge_under, kp['under'])):
-                        if edge >= edge_min and ZONE[0] <= price <= ZONE[1]:
+                        if edge >= collect_min and ZONE[0] <= price <= ZONE[1]:
                             candidates.append((side, edge, price, 'kalshi'))
                 if not candidates:
                     continue
@@ -214,7 +215,7 @@ def scan(edge_min_override=None):
                     plays.append(dict(game=f"{away}@{home}", team=team, start=ev['commence_time'], stat=stat,
                                        player=pin['name'], line=pin['line'], side=side, venue=venue,
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
-                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=pp_fliff.label(venue, edge), pinn_unit=pinn_unit,
+                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=(pp_fliff.label(venue, edge) or ('B2 paper' if round(edge, 4) < edge_min - 1e-9 else None)), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
                                        away=away, home=home, pin_vig=pin.get('vig'),
                                        alt_fairs={k: (v if side == 'Over' else round(100 - v, 1)) for k, v in _alt.items()},

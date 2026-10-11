@@ -504,7 +504,7 @@ def scan(day):
             if exec_venue is None:
                 continue  # Pinnacle listed it but no execution venue quoted this exact line
             edge = fair_under - exec_price
-            if edge < EDGE_MIN_PIN:  # Pinnacle-based bar (Track B rule)
+            if edge < 0.02:  # below the B2 paper floor: skip. 2.0-<3.0 pts = B2 paper (rulebook: auto-logged, stake 0); >=3.0 = Track B
                 continue
             model_gap = None  # 2026-10-06: the shot model is an INFO flag only (was a veto that hid Coleman U2.5, a clean Pinnacle+market-consensus edge); Pinnacle decides
             match = name_to_pid.get(norm_name)
@@ -519,7 +519,8 @@ def scan(day):
             plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue=exec_venue,
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
                                edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat(),
-                               pin_move=(None if _pm is None else round(-_pm, 1)), model_gap=model_gap))
+                               pin_move=(None if _pm is None else round(-_pm, 1)), model_gap=model_gap,
+                               label=('B2 paper' if round(edge, 4) < EDGE_MIN_PIN - 1e-9 else None)))
     plays.sort(key=lambda p: -p['edge'])
     print(f"\n{len(plays)} Under plays clear the Pinnacle-based edge bar (>= {EDGE_MIN_PIN*100:.0f}pts):")
     for p in plays:
@@ -549,8 +550,10 @@ def to_ledger_docs(plays):
             continue
         b2 = pp_fliff.is_b2(p.get('label'))
         note = f"NHL SOG scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p.get('fair', p['fair_under'])}c ({pside})."
-        if p.get('label'):
+        if p.get('label') and p['venue'] == 'prizepicks':
             note += f" {p['label']}; cost basis {p['price_under']}c (fixed PrizePicks Flex break-even)."
+        elif p.get('label'):
+            note += f" {p['label']} (2.0-<3.0 pts, paper only)."
         note += f" Bet placed on {p['venue']}, not Kalshi -- Kalshi carries no NHL SOG market (confirmed repeatedly); needs manual {p['venue']} close for CLV, not a Kalshi close."
         if not p['start']:
             note += " Start time missing from NHL API response -- check before logging."
