@@ -2,14 +2,14 @@
 
 Fetches a second sharp-ish book's TWO-SIDED prop prices from The Odds API and power-de-vigs them,
 so scans can attach alt_fairs to plays for consensus_flag.py. One-sided lines are skipped (can't be
-de-vigged without assuming a vig, which overstates edge). FanDuel is the default reference book.
+de-vigged without assuming a vig, which overstates edge). Default reference books (2026-10-11): fanduel, draftkings, betmgm, williamhill_us (Caesars), espnbet, hardrockbet, fanatics (<=10 books = same credit cost as one; FD/DK alone often don't quote MLB/NHL props).
 Pinnacle still anchors fair and every bar; this only feeds the non-blocking consensus INFO flag.
 """
 import os, collections
 from nfl_scan import get, nrm, devig_power, american_to_prob
 
 KEY = os.environ.get('THEODDSAPI_KEY', '')
-REF_BOOKS = tuple(b for b in os.environ.get('BETTS_REF_BOOKS', 'fanduel,draftkings').split(',') if b)
+REF_BOOKS = tuple(b for b in os.environ.get('BETTS_REF_BOOKS', 'fanduel,draftkings,betmgm,williamhill_us,espnbet,hardrockbet,fanatics').split(',') if b)
 MAX_REF_VIG = 0.14  # skip absurdly wide reference markets
 
 

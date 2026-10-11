@@ -62,14 +62,16 @@ MIN_REFS = 2         # fewer reference sources than this = "unconfirmed"
 
 def classify(pin_fair, alts):
     """2026-10-11 (Sergio-approved): confirmed / conflict / mixed / unconfirmed. Pinnacle stays the anchor.
-    confirmed: >=2 refs all within TOL of Pinnacle. conflict: >=2 refs and their mean is >=3.0 pts BELOW Pinnacle
+    confirmed: >=2 refs, median within TOL of Pinnacle, none more than 2*TOL away. conflict: >=2 refs and their mean is >=3.0 pts BELOW Pinnacle
     on our side (they say the edge is not real). mixed: refs disagree but not a conflict. unconfirmed: <2 refs."""
     alts = {k: _c(v) for k, v in (alts or {}).items() if v is not None}
     pf = _c(pin_fair)
     if pf is None or len(alts) < MIN_REFS:
         return 'unconfirmed'
-    gaps = [v - pf for v in alts.values()]
-    if all(abs(g) <= TOL for g in gaps):
+    gaps = sorted(v - pf for v in alts.values())
+    med = gaps[len(gaps) // 2] if len(gaps) % 2 else (gaps[len(gaps) // 2 - 1] + gaps[len(gaps) // 2]) / 2
+    # confirmed: median reference within TOL of Pinnacle and no single reference more than 2*TOL away (one outlier does not break it)
+    if abs(med) <= TOL and all(abs(g) <= 2 * TOL for g in gaps):
         return 'confirmed'
     if sum(gaps) / len(gaps) <= -CONFLICT_GAP:
         return 'conflict'
