@@ -72,13 +72,19 @@ def verify(plays, sport, market_of):
         pk = 'price' if 'price' in p else 'price_under'
         fk = 'fair' if 'fair' in p else 'fair_under'
         edge = round(fair - p[pk], 1)
-        if edge < 2.0:
-            print(f"  LIVE-PIN DROP: {p['player']} {side} {p['line']} live edge {edge} < 2.0")
+        try:
+            import make_order; _floor = make_order.MAKE_FLOOR * 100
+        except Exception:
+            _floor = 2.0
+        if edge < _floor - 1e-9:
+            print(f"  LIVE-PIN DROP: {p['player']} {side} {p['line']} live edge {edge} < {_floor}")
             continue
         p[fk] = round(fair, 1); p['edge'] = edge; p['pin_vig'] = round(po + pu - 1, 4); p['live_verified'] = True
-        if edge < 3.0:
-            p['label'] = p.get('label') or 'B2 paper'
-        elif p.get('label') == 'B2 paper':
+        if edge < 2.0:
+            p['label'] = 'MAKE candidate'
+        elif edge < 3.0:
+            p['label'] = 'B2 paper' if p.get('label') in (None, 'MAKE candidate') else p['label']
+        elif p.get('label') in ('B2 paper', 'MAKE candidate'):
             p['label'] = None
         kept.append(p)
     kept.sort(key=lambda p: -p['edge'])

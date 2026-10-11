@@ -509,7 +509,8 @@ def scan(day):
             if exec_venue is None:
                 continue  # Pinnacle listed it but no execution venue quoted this exact line
             edge = fair_under - exec_price
-            if edge < 0.02:  # below the B2 paper floor: skip. 2.0-<3.0 pts = B2 paper (rulebook: auto-logged, stake 0); >=3.0 = Track B
+            import make_order
+            if edge < make_order.MAKE_FLOOR:  # below the B2 paper floor: skip. 2.0-<3.0 pts = B2 paper (rulebook: auto-logged, stake 0); >=3.0 = Track B
                 continue
             model_gap = None  # 2026-10-06: the shot model is an INFO flag only (was a veto that hid Coleman U2.5, a clean Pinnacle+market-consensus edge); Pinnacle decides
             match = name_to_pid.get(norm_name)
@@ -527,7 +528,7 @@ def scan(day):
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
                                edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat(),
                                pin_move=(None if _pm is None else round(-_pm, 1)), model_gap=model_gap,
-                               label=('B2 paper' if round(edge, 4) < EDGE_MIN_PIN - 1e-9 else None)))
+                               label=make_order.label(edge, EDGE_MIN_PIN)))
     plays.sort(key=lambda p: -p['edge'])
     print(f"\n{len(plays)} Under plays clear the Pinnacle-based edge bar (>= {EDGE_MIN_PIN*100:.0f}pts):")
     for p in plays:
@@ -597,7 +598,7 @@ if __name__ == '__main__':
         print('consensus_flag skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
-        docs = to_ledger_docs(plays)
+        docs = to_ledger_docs([p for p in plays if p.get('label') != 'MAKE candidate'])  # MAKE candidates are not logged
         try:
             import consensus_flag; consensus_flag.tag_docs(docs, plays)
         except Exception as e:

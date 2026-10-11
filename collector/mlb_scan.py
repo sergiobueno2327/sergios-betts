@@ -10,7 +10,7 @@ import os, sys, datetime, collections
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from nfl_scan import get, nrm, devig_power, american_to_prob, MAX_PIN_VIG
-import consensus_flag, player_conflict, ref_books
+import consensus_flag, player_conflict, ref_books, make_order
 
 KEY = os.environ.get('THEODDSAPI_KEY', '')
 if not KEY:
@@ -48,13 +48,13 @@ def main(hours=30):
                 cost = american_to_prob(nov[side])
                 if not (ZONE[0] <= cost <= ZONE[1]): continue
                 edge = fair - cost
-                if edge < B2 - 1e-9: continue
+                if edge < make_order.MAKE_FLOOR - 1e-9: continue
                 rf = ref.get((mk, nrm(pl), line), {})
                 alt = {b: round((v if side == 'Over' else 1 - v) * 100, 1) for b, v in rf.items()}
                 plays.append(dict(game=f"{e['away_team']}@{e['home_team']}", start=e['commence_time'], player=pl, stat=MARKETS[mk], market=mk,
                                   line=line, side=side, venue='novig', fair=round(fair * 100, 1), price=round(cost * 100, 1),
                                   edge=round(edge * 100, 1), pin_vig=round(vig, 4), alt_fairs=alt,
-                                  label='TRACK B (live)' if edge >= LIVE - 1e-9 else 'B2 (paper, stake 0)'))
+                                  label=make_order.label(edge, LIVE) or 'TRACK B (live)'))
     plays.sort(key=lambda p: -p['edge'])
     return plays
 
@@ -99,7 +99,7 @@ def run(hours=30):
     except Exception as e:
         print('live_pin_verify FAILED -> no plays passed:', e); plays = []
     for p in plays:
-        p['label'] = 'TRACK B (live-eligible, MLB paper)' if p['edge'] >= 3.0 - 1e-9 else 'B2 paper'
+        p['label'] = 'TRACK B (live-eligible, MLB paper)' if p['edge'] >= 3.0 - 1e-9 else ('B2 paper' if p['edge'] >= 2.0 - 1e-9 else 'MAKE candidate')
     try:
         plays = player_conflict.resolve(plays)
     except Exception as ex:
@@ -108,7 +108,7 @@ def run(hours=30):
     report(plays)
     if '--write' in sys.argv:
         out = sys.argv[sys.argv.index('--write') + 1]
-        docs = to_ledger_docs(plays)
+        docs = to_ledger_docs([p for p in plays if p.get('label') != 'MAKE candidate'])
         try:
             consensus_flag.tag_docs(docs, plays)
         except Exception as e:

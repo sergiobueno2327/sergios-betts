@@ -101,7 +101,7 @@ def annotate_plays(plays):
         r = check(p.get('fair'), p.get('alt_fairs'))
         p['consensus'] = r['msg']
         p['consensus_status'] = classify(p.get('fair'), p.get('alt_fairs'))
-        if p['consensus_status'] == 'conflict' and 'B2' not in (p.get('label') or ''):
+        if p['consensus_status'] == 'conflict' and 'B2' not in (p.get('label') or '') and p.get('label') != 'MAKE candidate':
             p['label'] = 'B2 paper (consensus conflict)'; p['consensus_downgraded'] = True
             print(f"  DOWNGRADED to paper: {p.get('player') or p.get('game')} {p.get('side','')} {p.get('line','')} (consensus conflict)")
         if r['status'] in ('ok', 'gap'):

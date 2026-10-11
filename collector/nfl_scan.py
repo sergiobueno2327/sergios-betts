@@ -389,7 +389,7 @@ def kalshi_ticker(series_ticker, dtag, away, home, norm_player_name, line):
 # ---------- scan ----------
 def scan(edge_min_override=None):
     edge_min = edge_min_override or EDGE_MIN_PIN
-    collect_min = min(edge_min, 0.02)  # B2 paper band (2.0-<3.0 pts) is collected too (rulebook: B2 auto-logged, stake 0)
+    import make_order; collect_min = min(edge_min, make_order.MAKE_FLOOR)  # B2 paper band (2.0-<3.0 pts) is collected too (rulebook: B2 auto-logged, stake 0)
     # statusName is unreliable -- confirmed live 2026-09-28: repeated calls seconds apart disagreed
     # about the SAME fixture (a game scheduled 24h out came back "Finished" on one call, "Pre-Game"
     # on the next -- stale/inconsistent caching on OddsPapi's side, not real). Trust startTime vs
@@ -465,7 +465,7 @@ def scan(edge_min_override=None):
                     plays.append(dict(game=f"{fx['away']}@{fx['home']}", team=team, start=fx['start'], stat=stat,
                                        player=pin['name'], line=pin['line'], side=side, venue=venue,
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
-                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=(pp_fliff.label(venue, edge) or ('B2 paper' if round(edge, 4) < edge_min - 1e-9 else None)), pinn_unit=pinn_unit,
+                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=(pp_fliff.label(venue, edge) or make_order.label(edge, edge_min)), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
                                        away=fx['away'], home=fx['home'], pin_vig=pin.get('vig'),
                                        alt_fairs=({k: (v if side == 'Over' else round(100 - v, 1)) for k, v in _alt.items()}),
@@ -542,7 +542,7 @@ if __name__ == '__main__':
         print('consensus_flag skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
-        docs = to_ledger_docs(plays)
+        docs = to_ledger_docs([p for p in plays if p.get('label') != 'MAKE candidate'])  # MAKE candidates are not logged
         try:
             import consensus_flag; consensus_flag.tag_docs(docs, plays)
         except Exception as e:
