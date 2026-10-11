@@ -48,6 +48,8 @@ get().
 
 Usage: python3 nhl_scan.py YYYY-MM-DD [--edge 3]
 """
+import pin_move
+import pp_fliff
 import json, math, os, sys, time, re, unicodedata, datetime, collections, statistics
 import urllib.request, concurrent.futures as cf
 
@@ -59,6 +61,7 @@ os.makedirs(CACHE, exist_ok=True)
 # Frozen params (rulebook NHL SOG model, backtested 2026-09-25)
 WINS = (0.35, 0.30, 0.25, 0.10)          # season / L20 / L10 / L5 windows (TOI and rate both)
 K_RATE, W_OPP, R_NB = 120, 0.5, 40        # shrink window (min), opponent-allowed factor weight, NegBin r (~Poisson)
+MAX_PIN_VIG = 0.08  # market-width filter (added 2026-10-04): skip props where Pinnacle's two-sided margin > 8%
 EDGE_MIN_PIN, EDGE_MIN_EXCH = 0.03, 0.04  # Track B bars: Pinnacle-based >=3pts, exchange-based >=4pts
 ZONE = (0.35, 0.75)
 GH = [(-1.3556, 0.1995), (0.0, 0.6005), (1.3556, 0.1995)]  # 3-pt Gauss-Hermite (same as nba_scan.py)
@@ -377,6 +380,8 @@ def oddspapi_pinnacle_sog(fixture_id):
             if name and sport_cache.get(pid) != name:
                 sport_cache[pid] = name
                 cache_dirty = True
+            if 1.0 / po['price'] + 1.0 / pu['price'] - 1 > MAX_PIN_VIG:
+                continue  # WIDE MARKET: Pinnacle unsure -> no sharp anchor
             fair_over = devig_power(1.0 / po['price'], 1.0 / pu['price'])
             out[nrm(name)] = dict(name=name, line=float(handicap), fair_under=1 - fair_over)
     if cache_dirty:
@@ -397,12 +402,20 @@ def match_oddsapi_event(events, home_abbr, away_abbr):
     return None
 
 
+def _books():
+    from nfl_scan import ODDSAPI_VENUES  # shared, env-overridable (BETTS_BOOKS), widened 2026-10-04
+    return ODDSAPI_VENUES
+
+
+_PP = {}  # (event_id, norm_name, line) -> {'over': True, 'under': True} for PrizePicks legs
+
+
 def oddsapi_sog_venues(event_id):
     """{norm_name: {line: {'venue': slug, 'under': prob}}} -- raw one-sided UNDER price, NOT
     de-vigged (matches nfl_scan.py / softness_scan.py -- de-vigging an execution venue would erase
     the mispricing Track B is looking for)."""
     url = (f"https://api.the-odds-api.com/v4/sports/icehockey_nhl/events/{event_id}/odds"
-           f"?apiKey={THEODDSAPI_KEY}&bookmakers=novig,fliff,prophetx,prizepicks&markets=player_shots_on_goal&oddsFormat=decimal")
+           f"?apiKey={THEODDSAPI_KEY}&bookmakers={','.join(_books())}&markets=player_shots_on_goal&oddsFormat=decimal")
     j = get(url) or {}
     out = collections.defaultdict(dict)
     for bm in j.get('bookmakers', []):
@@ -411,9 +424,15 @@ def oddsapi_sog_venues(event_id):
             if mkt.get('key') != 'player_shots_on_goal':
                 continue
             for o in mkt.get('outcomes', []):
+                if venue == 'prizepicks' and o.get('name') in ('Over', 'Under') and o.get('point') is not None and o.get('description'):
+                    # fixed-payout DFS: record only that the leg is offered (see pp_fliff.py); not a price
+                    _PP.setdefault((event_id, nrm(o['description']), float(o['point'])), {})[o['name'].lower()] = True
+                    continue
                 if o.get('name') != 'Under' or not o.get('price') or o.get('point') is None or not o.get('description'):
                     continue
-                out[nrm(o['description'])][float(o['point'])] = dict(venue=venue, under=1.0 / o['price'])
+                prev = out[nrm(o['description'])].get(float(o['point']))
+                if prev is None or 1.0 / o['price'] < prev['under']:  # keep the BEST (cheapest) Under across all books
+                    out[nrm(o['description'])][float(o['point'])] = dict(venue=venue, under=1.0 / o['price'])
     return out
 
 
@@ -461,6 +480,21 @@ def scan(day):
 
         for norm_name, p in pin.items():
             fair_under, line = p['fair_under'], p['line']
+            _pk = pin_move.key('NHL', f"{g['away']}@{g['home']}", p['name'], 'sog', line)
+            _pm = pin_move.move(_pk, 1 - fair_under)
+            pin_move.record(_pk, 1 - fair_under)
+            pp = _PP.get((event_id, norm_name, float(line))) if event_id else None
+            for pside in ('Over', 'Under'):  # PrizePicks fixed-cost legs (54.3c Flex basis): Track B >= 57.3 fair, B2 56.3-57.3
+                if not (pp and pp.get(pside.lower())):
+                    continue
+                pfair = (1 - fair_under) if pside == 'Over' else fair_under
+                if pp_fliff.PP_B2_LO - 1e-9 <= pfair <= 0.75:
+                    pedge = pfair - pp_fliff.PP_BREAKEVEN
+                    plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue='prizepicks', side=pside,
+                                       fair=round(pfair * 100, 1), price=round(pp_fliff.PP_BREAKEVEN * 100, 1),
+                                       fair_under=round(fair_under * 100, 1), price_under=round(pp_fliff.PP_BREAKEVEN * 100, 1),
+                                       edge=round(pedge * 100, 1), label=pp_fliff.label('prizepicks', pedge),
+                                       start=g.get('start'), date=day.isoformat(), pin_move=None))
             exec_venue, exec_price = None, None
             for exec_line, info in venues.get(norm_name, {}).items():
                 if abs(exec_line - line) > 0.01:
@@ -470,8 +504,9 @@ def scan(day):
             if exec_venue is None:
                 continue  # Pinnacle listed it but no execution venue quoted this exact line
             edge = fair_under - exec_price
-            if edge < EDGE_MIN_PIN:  # Pinnacle-based bar (Track B rule)
+            if edge < 0.02:  # below the B2 paper floor: skip. 2.0-<3.0 pts = B2 paper (rulebook: auto-logged, stake 0); >=3.0 = Track B
                 continue
+            model_gap = None  # 2026-10-06: the shot model is an INFO flag only (was a veto that hid Coleman U2.5, a clean Pinnacle+market-consensus edge); Pinnacle decides
             match = name_to_pid.get(norm_name)
             if match:
                 pid, team = match
@@ -479,15 +514,20 @@ def scan(day):
                 m = player_mu(pid, opp, state)
                 if m:
                     model_over = prob_over(m, math.ceil(line))
-                    if model_over - (1 - fair_under) >= 0.03:  # model strongly favors Over -> filter out this Under
-                        continue
+                    if model_over - (1 - fair_under) >= 0.03:
+                        model_gap = round((model_over - (1 - fair_under)) * 100, 1)
             plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue=exec_venue,
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
-                               edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat()))
+                               edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat(),
+                               pin_move=(None if _pm is None else round(-_pm, 1)), model_gap=model_gap,
+                               label=('B2 paper' if round(edge, 4) < EDGE_MIN_PIN - 1e-9 else None)))
     plays.sort(key=lambda p: -p['edge'])
     print(f"\n{len(plays)} Under plays clear the Pinnacle-based edge bar (>= {EDGE_MIN_PIN*100:.0f}pts):")
     for p in plays:
         print(p)
+    for p in plays:
+        if p.get('model_gap'):
+            print(f"  [INFO model gap] {p['player']} Under {p['line']}: in-house shot model has the Over {p['model_gap']} pts above Pinnacle's Over. Non-blocking; Pinnacle still decides.")
     return plays
 
 
@@ -504,28 +544,46 @@ def to_ledger_docs(plays):
     docs = {}
     for p in plays:
         slug = p['player'].split()[-1].lower()
-        doc_id = f"{p['date']}-nhl-{slug}-sog{str(p['line']).replace('.', '')}-u"
-        if doc_id in docs and docs[doc_id]['data']['edge'] <= p['edge']:
+        pside = p.get('side', 'Under')  # PrizePicks legs (pp_fliff.py) can be Over or Under; Track B plays are Under
+        doc_id = f"{p['date']}-nhl-{slug}-sog{str(p['line']).replace('.', '')}-{'o' if pside == 'Over' else 'u'}"
+        if doc_id in docs and docs[doc_id]['data']['edge'] >= p['edge']:  # keep the HIGHER edge (was inverted: kept the lower)
             continue
-        note = f"NHL SOG scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p['fair_under']}c (Under)."
+        b2 = pp_fliff.is_b2(p.get('label'))
+        note = f"NHL SOG scan {p['date']}. Edge +{p['edge']}pts vs {p['venue']}. Pinnacle fair {p.get('fair', p['fair_under'])}c ({pside})."
+        if p.get('label') and p['venue'] == 'prizepicks':
+            note += f" {p['label']}; cost basis {p['price_under']}c (fixed PrizePicks Flex break-even)."
+        elif p.get('label'):
+            note += f" {p['label']} (2.0-<3.0 pts, paper only)."
         note += f" Bet placed on {p['venue']}, not Kalshi -- Kalshi carries no NHL SOG market (confirmed repeatedly); needs manual {p['venue']} close for CLV, not a Kalshi close."
         if not p['start']:
             note += " Start time missing from NHL API response -- check before logging."
         docs[doc_id] = dict(id=doc_id, data=dict(
             date=p['date'], game=p['game'], player=p['player'], market=f"Shots On Goal {p['line']}",
-            entry=p['price_under'], fair=p['fair_under'],
+            entry=p['price'] if 'price' in p else p['price_under'], fair=p.get('fair', p['fair_under']),
             fairSource=f'Pinnacle no-vig SOG (OddsPapi, nhl_scan.py) vs {p["venue"]}',
-            edge=p['edge'], side='NO', sport='NHL', track='B', stake=0, fee=0, orderType='taker',
+            edge=p['edge'], side='YES' if pside == 'Over' else 'NO', sport='NHL', track='B2' if b2 else 'B', stake=0, fee=0, orderType='taker',
             kalshi_ticker=None, start=p['start'],
             pinn=dict(who=p['player'], mkt='prop:Shots On Goal', line=p['line']),
-            status=f"Paper — daily scan, pending fill ({p['venue']})",
-            note=note, close=None, result=None, zone='35–75'))
+            status=(f"Paper — {p['label']}" if p.get('label') else f"Paper — daily scan, pending fill ({p['venue']})"),
+            note=note, close=None, result=None, zone='35–75', tier='B2' if b2 else None, label=p.get('label')))
     return list(docs.values())
 
 
 if __name__ == '__main__':
     d = datetime.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else datetime.date.today()
     plays = scan(d)
+    try:
+        import live_pin_verify; plays = live_pin_verify.verify(plays, 'icehockey_nhl', lambda p: 'player_shots_on_goal')
+    except Exception as e:
+        print('live_pin_verify FAILED -> no plays passed:', e); plays = []
+    try:
+        import player_conflict; plays = player_conflict.resolve(plays)  # no opposite sides / one-market-per-player guard
+    except Exception as e:
+        print('player_conflict skipped:', e)
+    try:
+        import adverse_flag; adverse_flag.annotate_plays(plays)  # info-only, non-blocking
+    except Exception as e:
+        print('adverse_flag skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
         docs = to_ledger_docs(plays)

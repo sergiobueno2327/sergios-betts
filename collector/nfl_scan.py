@@ -51,6 +51,7 @@ player's CURRENT team is verified against a live ESPN roster pull before a play 
 from memory, never from just trusting the data provider's own team label.
 """
 import pin_move
+import pp_fliff
 import json, math, os, sys, time, re, unicodedata, datetime, collections, urllib.request
 from zoneinfo import ZoneInfo
 
@@ -64,8 +65,10 @@ MAX_PIN_VIG = 0.08  # market-width filter (added 2026-10-04): skip plays where P
 # Execution venues (Kalshi handled separately via its direct API). Widened 2026-10-04 at Sergio's request: he can bet at ANY book, not
 # just exchanges, so scans take the best price across all of these (venue is tagged on every play). Override with env BETTS_BOOKS=a,b,c
 # (The Odds API bookmaker keys) once Sergio gives his exact list/state. DFS apps (prizepicks/underdog) are pick'em style, kept only prizepicks.
-_DEFAULT_BOOKS = ('novig,fliff,prophetx,prizepicks,draftkings,fanduel,betmgm,williamhill_us,espnbet,betrivers,hardrockbet,fanatics,'
-                  'bovada,betonlineag,courtside,ballybet,betparx')
+# LOCKED 2026-10-05 to Sergio's actual linked accounts (Upside 'Linked Accounts' screenshot): Active = DK Pick6, Fliff, Kalshi, Novig,
+# PrizePicks, Sleeper, Underdog (+1 cut off at top); Needs attention = Onyx (invalid credentials), ProphetX (2FA error) -> ProphetX dropped
+# until fixed. Kalshi is pulled directly. DK Pick6 / Sleeper / Underdog are pick'em apps with no tradable price in the APIs (manual only).
+_DEFAULT_BOOKS = 'novig,prizepicks'
 ODDSAPI_VENUES = tuple(b for b in os.environ.get('BETTS_BOOKS', _DEFAULT_BOOKS).split(',') if b)
 
 # stat -> (OddsPapi marketName, OddsPapi marketType, The Odds API market key, Kalshi series
@@ -311,7 +314,13 @@ def oddsapi_venue_odds(event_id):
                     continue
                 by_pl[(nrm(o['description']), float(o['point']))][o['name']] = 1.0 / o['price']
             for (norm_name, line), sides in by_pl.items():
-                out[stat][norm_name][line] = merge_best(out[stat][norm_name].get(line), venue, sides.get('Over'), sides.get('Under'))
+                if venue == 'prizepicks':  # fixed-payout DFS: not a price -- only record that the leg is offered (see pp_fliff.py)
+                    cur = out[stat][norm_name].get(line) or dict(venue=venue, over=None, under=None, over_venue=None, under_venue=None)
+                    cur['pp_over'], cur['pp_under'] = 'Over' in sides, 'Under' in sides
+                    out[stat][norm_name][line] = cur
+                    continue
+                cur = merge_best(out[stat][norm_name].get(line), venue, sides.get('Over'), sides.get('Under'))
+                out[stat][norm_name][line] = cur
     return out
 
 
@@ -380,6 +389,7 @@ def kalshi_ticker(series_ticker, dtag, away, home, norm_player_name, line):
 # ---------- scan ----------
 def scan(edge_min_override=None):
     edge_min = edge_min_override or EDGE_MIN_PIN
+    collect_min = min(edge_min, 0.02)  # B2 paper band (2.0-<3.0 pts) is collected too (rulebook: B2 auto-logged, stake 0)
     # statusName is unreliable -- confirmed live 2026-09-28: repeated calls seconds apart disagreed
     # about the SAME fixture (a game scheduled 24h out came back "Finished" on one call, "Pre-Game"
     # on the next -- stale/inconsistent caching on OddsPapi's side, not real). Trust startTime vs
@@ -397,6 +407,11 @@ def scan(edge_min_override=None):
             continue
         event_id = match_oddsapi_event(oddsapi_events, fx['home'], fx['away'])
         venue_by_stat = oddsapi_venue_odds(event_id) if event_id else {}
+        try:
+            import ref_books
+            _ref = ref_books.ref_fairs('americanfootball_nfl', event_id, [v[2] for v in STAT_MARKETS.values()]) if event_id else {}
+        except Exception as e:
+            print('ref_books skipped:', e); _ref = {}
         if not event_id:
             print(f"  {fx['away']}@{fx['home']}: no matching event on The Odds API -- Kalshi-only for this game")
         dtag = kalshi_date_tag(fx['start'])
@@ -410,12 +425,13 @@ def scan(edge_min_override=None):
                 for line, info in venue_by_stat.get(stat, {}).get(norm_name, {}).items():
                     if abs(line - pin['line']) > 0.01:
                         continue  # different line than Pinnacle's -- not a clean comparison, skip
-                    candidates.extend(side_candidates(info, pin['fair_over'], edge_min, ZONE))
+                    candidates.extend(side_candidates(info, pin['fair_over'], collect_min, ZONE))
+                    candidates.extend(c for c in pp_fliff.extra_candidates(info, pin['fair_over']) if c not in candidates)
                 kp = kalshi_price(kalshi_series, dtag, fx['away'], fx['home'], norm_name, pin['line'])
                 if kp:
                     edge_over, edge_under = pin['fair_over'] - kp['over'], (1 - pin['fair_over']) - kp['under']
                     for side, edge, price in (('Over', edge_over, kp['over']), ('Under', edge_under, kp['under'])):
-                        if edge >= edge_min and ZONE[0] <= price <= ZONE[1]:
+                        if edge >= collect_min and ZONE[0] <= price <= ZONE[1]:
                             candidates.append((side, edge, price, 'kalshi'))
                 if not candidates:
                     continue
@@ -439,19 +455,25 @@ def scan(edge_min_override=None):
                 if pin.get('vig', 0) > MAX_PIN_VIG:
                     print(f"  WIDE MARKET skip: {pin['name']} {stat} {pin['line']} -- Pinnacle vig {pin['vig']*100:.1f}% > {MAX_PIN_VIG*100:.0f}%")
                     continue
+                _alt = {}
+                if kp and kp.get('over') and kp.get('under'):
+                    _alt['kalshi'] = round(kp['over'] / (kp['over'] + kp['under']) * 100, 1)
+                for _bk, _f in _ref.get((oa_key, norm_name, pin['line']), {}).items():
+                    _alt[_bk] = round(_f * 100, 1)
                 for side, edge, price, venue in candidates:
                     et_dt = datetime.datetime.fromisoformat(fx['start'].replace('Z', '+00:00')).astimezone(ZoneInfo('America/New_York'))
                     plays.append(dict(game=f"{fx['away']}@{fx['home']}", team=team, start=fx['start'], stat=stat,
                                        player=pin['name'], line=pin['line'], side=side, venue=venue,
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
-                                       price=round(price * 100, 1), edge=round(edge * 100, 1), pinn_unit=pinn_unit,
+                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=(pp_fliff.label(venue, edge) or ('B2 paper' if round(edge, 4) < edge_min - 1e-9 else None)), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
                                        away=fx['away'], home=fx['home'], pin_vig=pin.get('vig'),
+                                       alt_fairs=({k: (v if side == 'Over' else round(100 - v, 1)) for k, v in _alt.items()}),
                                        pin_move=(None if _pm is None else round(_pm if side == 'Over' else -_pm, 1))))
         time.sleep(0.3)
 
     plays.sort(key=lambda p: -p['edge'])
-    print(f"\n{len(plays)} Track B plays clear the bar (>= {edge_min*100:.0f}pts Pinnacle-based, zone 35-75c):")
+    print(f"\n{len(plays)} Track B plays clear the bar (>= {edge_min*100:.0f}pts Pinnacle-based, zone 35-75c; entries labelled 'B2 paper' are the 2.0-<3.0 paper band, never live):")
     for p in plays:
         print(p)
     return plays
@@ -490,17 +512,34 @@ def to_ledger_docs(plays):
             date=p['date'], game=p['game'], player=p['player'], market=f"{p['pinn_unit']} {p['side']} {p['line']}",
             entry=p['price'], fair=p['fair'],
             fairSource=f'Pinnacle no-vig (OddsPapi, nfl_scan.py) vs {p["venue"]}',
-            edge=p['edge'], side=side, sport='NFL', track='B', stake=0, fee=0,
+            edge=p['edge'], side=side, sport='NFL', track=('B2' if pp_fliff.is_b2(p.get('label')) else 'B'), stake=0, fee=0,
+            tier=('B2' if pp_fliff.is_b2(p.get('label')) else None), label=p.get('label'),
             orderType='maker' if p['venue'] == 'kalshi' else 'taker',
             kalshi_ticker=ticker, start=p['start'],
             pinn=dict(who=p['player'], mkt=f"prop:{p['pinn_unit']}", line=p['line']),
-            status=f"Paper — Track B scan, pending fill ({p['venue']})" if ticker or p['venue'] != 'kalshi' else 'Paper — needs kalshi_ticker',
+            status=(f"Paper — {p['label']}" if p.get('label') else f"Paper — Track B scan, pending fill ({p['venue']})") if ticker or p['venue'] != 'kalshi' else 'Paper — needs kalshi_ticker',
             note=note, close=None, result=None, zone='35–75', pinMove=p.get('pin_move')))
     return list(docs.values())
 
 
 if __name__ == '__main__':
     plays = scan()
+    try:
+        import live_pin_verify; plays = live_pin_verify.verify(plays, 'americanfootball_nfl', lambda p: STAT_MARKETS[p['stat']][2])
+    except Exception as e:
+        print('live_pin_verify FAILED -> no plays passed:', e); plays = []
+    try:
+        import player_conflict; plays = player_conflict.resolve(plays)  # no opposite sides / one-market-per-player guard
+    except Exception as e:
+        print('player_conflict skipped:', e)
+    try:
+        import adverse_flag; adverse_flag.annotate_plays(plays)  # info-only, non-blocking
+    except Exception as e:
+        print('adverse_flag skipped:', e)
+    try:
+        import consensus_flag; consensus_flag.annotate_plays(plays)  # info-only, non-blocking
+    except Exception as e:
+        print('consensus_flag skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
         docs = to_ledger_docs(plays)
