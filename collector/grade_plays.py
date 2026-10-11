@@ -314,7 +314,7 @@ def nhl_actual_sog(spec, start):
                         if last == who_last:
                             hits.append(p)
             if len(hits) == 1:
-                return int(hits[0].get('sog', 0) or 0), f'nhl boxscore game {gid}'
+                return int(hits[0].get({'prop:Assists':'assists','prop:Points':'points','prop:Goals':'goals'}.get(spec.get('mkt'),'sog'), 0) or 0), f'nhl boxscore game {gid}'
             if len(hits) > 1:
                 return None, f'ambiguous name match ({len(hits)} players named {who_last}) in game {gid}'
     return None, 'no matching finished NHL game/player found'
@@ -363,7 +363,7 @@ def real_result(play, start):
     Returns (win: bool, note: str) or (None, note) if no path exists / nothing found yet."""
     spec = play.get('pinn') or {}
     sport = play.get('sport')
-    if sport == 'NHL' and spec.get('mkt') == 'prop:Shots On Goal':
+    if sport == 'NHL' and spec.get('mkt') in ('prop:Shots On Goal', 'prop:Assists', 'prop:Points', 'prop:Goals'):
         val, note = nhl_actual_sog(spec, start)
     elif sport == 'MLB' and spec.get('mkt') in ('prop:Hits', 'prop:Bases'):
         val, note = mlb_actual_stat(spec, start)
