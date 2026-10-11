@@ -38,15 +38,30 @@ def label(edge, edge_min):
     return 'B2 paper' if round(edge, 4) >= 0.02 - 1e-9 else 'MAKE candidate'
 
 
+def eligible(p, m):
+    """MAKE-ELIGIBLE (Sergio, 2026-10-11): borderline edge (2.0-<3.0) AND every reference book agrees with Pinnacle
+    (consensus_status == 'confirmed') AND the Make price is plausibly fillable (ask - ceiling <= 2c) on an exchange."""
+    return bool(m) and 2.0 - 1e-9 <= p.get('edge', 0) < 3.0 and p.get('consensus_status') == 'confirmed' and m['fill_odds'] == 'plausible'
+
+
 def annotate_plays(plays):
-    n = 0
+    """Run AFTER consensus_flag sets p['consensus_status']. Sets p['make'] and p['make_eligible'].
+    Only MAKE-ELIGIBLE plays are recommended; other under-3.0 plays get a one-line info price, nothing more."""
+    elig, info = [], []
     for p in plays:
         m = compute(p)
         p['make'] = m
+        p['make_eligible'] = eligible(p, m)
         if m and p.get('edge', 0) < 3.0 and m['fill_odds'] != 'very low':
-            if n == 0:
-                print('\nMake-order helper (plays under 3.0: resting price that would clear 3.0 pts; info only, paper until Sergio places it):')
-            n += 1
-            print(f"  {p.get('player') or p.get('game')} {p.get('side', 'Under')} {p.get('line', '')}: Make target {m['target']}c "
-                  f"(ceiling {m['ceiling']}c) vs ask {p.get('price', p.get('price_under'))}c -> {m['gap']}c below ask, fill odds {m['fill_odds']}")
+            (elig if p['make_eligible'] else info).append((p, m))
+    def line(p, m):
+        return (f"{p.get('player') or p.get('game')} {p.get('side', 'Under')} {p.get('line', '')} ({p.get('venue')}, edge +{p.get('edge')}): "
+                f"Make target {m['target']}c, ceiling {m['ceiling']}c vs ask {p.get('price', p.get('price_under'))}c "
+                f"({m['gap']}c below ask, fill odds {m['fill_odds']}, consensus {p.get('consensus_status')})")
+    if elig:
+        print('\nMAKE-ELIGIBLE (borderline edge + all reference books agree; rest at target, never past ceiling, cancel before start; paper until Sergio places it):')
+        for p, m in elig: print('  ' + line(p, m))
+    if info:
+        print('\nMake price info only (not eligible: edge <2.0 or books not all agreeing):')
+        for p, m in info: print('  ' + line(p, m))
     return plays

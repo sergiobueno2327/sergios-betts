@@ -83,6 +83,7 @@ def tag_docs(docs, plays):  # also copies Make-order fields (make_order.py)
         x = d['data']; p = m.get((x.get('player'), x.get('game')))
         if p and p.get('make'):
             x['makeCeiling'], x['makeTarget'], x['makeGap'] = p['make']['ceiling'], p['make']['target'], p['make']['gap']
+            x['makeEligible'] = bool(p.get('make_eligible'))
             if x.get('edge', 0) < 3.0:
                 x['note'] = (x.get('note') or '') + f" Make price to clear 3.0: target {p['make']['target']}c, ceiling {p['make']['ceiling']}c ({p['make']['gap']}c below ask, fill odds {p['make']['fill_odds']}); paper until placed."
         if p and p.get('consensus_status'):
