@@ -535,9 +535,11 @@ def report(plays):
         if dk in seen:
             continue   # re-check scans log the same play twice; count it once
         seen.add(dk)
-        if p.get('clvPinn') is None or p.get('filled') is not True or p.get('closeIndependent') is not True:
+        real = float(p.get('stake') or 0) > 0
+        # real-money bets must have an explicit fill; paper plays count unless explicitly never entered
+        if p.get('clvPinn') is None or p.get('closeIndependent') is not True or (p.get('filled') is not True if real else p.get('filled') is False):
             continue   # non-independent closes (stale / == entry fair) are not CLV evidence
-        key = f"{p.get('sport')} {'Track ' + p.get('track', '?')} {p.get('market', '').split()[0] if p.get('track') == 'A' else ''}".strip()
+        key = f"{'REAL' if real else 'PAPER'} {p.get('sport')} {'Track ' + p.get('track', '?')} {p.get('market', '').split()[0] if p.get('track') == 'A' else ''}".strip()
         groups.setdefault(key, []).append(p)
     lines = []
     for k, ps in sorted(groups.items()):
