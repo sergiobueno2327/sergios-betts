@@ -472,6 +472,11 @@ def scan(day):
         venues = oddsapi_sog_venues(event_id) if event_id else {}
         if not event_id:
             print(f"  {g['away']}@{g['home']}: no matching event on The Odds API -- no execution venue for this game")
+        try:
+            import ref_books
+            _ref = ref_books.ref_fairs('icehockey_nhl', event_id, ['player_shots_on_goal']) if event_id else {}
+        except Exception as e:
+            print('ref_books skipped:', e); _ref = {}
 
         season = g['season'] or (day.year * 10000 + day.year + 1 if day.month >= 7 else (day.year - 1) * 10000 + day.year)
         home_roster, away_roster = roster(g['home'], str(season)), roster(g['away'], str(season))
@@ -516,7 +521,9 @@ def scan(day):
                     model_over = prob_over(m, math.ceil(line))
                     if model_over - (1 - fair_under) >= 0.03:
                         model_gap = round((model_over - (1 - fair_under)) * 100, 1)
+            _alt = {_bk: round((1 - _f) * 100, 1) for _bk, _f in _ref.get(('player_shots_on_goal', norm_name, float(line)), {}).items()}
             plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue=exec_venue,
+                               fair=round(fair_under * 100, 1), alt_fairs=_alt, side='Under',
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
                                edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat(),
                                pin_move=(None if _pm is None else round(-_pm, 1)), model_gap=model_gap,
@@ -584,9 +591,17 @@ if __name__ == '__main__':
         import adverse_flag; adverse_flag.annotate_plays(plays)  # info-only, non-blocking
     except Exception as e:
         print('adverse_flag skipped:', e)
+    try:
+        import consensus_flag; consensus_flag.annotate_plays(plays)  # downgrades live->paper on conflict, never blocks
+    except Exception as e:
+        print('consensus_flag skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
         docs = to_ledger_docs(plays)
+        try:
+            import consensus_flag; consensus_flag.tag_docs(docs, plays)
+        except Exception as e:
+            print('consensus tag skipped:', e)
         with open(outpath, 'w') as fh:
             json.dump(docs, fh, indent=2)
         print(f'\nWrote {len(docs)} ledger-ready docs to {outpath} (kalshi_ticker always null -- see to_ledger_docs docstring)')

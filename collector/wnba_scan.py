@@ -284,6 +284,10 @@ if __name__ == '__main__':
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
         docs = to_ledger_docs(plays)
+        try:
+            import consensus_flag; consensus_flag.tag_docs(docs, plays)
+        except Exception as e:
+            print('consensus tag skipped:', e)
         with open(outpath, 'w') as fh:
             json.dump(docs, fh, indent=2)
         print(f'\nWrote {len(docs)} ledger-ready docs to {outpath}')

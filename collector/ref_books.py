@@ -9,7 +9,7 @@ import os, collections
 from nfl_scan import get, nrm, devig_power, american_to_prob
 
 KEY = os.environ.get('THEODDSAPI_KEY', '')
-REF_BOOKS = tuple(b for b in os.environ.get('BETTS_REF_BOOKS', 'fanduel').split(',') if b)
+REF_BOOKS = tuple(b for b in os.environ.get('BETTS_REF_BOOKS', 'fanduel,draftkings').split(',') if b)
 MAX_REF_VIG = 0.14  # skip absurdly wide reference markets
 
 
