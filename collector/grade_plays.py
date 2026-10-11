@@ -285,7 +285,7 @@ def pinnacle_close_op(play, start):
     return None, f'oddspapi: not found ({len(cand)} candidate games)'
 
 
-def nhl_actual_sog(spec, start):
+def nhl_actual_sog(spec, start, game=None):
     """Real shots-on-goal for a ticker-less NHL SOG play (Novig/ProphetX/Fliff/PrizePicks --
     Kalshi carries no NHL SOG market at all, confirmed repeatedly). Built 2026-09-28 to close the
     gap nhl_scan.py's to_ledger_docs docstring flagged: these plays got clvPinn but no result/W-L
@@ -303,6 +303,11 @@ def nhl_actual_sog(spec, start):
             gt = ts(g['startTimeUTC']) if g.get('startTimeUTC') else None
             if gt and abs((gt - start).total_seconds()) > 6 * 3600:
                 continue
+            if game and '@' in game:
+                _al = {'SJ': 'SJS', 'TB': 'TBL', 'NJ': 'NJD', 'LA': 'LAK'}
+                _a, _h = [_al.get(x.strip(), x.strip()) for x in game.split('@')[:2]]
+                if (g.get('awayTeam') or {}).get('abbrev') != _a.strip() or (g.get('homeTeam') or {}).get('abbrev') != _h.strip():
+                    continue  # wrong game (same start window, different teams) -> never grade a same-surname player from another game
             gid = g['id']
             box = get(f"https://api-web.nhle.com/v1/gamecenter/{gid}/boxscore", headers={'User-Agent': 'curl/8'}) or {}
             hits = []
@@ -364,7 +369,7 @@ def real_result(play, start):
     spec = play.get('pinn') or {}
     sport = play.get('sport')
     if sport == 'NHL' and spec.get('mkt') in ('prop:Shots On Goal', 'prop:Assists', 'prop:Points', 'prop:Goals'):
-        val, note = nhl_actual_sog(spec, start)
+        val, note = nhl_actual_sog(spec, start, play.get('game'))
     elif sport == 'MLB' and spec.get('mkt') in ('prop:Hits', 'prop:Bases'):
         val, note = mlb_actual_stat(spec, start)
     elif sport == 'NFL':
