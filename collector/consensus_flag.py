@@ -76,11 +76,15 @@ def classify(pin_fair, alts):
     return 'mixed'
 
 
-def tag_docs(docs, plays):
+def tag_docs(docs, plays):  # also copies Make-order fields (make_order.py)
     """Copy consensusStatus (and a downgrade note) from plays onto ledger docs, matched by player+game."""
     m = {(p.get('player'), p.get('game')): p for p in plays}
     for d in docs:
         x = d['data']; p = m.get((x.get('player'), x.get('game')))
+        if p and p.get('make'):
+            x['makeCeiling'], x['makeTarget'], x['makeGap'] = p['make']['ceiling'], p['make']['target'], p['make']['gap']
+            if x.get('edge', 0) < 3.0:
+                x['note'] = (x.get('note') or '') + f" Make price to clear 3.0: target {p['make']['target']}c, ceiling {p['make']['ceiling']}c ({p['make']['gap']}c below ask, fill odds {p['make']['fill_odds']}); paper until placed."
         if p and p.get('consensus_status'):
             x['consensusStatus'] = p['consensus_status']
             if p.get('consensus_downgraded'):
@@ -105,6 +109,10 @@ def annotate_plays(plays):
                 print('\nConsensus cross-check (info only, never rejects a play):')
             n += 1
             print(f"  {p.get('player') or p.get('game')}: {r['msg']}")
+    try:
+        import make_order; make_order.annotate_plays(plays)  # Make-order helper rides every scan that calls this
+    except Exception as e:
+        print('make_order skipped:', e)
     return plays
 
 
