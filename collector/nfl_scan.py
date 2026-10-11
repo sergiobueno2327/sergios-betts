@@ -389,6 +389,7 @@ def kalshi_ticker(series_ticker, dtag, away, home, norm_player_name, line):
 # ---------- scan ----------
 def scan(edge_min_override=None):
     edge_min = edge_min_override or EDGE_MIN_PIN
+    collect_min = min(edge_min, 0.02)  # B2 paper band (2.0-<3.0 pts) is collected too (rulebook: B2 auto-logged, stake 0)
     # statusName is unreliable -- confirmed live 2026-09-28: repeated calls seconds apart disagreed
     # about the SAME fixture (a game scheduled 24h out came back "Finished" on one call, "Pre-Game"
     # on the next -- stale/inconsistent caching on OddsPapi's side, not real). Trust startTime vs
@@ -424,13 +425,13 @@ def scan(edge_min_override=None):
                 for line, info in venue_by_stat.get(stat, {}).get(norm_name, {}).items():
                     if abs(line - pin['line']) > 0.01:
                         continue  # different line than Pinnacle's -- not a clean comparison, skip
-                    candidates.extend(side_candidates(info, pin['fair_over'], edge_min, ZONE))
+                    candidates.extend(side_candidates(info, pin['fair_over'], collect_min, ZONE))
                     candidates.extend(c for c in pp_fliff.extra_candidates(info, pin['fair_over']) if c not in candidates)
                 kp = kalshi_price(kalshi_series, dtag, fx['away'], fx['home'], norm_name, pin['line'])
                 if kp:
                     edge_over, edge_under = pin['fair_over'] - kp['over'], (1 - pin['fair_over']) - kp['under']
                     for side, edge, price in (('Over', edge_over, kp['over']), ('Under', edge_under, kp['under'])):
-                        if edge >= edge_min and ZONE[0] <= price <= ZONE[1]:
+                        if edge >= collect_min and ZONE[0] <= price <= ZONE[1]:
                             candidates.append((side, edge, price, 'kalshi'))
                 if not candidates:
                     continue
@@ -464,7 +465,7 @@ def scan(edge_min_override=None):
                     plays.append(dict(game=f"{fx['away']}@{fx['home']}", team=team, start=fx['start'], stat=stat,
                                        player=pin['name'], line=pin['line'], side=side, venue=venue,
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
-                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=pp_fliff.label(venue, edge), pinn_unit=pinn_unit,
+                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=(pp_fliff.label(venue, edge) or ('B2 paper' if round(edge, 4) < edge_min - 1e-9 else None)), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
                                        away=fx['away'], home=fx['home'], pin_vig=pin.get('vig'),
                                        alt_fairs=({k: (v if side == 'Over' else round(100 - v, 1)) for k, v in _alt.items()}),
@@ -472,7 +473,7 @@ def scan(edge_min_override=None):
         time.sleep(0.3)
 
     plays.sort(key=lambda p: -p['edge'])
-    print(f"\n{len(plays)} Track B plays clear the bar (>= {edge_min*100:.0f}pts Pinnacle-based, zone 35-75c):")
+    print(f"\n{len(plays)} Track B plays clear the bar (>= {edge_min*100:.0f}pts Pinnacle-based, zone 35-75c; entries labelled 'B2 paper' are the 2.0-<3.0 paper band, never live):")
     for p in plays:
         print(p)
     return plays
