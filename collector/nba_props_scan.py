@@ -138,7 +138,7 @@ def pinnacle_and_venue_odds(event_id):
 
 def scan(edge_min_override=None):
     edge_min = edge_min_override or EDGE_MIN_PIN
-    import make_order; collect_min = min(edge_min, make_order.MAKE_FLOOR)  # B2 paper band (2.0-<3.0 pts) is collected too (rulebook: B2 auto-logged, stake 0)
+    collect_min = min(edge_min, 0.02)  # B2 paper band (2.0-<3.0 pts) is collected too (rulebook: B2 auto-logged, stake 0)
     events = [e for e in oddsapi_events_this_week() if _not_kicked_off(e['commence_time'])]
     print(f"{len(events)} upcoming NBA games with live odds (The Odds API)")
     plays = []
@@ -206,7 +206,7 @@ def scan(edge_min_override=None):
                     plays.append(dict(game=f"{away}@{home}", team=team, start=ev['commence_time'], stat=stat,
                                        player=pin['name'], line=pin['line'], side=side, venue=venue,
                                        fair=round((pin['fair_over'] if side == 'Over' else 1 - pin['fair_over']) * 100, 1),
-                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=(pp_fliff.label(venue, edge) or make_order.label(edge, edge_min)), pinn_unit=pinn_unit,
+                                       price=round(price * 100, 1), edge=round(edge * 100, 1), label=(pp_fliff.label(venue, edge) or ('B2 paper' if round(edge, 4) < edge_min - 1e-9 else None)), pinn_unit=pinn_unit,
                                        date=et_dt.date().isoformat(), kalshi_series=kalshi_series, dtag=dtag,
                                        away=away, home=home, pin_vig=pin.get('vig'),
                                        alt_fairs={k: (v if side == 'Over' else round(100 - v, 1)) for k, v in _alt.items()},
@@ -272,13 +272,13 @@ if __name__ == '__main__':
         import consensus_flag; consensus_flag.annotate_plays(plays)  # info-only, non-blocking
     except Exception as e:
         print('consensus_flag skipped:', e)
+    try:
+        import make_order; make_order.annotate_plays(plays)  # info only: ceiling for B2 plays
+    except Exception as e:
+        print('make_order skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
-        docs = to_ledger_docs([p for p in plays if p.get('label') != 'MAKE candidate'])  # MAKE candidates are not logged
-        try:
-            import consensus_flag; consensus_flag.tag_docs(docs, plays)
-        except Exception as e:
-            print('consensus tag skipped:', e)
+        docs = to_ledger_docs(plays)
         with open(outpath, 'w') as fh:
             json.dump(docs, fh, indent=2)
         print(f'\nWrote {len(docs)} ledger-ready docs to {outpath}')

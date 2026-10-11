@@ -472,11 +472,6 @@ def scan(day):
         venues = oddsapi_sog_venues(event_id) if event_id else {}
         if not event_id:
             print(f"  {g['away']}@{g['home']}: no matching event on The Odds API -- no execution venue for this game")
-        try:
-            import ref_books
-            _ref = ref_books.ref_fairs('icehockey_nhl', event_id, ['player_shots_on_goal']) if event_id else {}
-        except Exception as e:
-            print('ref_books skipped:', e); _ref = {}
 
         season = g['season'] or (day.year * 10000 + day.year + 1 if day.month >= 7 else (day.year - 1) * 10000 + day.year)
         home_roster, away_roster = roster(g['home'], str(season)), roster(g['away'], str(season))
@@ -509,8 +504,7 @@ def scan(day):
             if exec_venue is None:
                 continue  # Pinnacle listed it but no execution venue quoted this exact line
             edge = fair_under - exec_price
-            import make_order
-            if edge < make_order.MAKE_FLOOR:  # below the B2 paper floor: skip. 2.0-<3.0 pts = B2 paper (rulebook: auto-logged, stake 0); >=3.0 = Track B
+            if edge < 0.02:  # below the B2 paper floor: skip. 2.0-<3.0 pts = B2 paper (rulebook: auto-logged, stake 0); >=3.0 = Track B
                 continue
             model_gap = None  # 2026-10-06: the shot model is an INFO flag only (was a veto that hid Coleman U2.5, a clean Pinnacle+market-consensus edge); Pinnacle decides
             match = name_to_pid.get(norm_name)
@@ -522,13 +516,11 @@ def scan(day):
                     model_over = prob_over(m, math.ceil(line))
                     if model_over - (1 - fair_under) >= 0.03:
                         model_gap = round((model_over - (1 - fair_under)) * 100, 1)
-            _alt = {_bk: round((1 - _f) * 100, 1) for _bk, _f in _ref.get(('player_shots_on_goal', norm_name, float(line)), {}).items()}
             plays.append(dict(game=f"{g['away']}@{g['home']}", player=p['name'], line=line, venue=exec_venue,
-                               fair=round(fair_under * 100, 1), alt_fairs=_alt, side='Under',
                                fair_under=round(fair_under * 100, 1), price_under=round(exec_price * 100, 1),
                                edge=round(edge * 100, 1), start=g.get('start'), date=day.isoformat(),
                                pin_move=(None if _pm is None else round(-_pm, 1)), model_gap=model_gap,
-                               label=make_order.label(edge, EDGE_MIN_PIN)))
+                               label=('B2 paper' if round(edge, 4) < EDGE_MIN_PIN - 1e-9 else None)))
     plays.sort(key=lambda p: -p['edge'])
     print(f"\n{len(plays)} Under plays clear the Pinnacle-based edge bar (>= {EDGE_MIN_PIN*100:.0f}pts):")
     for p in plays:
@@ -593,16 +585,12 @@ if __name__ == '__main__':
     except Exception as e:
         print('adverse_flag skipped:', e)
     try:
-        import consensus_flag; consensus_flag.annotate_plays(plays)  # downgrades live->paper on conflict, never blocks
+        import make_order; make_order.annotate_plays(plays)  # info only: ceiling for B2 plays
     except Exception as e:
-        print('consensus_flag skipped:', e)
+        print('make_order skipped:', e)
     if '--write' in sys.argv:
         outpath = sys.argv[sys.argv.index('--write') + 1]
-        docs = to_ledger_docs([p for p in plays if p.get('label') != 'MAKE candidate'])  # MAKE candidates are not logged
-        try:
-            import consensus_flag; consensus_flag.tag_docs(docs, plays)
-        except Exception as e:
-            print('consensus tag skipped:', e)
+        docs = to_ledger_docs(plays)
         with open(outpath, 'w') as fh:
             json.dump(docs, fh, indent=2)
         print(f'\nWrote {len(docs)} ledger-ready docs to {outpath} (kalshi_ticker always null -- see to_ledger_docs docstring)')

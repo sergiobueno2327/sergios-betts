@@ -56,66 +56,17 @@ def log_paper(rec):
         fh.write(json.dumps(rec) + '\n')
 
 
-CONFLICT_GAP = 3.0   # pts: mean reference fair this far BELOW Pinnacle (our side) = conflict
-MIN_REFS = 2         # fewer reference sources than this = "unconfirmed"
-
-
-def classify(pin_fair, alts):
-    """2026-10-11 (Sergio-approved): confirmed / conflict / mixed / unconfirmed. Pinnacle stays the anchor.
-    confirmed: >=2 refs, median within TOL of Pinnacle, none more than 2*TOL away. conflict: >=2 refs and their mean is >=3.0 pts BELOW Pinnacle
-    on our side (they say the edge is not real). mixed: refs disagree but not a conflict. unconfirmed: <2 refs."""
-    alts = {k: _c(v) for k, v in (alts or {}).items() if v is not None}
-    pf = _c(pin_fair)
-    if pf is None or len(alts) < MIN_REFS:
-        return 'unconfirmed'
-    gaps = sorted(v - pf for v in alts.values())
-    med = gaps[len(gaps) // 2] if len(gaps) % 2 else (gaps[len(gaps) // 2 - 1] + gaps[len(gaps) // 2]) / 2
-    # confirmed: median reference within TOL of Pinnacle and no single reference more than 2*TOL away (one outlier does not break it)
-    if abs(med) <= TOL and all(abs(g) <= 2 * TOL for g in gaps):
-        return 'confirmed'
-    if sum(gaps) / len(gaps) <= -CONFLICT_GAP:
-        return 'conflict'
-    return 'mixed'
-
-
-def tag_docs(docs, plays):  # also copies Make-order fields (make_order.py)
-    """Copy consensusStatus (and a downgrade note) from plays onto ledger docs, matched by player+game."""
-    m = {(p.get('player'), p.get('game')): p for p in plays}
-    for d in docs:
-        x = d['data']; p = m.get((x.get('player'), x.get('game')))
-        if p and p.get('make'):
-            x['makeCeiling'], x['makeTarget'], x['makeGap'] = p['make']['ceiling'], p['make']['target'], p['make']['gap']
-            x['makeEligible'] = bool(p.get('make_eligible'))
-            if x.get('edge', 0) < 3.0:
-                x['note'] = (x.get('note') or '') + f" Make price to clear 3.0: target {p['make']['target']}c, ceiling {p['make']['ceiling']}c ({p['make']['gap']}c below ask, fill odds {p['make']['fill_odds']}); paper until placed."
-        if p and p.get('consensus_status'):
-            x['consensusStatus'] = p['consensus_status']
-            if p.get('consensus_downgraded'):
-                x['note'] = (x.get('note') or '') + ' DOWNGRADED live->paper: reference books (' + ', '.join(f"{k} {v}%" for k, v in (p.get('alt_fairs') or {}).items()) + ') sit >=3 pts below Pinnacle fair.'
-    return docs
-
-
 def annotate_plays(plays):
-    """Prints a consensus line for plays carrying p['alt_fairs'] ({name: fair%}); sets p['consensus'] and
-    p['consensus_status']. A LIVE (non-B2) play with status 'conflict' is downgraded to B2 paper (stake 0) --
-    never dropped (Sergio 2026-10-11: a hard block would remove real edges where Pinnacle moved first)."""
+    """Prints a consensus line for plays carrying p['alt_fairs'] ({name: fair%}); sets p['consensus']."""
     n = 0
     for p in plays:
         r = check(p.get('fair'), p.get('alt_fairs'))
         p['consensus'] = r['msg']
-        p['consensus_status'] = classify(p.get('fair'), p.get('alt_fairs'))
-        if p['consensus_status'] == 'conflict' and 'B2' not in (p.get('label') or '') and p.get('label') != 'MAKE candidate':
-            p['label'] = 'B2 paper (consensus conflict)'; p['consensus_downgraded'] = True
-            print(f"  DOWNGRADED to paper: {p.get('player') or p.get('game')} {p.get('side','')} {p.get('line','')} (consensus conflict)")
         if r['status'] in ('ok', 'gap'):
             if n == 0:
                 print('\nConsensus cross-check (info only, never rejects a play):')
             n += 1
             print(f"  {p.get('player') or p.get('game')}: {r['msg']}")
-    try:
-        import make_order; make_order.annotate_plays(plays)  # Make-order helper rides every scan that calls this
-    except Exception as e:
-        print('make_order skipped:', e)
     return plays
 
 
