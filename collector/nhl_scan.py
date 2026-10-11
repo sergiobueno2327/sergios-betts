@@ -446,7 +446,7 @@ def todays_games(day):
 
 
 def scan(day):
-    games = [g for g in todays_games(day) if g['state'] == 'FUT']
+    games = [g for g in todays_games(day) if g['state'] in ('FUT', 'PRE')]
     if not games:
         print('No upcoming NHL games for', day, '(or none returned pre-game state)')
         return []
