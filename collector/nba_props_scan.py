@@ -257,6 +257,10 @@ def to_ledger_docs(plays):
 if __name__ == '__main__':
     plays = scan()
     try:
+        import live_pin_verify; plays = live_pin_verify.verify(plays, 'basketball_nba', lambda p: STAT_MARKETS[p['stat']][0])
+    except Exception as e:
+        print('live_pin_verify FAILED -> no plays passed:', e); plays = []
+    try:
         import player_conflict; plays = player_conflict.resolve(plays)  # no opposite sides / one-market-per-player guard
     except Exception as e:
         print('player_conflict skipped:', e)

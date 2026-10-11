@@ -573,6 +573,10 @@ if __name__ == '__main__':
     d = datetime.date.fromisoformat(sys.argv[1]) if len(sys.argv) > 1 and not sys.argv[1].startswith('--') else datetime.date.today()
     plays = scan(d)
     try:
+        import live_pin_verify; plays = live_pin_verify.verify(plays, 'icehockey_nhl', lambda p: 'player_shots_on_goal')
+    except Exception as e:
+        print('live_pin_verify FAILED -> no plays passed:', e); plays = []
+    try:
         import player_conflict; plays = player_conflict.resolve(plays)  # no opposite sides / one-market-per-player guard
     except Exception as e:
         print('player_conflict skipped:', e)
