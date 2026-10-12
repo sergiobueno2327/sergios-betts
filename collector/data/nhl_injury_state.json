@@ -432,12 +432,6 @@
    "status": "Injured Reserve",
    "team": "Minnesota Wild"
   },
-  "595212": {
-   "date": "2026-10-09T16:28Z",
-   "player": "Brad Marchand",
-   "status": "Out",
-   "team": "Florida Panthers"
-  },
   "595230": {
    "date": "2026-10-09T19:15Z",
    "player": "Filip Gustavsson",
@@ -540,24 +534,6 @@
    "status": "Out",
    "team": "Utah Mammoth"
   },
-  "595405": {
-   "date": "2026-10-11T03:14Z",
-   "player": "Cutter Gauthier",
-   "status": "Day-To-Day",
-   "team": "Anaheim Ducks"
-  },
-  "595450": {
-   "date": "2026-10-11T05:35Z",
-   "player": "Ryan Poehling",
-   "status": "Day-To-Day",
-   "team": "Anaheim Ducks"
-  },
-  "595497": {
-   "date": "2026-10-11T12:50Z",
-   "player": "John Tavares",
-   "status": "Day-To-Day",
-   "team": "Toronto Maple Leafs"
-  },
   "595500": {
    "date": "2026-10-11T12:50Z",
    "player": "Jake Walman",
@@ -654,12 +630,6 @@
    "status": "Day-To-Day",
    "team": "New Jersey Devils"
   },
-  "595596": {
-   "date": "2026-10-12T16:17Z",
-   "player": "Marcus Foligno",
-   "status": "Out",
-   "team": "Minnesota Wild"
-  },
   "595598": {
    "date": "2026-10-12T16:39Z",
    "player": "Samuel Honzek",
@@ -690,12 +660,42 @@
    "status": "Injured Reserve",
    "team": "Pittsburgh Penguins"
   },
-  "595606": {
-   "date": "2026-10-12T18:35Z",
+  "595610": {
+   "date": "2026-10-12T19:02Z",
+   "player": "Ryan Poehling",
+   "status": "Day-To-Day",
+   "team": "Anaheim Ducks"
+  },
+  "595611": {
+   "date": "2026-10-12T19:08Z",
+   "player": "Cutter Gauthier",
+   "status": "Day-To-Day",
+   "team": "Anaheim Ducks"
+  },
+  "595613": {
+   "date": "2026-10-12T19:26Z",
+   "player": "Barclay Goodrow",
+   "status": "Day-To-Day",
+   "team": "San Jose Sharks"
+  },
+  "595625": {
+   "date": "2026-10-12T20:05Z",
    "player": "Rasmus Dahlin",
    "status": "Out",
    "team": "Buffalo Sabres"
+  },
+  "595632": {
+   "date": "2026-10-12T21:11Z",
+   "player": "Brad Marchand",
+   "status": "Injured Reserve",
+   "team": "Florida Panthers"
+  },
+  "595638": {
+   "date": "2026-10-12T22:12Z",
+   "player": "Marcus Foligno",
+   "status": "Injured Reserve",
+   "team": "Minnesota Wild"
   }
  },
- "last_run_utc": "2026-10-12T18:51:34Z"
+ "last_run_utc": "2026-10-12T22:56:25Z"
 }
