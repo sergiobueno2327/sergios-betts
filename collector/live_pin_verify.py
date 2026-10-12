@@ -22,7 +22,11 @@ def _nrm(s):
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
     return re.sub(r'[^a-z ]', '', s).replace(' jr', '').replace(' sr', '').replace(' iii', '').replace(' ii', '').strip()
 
+MAX_AGE_S = 600  # reject Pinnacle prices older than 10 min
+
 def _prob(am):
+    if -100 < am < 100:
+        raise ValueError(f'invalid american odds {am}')
     return 100 / (am + 100) if am > 0 else -am / (-am + 100)
 
 def _devig(po, pu):
@@ -49,6 +53,12 @@ def verify(plays, sport, market_of):
             r = cache[ck] or {}
             for b in r.get('bookmakers', []):
                 for m in b.get('markets', []):
+                    lu = m.get('last_update') or b.get('last_update')
+                    if lu:
+                        age = (datetime.datetime.now(datetime.timezone.utc) - datetime.datetime.fromisoformat(lu.replace('Z', '+00:00'))).total_seconds()
+                        if age > MAX_AGE_S:
+                            print(f'  LIVE-PIN stale Pinnacle {mk} ({age/60:.0f} min old) -- ignored')
+                            continue
                     for o in m['outcomes']:
                         out[(_nrm(o['description']), o.get('point'), o['name'])] = o['price']
         return out
@@ -63,7 +73,11 @@ def verify(plays, sport, market_of):
         if ov is None or un is None:
             print(f"  LIVE-PIN DROP: {p['player']} {side} {p['line']} -- Pinnacle not posted / line moved")
             continue
-        po, pu = _prob(ov), _prob(un)
+        try:
+            po, pu = _prob(ov), _prob(un)
+        except ValueError as ex:
+            print(f"  LIVE-PIN DROP: {p['player']} {ex}")
+            continue
         if po + pu - 1 > MAX_VIG:
             print(f"  LIVE-PIN DROP: {p['player']} margin {(po+pu-1)*100:.1f}% > 8%")
             continue
@@ -71,12 +85,13 @@ def verify(plays, sport, market_of):
         fair = (fo if side == 'Over' else 1 - fo) * 100
         pk = 'price' if 'price' in p else 'price_under'
         fk = 'fair' if 'fair' in p else 'fair_under'
-        edge = round(fair - p[pk], 1)
-        if edge < 2.0:
+        edge_raw = fair - p[pk]
+        edge = round(edge_raw, 1)
+        if edge_raw < 2.0:
             print(f"  LIVE-PIN DROP: {p['player']} {side} {p['line']} live edge {edge} < 2.0")
             continue
         p[fk] = round(fair, 1); p['edge'] = edge; p['pin_vig'] = round(po + pu - 1, 4); p['live_verified'] = True
-        if edge < 3.0:
+        if edge_raw < 3.0:
             p['label'] = p.get('label') or 'B2 paper'
         elif p.get('label') == 'B2 paper':
             p['label'] = None
