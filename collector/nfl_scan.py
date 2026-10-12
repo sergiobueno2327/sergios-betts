@@ -184,7 +184,7 @@ def verify_player_team(player_name, team_abbrev):
     """True/False/None (None = couldn't check, e.g. bad team code). Pulls the live ESPN roster —
     never trust memory or the odds provider's own team label for this (rulebook rule, added
     2026-09-27 after the Kyler Murray/Arizona mix-up)."""
-    espn_abbr = NFL_TEAMS.get(team_abbrev.upper())
+    espn_abbr = NFL_TEAMS.get({'LA': 'LAR', 'WSH': 'WAS', 'JAC': 'JAX'}.get(team_abbrev.upper(), team_abbrev.upper()))
     if not espn_abbr:
         return None
     if espn_abbr not in _roster_cache:
@@ -285,6 +285,8 @@ def oddsapi_events_this_week():
 
 
 def match_oddsapi_event(events, home_abbr, away_abbr):
+    _al = {'LA': 'LAR', 'WSH': 'WAS', 'JAC': 'JAX'}  # OddsPapi uses LA for the Rams -> was silently Kalshi-only
+    home_abbr, away_abbr = _al.get(home_abbr, home_abbr), _al.get(away_abbr, away_abbr)
     home_full, away_full = ODDSAPI_TEAM_NAME.get(home_abbr), ODDSAPI_TEAM_NAME.get(away_abbr)
     for e in events:
         if e.get('home_team') == home_full and e.get('away_team') == away_full:
