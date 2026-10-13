@@ -624,12 +624,6 @@
    "status": "Out",
    "team": "Washington Capitals"
   },
-  "595593": {
-   "date": "2026-10-12T16:08Z",
-   "player": "Luke Evangelista",
-   "status": "Day-To-Day",
-   "team": "New Jersey Devils"
-  },
   "595598": {
    "date": "2026-10-12T16:39Z",
    "player": "Samuel Honzek",
@@ -695,7 +689,19 @@
    "player": "Marcus Foligno",
    "status": "Injured Reserve",
    "team": "Minnesota Wild"
+  },
+  "595643": {
+   "date": "2026-10-12T23:37Z",
+   "player": "Parker Wotherspoon",
+   "status": "Out",
+   "team": "Vegas Golden Knights"
+  },
+  "595646": {
+   "date": "2026-10-13T00:19Z",
+   "player": "Nikolas Matinpalo",
+   "status": "Out",
+   "team": "Ottawa Senators"
   }
  },
- "last_run_utc": "2026-10-12T22:56:25Z"
+ "last_run_utc": "2026-10-13T00:51:40Z"
 }
