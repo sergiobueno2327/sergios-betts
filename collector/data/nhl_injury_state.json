@@ -498,12 +498,6 @@
       "status": "Out",
       "team": "Utah Mammoth"
     },
-    "595510": {
-      "date": "2026-10-11T12:50Z",
-      "player": "Florian Xhekaj",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
-    },
     "595511": {
       "date": "2026-10-11T15:54Z",
       "player": "Cameron Crotty",
@@ -618,12 +612,6 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
-    "595663": {
-      "date": "2026-10-13T13:01Z",
-      "player": "Nikolas Matinpalo",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
-    },
     "595665": {
       "date": "2026-10-13T14:10Z",
       "player": "Mike Matheson",
@@ -635,18 +623,6 @@
       "player": "J.T. Compher",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
-    },
-    "595670": {
-      "date": "2026-10-13T14:27Z",
-      "player": "Conor Garland",
-      "status": "Day-To-Day",
-      "team": "Columbus Blue Jackets"
-    },
-    "595675": {
-      "date": "2026-10-13T15:03Z",
-      "player": "Matt Grzelcyk",
-      "status": "Injured Reserve",
-      "team": "Buffalo Sabres"
     },
     "595678": {
       "date": "2026-10-13T15:20Z",
@@ -707,7 +683,49 @@
       "player": "Jake Walman",
       "status": "Out",
       "team": "Edmonton Oilers"
+    },
+    "595725": {
+      "date": "2026-10-13T19:27Z",
+      "player": "Florian Xhekaj",
+      "status": "Out",
+      "team": "Montreal Canadiens"
+    },
+    "595726": {
+      "date": "2026-10-13T19:32Z",
+      "player": "Cam York",
+      "status": "Out",
+      "team": "Philadelphia Flyers"
+    },
+    "595728": {
+      "date": "2026-10-13T19:48Z",
+      "player": "Radko Gudas",
+      "status": "Out",
+      "team": "Florida Panthers"
+    },
+    "595730": {
+      "date": "2026-10-13T20:10Z",
+      "player": "Jacob Markstrom",
+      "status": "Out",
+      "team": "Florida Panthers"
+    },
+    "595731": {
+      "date": "2026-10-13T20:14Z",
+      "player": "Luke Evangelista",
+      "status": "Out",
+      "team": "New Jersey Devils"
+    },
+    "595732": {
+      "date": "2026-10-13T20:51Z",
+      "player": "Matt Grzelcyk",
+      "status": "Injured Reserve",
+      "team": "Buffalo Sabres"
+    },
+    "595734": {
+      "date": "2026-10-13T21:31Z",
+      "player": "Nikolas Matinpalo",
+      "status": "Out",
+      "team": "Ottawa Senators"
     }
   },
-  "last_run_utc": "2026-10-13T19:01Z"
+  "last_run_utc": "2026-10-13T22:51Z"
 }
