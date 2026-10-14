@@ -292,7 +292,9 @@ def nhl_actual_sog(spec, start, game=None):
     at all, since grade()'s only settlement source was Kalshi. NHL API boxscore only gives
     'F. Lastname', not a full first name, so matching is by team + last name (unique within one
     game's ~40 players in practice)."""
-    who_last = nrm((spec.get('who') or '').split()[-1])
+    _parts = (spec.get('who') or '').split()
+    who_last = nrm(' '.join(_parts[1:]) if len(_parts) > 1 else ''.join(_parts))  # "Joel Eriksson Ek" -> "erikssonek"
+    who_init = nrm(_parts[0])[:1] if len(_parts) > 1 else ''
     if not who_last:
         return None, 'no player name in pinn spec'
     for d in (start.date(), start.date() - datetime.timedelta(days=1), start.date() + datetime.timedelta(days=1)):
@@ -306,7 +308,14 @@ def nhl_actual_sog(spec, start, game=None):
             if game and '@' in game:
                 _al = {'SJ': 'SJS', 'TB': 'TBL', 'NJ': 'NJD', 'LA': 'LAK'}
                 _a, _h = [_al.get(x.strip(), x.strip()) for x in game.split('@')[:2]]
-                if (g.get('awayTeam') or {}).get('abbrev') != _a.strip() or (g.get('homeTeam') or {}).get('abbrev') != _h.strip():
+                def _tm(t, x):
+                    # ledger games use either abbrevs ("TOR@UTA") or full names ("Washington Capitals@Carolina Hurricanes")
+                    t = t or {}
+                    if t.get('abbrev') == x:
+                        return True
+                    nm = ((t.get('name') or t.get('commonName') or {}).get('default') or '').strip().lower()
+                    return bool(nm) and len(x) > 4 and x.lower().endswith(nm)
+                if not _tm(g.get('awayTeam'), _a.strip()) or not _tm(g.get('homeTeam'), _h.strip()):
                     continue  # wrong game (same start window, different teams) -> never grade a same-surname player from another game
             gid = g['id']
             box = get(f"https://api-web.nhle.com/v1/gamecenter/{gid}/boxscore", headers={'User-Agent': 'curl/8'}) or {}
@@ -320,6 +329,10 @@ def nhl_actual_sog(spec, start, game=None):
                             hits.append(p)
             if len(hits) == 1:
                 return int(hits[0].get({'prop:Assists':'assists','prop:Points':'points','prop:Goals':'goals'}.get(spec.get('mkt'),'sog'), 0) or 0), f'nhl boxscore game {gid}'
+            if len(hits) > 1 and who_init:
+                _hi = [p for p in hits if nrm(((p.get('name') or {}).get('default') or '')[:1]) == who_init]
+                if len(_hi) == 1:
+                    return int(_hi[0].get({'prop:Assists':'assists','prop:Points':'points','prop:Goals':'goals'}.get(spec.get('mkt'),'sog'), 0) or 0), f'nhl boxscore game {gid} (first-initial match)'
             if len(hits) > 1:
                 return None, f'ambiguous name match ({len(hits)} players named {who_last}) in game {gid}'
     return None, 'no matching finished NHL game/player found'
