@@ -114,12 +114,6 @@
       "status": "Injured Reserve",
       "team": "San Jose Sharks"
     },
-    "594146": {
-      "date": "2026-09-28T22:21Z",
-      "player": "Alex Barre-Boulet",
-      "status": "Injured Reserve",
-      "team": "San Jose Sharks"
-    },
     "594149": {
       "date": "2026-09-28T22:41Z",
       "player": "Georgii Merkulov",
@@ -257,12 +251,6 @@
       "player": "Patrick Thomas",
       "status": "Injured Reserve",
       "team": "Washington Capitals"
-    },
-    "594248": {
-      "date": "2026-09-30T14:09Z",
-      "player": "Simon Edvinsson",
-      "status": "Out",
-      "team": "Detroit Red Wings"
     },
     "594251": {
       "date": "2026-09-30T14:53Z",
@@ -414,29 +402,11 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
-    "595248": {
-      "date": "2026-10-10T00:49Z",
-      "player": "Frank Nazar",
-      "status": "Suspension",
-      "team": "Chicago Blackhawks"
-    },
     "595307": {
       "date": "2026-10-10T14:45Z",
       "player": "William Eklund",
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
-    },
-    "595308": {
-      "date": "2026-10-10T14:03Z",
-      "player": "Alexander Nikishin",
-      "status": "Out",
-      "team": "Carolina Hurricanes"
-    },
-    "595326": {
-      "date": "2026-10-10T16:51Z",
-      "player": "Rasmus Ristolainen",
-      "status": "Injured Reserve",
-      "team": "Philadelphia Flyers"
     },
     "595327": {
       "date": "2026-10-10T16:58Z",
@@ -540,12 +510,6 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
-    "595590": {
-      "date": "2026-10-12T16:02Z",
-      "player": "Pierre-Luc Dubois",
-      "status": "Out",
-      "team": "Washington Capitals"
-    },
     "595598": {
       "date": "2026-10-12T16:39Z",
       "player": "Samuel Honzek",
@@ -569,12 +533,6 @@
       "player": "Trevor van Riemsdyk",
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
-    },
-    "595625": {
-      "date": "2026-10-12T20:05Z",
-      "player": "Rasmus Dahlin",
-      "status": "Out",
-      "team": "Buffalo Sabres"
     },
     "595632": {
       "date": "2026-10-12T21:11Z",
@@ -600,23 +558,11 @@
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
     },
-    "595649": {
-      "date": "2026-10-13T02:49Z",
-      "player": "Jake Sanderson",
-      "status": "Out",
-      "team": "Ottawa Senators"
-    },
     "595650": {
       "date": "2026-10-13T02:53Z",
       "player": "Artem Zub",
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
-    },
-    "595665": {
-      "date": "2026-10-13T14:10Z",
-      "player": "Mike Matheson",
-      "status": "Out",
-      "team": "Montreal Canadiens"
     },
     "595666": {
       "date": "2026-10-13T14:14Z",
@@ -630,89 +576,17 @@
       "status": "Out",
       "team": "Carolina Hurricanes"
     },
-    "595681": {
-      "date": "2026-10-13T15:27Z",
-      "player": "Dennis Hildeby",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
-    "595691": {
-      "date": "2026-10-13T16:38Z",
-      "player": "Joel Kiviranta",
-      "status": "Out",
-      "team": "Dallas Stars"
-    },
-    "595692": {
-      "date": "2026-10-13T16:39Z",
-      "player": "Josh Morrissey",
-      "status": "Out",
-      "team": "Winnipeg Jets"
-    },
     "595694": {
       "date": "2026-10-13T16:43Z",
       "player": "Nico Sturm",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "595696": {
-      "date": "2026-10-13T17:09Z",
-      "player": "Cale Makar",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
     "595699": {
       "date": "2026-10-13T17:19Z",
       "player": "Ryan Poehling",
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
-    },
-    "595703": {
-      "date": "2026-10-13T17:26Z",
-      "player": "Cutter Gauthier",
-      "status": "Out",
-      "team": "Anaheim Ducks"
-    },
-    "595716": {
-      "date": "2026-10-13T18:13Z",
-      "player": "Zach Hyman",
-      "status": "Out",
-      "team": "Edmonton Oilers"
-    },
-    "595719": {
-      "date": "2026-10-13T18:20Z",
-      "player": "Jake Walman",
-      "status": "Out",
-      "team": "Edmonton Oilers"
-    },
-    "595725": {
-      "date": "2026-10-13T19:27Z",
-      "player": "Florian Xhekaj",
-      "status": "Out",
-      "team": "Montreal Canadiens"
-    },
-    "595726": {
-      "date": "2026-10-13T19:32Z",
-      "player": "Cam York",
-      "status": "Out",
-      "team": "Philadelphia Flyers"
-    },
-    "595728": {
-      "date": "2026-10-13T19:48Z",
-      "player": "Radko Gudas",
-      "status": "Out",
-      "team": "Florida Panthers"
-    },
-    "595730": {
-      "date": "2026-10-13T20:10Z",
-      "player": "Jacob Markstrom",
-      "status": "Out",
-      "team": "Florida Panthers"
-    },
-    "595731": {
-      "date": "2026-10-13T20:14Z",
-      "player": "Luke Evangelista",
-      "status": "Out",
-      "team": "New Jersey Devils"
     },
     "595732": {
       "date": "2026-10-13T20:51Z",
@@ -725,7 +599,157 @@
       "player": "Nikolas Matinpalo",
       "status": "Out",
       "team": "Ottawa Senators"
+    },
+    "595749": {
+      "date": "2026-10-14T01:55Z",
+      "player": "Taylor Hall",
+      "status": "Out",
+      "team": "Carolina Hurricanes"
+    },
+    "595754": {
+      "date": "2026-10-14T02:36Z",
+      "player": "Ridly Greig",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "595810": {
+      "date": "2026-10-14T06:39Z",
+      "player": "Darnell Nurse",
+      "status": "Day-To-Day",
+      "team": "San Jose Sharks"
+    },
+    "595849": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Jacob Markstrom",
+      "status": "Day-To-Day",
+      "team": "Florida Panthers"
+    },
+    "595850": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Jared Spurgeon",
+      "status": "Day-To-Day",
+      "team": "Minnesota Wild"
+    },
+    "595852": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Radko Gudas",
+      "status": "Day-To-Day",
+      "team": "Florida Panthers"
+    },
+    "595853": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Josh Morrissey",
+      "status": "Day-To-Day",
+      "team": "Winnipeg Jets"
+    },
+    "595854": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Jake Walman",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "595855": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Zach Hyman",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "595856": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Pierre-Luc Dubois",
+      "status": "Day-To-Day",
+      "team": "Washington Capitals"
+    },
+    "595857": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Cale Makar",
+      "status": "Day-To-Day",
+      "team": "Colorado Avalanche"
+    },
+    "595858": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Rasmus Dahlin",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
+    },
+    "595861": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Jake Sanderson",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "595862": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Mavrik Bourque",
+      "status": "Day-To-Day",
+      "team": "Nashville Predators"
+    },
+    "595863": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Luke Evangelista",
+      "status": "Day-To-Day",
+      "team": "New Jersey Devils"
+    },
+    "595864": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Zachary L'Heureux",
+      "status": "Day-To-Day",
+      "team": "Colorado Avalanche"
+    },
+    "595865": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Cutter Gauthier",
+      "status": "Day-To-Day",
+      "team": "Anaheim Ducks"
+    },
+    "595866": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Dennis Hildeby",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "595867": {
+      "date": "2026-10-14T13:14Z",
+      "player": "Florian Xhekaj",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
+    "595897": {
+      "date": "2026-10-14T15:15Z",
+      "player": "Simon Edvinsson",
+      "status": "Injured Reserve",
+      "team": "Detroit Red Wings"
+    },
+    "595901": {
+      "date": "2026-10-14T15:18Z",
+      "player": "Alexander Nikishin",
+      "status": "Injured Reserve",
+      "team": "Carolina Hurricanes"
+    },
+    "595905": {
+      "date": "2026-10-14T16:35Z",
+      "player": "Mike Matheson",
+      "status": "Out",
+      "team": "Montreal Canadiens"
+    },
+    "595907": {
+      "date": "2026-10-14T17:16Z",
+      "player": "Rasmus Ristolainen",
+      "status": "Injured Reserve",
+      "team": "Philadelphia Flyers"
+    },
+    "595908": {
+      "date": "2026-10-14T17:43Z",
+      "player": "Cam York",
+      "status": "Out",
+      "team": "Philadelphia Flyers"
+    },
+    "595929": {
+      "date": "2026-10-14T18:29Z",
+      "player": "Wyatt Johnston",
+      "status": "Out",
+      "team": "Dallas Stars"
     }
   },
-  "last_run_utc": "2026-10-13T22:51Z"
+  "last_run_utc": "2026-10-14T18:56:51Z"
 }
