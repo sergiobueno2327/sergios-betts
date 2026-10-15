@@ -446,6 +446,8 @@ def todays_games(day):
 
 
 def scan(day):
+    if not (THEODDSAPI_KEY and ODDSPAPI_KEY):
+        sys.exit('THEODDSAPI_KEY and ODDSPAPI_KEY env vars are required (shell only, never in files)')
     games = [g for g in todays_games(day) if g['state'] in ('FUT', 'PRE')]
     if not games:
         print('No upcoming NHL games for', day, '(or none returned pre-game state)')

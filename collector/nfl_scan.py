@@ -390,6 +390,8 @@ def kalshi_ticker(series_ticker, dtag, away, home, norm_player_name, line):
 
 # ---------- scan ----------
 def scan(edge_min_override=None):
+    if not (THEODDSAPI_KEY and ODDSPAPI_KEY):
+        sys.exit('THEODDSAPI_KEY and ODDSPAPI_KEY env vars are required (shell only, never in files)')
     edge_min = edge_min_override or EDGE_MIN_PIN
     collect_min = min(edge_min, 0.02)  # B2 paper band (2.0-<3.0 pts) is collected too (rulebook: B2 auto-logged, stake 0)
     # statusName is unreliable -- confirmed live 2026-09-28: repeated calls seconds apart disagreed
