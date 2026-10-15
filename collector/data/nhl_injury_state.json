@@ -602,13 +602,6 @@
    "status": "Injured Reserve",
    "team": "Detroit Red Wings"
   },
-  "595678:Carolina Hurricanes": {
-   "date": "2026-10-13T15:20Z",
-   "id": "595678",
-   "player": "Jordan Staal",
-   "status": "Out",
-   "team": "Carolina Hurricanes"
-  },
   "595694:Minnesota Wild": {
    "date": "2026-10-13T16:43Z",
    "id": "595694",
@@ -874,8 +867,22 @@
    "player": "Darnell Nurse",
    "status": "Day-To-Day",
    "team": "San Jose Sharks"
+  },
+  "596031:Carolina Hurricanes": {
+   "date": "2026-10-15T21:54Z",
+   "id": "596031",
+   "player": "Jordan Staal",
+   "status": "Injured Reserve",
+   "team": "Carolina Hurricanes"
+  },
+  "596037:Toronto Maple Leafs": {
+   "date": "2026-10-15T22:35Z",
+   "id": "596037",
+   "player": "Miles Wood",
+   "status": "Injured Reserve",
+   "team": "Toronto Maple Leafs"
   }
  },
- "last_run_utc": "2026-10-15T20:52:35.889367+00:00",
+ "last_run_utc": "2026-10-15T22:57:25.286601+00:00",
  "schema_note": "Keyed by id:team (changed 2026-10-15 from bare id) because ESPN injury entry ids collide across teams/players."
 }
