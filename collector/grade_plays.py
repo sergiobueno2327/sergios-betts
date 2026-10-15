@@ -111,6 +111,35 @@ def _oa_get(u):
         return None
 
 
+def snapshot_close(play, start):
+    """Verified close from close_snapshot.py (live Pinnacle taken <= 15 min before start, quote <= 10 min old,
+    same line, two-sided, margin <= 8%). Added 2026-10-14. Returns (prob for our side, note) or (None, reason)."""
+    snapshot_close.age = None
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'close_snapshots.jsonl')
+    best = None
+    try:
+        with open(path) as fh:
+            for line in fh:
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if r.get('id') != play.get('_id') and r.get('id') != play.get('id'):
+                    continue
+                if not r.get('found') or r.get('fair_side') is None:
+                    continue
+                if r.get('mins_to_start') is None or r['mins_to_start'] > 15 or (r.get('age_s') or 0) > 600:
+                    continue
+                if best is None or r['snap_ts'] > best['snap_ts']:
+                    best = r
+    except OSError:
+        return None, 'snapshot: no file'
+    if not best:
+        return None, 'snapshot: none for this play'
+    snapshot_close.age = round(best['mins_to_start'], 1)
+    return best['fair_side'] / 100, 'close-snapshot ' + best['snap_ts']
+
+
 def independent_close(play, start, minutes=10):
     """Pinnacle no-vig close (our side) from an Odds API historical snapshot at start-10min.
     Independent of the entry-time scan and of OddsPapi's change-only history. None if not covered."""
@@ -478,6 +507,11 @@ def grade(play, root, now):
     fair0 = f(play.get('fair'))
     stale = pc is not None and (age is None or age > STALE_MIN or (fair0 is not None and abs(pc * 100 - fair0) <= 0.15))
     if pc is None or stale:
+        sc, snote = snapshot_close(play, start)
+        if sc is not None:
+            pc, pnote, stale = sc, snote, False
+            age = snapshot_close.age
+    if pc is None or stale:
         ic, inote = independent_close(play, start)
         if ic is not None:
             pc, pnote, stale = ic, inote, False
@@ -582,6 +616,7 @@ def main():
             continue
         if passes_mode and p.get('result'):
             continue   # already graded by hand
+        p = {**p, '_id': did}   # lets snapshot_close() find this play's close snapshot
         try:
             u = grade_pass(p, root, now) if passes_mode else grade(p, root, now)
         except Exception as e:  # never let one play break the run
