@@ -75,6 +75,8 @@ def nfl_actual(play, start_iso):
             b = _box_cache[e['id']]
             if who in b and sk in b[who]:
                 return b[who][sk], f"ESPN box score {e['shortName']}"
+            if who in b:  # played (has stats in another category) but ESPN lists no line for this stat = 0 (e.g. a WR with no carries)
+                return 0.0, f"ESPN box score {e['shortName']} (no {sk} line = 0)"
     return None, 'player not in a final ESPN box score (DNP or game not final)'
 
 
