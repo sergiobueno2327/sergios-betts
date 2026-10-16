@@ -34,6 +34,7 @@ def scan(key, hours):
            if now < datetime.datetime.fromisoformat(e['commence_time'].replace('Z', '+00:00')) < now + datetime.timedelta(hours=hours)]
     print(f"\n== {key.upper()}: {len(evs)} games in next {hours}h")
     plays = []
+    tally = {'Over': [0, -9.0, 0], 'Under': [0, -9.0, 0]}   # side -> [lines checked in zone, best edge pts, near-misses 1.0-<2.0]
     for e in evs:
         j = get(f"{B}/events/{e['id']}/odds?apiKey={KEY}&bookmakers=pinnacle,novig&markets={','.join(MK)}&oddsFormat=american") or {}
         book = collections.defaultdict(lambda: collections.defaultdict(dict))
@@ -57,6 +58,7 @@ def scan(key, hours):
                 cost = american_to_prob(nov[side])
                 if not (ZONE[0] <= cost <= ZONE[1]): continue
                 edge = fair - cost
+                t = tally[side]; t[0] += 1; t[1] = max(t[1], round(edge * 100, 1)); t[2] += (0.01 <= edge < B2 - 1e-9)
                 if edge < B2 - 1e-9: continue
                 rf = ref.get((mk, nrm(pl), line), {})
                 alt = {b: round((v if side == 'Over' else 1 - v) * 100, 1) for b, v in rf.items()}
@@ -75,6 +77,9 @@ def scan(key, hours):
     consensus_flag.annotate_plays(plays)
     print(f"  -> {sum(p['edge'] >= 3 and p['label'].startswith('TRACK') for p in plays)} live, {sum(p['edge'] < 3 for p in plays)} B2, "
           f"{sum(p['label'] == 'NHL-Over-paper' for p in plays)} NHL Over paper")
+    for sd in ('Over', 'Under'):   # 2026-10-16: both sides are always priced; this shows how thin the Under market really is
+        n, best, near = tally[sd]
+        print(f"  [{sd}s] {n} Novig prices checked, best edge {best if n else 'n/a'} pts, {near} near-misses (1.0-<2.0)")
     return plays
 
 
