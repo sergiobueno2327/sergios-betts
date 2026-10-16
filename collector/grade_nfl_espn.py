@@ -24,6 +24,7 @@ def box_stats(event_id):
                 if n == 'passing':
                     c, att = st['C/ATT'].split('/'); d['passing_completions'], d['passing_attempts'] = float(c), float(att)
                     d['passing_yards'], d['passing_interceptions'] = float(st['YDS']), float(st['INT'])
+                    if 'TD' in st: d['passing_touchdowns'] = float(st['TD'])
     return out
 
 KEYS = [('receiving_yards', ['receivingyards', 'receptionyds', 'receiving_yards', 'reception_yds', 'receiving yards']),
@@ -33,11 +34,24 @@ KEYS = [('receiving_yards', ['receivingyards', 'receptionyds', 'receiving_yards'
         ('passing_completions', ['passcompletions', 'passingcompletions', 'pass completions']),
         ('passing_yards', ['passingyards', 'passyards']), ('passing_interceptions', ['interceptions', 'passinginterceptions'])]
 
+ALIASES = {  # normalized market label (letters only) -> box-score key. Ledger labels vary by scan: "Rush yds", "Pass att", "Pass TDs", "Touchdown Passes"...
+    'rushyds': 'rushing_yards', 'rushyards': 'rushing_yards', 'rushingyards': 'rushing_yards', 'rushingyds': 'rushing_yards',
+    'rushatt': 'rushing_attempts', 'rushattempts': 'rushing_attempts', 'rushingatt': 'rushing_attempts', 'rushingattempts': 'rushing_attempts',
+    'passatt': 'passing_attempts', 'passattempts': 'passing_attempts', 'passingatt': 'passing_attempts', 'passingattempts': 'passing_attempts',
+    'passcomp': 'passing_completions', 'completions': 'passing_completions', 'comp': 'passing_completions', 'cmp': 'passing_completions', 'passingcomp': 'passing_completions', 'passcmp': 'passing_completions', 'passcompletions': 'passing_completions', 'passingcompletions': 'passing_completions',
+    'passyds': 'passing_yards', 'passyards': 'passing_yards', 'passingyards': 'passing_yards', 'passingyds': 'passing_yards',
+    'passtd': 'passing_touchdowns', 'passtds': 'passing_touchdowns', 'tdpasses': 'passing_touchdowns', 'touchdownpasses': 'passing_touchdowns',
+    'passingtd': 'passing_touchdowns', 'passingtds': 'passing_touchdowns', 'passingtouchdowns': 'passing_touchdowns',
+    'int': 'passing_interceptions', 'ints': 'passing_interceptions', 'interceptions': 'passing_interceptions', 'passint': 'passing_interceptions',
+    'passingint': 'passing_interceptions', 'passinginterceptions': 'passing_interceptions',
+    'recyds': 'receiving_yards', 'receivingyards': 'receiving_yards', 'receivingyds': 'receiving_yards', 'receptionyds': 'receiving_yards', 'receptionyards': 'receiving_yards',
+    'rec': 'receptions', 'receptions': 'receptions',
+}
+
 def stat_key(market):
-    m = re.sub(r'\s+(over|under)\s+[\d.]+$', '', market.lower()).replace('_', '').replace(' ', '')
-    for k, alts in KEYS:
-        if any(m == a.replace(' ', '').replace('_', '') for a in alts): return k
-    return None
+    m = re.sub(r'\s+(over|under)\s+[\d.]+$', '', market.lower().strip())
+    m = re.sub(r'[^a-z]', '', m)
+    return ALIASES.get(m)
 
 _box_cache, _day_cache = {}, {}
 
