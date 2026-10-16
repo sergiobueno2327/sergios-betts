@@ -522,7 +522,8 @@ def grade(play, root, now):
     out['pinnCloseAgeMin'] = age
     out['pinnClose'] = round(pc * 100, 1) if pc is not None else None
     out['pinnCloseAt'] = pnote
-    if prior_filled is False or re.search(r'standing down|stood down|never filled|never executed|never matched|canceled|cancelled|unfilled|expired at tip', (str(play.get('note', '')) + ' ' + str(play.get('status', ''))).lower()):
+    # 2026-10-16: filled:false on a STAKE-0 paper play only means 'no order was placed' (all-paper mode), not 'stood down'; it must not void a verified close. Real bets still need an explicit fill.
+    if (prior_filled is False and float(play.get('stake') or 0) > 0) or re.search(r'standing down|stood down|never filled|never executed|never matched|canceled|cancelled|unfilled|expired at tip', (str(play.get('note', '')) + ' ' + str(play.get('status', ''))).lower()):
         out['filled'] = False   # stood down before kickoff: never entered, so its CLV is not evidence
         out['closeIndependent'] = False
     out['clvPinn'] = round(pc * 100 - entry, 1) if pc is not None else None
@@ -589,7 +590,7 @@ def report(plays):
         seen.add(dk)
         real = float(p.get('stake') or 0) > 0
         # real-money bets must have an explicit fill; paper plays count unless explicitly never entered
-        if p.get('clvPinn') is None or p.get('closeIndependent') is not True or (p.get('filled') is not True if real else p.get('filled') is False):
+        if p.get('clvPinn') is None or p.get('closeIndependent') is not True or (p.get('filled') is not True if real else False):
             continue   # non-independent closes (stale / == entry fair) are not CLV evidence
         key = f"{'REAL' if real else 'PAPER'} {p.get('sport')} {'Track ' + p.get('track', '?')} {p.get('market', '').split()[0] if p.get('track') == 'A' else ''}".strip()
         groups.setdefault(key, []).append(p)
