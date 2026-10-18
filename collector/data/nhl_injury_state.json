@@ -273,13 +273,6 @@
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
     },
-    "594180:Edmonton Oilers": {
-      "athlete": "James Stefan",
-      "date": "2026-09-29T16:23Z",
-      "id": "594180",
-      "status": "Injured Reserve",
-      "team": "Edmonton Oilers"
-    },
     "596420:Florida Panthers": {
       "athlete": "Radko Gudas",
       "date": "2026-10-18T13:09Z",
@@ -560,6 +553,13 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
+    "596471:Philadelphia Flyers": {
+      "athlete": "Cam York",
+      "date": "2026-10-18T19:30Z",
+      "id": "596471",
+      "status": "Injured Reserve",
+      "team": "Philadelphia Flyers"
+    },
     "596450:Philadelphia Flyers": {
       "athlete": "Tyson Foerster",
       "date": "2026-10-18T17:18Z",
@@ -578,13 +578,6 @@
       "athlete": "Owen Tippett",
       "date": "2026-10-18T13:09Z",
       "id": "596424",
-      "status": "Day-To-Day",
-      "team": "Philadelphia Flyers"
-    },
-    "596427:Philadelphia Flyers": {
-      "athlete": "Cam York",
-      "date": "2026-10-18T13:09Z",
-      "id": "596427",
       "status": "Day-To-Day",
       "team": "Philadelphia Flyers"
     },
