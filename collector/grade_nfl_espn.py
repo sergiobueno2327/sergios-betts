@@ -19,8 +19,12 @@ def box_stats(event_id):
                 d = out.setdefault(nrm(a['athlete']['displayName']), {})
                 st = dict(zip(L, a['stats']))
                 n = cat['name']
-                if n == 'receiving': d['receptions'], d['receiving_yards'] = float(st['REC']), float(st['YDS'])
-                if n == 'rushing': d['rushing_attempts'], d['rushing_yards'] = float(st['CAR']), float(st['YDS'])
+                if n == 'receiving':
+                    d['receptions'], d['receiving_yards'] = float(st['REC']), float(st['YDS'])
+                    if 'TD' in st: d['scrim_tds'] = d.get('scrim_tds', 0.0) + float(st['TD'])
+                if n == 'rushing':
+                    d['rushing_attempts'], d['rushing_yards'] = float(st['CAR']), float(st['YDS'])
+                    if 'TD' in st: d['scrim_tds'] = d.get('scrim_tds', 0.0) + float(st['TD'])  # anytime TD = rushing + receiving TDs (added 2026-10-18)
                 if n == 'passing':
                     c, att = st['C/ATT'].split('/'); d['passing_completions'], d['passing_attempts'] = float(c), float(att)
                     d['passing_yards'], d['passing_interceptions'] = float(st['YDS']), float(st['INT'])
@@ -46,6 +50,7 @@ ALIASES = {  # normalized market label (letters only) -> box-score key. Ledger l
     'passingint': 'passing_interceptions', 'passinginterceptions': 'passing_interceptions',
     'recyds': 'receiving_yards', 'receivingyards': 'receiving_yards', 'receivingyds': 'receiving_yards', 'receptionyds': 'receiving_yards', 'receptionyards': 'receiving_yards',
     'rec': 'receptions', 'receptions': 'receptions',
+    'anytimetd': 'scrim_tds', 'anytimetds': 'scrim_tds', 'anytimetouchdown': 'scrim_tds', 'anytimetouchdownscorer': 'scrim_tds',
 }
 
 def stat_key(market):
