@@ -343,17 +343,17 @@
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
+    "596451:Minnesota Wild": {
+      "athlete": "Jared Spurgeon",
+      "date": "2026-10-18T17:32Z",
+      "id": "596451",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
     "596273:Minnesota Wild": {
       "athlete": "Olli Maatta",
       "date": "2026-10-17T17:57Z",
       "id": "596273",
-      "status": "Out",
-      "team": "Minnesota Wild"
-    },
-    "595992:Minnesota Wild": {
-      "athlete": "Jared Spurgeon",
-      "date": "2026-10-15T15:55Z",
-      "id": "595992",
       "status": "Out",
       "team": "Minnesota Wild"
     },
@@ -559,6 +559,20 @@
       "id": "594136",
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
+    },
+    "596450:Philadelphia Flyers": {
+      "athlete": "Tyson Foerster",
+      "date": "2026-10-18T17:18Z",
+      "id": "596450",
+      "status": "Day-To-Day",
+      "team": "Philadelphia Flyers"
+    },
+    "596449:Philadelphia Flyers": {
+      "athlete": "Sean Couturier",
+      "date": "2026-10-18T17:12Z",
+      "id": "596449",
+      "status": "Day-To-Day",
+      "team": "Philadelphia Flyers"
     },
     "596424:Philadelphia Flyers": {
       "athlete": "Owen Tippett",
