@@ -410,7 +410,7 @@ def real_result(play, start):
     Returns (win: bool, note: str) or (None, note) if no path exists / nothing found yet."""
     spec = play.get('pinn') or {}
     sport = play.get('sport')
-    if sport == 'NHL' and spec.get('mkt') in ('prop:Shots On Goal', 'prop:Assists', 'prop:Points', 'prop:Goals'):
+    if sport == 'NHL' and spec.get('mkt') in ('prop:Shots On Goal', 'prop:SOG', 'prop:Assists', 'prop:Points', 'prop:Goals'):
         val, note = nhl_actual_sog(spec, start, play.get('game'))
     elif sport == 'MLB' and spec.get('mkt') in ('prop:Hits', 'prop:Bases'):
         val, note = mlb_actual_stat(spec, start)
