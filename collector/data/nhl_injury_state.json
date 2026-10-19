@@ -21,10 +21,10 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "596423:Boston Bruins": {
+    "596550:Boston Bruins": {
       "athlete": "Pavel Zacha",
-      "date": "2026-10-18T13:09Z",
-      "id": "596423",
+      "date": "2026-10-19T19:49Z",
+      "id": "596550",
       "status": "Day-To-Day",
       "team": "Boston Bruins"
     },
@@ -455,17 +455,17 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
-    "596528:New York Islanders": {
-      "athlete": "Matias Maccelli",
-      "date": "2026-10-19T16:17Z",
-      "id": "596528",
+    "596552:New York Islanders": {
+      "athlete": "Calum Ritchie",
+      "date": "2026-10-19T20:29Z",
+      "id": "596552",
       "status": "Out",
       "team": "New York Islanders"
     },
-    "596527:New York Islanders": {
-      "athlete": "Calum Ritchie",
-      "date": "2026-10-19T16:15Z",
-      "id": "596527",
+    "596551:New York Islanders": {
+      "athlete": "Matias Maccelli",
+      "date": "2026-10-19T20:26Z",
+      "id": "596551",
       "status": "Out",
       "team": "New York Islanders"
     },
