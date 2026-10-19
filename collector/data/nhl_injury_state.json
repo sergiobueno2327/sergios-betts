@@ -916,6 +916,13 @@
       "id": "596475",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
+    },
+    "596483:Carolina Hurricanes": {
+      "athlete": "Mark Jankowski",
+      "date": "2026-10-18T23:31Z",
+      "id": "596483",
+      "status": "Out",
+      "team": "Carolina Hurricanes"
     }
   }
 }
