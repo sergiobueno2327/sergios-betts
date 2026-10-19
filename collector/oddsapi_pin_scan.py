@@ -22,6 +22,7 @@ SPORTS = {
     'wnba': ('basketball_wnba', {'player_points': 'Points', 'player_rebounds': 'Rebounds', 'player_assists': 'Assists', 'player_threes': 'Threes'}),
     'nba': ('basketball_nba', {'player_points': 'Points', 'player_rebounds': 'Rebounds', 'player_assists': 'Assists', 'player_threes': 'Threes'}),
 }
+NO_LINES = []   # games within 8h with 0 Pinnacle lines (retry later)
 ZONE = (0.35, 0.75)
 LIVE, B2 = 0.03, 0.02
 
@@ -45,6 +46,11 @@ def scan(key, hours):
                     book[(m['key'], o['description'], float(o['point']))][bm['key']][o['name']] = o['price']
         npin = sum(1 for v in book.values() if 'Over' in v.get('pinnacle', {}) and 'Under' in v.get('pinnacle', {}))
         print(f"  {e['away_team']}@{e['home_team']} {e['commence_time']}: {npin} two-sided Pinnacle lines")
+        if npin == 0:
+            _h = (datetime.datetime.fromisoformat(e['commence_time'].replace('Z', '+00:00')) - now).total_seconds() / 3600
+            if _h <= 8:
+                print(f"  !! NO-LINES-YET: {e['away_team']}@{e['home_team']} starts in {_h:.1f}h with 0 Pinnacle lines (feed lag? Pinnacle posts late) -- RESCAN this sport in ~12 min")
+                NO_LINES.append(f"{key}:{e['away_team']}@{e['home_team']}")
         ref = ref_books.ref_fairs(sport, e['id'], list(MK))
         for (mk, pl, line), bks in book.items():
             pin, nov = bks.get('pinnacle', {}), bks.get('novig', {})
