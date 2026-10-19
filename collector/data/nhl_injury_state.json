@@ -539,6 +539,13 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
+    "596553:Philadelphia Flyers": {
+      "athlete": "Tyson Foerster",
+      "date": "2026-10-19T22:38Z",
+      "id": "596553",
+      "status": "Out",
+      "team": "Philadelphia Flyers"
+    },
     "596548:Philadelphia Flyers": {
       "athlete": "Owen Tippett",
       "date": "2026-10-19T17:54Z",
@@ -551,20 +558,6 @@
       "date": "2026-10-18T19:30Z",
       "id": "596471",
       "status": "Injured Reserve",
-      "team": "Philadelphia Flyers"
-    },
-    "596450:Philadelphia Flyers": {
-      "athlete": "Tyson Foerster",
-      "date": "2026-10-18T17:18Z",
-      "id": "596450",
-      "status": "Day-To-Day",
-      "team": "Philadelphia Flyers"
-    },
-    "596449:Philadelphia Flyers": {
-      "athlete": "Sean Couturier",
-      "date": "2026-10-18T17:12Z",
-      "id": "596449",
-      "status": "Day-To-Day",
       "team": "Philadelphia Flyers"
     },
     "595907:Philadelphia Flyers": {
