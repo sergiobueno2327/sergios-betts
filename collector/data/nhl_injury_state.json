@@ -77,11 +77,18 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "596506:Calgary Flames": {
-      "athlete": "Samuel Honzek",
-      "date": "2026-10-19T13:35Z",
-      "id": "596506",
+    "596563:Calgary Flames": {
+      "athlete": "Mikael Backlund",
+      "date": "2026-10-20T03:59Z",
+      "id": "596563",
       "status": "Day-To-Day",
+      "team": "Calgary Flames"
+    },
+    "596562:Calgary Flames": {
+      "athlete": "Samuel Honzek",
+      "date": "2026-10-20T03:51Z",
+      "id": "596562",
+      "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
     "594122:Calgary Flames": {
@@ -539,11 +546,11 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
-    "596553:Philadelphia Flyers": {
+    "596589:Philadelphia Flyers": {
       "athlete": "Tyson Foerster",
-      "date": "2026-10-19T22:38Z",
-      "id": "596553",
-      "status": "Out",
+      "date": "2026-10-20T13:04Z",
+      "id": "596589",
+      "status": "Day-To-Day",
       "team": "Philadelphia Flyers"
     },
     "596548:Philadelphia Flyers": {
@@ -581,17 +588,17 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
-    "596558:Pittsburgh Penguins": {
-      "athlete": "Samuel Girard",
-      "date": "2026-10-20T00:42Z",
-      "id": "596558",
-      "status": "Out",
+    "596586:Pittsburgh Penguins": {
+      "athlete": "Bryan Rust",
+      "date": "2026-10-20T13:04Z",
+      "id": "596586",
+      "status": "Day-To-Day",
       "team": "Pittsburgh Penguins"
     },
-    "596547:Pittsburgh Penguins": {
-      "athlete": "Egor Chinakhov",
-      "date": "2026-10-19T17:54Z",
-      "id": "596547",
+    "596587:Pittsburgh Penguins": {
+      "athlete": "Samuel Girard",
+      "date": "2026-10-20T13:04Z",
+      "id": "596587",
       "status": "Day-To-Day",
       "team": "Pittsburgh Penguins"
     },
@@ -615,6 +622,13 @@
       "id": "593985",
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
+    },
+    "596560:San Jose Sharks": {
+      "athlete": "Alexander Wennberg",
+      "date": "2026-10-20T03:00Z",
+      "id": "596560",
+      "status": "Day-To-Day",
+      "team": "San Jose Sharks"
     },
     "594145:San Jose Sharks": {
       "athlete": "Quentin Musty",
@@ -763,11 +777,11 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "596557:Utah Mammoth": {
+    "596588:Utah Mammoth": {
       "athlete": "John Marino",
-      "date": "2026-10-20T00:31Z",
-      "id": "596557",
-      "status": "Out",
+      "date": "2026-10-20T13:04Z",
+      "id": "596588",
+      "status": "Day-To-Day",
       "team": "Utah Mammoth"
     },
     "595365:Utah Mammoth": {
