@@ -651,13 +651,6 @@
       "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
     },
-    "596428:Vancouver Canucks": {
-      "athlete": "Marco Rossi",
-      "date": "2026-10-18T13:09Z",
-      "id": "596428",
-      "status": "Day-To-Day",
-      "team": "Vancouver Canucks"
-    },
     "596430:Nashville Predators": {
       "athlete": "Mavrik Bourque",
       "date": "2026-10-18T13:09Z",
@@ -805,13 +798,6 @@
       "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
-    "596563:Calgary Flames": {
-      "athlete": "Mikael Backlund",
-      "date": "2026-10-20T03:59Z",
-      "id": "596563",
-      "status": "Day-To-Day",
-      "team": "Calgary Flames"
-    },
     "596586:Pittsburgh Penguins": {
       "athlete": "Bryan Rust",
       "date": "2026-10-20T13:04Z",
@@ -881,6 +867,27 @@
       "id": "596629",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
+    },
+    "596637:Calgary Flames": {
+      "athlete": "Mikael Backlund",
+      "date": "2026-10-20T18:38Z",
+      "id": "596637",
+      "status": "Day-To-Day",
+      "team": "Calgary Flames"
+    },
+    "596641:Pittsburgh Penguins": {
+      "athlete": "Ben Kindel",
+      "date": "2026-10-20T20:38Z",
+      "id": "596641",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
+    },
+    "596642:Vancouver Canucks": {
+      "athlete": "Marco Rossi",
+      "date": "2026-10-20T20:43Z",
+      "id": "596642",
+      "status": "Out",
+      "team": "Vancouver Canucks"
     }
   }
 }
