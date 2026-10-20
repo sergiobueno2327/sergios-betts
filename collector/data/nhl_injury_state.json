@@ -581,17 +581,17 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
+    "596558:Pittsburgh Penguins": {
+      "athlete": "Samuel Girard",
+      "date": "2026-10-20T00:42Z",
+      "id": "596558",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
+    },
     "596547:Pittsburgh Penguins": {
       "athlete": "Egor Chinakhov",
       "date": "2026-10-19T17:54Z",
       "id": "596547",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
-    },
-    "596546:Pittsburgh Penguins": {
-      "athlete": "Samuel Girard",
-      "date": "2026-10-19T17:53Z",
-      "id": "596546",
       "status": "Day-To-Day",
       "team": "Pittsburgh Penguins"
     },
@@ -707,13 +707,6 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "596514:Toronto Maple Leafs": {
-      "athlete": "William Nylander",
-      "date": "2026-10-19T14:11Z",
-      "id": "596514",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "596291:Toronto Maple Leafs": {
       "athlete": "John Tavares",
       "date": "2026-10-17T20:19Z",
@@ -769,6 +762,13 @@
       "id": "594164",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
+    },
+    "596557:Utah Mammoth": {
+      "athlete": "John Marino",
+      "date": "2026-10-20T00:31Z",
+      "id": "596557",
+      "status": "Out",
+      "team": "Utah Mammoth"
     },
     "595365:Utah Mammoth": {
       "athlete": "Michael Carcone",
