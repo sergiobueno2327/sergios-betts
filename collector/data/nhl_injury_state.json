@@ -413,13 +413,6 @@
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
     },
-    "595365:Utah Mammoth": {
-      "athlete": "Michael Carcone",
-      "date": "2026-10-10T22:33Z",
-      "id": "595365",
-      "status": "Out",
-      "team": "Utah Mammoth"
-    },
     "595520:Philadelphia Flyers": {
       "athlete": "Travis Konecny",
       "date": "2026-10-11T18:01Z",
@@ -784,13 +777,6 @@
       "status": "Out",
       "team": "New York Islanders"
     },
-    "596560:San Jose Sharks": {
-      "athlete": "Alexander Wennberg",
-      "date": "2026-10-20T03:00Z",
-      "id": "596560",
-      "status": "Day-To-Day",
-      "team": "San Jose Sharks"
-    },
     "596562:Calgary Flames": {
       "athlete": "Samuel Honzek",
       "date": "2026-10-20T03:51Z",
@@ -840,13 +826,6 @@
       "status": "Day-To-Day",
       "team": "Buffalo Sabres"
     },
-    "596599:Florida Panthers": {
-      "athlete": "Jacob Markstrom",
-      "date": "2026-10-20T16:16Z",
-      "id": "596599",
-      "status": "Out",
-      "team": "Florida Panthers"
-    },
     "596612:Seattle Kraken": {
       "athlete": "Brandon Montour",
       "date": "2026-10-20T17:32Z",
@@ -888,6 +867,34 @@
       "id": "596642",
       "status": "Out",
       "team": "Vancouver Canucks"
+    },
+    "596644:San Jose Sharks": {
+      "athlete": "Alexander Wennberg",
+      "date": "2026-10-20T20:55Z",
+      "id": "596644",
+      "status": "Out",
+      "team": "San Jose Sharks"
+    },
+    "596646:Utah Mammoth": {
+      "athlete": "Michael Carcone",
+      "date": "2026-10-20T21:18Z",
+      "id": "596646",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "596647:Florida Panthers": {
+      "athlete": "Jacob Markstrom",
+      "date": "2026-10-20T21:23Z",
+      "id": "596647",
+      "status": "Injured Reserve",
+      "team": "Florida Panthers"
+    },
+    "596648:Anaheim Ducks": {
+      "athlete": "Judd Caulfield",
+      "date": "2026-10-20T22:36Z",
+      "id": "596648",
+      "status": "Out",
+      "team": "Anaheim Ducks"
     }
   }
 }
