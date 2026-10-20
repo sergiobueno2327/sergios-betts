@@ -28,6 +28,13 @@
       "status": "Day-To-Day",
       "team": "Boston Bruins"
     },
+    "596597:Buffalo Sabres": {
+      "athlete": "Sam Carrick",
+      "date": "2026-10-20T16:06Z",
+      "id": "596597",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
+    },
     "596536:Buffalo Sabres": {
       "athlete": "Jason Zucker",
       "date": "2026-10-19T16:59Z",
@@ -175,6 +182,13 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
+    "596595:Dallas Stars": {
+      "athlete": "Esa Lindell",
+      "date": "2026-10-20T15:58Z",
+      "id": "596595",
+      "status": "Out",
+      "team": "Dallas Stars"
+    },
     "596182:Dallas Stars": {
       "athlete": "Oskar Back",
       "date": "2026-10-16T19:32Z",
@@ -273,11 +287,11 @@
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
     },
-    "596420:Florida Panthers": {
-      "athlete": "Radko Gudas",
-      "date": "2026-10-18T13:09Z",
-      "id": "596420",
-      "status": "Day-To-Day",
+    "596599:Florida Panthers": {
+      "athlete": "Jacob Markstrom",
+      "date": "2026-10-20T16:16Z",
+      "id": "596599",
+      "status": "Out",
       "team": "Florida Panthers"
     },
     "595632:Florida Panthers": {
@@ -305,13 +319,6 @@
       "athlete": "Alex Turcotte",
       "date": "2026-10-10T18:09Z",
       "id": "595345",
-      "status": "Injured Reserve",
-      "team": "Los Angeles Kings"
-    },
-    "595344:Los Angeles Kings": {
-      "athlete": "Mats Zuccarello",
-      "date": "2026-10-10T18:03Z",
-      "id": "595344",
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
@@ -433,20 +440,6 @@
       "id": "596430",
       "status": "Day-To-Day",
       "team": "Nashville Predators"
-    },
-    "596549:New Jersey Devils": {
-      "athlete": "Anthony Mantha",
-      "date": "2026-10-19T17:59Z",
-      "id": "596549",
-      "status": "Day-To-Day",
-      "team": "New Jersey Devils"
-    },
-    "595586:New Jersey Devils": {
-      "athlete": "Connor Brown",
-      "date": "2026-10-12T14:16Z",
-      "id": "595586",
-      "status": "Injured Reserve",
-      "team": "New Jersey Devils"
     },
     "595244:New Jersey Devils": {
       "athlete": "Nick Bjugstad",
@@ -846,13 +839,6 @@
       "id": "594168",
       "status": "Injured Reserve",
       "team": "Vegas Golden Knights"
-    },
-    "596530:Washington Capitals": {
-      "athlete": "Matt Roy",
-      "date": "2026-10-19T16:23Z",
-      "id": "596530",
-      "status": "Injured Reserve",
-      "team": "Washington Capitals"
     },
     "596524:Washington Capitals": {
       "athlete": "Justin Sourdif",
