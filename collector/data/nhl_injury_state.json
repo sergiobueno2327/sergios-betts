@@ -616,13 +616,6 @@
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
     },
-    "596285:Colorado Avalanche": {
-      "athlete": "Nicolas Roy",
-      "date": "2026-10-17T19:29Z",
-      "id": "596285",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
     "596286:Colorado Avalanche": {
       "athlete": "Zachary L'Heureux",
       "date": "2026-10-17T19:31Z",
@@ -713,13 +706,6 @@
       "id": "596522",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "596524:Washington Capitals": {
-      "athlete": "Justin Sourdif",
-      "date": "2026-10-19T16:02Z",
-      "id": "596524",
-      "status": "Out",
-      "team": "Washington Capitals"
     },
     "596532:Colorado Avalanche": {
       "athlete": "Logan O'Connor",
@@ -826,20 +812,6 @@
       "status": "Day-To-Day",
       "team": "Buffalo Sabres"
     },
-    "596612:Seattle Kraken": {
-      "athlete": "Brandon Montour",
-      "date": "2026-10-20T17:32Z",
-      "id": "596612",
-      "status": "Day-To-Day",
-      "team": "Seattle Kraken"
-    },
-    "596622:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-10-20T17:58Z",
-      "id": "596622",
-      "status": "Out",
-      "team": "Montreal Canadiens"
-    },
     "596629:Detroit Red Wings": {
       "athlete": "J.T. Compher",
       "date": "2026-10-20T18:15Z",
@@ -861,20 +833,6 @@
       "status": "Out",
       "team": "Pittsburgh Penguins"
     },
-    "596642:Vancouver Canucks": {
-      "athlete": "Marco Rossi",
-      "date": "2026-10-20T20:43Z",
-      "id": "596642",
-      "status": "Out",
-      "team": "Vancouver Canucks"
-    },
-    "596644:San Jose Sharks": {
-      "athlete": "Alexander Wennberg",
-      "date": "2026-10-20T20:55Z",
-      "id": "596644",
-      "status": "Out",
-      "team": "San Jose Sharks"
-    },
     "596646:Utah Mammoth": {
       "athlete": "Michael Carcone",
       "date": "2026-10-20T21:18Z",
@@ -889,19 +847,75 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
-    "596648:Anaheim Ducks": {
-      "athlete": "Judd Caulfield",
-      "date": "2026-10-20T22:36Z",
-      "id": "596648",
-      "status": "Out",
-      "team": "Anaheim Ducks"
-    },
     "596649:Los Angeles Kings": {
       "athlete": "Quinton Byfield",
       "date": "2026-10-21T00:00Z",
       "id": "596649",
       "status": "Day-To-Day",
       "team": "Los Angeles Kings"
+    },
+    "596650:Toronto Maple Leafs": {
+      "athlete": "Jake McCabe",
+      "date": "2026-10-21T01:07Z",
+      "id": "596650",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "596700:Tampa Bay Lightning": {
+      "athlete": "Anthony Cirelli",
+      "date": "2026-10-21T06:52Z",
+      "id": "596700",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "596747:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-10-21T14:07Z",
+      "id": "596747",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
+    "596748:San Jose Sharks": {
+      "athlete": "Alexander Wennberg",
+      "date": "2026-10-21T14:07Z",
+      "id": "596748",
+      "status": "Day-To-Day",
+      "team": "San Jose Sharks"
+    },
+    "596749:Colorado Avalanche": {
+      "athlete": "Nicolas Roy",
+      "date": "2026-10-21T14:07Z",
+      "id": "596749",
+      "status": "Day-To-Day",
+      "team": "Colorado Avalanche"
+    },
+    "596750:Anaheim Ducks": {
+      "athlete": "Judd Caulfield",
+      "date": "2026-10-21T14:07Z",
+      "id": "596750",
+      "status": "Day-To-Day",
+      "team": "Anaheim Ducks"
+    },
+    "596751:Vancouver Canucks": {
+      "athlete": "Marco Rossi",
+      "date": "2026-10-21T14:07Z",
+      "id": "596751",
+      "status": "Day-To-Day",
+      "team": "Vancouver Canucks"
+    },
+    "596752:Washington Capitals": {
+      "athlete": "Justin Sourdif",
+      "date": "2026-10-21T14:07Z",
+      "id": "596752",
+      "status": "Day-To-Day",
+      "team": "Washington Capitals"
+    },
+    "596753:Washington Capitals": {
+      "athlete": "Logan Thompson",
+      "date": "2026-10-21T14:46Z",
+      "id": "596753",
+      "status": "Day-To-Day",
+      "team": "Washington Capitals"
     }
   }
 }
