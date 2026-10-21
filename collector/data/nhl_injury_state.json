@@ -895,6 +895,13 @@
       "id": "596648",
       "status": "Out",
       "team": "Anaheim Ducks"
+    },
+    "596649:Los Angeles Kings": {
+      "athlete": "Quinton Byfield",
+      "date": "2026-10-21T00:00Z",
+      "id": "596649",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
     }
   }
 }
