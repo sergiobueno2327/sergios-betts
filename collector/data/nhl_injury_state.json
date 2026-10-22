@@ -651,13 +651,6 @@
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     },
-    "596532:Colorado Avalanche": {
-      "athlete": "Logan O'Connor",
-      "date": "2026-10-19T16:34Z",
-      "id": "596532",
-      "status": "Injured Reserve",
-      "team": "Colorado Avalanche"
-    },
     "596539:Ottawa Senators": {
       "athlete": "Thomas Chabot",
       "date": "2026-10-19T17:14Z",
@@ -735,13 +728,6 @@
       "status": "Day-To-Day",
       "team": "Montreal Canadiens"
     },
-    "596749:Colorado Avalanche": {
-      "athlete": "Nicolas Roy",
-      "date": "2026-10-21T14:07Z",
-      "id": "596749",
-      "status": "Day-To-Day",
-      "team": "Colorado Avalanche"
-    },
     "596750:Anaheim Ducks": {
       "athlete": "Judd Caulfield",
       "date": "2026-10-21T14:07Z",
@@ -783,13 +769,6 @@
       "id": "596782",
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
-    },
-    "596783:Detroit Red Wings": {
-      "athlete": "J.T. Compher",
-      "date": "2026-10-21T21:34Z",
-      "id": "596783",
-      "status": "Injured Reserve",
-      "team": "Detroit Red Wings"
     },
     "596809:Buffalo Sabres": {
       "athlete": "Justin Danforth",
@@ -874,6 +853,20 @@
       "id": "596853",
       "status": "Day-To-Day",
       "team": "Carolina Hurricanes"
+    },
+    "596853:Colorado Avalanche": {
+      "athlete": "Nicolas Roy",
+      "date": "2026-10-22T18:44Z",
+      "id": "596853",
+      "status": "Out",
+      "team": "Colorado Avalanche"
+    },
+    "596855:Detroit Red Wings": {
+      "athlete": "Daniil Tarasov",
+      "date": "2026-10-22T18:46Z",
+      "id": "596855",
+      "status": "Out",
+      "team": "Detroit Red Wings"
     }
   }
 }
