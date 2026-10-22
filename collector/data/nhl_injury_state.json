@@ -553,13 +553,6 @@
       "status": "Injured Reserve",
       "team": "Dallas Stars"
     },
-    "596187:Edmonton Oilers": {
-      "athlete": "Jason Dickinson",
-      "date": "2026-10-16T20:28Z",
-      "id": "596187",
-      "status": "Out",
-      "team": "Edmonton Oilers"
-    },
     "596238:Toronto Maple Leafs": {
       "athlete": "Dakota Joshua",
       "date": "2026-10-17T14:02Z",
@@ -594,13 +587,6 @@
       "id": "596426",
       "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
-    },
-    "596430:Nashville Predators": {
-      "athlete": "Mavrik Bourque",
-      "date": "2026-10-18T13:09Z",
-      "id": "596430",
-      "status": "Day-To-Day",
-      "team": "Nashville Predators"
     },
     "596471:Philadelphia Flyers": {
       "athlete": "Cam York",
@@ -728,13 +714,6 @@
       "status": "Day-To-Day",
       "team": "Montreal Canadiens"
     },
-    "596750:Anaheim Ducks": {
-      "athlete": "Judd Caulfield",
-      "date": "2026-10-21T14:07Z",
-      "id": "596750",
-      "status": "Day-To-Day",
-      "team": "Anaheim Ducks"
-    },
     "596750:Washington Capitals": {
       "athlete": "Logan Thompson",
       "date": "2026-10-21T14:45Z",
@@ -783,13 +762,6 @@
       "id": "596810",
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
-    },
-    "596820:Ottawa Senators": {
-      "athlete": "Linus Ullmark",
-      "date": "2026-10-22T15:25Z",
-      "id": "596820",
-      "status": "Injured Reserve",
-      "team": "Ottawa Senators"
     },
     "596822:Montreal Canadiens": {
       "athlete": "Nick Suzuki",
@@ -867,6 +839,27 @@
       "id": "596855",
       "status": "Out",
       "team": "Detroit Red Wings"
+    },
+    "596858:Ottawa Senators": {
+      "athlete": "Linus Ullmark",
+      "date": "2026-10-22T21:03Z",
+      "id": "596858",
+      "status": "Injured Reserve",
+      "team": "Ottawa Senators"
+    },
+    "596859:Edmonton Oilers": {
+      "athlete": "Jason Dickinson",
+      "date": "2026-10-22T21:06Z",
+      "id": "596859",
+      "status": "Injured Reserve",
+      "team": "Edmonton Oilers"
+    },
+    "596865:Anaheim Ducks": {
+      "athlete": "Judd Caulfield",
+      "date": "2026-10-22T22:46Z",
+      "id": "596865",
+      "status": "Injured Reserve",
+      "team": "Anaheim Ducks"
     }
   }
 }
