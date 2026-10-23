@@ -798,13 +798,6 @@
       "status": "Out",
       "team": "Edmonton Oilers"
     },
-    "596991:Washington Capitals": {
-      "athlete": "Vincent Desharnais",
-      "date": "2026-10-23T14:47Z",
-      "id": "596991",
-      "status": "Out",
-      "team": "Washington Capitals"
-    },
     "597001:Toronto Maple Leafs": {
       "athlete": "Nick Blankenburg",
       "date": "2026-10-23T15:29Z",
@@ -944,6 +937,20 @@
       "id": "597036",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "597040:Edmonton Oilers": {
+      "athlete": "Devon Levi",
+      "date": "2026-10-23T19:03Z",
+      "id": "597040",
+      "status": "Out",
+      "team": "Edmonton Oilers"
+    },
+    "597041:Washington Capitals": {
+      "athlete": "Vincent Desharnais",
+      "date": "2026-10-23T20:39Z",
+      "id": "597041",
+      "status": "Injured Reserve",
+      "team": "Washington Capitals"
     }
   }
 }
