@@ -44,12 +44,18 @@ def load_plays(ledger, window):
 def fetch_ladder(sport, eid, mk, who):
     """Pinnacle Over/Under for one player+market: {line: (over, under)} plus quote age seconds."""
     r = _get(f"https://api.the-odds-api.com/v4/sports/{sport}/events/{eid}/odds?apiKey={KEY}&regions=us,eu"
-             f"&bookmakers=pinnacle&markets={mk}&oddsFormat=american")
+             f"&bookmakers=pinnacle,novig&markets={mk}&oddsFormat=american")
     if not r:
         return None, None
-    lad, age = {}, None
+    lad, age, nov = {}, None, {}
     now = datetime.datetime.now(UTC)
     for b in r.get('bookmakers', []):
+        if b['key'] == 'novig':  # Novig close price on the same line (added 2026-10-23 to separate 'Pinnacle moved' vs 'Novig caught up')
+            for m in b.get('markets', []):
+                for x in m['outcomes']:
+                    if _nrm(x['description']) == who and x.get('point') is not None:
+                        nov.setdefault(x['point'], {})[x['name']] = x['price']
+            continue
         if b['key'] != 'pinnacle':
             continue
         for m in b.get('markets', []):
@@ -59,6 +65,8 @@ def fetch_ladder(sport, eid, mk, who):
             for x in m['outcomes']:
                 if _nrm(x['description']) == who and x.get('point') is not None:
                     lad.setdefault(x['point'], {})[x['name']] = x['price']
+    lad = lad or {}
+    lad['__novig__'] = nov
     return lad, age
 
 
@@ -82,8 +90,15 @@ def snapshot(p, events, cache):
         lad, age = cache[key]
         if not lad:
             continue
+        lad = dict(lad); nov = lad.pop('__novig__', {})
+        if not lad:
+            continue
         ladder = [dict(line=l, over=v.get('Over'), under=v.get('Under')) for l, v in sorted(lad.items())]
         rec = dict(base, line=line, age_s=None if age is None else round(age), ladder=ladder)
+        nq = nov.get(line, {})
+        _ns = 'Over' if p.get('side') == 'YES' else 'Under'
+        if _ns in nq:
+            rec.update(novig_close_price=nq[_ns], novig_close_cost=round(_prob(nq[_ns]) * 100, 2))
         q = lad.get(line, {})
         if 'Over' in q and 'Under' in q:
             po, pu = _prob(q['Over']), _prob(q['Under'])
