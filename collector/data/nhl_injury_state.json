@@ -168,6 +168,13 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
+    "596888:Dallas Stars": {
+      "athlete": "Radek Faksa",
+      "date": "2026-10-23T03:15Z",
+      "id": "596888",
+      "status": "Day-To-Day",
+      "team": "Dallas Stars"
+    },
     "596595:Dallas Stars": {
       "athlete": "Esa Lindell",
       "date": "2026-10-20T15:58Z",
@@ -203,6 +210,13 @@
       "status": "Injured Reserve",
       "team": "Dallas Stars"
     },
+    "596895:Detroit Red Wings": {
+      "athlete": "John Gibson",
+      "date": "2026-10-23T04:02Z",
+      "id": "596895",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
+    },
     "596855:Detroit Red Wings": {
       "athlete": "Daniil Tarasov",
       "date": "2026-10-22T18:46Z",
@@ -230,6 +244,13 @@
       "id": "594880",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
+    },
+    "596899:Edmonton Oilers": {
+      "athlete": "Mattias Ekholm",
+      "date": "2026-10-23T04:29Z",
+      "id": "596899",
+      "status": "Out",
+      "team": "Edmonton Oilers"
     },
     "596859:Edmonton Oilers": {
       "athlete": "Jason Dickinson",
@@ -265,6 +286,13 @@
       "id": "594178",
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
+    },
+    "596885:Florida Panthers": {
+      "athlete": "Gustav Forsling",
+      "date": "2026-10-23T02:28Z",
+      "id": "596885",
+      "status": "Day-To-Day",
+      "team": "Florida Panthers"
     },
     "596647:Florida Panthers": {
       "athlete": "Jacob Markstrom",
@@ -602,11 +630,11 @@
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
     },
-    "596872:San Jose Sharks": {
+    "596882:San Jose Sharks": {
       "athlete": "Igor Chernyshov",
-      "date": "2026-10-23T00:19Z",
-      "id": "596872",
-      "status": "Day-To-Day",
+      "date": "2026-10-23T02:03Z",
+      "id": "596882",
+      "status": "Out",
       "team": "San Jose Sharks"
     },
     "596831:San Jose Sharks": {
@@ -707,11 +735,18 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "596865:Toronto Maple Leafs": {
+    "596887:Toronto Maple Leafs": {
+      "athlete": "Nick Blankenburg",
+      "date": "2026-10-23T02:52Z",
+      "id": "596887",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "596884:Toronto Maple Leafs": {
       "athlete": "Marshall Rifai",
-      "date": "2026-10-22T22:47Z",
-      "id": "596865",
-      "status": "Out",
+      "date": "2026-10-23T02:22Z",
+      "id": "596884",
+      "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
     "596291:Toronto Maple Leafs": {
@@ -770,18 +805,18 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
+    "596881:Utah Mammoth": {
+      "athlete": "John Marino",
+      "date": "2026-10-23T01:45Z",
+      "id": "596881",
+      "status": "Out",
+      "team": "Utah Mammoth"
+    },
     "596646:Utah Mammoth": {
       "athlete": "Michael Carcone",
       "date": "2026-10-20T21:18Z",
       "id": "596646",
       "status": "Injured Reserve",
-      "team": "Utah Mammoth"
-    },
-    "596588:Utah Mammoth": {
-      "athlete": "John Marino",
-      "date": "2026-10-20T13:04Z",
-      "id": "596588",
-      "status": "Day-To-Day",
       "team": "Utah Mammoth"
     },
     "594121:Utah Mammoth": {
@@ -790,13 +825,6 @@
       "id": "594121",
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
-    },
-    "596751:Vancouver Canucks": {
-      "athlete": "Marco Rossi",
-      "date": "2026-10-21T14:07Z",
-      "id": "596751",
-      "status": "Day-To-Day",
-      "team": "Vancouver Canucks"
     },
     "594191:Vancouver Canucks": {
       "athlete": "Jack Thompson",
@@ -867,6 +895,13 @@
       "id": "594192",
       "status": "Injured Reserve",
       "team": "Washington Capitals"
+    },
+    "596893:Winnipeg Jets": {
+      "athlete": "Nino Niederreiter",
+      "date": "2026-10-23T03:40Z",
+      "id": "596893",
+      "status": "Day-To-Day",
+      "team": "Winnipeg Jets"
     },
     "596522:Winnipeg Jets": {
       "athlete": "Josh Morrissey",
