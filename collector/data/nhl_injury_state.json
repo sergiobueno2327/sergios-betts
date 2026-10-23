@@ -336,13 +336,6 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "595244:New Jersey Devils": {
-      "athlete": "Nick Bjugstad",
-      "date": "2026-10-09T22:49Z",
-      "id": "595244",
-      "status": "Injured Reserve",
-      "team": "New Jersey Devils"
-    },
     "595327:Philadelphia Flyers": {
       "athlete": "Nikita Grebenkin",
       "date": "2026-10-10T16:58Z",
@@ -476,13 +469,6 @@
       "status": "Injured Reserve",
       "team": "Carolina Hurricanes"
     },
-    "595907:Philadelphia Flyers": {
-      "athlete": "Rasmus Ristolainen",
-      "date": "2026-10-14T17:16Z",
-      "id": "595907",
-      "status": "Injured Reserve",
-      "team": "Philadelphia Flyers"
-    },
     "595975:Toronto Maple Leafs": {
       "athlete": "Chris Tanev",
       "date": "2026-10-15T14:30Z",
@@ -524,13 +510,6 @@
       "id": "596037",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
-    },
-    "596177:Winnipeg Jets": {
-      "athlete": "Vladislav Namestnikov",
-      "date": "2026-10-16T18:16Z",
-      "id": "596177",
-      "status": "Out",
-      "team": "Winnipeg Jets"
     },
     "596179:Anaheim Ducks": {
       "athlete": "Ian Moore",
@@ -580,13 +559,6 @@
       "id": "596426",
       "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
-    },
-    "596471:Philadelphia Flyers": {
-      "athlete": "Cam York",
-      "date": "2026-10-18T19:30Z",
-      "id": "596471",
-      "status": "Injured Reserve",
-      "team": "Philadelphia Flyers"
     },
     "596475:Minnesota Wild": {
       "athlete": "Filip Gustavsson",
@@ -678,20 +650,6 @@
       "id": "596647",
       "status": "Injured Reserve",
       "team": "Florida Panthers"
-    },
-    "596700:Tampa Bay Lightning": {
-      "athlete": "Anthony Cirelli",
-      "date": "2026-10-21T06:52Z",
-      "id": "596700",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
-    "596747:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-10-21T14:07Z",
-      "id": "596747",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
     },
     "596750:Washington Capitals": {
       "athlete": "Logan Thompson",
@@ -917,6 +875,13 @@
       "status": "Day-To-Day",
       "team": "Utah Mammoth"
     },
+    "597009:Winnipeg Jets": {
+      "athlete": "Nick Bjugstad",
+      "date": "2026-10-23T16:48Z",
+      "id": "597009",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
+    },
     "597010:Pittsburgh Penguins": {
       "athlete": "Egor Chinakhov",
       "date": "2026-10-23T15:50Z",
@@ -931,12 +896,12 @@
       "status": "Day-To-Day",
       "team": "Anaheim Ducks"
     },
-    "597012:Anaheim Ducks": {
-      "athlete": "Pavel Mintyukov",
-      "date": "2026-10-23T15:50Z",
-      "id": "597012",
-      "status": "Day-To-Day",
-      "team": "Anaheim Ducks"
+    "597011:Philadelphia Flyers": {
+      "athlete": "Rasmus Ristolainen",
+      "date": "2026-10-23T17:11Z",
+      "id": "597011",
+      "status": "Injured Reserve",
+      "team": "Philadelphia Flyers"
     },
     "597013:Minnesota Wild": {
       "athlete": "Maxim Shabanov",
@@ -944,6 +909,41 @@
       "id": "597013",
       "status": "Day-To-Day",
       "team": "Minnesota Wild"
+    },
+    "597018:Philadelphia Flyers": {
+      "athlete": "Cam York",
+      "date": "2026-10-23T17:24Z",
+      "id": "597018",
+      "status": "Injured Reserve",
+      "team": "Philadelphia Flyers"
+    },
+    "597019:Anaheim Ducks": {
+      "athlete": "Pavel Mintyukov",
+      "date": "2026-10-23T17:25Z",
+      "id": "597019",
+      "status": "Out",
+      "team": "Anaheim Ducks"
+    },
+    "597019:New York Rangers": {
+      "athlete": "Eeli Tolvanen",
+      "date": "2026-10-23T17:27Z",
+      "id": "597019",
+      "status": "Day-To-Day",
+      "team": "New York Rangers"
+    },
+    "597022:Buffalo Sabres": {
+      "athlete": "Jiri Kulich",
+      "date": "2026-10-23T17:30Z",
+      "id": "597022",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
+    },
+    "597036:Winnipeg Jets": {
+      "athlete": "Vladislav Namestnikov",
+      "date": "2026-10-23T18:11Z",
+      "id": "597036",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
     }
   }
 }
