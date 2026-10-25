@@ -95,8 +95,8 @@ def f(x):
 
 OA_KEY = os.environ.get('THEODDSAPI_KEY', '')
 OA = 'https://api.the-odds-api.com/v4'
-OA_SPORT = {'NHL': 'icehockey_nhl', 'MLB': 'baseball_mlb', 'WNBA': 'basketball_wnba', 'NFL': 'americanfootball_nfl'}
-OA_MKT = {'Shots On Goal': 'player_shots_on_goal', 'Total Bases': 'batter_total_bases', 'Rebounds': 'player_rebounds',
+OA_SPORT = {'NBA': 'basketball_nba', 'NHL': 'icehockey_nhl', 'MLB': 'baseball_mlb', 'WNBA': 'basketball_wnba', 'NFL': 'americanfootball_nfl'}
+OA_MKT = {'Threes': 'player_threes', 'PRA': 'player_points_rebounds_assists', 'Shots On Goal': 'player_shots_on_goal', 'Total Bases': 'batter_total_bases', 'Rebounds': 'player_rebounds',
           'Assists': 'player_assists', 'Points': 'player_points', 'Hits Allowed': 'pitcher_hits_allowed',
           'Receptions': 'player_receptions', 'Rush Attempts': 'player_rush_attempts', 'Receiving Yards': 'player_reception_yds',
           'Pass Attempts': 'player_pass_attempts', 'Passing Yards': 'player_pass_yds', 'Interceptions': 'player_pass_interceptions',
@@ -104,9 +104,15 @@ OA_MKT = {'Shots On Goal': 'player_shots_on_goal', 'Total Bases': 'batter_total_
 STALE_MIN = 30   # a Pinnacle quote older than this at kickoff is not a close (OddsPapi only stores price CHANGES)
 
 
+_oa_cache = {}
+
+
 def _oa_get(u):
+    if u in _oa_cache:
+        return _oa_cache[u]
     try:
-        return json.load(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'curl/8'}), timeout=60))
+        _oa_cache[u] = json.load(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'curl/8'}), timeout=60))
+        return _oa_cache[u]
     except Exception:
         return None
 
@@ -414,6 +420,9 @@ def real_result(play, start):
         val, note = nhl_actual_sog(spec, start, play.get('game'))
     elif sport == 'MLB' and spec.get('mkt') in ('prop:Hits', 'prop:Bases'):
         val, note = mlb_actual_stat(spec, start)
+    elif sport == 'NBA' and spec.get('mkt') in ('prop:Points', 'prop:Rebounds', 'prop:Assists', 'prop:Threes', 'prop:PRA'):
+        import grade_nba_espn
+        val, note = grade_nba_espn.nba_actual(play, start)
     elif sport == 'NFL':
         import grade_nfl_espn
         val, note = grade_nfl_espn.nfl_actual(play, start_iso_of(play))
