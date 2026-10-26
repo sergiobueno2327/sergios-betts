@@ -756,13 +756,6 @@
       "status": "Day-To-Day",
       "team": "Detroit Red Wings"
     },
-    "597263:Los Angeles Kings": {
-      "athlete": "Quinton Byfield",
-      "date": "2026-10-25T13:09Z",
-      "id": "597263",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
     "597264:Pittsburgh Penguins": {
       "athlete": "Egor Chinakhov",
       "date": "2026-10-25T13:09Z",
@@ -797,13 +790,6 @@
       "id": "597359",
       "status": "Day-To-Day",
       "team": "Colorado Avalanche"
-    },
-    "597359:Los Angeles Kings": {
-      "athlete": "Mats Zuccarello",
-      "date": "2026-10-26T15:19Z",
-      "id": "597359",
-      "status": "Out",
-      "team": "Los Angeles Kings"
     },
     "597360:Dallas Stars": {
       "athlete": "Sam Steel",
@@ -881,6 +867,13 @@
       "id": "597402",
       "status": "Out",
       "team": "Buffalo Sabres"
+    },
+    "597407:Los Angeles Kings": {
+      "athlete": "Mats Zuccarello",
+      "date": "2026-10-26T21:18Z",
+      "id": "597407",
+      "status": "Injured Reserve",
+      "team": "Los Angeles Kings"
     }
   }
 }
