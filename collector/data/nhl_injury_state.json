@@ -756,26 +756,12 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
-    "597358:Dallas Stars": {
-      "athlete": "Radek Faksa",
-      "date": "2026-10-26T13:11Z",
-      "id": "597358",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
     "597359:Colorado Avalanche": {
       "athlete": "Nicolas Roy",
       "date": "2026-10-26T13:11Z",
       "id": "597359",
       "status": "Day-To-Day",
       "team": "Colorado Avalanche"
-    },
-    "597360:Dallas Stars": {
-      "athlete": "Sam Steel",
-      "date": "2026-10-26T13:11Z",
-      "id": "597360",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
     },
     "597361:Chicago Blackhawks": {
       "athlete": "Bowen Byram",
@@ -802,13 +788,6 @@
       "athlete": "Alexander Nikishin",
       "date": "2026-10-26T16:39Z",
       "id": "597376",
-      "status": "Out",
-      "team": "Carolina Hurricanes"
-    },
-    "597378:Carolina Hurricanes": {
-      "athlete": "Mark Jankowski",
-      "date": "2026-10-26T16:49Z",
-      "id": "597378",
       "status": "Out",
       "team": "Carolina Hurricanes"
     },
@@ -881,6 +860,34 @@
       "id": "597444",
       "status": "Day-To-Day",
       "team": "Detroit Red Wings"
+    },
+    "597445:Pittsburgh Penguins": {
+      "athlete": "Elmer Soderblom",
+      "date": "2026-10-27T14:58Z",
+      "id": "597445",
+      "status": "Day-To-Day",
+      "team": "Pittsburgh Penguins"
+    },
+    "597452:Dallas Stars": {
+      "athlete": "Sam Steel",
+      "date": "2026-10-27T16:27Z",
+      "id": "597452",
+      "status": "Out",
+      "team": "Dallas Stars"
+    },
+    "597453:New York Rangers": {
+      "athlete": "James Reimer",
+      "date": "2026-10-27T16:31Z",
+      "id": "597453",
+      "status": "Day-To-Day",
+      "team": "New York Rangers"
+    },
+    "597454:Dallas Stars": {
+      "athlete": "Radek Faksa",
+      "date": "2026-10-27T16:33Z",
+      "id": "597454",
+      "status": "Out",
+      "team": "Dallas Stars"
     }
   }
 }
