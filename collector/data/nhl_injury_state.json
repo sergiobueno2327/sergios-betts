@@ -525,13 +525,6 @@
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     },
-    "596539:Ottawa Senators": {
-      "athlete": "Thomas Chabot",
-      "date": "2026-10-19T17:14Z",
-      "id": "596539",
-      "status": "Out",
-      "team": "Ottawa Senators"
-    },
     "596548:Philadelphia Flyers": {
       "athlete": "Owen Tippett",
       "date": "2026-10-19T17:54Z",
@@ -644,13 +637,6 @@
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     },
-    "597018:Philadelphia Flyers": {
-      "athlete": "Cam York",
-      "date": "2026-10-23T17:24Z",
-      "id": "597018",
-      "status": "Injured Reserve",
-      "team": "Philadelphia Flyers"
-    },
     "597036:Winnipeg Jets": {
       "athlete": "Vladislav Namestnikov",
       "date": "2026-10-23T18:11Z",
@@ -749,13 +735,6 @@
       "status": "Day-To-Day",
       "team": "Tampa Bay Lightning"
     },
-    "597262:Detroit Red Wings": {
-      "athlete": "Daniil Tarasov",
-      "date": "2026-10-25T13:09Z",
-      "id": "597262",
-      "status": "Day-To-Day",
-      "team": "Detroit Red Wings"
-    },
     "597264:Pittsburgh Penguins": {
       "athlete": "Egor Chinakhov",
       "date": "2026-10-25T13:09Z",
@@ -826,13 +805,6 @@
       "status": "Out",
       "team": "Carolina Hurricanes"
     },
-    "597377:Philadelphia Flyers": {
-      "athlete": "Rasmus Ristolainen",
-      "date": "2026-10-26T16:48Z",
-      "id": "597377",
-      "status": "Out",
-      "team": "Philadelphia Flyers"
-    },
     "597378:Carolina Hurricanes": {
       "athlete": "Mark Jankowski",
       "date": "2026-10-26T16:49Z",
@@ -867,6 +839,48 @@
       "id": "597407",
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
+    },
+    "597415:Ottawa Senators": {
+      "athlete": "Thomas Chabot",
+      "date": "2026-10-27T03:28Z",
+      "id": "597415",
+      "status": "Out",
+      "team": "Ottawa Senators"
+    },
+    "597416:Edmonton Oilers": {
+      "athlete": "Zach Hyman",
+      "date": "2026-10-27T06:07Z",
+      "id": "597416",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "597442:Detroit Red Wings": {
+      "athlete": "Daniil Tarasov",
+      "date": "2026-10-27T14:18Z",
+      "id": "597442",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
+    },
+    "597443:Philadelphia Flyers": {
+      "athlete": "Rasmus Ristolainen",
+      "date": "2026-10-27T14:26Z",
+      "id": "597443",
+      "status": "Injured Reserve",
+      "team": "Philadelphia Flyers"
+    },
+    "597443:Toronto Maple Leafs": {
+      "athlete": "Kirill Marchenko",
+      "date": "2026-10-27T14:18Z",
+      "id": "597443",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "597444:Detroit Red Wings": {
+      "athlete": "Albert Johansson",
+      "date": "2026-10-27T14:18Z",
+      "id": "597444",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
     }
   }
 }
