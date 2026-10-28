@@ -35,13 +35,6 @@
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
     },
-    "593986:Pittsburgh Penguins": {
-      "athlete": "Justin Brazeau",
-      "date": "2026-09-27T15:26Z",
-      "id": "593986",
-      "status": "Injured Reserve",
-      "team": "Pittsburgh Penguins"
-    },
     "594084:St. Louis Blues": {
       "athlete": "Logan Mailloux",
       "date": "2026-09-28T15:40Z",
@@ -742,13 +735,6 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
-    "597445:Pittsburgh Penguins": {
-      "athlete": "Elmer Soderblom",
-      "date": "2026-10-27T14:58Z",
-      "id": "597445",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
-    },
     "597453:New York Rangers": {
       "athlete": "James Reimer",
       "date": "2026-10-27T16:31Z",
@@ -909,6 +895,20 @@
       "id": "597615",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
+    },
+    "597620:Pittsburgh Penguins": {
+      "athlete": "Elmer Soderblom",
+      "date": "2026-10-28T19:55Z",
+      "id": "597620",
+      "status": "Injured Reserve",
+      "team": "Pittsburgh Penguins"
+    },
+    "597623:Pittsburgh Penguins": {
+      "athlete": "Justin Brazeau",
+      "date": "2026-10-28T20:23Z",
+      "id": "597623",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
     }
   }
 }
