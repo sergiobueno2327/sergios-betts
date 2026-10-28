@@ -427,13 +427,6 @@
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
     },
-    "595975:Toronto Maple Leafs": {
-      "athlete": "Chris Tanev",
-      "date": "2026-10-15T14:30Z",
-      "id": "595975",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "595985:Ottawa Senators": {
       "athlete": "William Eklund",
       "date": "2026-10-15T15:24Z",
@@ -588,13 +581,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "596899:Edmonton Oilers": {
-      "athlete": "Mattias Ekholm",
-      "date": "2026-10-23T04:29Z",
-      "id": "596899",
-      "status": "Out",
-      "team": "Edmonton Oilers"
-    },
     "597001:Toronto Maple Leafs": {
       "athlete": "Nick Blankenburg",
       "date": "2026-10-23T15:29Z",
@@ -644,13 +630,6 @@
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
     },
-    "597110:San Jose Sharks": {
-      "athlete": "Igor Chernyshov",
-      "date": "2026-10-24T16:32Z",
-      "id": "597110",
-      "status": "Out",
-      "team": "San Jose Sharks"
-    },
     "597116:Edmonton Oilers": {
       "athlete": "Devon Levi",
       "date": "2026-10-24T17:37Z",
@@ -678,13 +657,6 @@
       "id": "597129",
       "status": "Injured Reserve",
       "team": "Dallas Stars"
-    },
-    "597208:Tampa Bay Lightning": {
-      "athlete": "Zemgus Girgensons",
-      "date": "2026-10-25T05:10Z",
-      "id": "597208",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
     },
     "597257:Pittsburgh Penguins": {
       "athlete": "Evgeni Malkin",
@@ -769,13 +741,6 @@
       "id": "597443",
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
-    },
-    "597443:Toronto Maple Leafs": {
-      "athlete": "Kirill Marchenko",
-      "date": "2026-10-27T14:18Z",
-      "id": "597443",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
     },
     "597445:Pittsburgh Penguins": {
       "athlete": "Elmer Soderblom",
@@ -882,13 +847,6 @@
       "status": "Day-To-Day",
       "team": "Buffalo Sabres"
     },
-    "597579:Washington Capitals": {
-      "athlete": "Logan Thompson",
-      "date": "2026-10-28T15:18Z",
-      "id": "597579",
-      "status": "Injured Reserve",
-      "team": "Washington Capitals"
-    },
     "597580:Edmonton Oilers": {
       "athlete": "Zach Hyman",
       "date": "2026-10-28T16:04Z",
@@ -916,6 +874,41 @@
       "id": "597584",
       "status": "Injured Reserve",
       "team": "San Jose Sharks"
+    },
+    "597585:San Jose Sharks": {
+      "athlete": "Igor Chernyshov",
+      "date": "2026-10-28T16:49Z",
+      "id": "597585",
+      "status": "Injured Reserve",
+      "team": "San Jose Sharks"
+    },
+    "597609:Tampa Bay Lightning": {
+      "athlete": "Zemgus Girgensons",
+      "date": "2026-10-28T18:01Z",
+      "id": "597609",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "597610:Tampa Bay Lightning": {
+      "athlete": "Brandon Hagel",
+      "date": "2026-10-28T18:02Z",
+      "id": "597610",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "597614:Toronto Maple Leafs": {
+      "athlete": "Kirill Marchenko",
+      "date": "2026-10-28T18:26Z",
+      "id": "597614",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
+    },
+    "597615:Toronto Maple Leafs": {
+      "athlete": "Chris Tanev",
+      "date": "2026-10-28T18:30Z",
+      "id": "597615",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
