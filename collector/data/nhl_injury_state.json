@@ -91,6 +91,13 @@
       "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
+    "597495:Carolina Hurricanes": {
+      "athlete": "Taylor Hall",
+      "date": "2026-10-27T23:43Z",
+      "id": "597495",
+      "status": "Out",
+      "team": "Carolina Hurricanes"
+    },
     "597376:Carolina Hurricanes": {
       "athlete": "Alexander Nikishin",
       "date": "2026-10-26T16:39Z",
@@ -286,6 +293,20 @@
       "id": "593266",
       "status": "Injured Reserve",
       "team": "Florida Panthers"
+    },
+    "597497:Los Angeles Kings": {
+      "athlete": "Corey Perry",
+      "date": "2026-10-28T00:00Z",
+      "id": "597497",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "597496:Los Angeles Kings": {
+      "athlete": "Drew Doughty",
+      "date": "2026-10-27T23:55Z",
+      "id": "597496",
+      "status": "Out",
+      "team": "Los Angeles Kings"
     },
     "597407:Los Angeles Kings": {
       "athlete": "Mats Zuccarello",
@@ -805,11 +826,11 @@
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
     },
-    "597487:Vegas Golden Knights": {
+    "597498:Vegas Golden Knights": {
       "athlete": "Carter Hart",
-      "date": "2026-10-27T18:56Z",
-      "id": "597487",
-      "status": "Day-To-Day",
+      "date": "2026-10-28T00:03Z",
+      "id": "597498",
+      "status": "Out",
       "team": "Vegas Golden Knights"
     },
     "596781:Vegas Golden Knights": {
