@@ -721,6 +721,13 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
+    "597628:Toronto Maple Leafs": {
+      "athlete": "Miles Wood",
+      "date": "2026-10-29T00:11Z",
+      "id": "597628",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
+    },
     "597615:Toronto Maple Leafs": {
       "athlete": "Chris Tanev",
       "date": "2026-10-28T18:30Z",
@@ -753,13 +760,6 @@
       "athlete": "John Tavares",
       "date": "2026-10-17T20:19Z",
       "id": "596291",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
-    "596037:Toronto Maple Leafs": {
-      "athlete": "Miles Wood",
-      "date": "2026-10-15T22:35Z",
-      "id": "596037",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
