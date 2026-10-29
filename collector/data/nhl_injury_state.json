@@ -77,6 +77,20 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
+    "597631:Calgary Flames": {
+      "athlete": "Brennan Othmann",
+      "date": "2026-10-29T02:05Z",
+      "id": "597631",
+      "status": "Day-To-Day",
+      "team": "Calgary Flames"
+    },
+    "597630:Calgary Flames": {
+      "athlete": "Devin Cooley",
+      "date": "2026-10-29T02:02Z",
+      "id": "597630",
+      "status": "Day-To-Day",
+      "team": "Calgary Flames"
+    },
     "597121:Calgary Flames": {
       "athlete": "Jonathan Huberdeau",
       "date": "2026-10-24T18:14Z",
@@ -118,6 +132,13 @@
       "id": "597562",
       "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
+    },
+    "597637:Colorado Avalanche": {
+      "athlete": "Josh Manson",
+      "date": "2026-10-29T04:10Z",
+      "id": "597637",
+      "status": "Out",
+      "team": "Colorado Avalanche"
     },
     "597046:Colorado Avalanche": {
       "athlete": "Zachary L'Heureux",
