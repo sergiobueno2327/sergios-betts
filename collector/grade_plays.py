@@ -5,7 +5,7 @@ For every ungraded play in the ledger export it computes:
   filled      for maker/paper orders: did Kalshi trade at or through our limit before start?
   kalshiClose Kalshi mid (our side, ¢) at the last candle before start
   pinnClose   Pinnacle no-vig % for our side at the last odds snapshot before start
-  clvPinn     pinnClose - entry  (the verdict metric)    clvKalshi = kalshiClose - entry
+  clvPinn     pinnClose - entry  (the verdict metric)    clvKalshi = kalshiClose - entry    clvNovig = novigClose - entry (2026-10-28; separate, never blended with Pinnacle)
   ret         per-contract return: (100-entry)/entry if W, -1 if L (0 if not filled / void)
   pnl         real-money plays only: stake * ret - fee
 
@@ -144,6 +144,31 @@ def snapshot_close(play, start):
         return None, 'snapshot: none for this play'
     snapshot_close.age = round(best['mins_to_start'], 1)
     return best['fair_side'] / 100, 'close-snapshot ' + best['snap_ts']
+
+
+def novig_snapshot(play):
+    """Novig close for OUR side from the close snapshot (added 2026-10-28, Sergio: 'keep Pinnacle, Novig and Kalshi').
+    Returns (cost in cents for our side, mins_to_start) or (None, None). SEPARATE from the Pinnacle verdict; Novig cost is an ask, not a no-vig fair."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'close_snapshots.jsonl')
+    best = None
+    try:
+        with open(path) as fh:
+            for line in fh:
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if r.get('id') != play.get('_id') and r.get('id') != play.get('id'):
+                    continue
+                if r.get('novig_close_cost') is None or r.get('mins_to_start') is None or r['mins_to_start'] > 15:
+                    continue
+                if best is None or r['snap_ts'] > best['snap_ts']:
+                    best = r
+    except OSError:
+        return None, None
+    if not best:
+        return None, None
+    return float(best['novig_close_cost']), round(best['mins_to_start'], 1)
 
 
 def independent_close(play, start, minutes=10):
@@ -537,6 +562,10 @@ def grade(play, root, now):
         out['closeIndependent'] = False
     out['clvPinn'] = round(pc * 100 - entry, 1) if pc is not None else None
     out['clvKalshi'] = round(kc - entry, 1) if kc is not None else None
+    _nc, _nm = novig_snapshot(play)
+    out['novigClose'] = round(_nc, 1) if _nc is not None else None   # separate from Pinnacle CLV (ask price, not a fair)
+    out['novigCloseAgeMin'] = _nm
+    out['clvNovig'] = round(_nc - entry, 1) if _nc is not None else None
     if not m:
         # Real-world-outcome grading, added 2026-09-28: ticker-less plays (NHL SOG always;
         # occasional MLB Track B players Kalshi doesn't list) used to stop here with clvPinn but
