@@ -133,13 +133,6 @@
       "status": "Out",
       "team": "Chicago Blackhawks"
     },
-    "597702:Chicago Blackhawks": {
-      "athlete": "Alex Vlasic",
-      "date": "2026-10-29T16:27Z",
-      "id": "597702",
-      "status": "Day-To-Day",
-      "team": "Chicago Blackhawks"
-    },
     "597637:Colorado Avalanche": {
       "athlete": "Josh Manson",
       "date": "2026-10-29T04:10Z",
@@ -260,8 +253,8 @@
       "team": "Edmonton Oilers"
     },
     "594179:Edmonton Oilers": {
-      "athlete": "Atro Leppanen",
-      "date": "2026-09-29T16:22Z",
+      "athlete": "Frederik Andersen",
+      "date": "2026-09-29T17:53Z",
       "id": "594179",
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
@@ -270,6 +263,13 @@
       "athlete": "Mattias Janmark",
       "date": "2026-09-29T17:52Z",
       "id": "594178",
+      "status": "Injured Reserve",
+      "team": "Edmonton Oilers"
+    },
+    "594179:Edmonton Oilers:Atro_Leppanen": {
+      "athlete": "Atro Leppanen",
+      "date": "2026-09-29T16:22Z",
+      "id": "594179",
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
     },
@@ -336,18 +336,18 @@
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
+    "597745:Minnesota Wild": {
+      "athlete": "Jared Spurgeon",
+      "date": "2026-10-29T23:51Z",
+      "id": "597745",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
     "597704:Minnesota Wild": {
       "athlete": "Brock Faber",
       "date": "2026-10-29T16:28Z",
       "id": "597704",
       "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
-    "597693:Minnesota Wild": {
-      "athlete": "Jared Spurgeon",
-      "date": "2026-10-29T15:56Z",
-      "id": "597693",
-      "status": "Out",
       "team": "Minnesota Wild"
     },
     "596475:Minnesota Wild": {
@@ -370,6 +370,13 @@
       "id": "595206",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
+    },
+    "597744:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-10-29T23:36Z",
+      "id": "597744",
+      "status": "Out",
+      "team": "Montreal Canadiens"
     },
     "596822:Montreal Canadiens": {
       "athlete": "Nick Suzuki",
