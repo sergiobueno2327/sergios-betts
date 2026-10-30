@@ -238,20 +238,6 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
-    "594880:Detroit Red Wings": {
-      "athlete": "Marco Kasper",
-      "date": "2026-10-06T15:39Z",
-      "id": "594880",
-      "status": "Injured Reserve",
-      "team": "Detroit Red Wings"
-    },
-    "594910:Detroit Red Wings": {
-      "athlete": "Mason Appleton",
-      "date": "2026-10-06T21:08Z",
-      "id": "594910",
-      "status": "Injured Reserve",
-      "team": "Detroit Red Wings"
-    },
     "594913:Montreal Canadiens": {
       "athlete": "Ivan Demidov",
       "date": "2026-10-06T21:16Z",
@@ -714,20 +700,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "597630:Calgary Flames": {
-      "athlete": "Devin Cooley",
-      "date": "2026-10-29T02:02Z",
-      "id": "597630",
-      "status": "Day-To-Day",
-      "team": "Calgary Flames"
-    },
-    "597631:Calgary Flames": {
-      "athlete": "Brennan Othmann",
-      "date": "2026-10-29T02:05Z",
-      "id": "597631",
-      "status": "Day-To-Day",
-      "team": "Calgary Flames"
-    },
     "597637:Colorado Avalanche": {
       "athlete": "Josh Manson",
       "date": "2026-10-29T04:10Z",
@@ -868,12 +840,61 @@
       "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
     },
-    "597838:Detroit Red Wings": {
-      "athlete": "Albert Johansson",
-      "date": "2026-10-30T13:17Z",
-      "id": "597838",
+    "597857:New York Rangers": {
+      "athlete": "Eeli Tolvanen",
+      "date": "2026-10-30T15:21Z",
+      "id": "597857",
       "status": "Day-To-Day",
+      "team": "New York Rangers"
+    },
+    "597864:Detroit Red Wings": {
+      "athlete": "Albert Johansson",
+      "date": "2026-10-30T16:07Z",
+      "id": "597864",
+      "status": "Out",
       "team": "Detroit Red Wings"
+    },
+    "597865:Detroit Red Wings": {
+      "athlete": "Marco Kasper",
+      "date": "2026-10-30T16:10Z",
+      "id": "597865",
+      "status": "Injured Reserve",
+      "team": "Detroit Red Wings"
+    },
+    "597866:Detroit Red Wings": {
+      "athlete": "Mason Appleton",
+      "date": "2026-10-30T16:12Z",
+      "id": "597866",
+      "status": "Injured Reserve",
+      "team": "Detroit Red Wings"
+    },
+    "597867:Minnesota Wild": {
+      "athlete": "Joel Eriksson Ek",
+      "date": "2026-10-30T16:32Z",
+      "id": "597867",
+      "status": "Day-To-Day",
+      "team": "Minnesota Wild"
+    },
+    "597868:Calgary Flames": {
+      "athlete": "Devin Cooley",
+      "date": "2026-10-30T16:32Z",
+      "id": "597868",
+      "status": "Injured Reserve",
+      "team": "Calgary Flames"
+    },
+    "597869:Calgary Flames": {
+      "athlete": "Brennan Othmann",
+      "date": "2026-10-30T16:38Z",
+      "id": "597869",
+      "status": "Out",
+      "team": "Calgary Flames"
+    },
+    "597871:Calgary Flames": {
+      "athlete": "Connor Zary",
+      "date": "2026-10-30T16:44Z",
+      "id": "597871",
+      "status": "Out",
+      "team": "Calgary Flames"
     }
   }
 }
