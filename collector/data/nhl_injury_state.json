@@ -267,8 +267,8 @@
       "team": "Edmonton Oilers"
     },
     "594179:Edmonton Oilers": {
-      "athlete": "Frederik Andersen",
-      "date": "2026-09-29T17:53Z",
+      "athlete": "Atro Leppanen",
+      "date": "2026-09-29T16:22Z",
       "id": "594179",
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
@@ -277,13 +277,6 @@
       "athlete": "Mattias Janmark",
       "date": "2026-09-29T17:52Z",
       "id": "594178",
-      "status": "Injured Reserve",
-      "team": "Edmonton Oilers"
-    },
-    "594179:Edmonton Oilers:Atro_Leppanen": {
-      "athlete": "Atro Leppanen",
-      "date": "2026-09-29T16:22Z",
-      "id": "594179",
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
     },
@@ -825,6 +818,13 @@
       "id": "594121",
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
+    },
+    "597896:Vancouver Canucks": {
+      "athlete": "Filip Chytil",
+      "date": "2026-10-30T20:17Z",
+      "id": "597896",
+      "status": "Out",
+      "team": "Vancouver Canucks"
     },
     "594190:Vancouver Canucks": {
       "athlete": "Akil Thomas",
