@@ -854,13 +854,6 @@
       "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
-    "597869:Calgary Flames": {
-      "athlete": "Brennan Othmann",
-      "date": "2026-10-30T16:38Z",
-      "id": "597869",
-      "status": "Out",
-      "team": "Calgary Flames"
-    },
     "597871:Calgary Flames": {
       "athlete": "Connor Zary",
       "date": "2026-10-30T16:44Z",
@@ -909,6 +902,20 @@
       "id": "597910",
       "status": "Suspension",
       "team": "Ottawa Senators"
+    },
+    "597916:New Jersey Devils": {
+      "athlete": "Anthony Mantha",
+      "date": "2026-10-31T01:14Z",
+      "id": "597916",
+      "status": "Day-To-Day",
+      "team": "New Jersey Devils"
+    },
+    "597965:Calgary Flames": {
+      "athlete": "Brennan Othmann",
+      "date": "2026-10-31T13:04Z",
+      "id": "597965",
+      "status": "Day-To-Day",
+      "team": "Calgary Flames"
     }
   }
 }
