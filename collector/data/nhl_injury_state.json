@@ -7,13 +7,6 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "597043:Anaheim Ducks": {
-      "athlete": "Pavel Mintyukov",
-      "date": "2026-10-23T21:08Z",
-      "id": "597043",
-      "status": "Injured Reserve",
-      "team": "Anaheim Ducks"
-    },
     "596179:Anaheim Ducks": {
       "athlete": "Ian Moore",
       "date": "2026-10-16T18:17Z",
@@ -798,17 +791,17 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "597120:Utah Mammoth": {
-      "athlete": "John Marino",
-      "date": "2026-10-24T17:55Z",
-      "id": "597120",
+    "598160:Utah Mammoth": {
+      "athlete": "Kailer Yamamoto",
+      "date": "2026-11-01T20:35Z",
+      "id": "598160",
       "status": "Out",
       "team": "Utah Mammoth"
     },
-    "596646:Utah Mammoth": {
-      "athlete": "Michael Carcone",
-      "date": "2026-10-20T21:18Z",
-      "id": "596646",
+    "598158:Utah Mammoth": {
+      "athlete": "John Marino",
+      "date": "2026-11-01T20:27Z",
+      "id": "598158",
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
