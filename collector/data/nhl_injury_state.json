@@ -448,11 +448,11 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
-    "598130:New York Islanders": {
+    "598141:New York Islanders": {
       "athlete": "Ryan Pulock",
-      "date": "2026-11-01T13:42Z",
-      "id": "598130",
-      "status": "Day-To-Day",
+      "date": "2026-11-01T17:56Z",
+      "id": "598141",
+      "status": "Out",
       "team": "New York Islanders"
     },
     "597384:New York Islanders": {
@@ -571,20 +571,6 @@
       "athlete": "Rasmus Ristolainen",
       "date": "2026-10-27T14:26Z",
       "id": "597443",
-      "status": "Injured Reserve",
-      "team": "Philadelphia Flyers"
-    },
-    "596548:Philadelphia Flyers": {
-      "athlete": "Owen Tippett",
-      "date": "2026-10-19T17:54Z",
-      "id": "596548",
-      "status": "Injured Reserve",
-      "team": "Philadelphia Flyers"
-    },
-    "595520:Philadelphia Flyers": {
-      "athlete": "Travis Konecny",
-      "date": "2026-10-11T18:01Z",
-      "id": "595520",
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
@@ -888,6 +874,13 @@
       "id": "594192",
       "status": "Injured Reserve",
       "team": "Washington Capitals"
+    },
+    "598143:Winnipeg Jets": {
+      "athlete": "Cole Koepke",
+      "date": "2026-11-01T18:32Z",
+      "id": "598143",
+      "status": "Out",
+      "team": "Winnipeg Jets"
     },
     "597036:Winnipeg Jets": {
       "athlete": "Vladislav Namestnikov",
