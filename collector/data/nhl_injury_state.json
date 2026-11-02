@@ -133,13 +133,6 @@
       "status": "Out",
       "team": "Chicago Blackhawks"
     },
-    "598134:Colorado Avalanche": {
-      "athlete": "Logan O'Connor",
-      "date": "2026-11-01T13:42Z",
-      "id": "598134",
-      "status": "Day-To-Day",
-      "team": "Colorado Avalanche"
-    },
     "597889:Colorado Avalanche": {
       "athlete": "Josh Manson",
       "date": "2026-10-30T18:27Z",
@@ -651,6 +644,13 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
+    "598270:St. Louis Blues": {
+      "athlete": "Logan Mailloux",
+      "date": "2026-11-02T21:36Z",
+      "id": "598270",
+      "status": "Injured Reserve",
+      "team": "St. Louis Blues"
+    },
     "598132:St. Louis Blues": {
       "athlete": "Colton Parayko",
       "date": "2026-11-01T13:42Z",
@@ -683,13 +683,6 @@
       "athlete": "Tyler Tucker",
       "date": "2026-09-30T19:39Z",
       "id": "594281",
-      "status": "Injured Reserve",
-      "team": "St. Louis Blues"
-    },
-    "594084:St. Louis Blues": {
-      "athlete": "Logan Mailloux",
-      "date": "2026-09-28T15:40Z",
-      "id": "594084",
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
     },
