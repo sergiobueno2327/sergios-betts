@@ -105,11 +105,11 @@
       "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
-    "597697:Carolina Hurricanes": {
+    "598215:Carolina Hurricanes": {
       "athlete": "Taylor Hall",
-      "date": "2026-10-29T16:10Z",
-      "id": "597697",
-      "status": "Out",
+      "date": "2026-11-02T14:13Z",
+      "id": "598215",
+      "status": "Day-To-Day",
       "team": "Carolina Hurricanes"
     },
     "597376:Carolina Hurricanes": {
@@ -224,11 +224,11 @@
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
     },
-    "598013:Edmonton Oilers": {
+    "598219:Edmonton Oilers": {
       "athlete": "Isaac Howard",
-      "date": "2026-10-31T21:23Z",
-      "id": "598013",
-      "status": "Out",
+      "date": "2026-11-02T14:13Z",
+      "id": "598219",
+      "status": "Day-To-Day",
       "team": "Edmonton Oilers"
     },
     "597580:Edmonton Oilers": {
@@ -284,13 +284,6 @@
       "athlete": "Aleksander Barkov",
       "date": "2026-10-29T16:13Z",
       "id": "597699",
-      "status": "Injured Reserve",
-      "team": "Florida Panthers"
-    },
-    "596647:Florida Panthers": {
-      "athlete": "Jacob Markstrom",
-      "date": "2026-10-20T21:23Z",
-      "id": "596647",
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
@@ -378,10 +371,10 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "598135:Montreal Canadiens": {
+    "598228:Montreal Canadiens": {
       "athlete": "Kirby Dach",
-      "date": "2026-11-01T13:42Z",
-      "id": "598135",
+      "date": "2026-11-02T15:22Z",
+      "id": "598228",
       "status": "Day-To-Day",
       "team": "Montreal Canadiens"
     },
@@ -476,11 +469,11 @@
       "status": "Injured Reserve",
       "team": "New York Islanders"
     },
-    "598166:New York Rangers": {
+    "598217:New York Rangers": {
       "athlete": "Sean Durzi",
-      "date": "2026-11-01T22:36Z",
-      "id": "598166",
-      "status": "Out",
+      "date": "2026-11-02T14:13Z",
+      "id": "598217",
+      "status": "Day-To-Day",
       "team": "New York Rangers"
     },
     "595531:New York Rangers": {
@@ -532,13 +525,6 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
-    "597910:Ottawa Senators": {
-      "athlete": "Hayden Hodgson",
-      "date": "2026-10-31T00:29Z",
-      "id": "597910",
-      "status": "Suspension",
-      "team": "Ottawa Senators"
-    },
     "596858:Ottawa Senators": {
       "athlete": "Linus Ullmark",
       "date": "2026-10-22T21:03Z",
@@ -567,18 +553,32 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
-    "597623:Pittsburgh Penguins": {
-      "athlete": "Justin Brazeau",
-      "date": "2026-10-28T20:23Z",
-      "id": "597623",
-      "status": "Out",
+    "598233:Pittsburgh Penguins": {
+      "athlete": "Evgeni Malkin",
+      "date": "2026-11-02T15:57Z",
+      "id": "598233",
+      "status": "Day-To-Day",
       "team": "Pittsburgh Penguins"
     },
-    "597620:Pittsburgh Penguins": {
+    "598231:Pittsburgh Penguins": {
+      "athlete": "Kaedan Korczak",
+      "date": "2026-11-02T15:52Z",
+      "id": "598231",
+      "status": "Day-To-Day",
+      "team": "Pittsburgh Penguins"
+    },
+    "598232:Pittsburgh Penguins": {
       "athlete": "Elmer Soderblom",
-      "date": "2026-10-28T19:55Z",
-      "id": "597620",
+      "date": "2026-11-02T15:52Z",
+      "id": "598232",
       "status": "Injured Reserve",
+      "team": "Pittsburgh Penguins"
+    },
+    "598221:Pittsburgh Penguins": {
+      "athlete": "Justin Brazeau",
+      "date": "2026-11-02T15:04Z",
+      "id": "598221",
+      "status": "Day-To-Day",
       "team": "Pittsburgh Penguins"
     },
     "596825:Pittsburgh Penguins": {
@@ -784,11 +784,11 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "598160:Utah Mammoth": {
+    "598216:Utah Mammoth": {
       "athlete": "Kailer Yamamoto",
-      "date": "2026-11-01T20:35Z",
-      "id": "598160",
-      "status": "Out",
+      "date": "2026-11-02T14:13Z",
+      "id": "598216",
+      "status": "Day-To-Day",
       "team": "Utah Mammoth"
     },
     "598158:Utah Mammoth": {
@@ -861,11 +861,11 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
-    "598143:Winnipeg Jets": {
+    "598218:Winnipeg Jets": {
       "athlete": "Cole Koepke",
-      "date": "2026-11-01T18:32Z",
-      "id": "598143",
-      "status": "Out",
+      "date": "2026-11-02T14:13Z",
+      "id": "598218",
+      "status": "Day-To-Day",
       "team": "Winnipeg Jets"
     },
     "597036:Winnipeg Jets": {
