@@ -1,5 +1,12 @@
 {
   "entries": {
+    "598256:Anaheim Ducks": {
+      "athlete": "A.J. Greer",
+      "date": "2026-11-02T18:46Z",
+      "id": "598256",
+      "status": "Injured Reserve",
+      "team": "Anaheim Ducks"
+    },
     "598009:Anaheim Ducks": {
       "athlete": "Troy Terry",
       "date": "2026-10-31T19:55Z",
@@ -175,11 +182,11 @@
       "status": "Injured Reserve",
       "team": "Dallas Stars"
     },
-    "598137:Detroit Red Wings": {
+    "598267:Detroit Red Wings": {
       "athlete": "Albert Johansson",
-      "date": "2026-11-01T13:42Z",
-      "id": "598137",
-      "status": "Day-To-Day",
+      "date": "2026-11-02T19:31Z",
+      "id": "598267",
+      "status": "Out",
       "team": "Detroit Red Wings"
     },
     "597989:Detroit Red Wings": {
@@ -405,6 +412,13 @@
       "id": "594183",
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
+    },
+    "598247:New Jersey Devils": {
+      "athlete": "Evan Rodrigues",
+      "date": "2026-11-02T18:01Z",
+      "id": "598247",
+      "status": "Day-To-Day",
+      "team": "New Jersey Devils"
     },
     "597916:New Jersey Devils": {
       "athlete": "Anthony Mantha",
@@ -840,10 +854,10 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
-    "598218:Winnipeg Jets": {
-      "athlete": "Cole Koepke",
-      "date": "2026-11-02T14:13Z",
-      "id": "598218",
+    "598250:Winnipeg Jets": {
+      "athlete": "Dawson Mercer",
+      "date": "2026-11-02T18:22Z",
+      "id": "598250",
       "status": "Day-To-Day",
       "team": "Winnipeg Jets"
     },
