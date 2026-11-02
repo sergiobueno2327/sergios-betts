@@ -21,17 +21,10 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "598139:Buffalo Sabres": {
-      "athlete": "Jiri Kulich",
-      "date": "2026-11-01T13:42Z",
-      "id": "598139",
-      "status": "Day-To-Day",
-      "team": "Buffalo Sabres"
-    },
-    "598140:Buffalo Sabres": {
-      "athlete": "Konsta Helenius",
-      "date": "2026-11-01T13:42Z",
-      "id": "598140",
+    "598241:Buffalo Sabres": {
+      "athlete": "Zach Benson",
+      "date": "2026-11-02T17:29Z",
+      "id": "598241",
       "status": "Day-To-Day",
       "team": "Buffalo Sabres"
     },
@@ -126,11 +119,11 @@
       "status": "Injured Reserve",
       "team": "Carolina Hurricanes"
     },
-    "598136:Chicago Blackhawks": {
+    "598243:Chicago Blackhawks": {
       "athlete": "Bowen Byram",
-      "date": "2026-11-01T13:42Z",
-      "id": "598136",
-      "status": "Day-To-Day",
+      "date": "2026-11-02T17:40Z",
+      "id": "598243",
+      "status": "Out",
       "team": "Chicago Blackhawks"
     },
     "598134:Colorado Avalanche": {
@@ -153,13 +146,6 @@
       "id": "597046",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
-    },
-    "598128:Dallas Stars": {
-      "athlete": "Radek Faksa",
-      "date": "2026-11-01T13:42Z",
-      "id": "598128",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
     },
     "597987:Dallas Stars": {
       "athlete": "Kyle Capobianco",
@@ -574,13 +560,6 @@
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
     },
-    "598221:Pittsburgh Penguins": {
-      "athlete": "Justin Brazeau",
-      "date": "2026-11-02T15:04Z",
-      "id": "598221",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
-    },
     "596825:Pittsburgh Penguins": {
       "athlete": "Bryan Rust",
       "date": "2026-10-22T15:54Z",
@@ -700,11 +679,11 @@
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
     },
-    "598129:Tampa Bay Lightning": {
+    "598238:Tampa Bay Lightning": {
       "athlete": "Zemgus Girgensons",
-      "date": "2026-11-01T13:42Z",
-      "id": "598129",
-      "status": "Day-To-Day",
+      "date": "2026-11-02T17:13Z",
+      "id": "598238",
+      "status": "Out",
       "team": "Tampa Bay Lightning"
     },
     "598133:Tampa Bay Lightning": {
