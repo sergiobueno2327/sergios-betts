@@ -378,26 +378,12 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "596291:Toronto Maple Leafs": {
-      "athlete": "John Tavares",
-      "date": "2026-10-17T20:19Z",
-      "id": "596291",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "596475:Minnesota Wild": {
       "athlete": "Filip Gustavsson",
       "date": "2026-10-18T21:23Z",
       "id": "596475",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
-    },
-    "596489:St. Louis Blues": {
-      "athlete": "Ross Johnston",
-      "date": "2026-10-19T02:33Z",
-      "id": "596489",
-      "status": "Injured Reserve",
-      "team": "St. Louis Blues"
     },
     "596510:New York Islanders": {
       "athlete": "Alexander Romanov",
@@ -735,20 +721,6 @@
       "status": "Day-To-Day",
       "team": "Los Angeles Kings"
     },
-    "598132:St. Louis Blues": {
-      "athlete": "Colton Parayko",
-      "date": "2026-11-01T13:42Z",
-      "id": "598132",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
-    "598133:Tampa Bay Lightning": {
-      "athlete": "Erik Cernak",
-      "date": "2026-11-01T13:42Z",
-      "id": "598133",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "598141:New York Islanders": {
       "athlete": "Ryan Pulock",
       "date": "2026-11-01T17:56Z",
@@ -777,13 +749,6 @@
       "status": "Day-To-Day",
       "team": "Utah Mammoth"
     },
-    "598217:New York Rangers": {
-      "athlete": "Sean Durzi",
-      "date": "2026-11-02T14:13Z",
-      "id": "598217",
-      "status": "Day-To-Day",
-      "team": "New York Rangers"
-    },
     "598219:Edmonton Oilers": {
       "athlete": "Isaac Howard",
       "date": "2026-11-02T14:13Z",
@@ -798,25 +763,11 @@
       "status": "Day-To-Day",
       "team": "Montreal Canadiens"
     },
-    "598231:Pittsburgh Penguins": {
-      "athlete": "Kaedan Korczak",
-      "date": "2026-11-02T15:52Z",
-      "id": "598231",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
-    },
     "598232:Pittsburgh Penguins": {
       "athlete": "Elmer Soderblom",
       "date": "2026-11-02T15:52Z",
       "id": "598232",
       "status": "Injured Reserve",
-      "team": "Pittsburgh Penguins"
-    },
-    "598233:Pittsburgh Penguins": {
-      "athlete": "Evgeni Malkin",
-      "date": "2026-11-02T15:57Z",
-      "id": "598233",
-      "status": "Day-To-Day",
       "team": "Pittsburgh Penguins"
     },
     "598238:Tampa Bay Lightning": {
@@ -832,13 +783,6 @@
       "id": "598241",
       "status": "Day-To-Day",
       "team": "Buffalo Sabres"
-    },
-    "598243:Chicago Blackhawks": {
-      "athlete": "Bowen Byram",
-      "date": "2026-11-02T17:40Z",
-      "id": "598243",
-      "status": "Out",
-      "team": "Chicago Blackhawks"
     },
     "598247:New Jersey Devils": {
       "athlete": "Evan Rodrigues",
@@ -895,6 +839,41 @@
       "id": "598282",
       "status": "Out",
       "team": "Chicago Blackhawks"
+    },
+    "598307:Toronto Maple Leafs": {
+      "athlete": "John Tavares",
+      "date": "2026-11-03T16:09Z",
+      "id": "598307",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
+    },
+    "598316:Pittsburgh Penguins": {
+      "athlete": "Evgeni Malkin",
+      "date": "2026-11-03T16:56Z",
+      "id": "598316",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
+    },
+    "598324:Chicago Blackhawks": {
+      "athlete": "Bowen Byram",
+      "date": "2026-11-03T17:31Z",
+      "id": "598324",
+      "status": "Injured Reserve",
+      "team": "Chicago Blackhawks"
+    },
+    "598326:New York Rangers": {
+      "athlete": "Sean Durzi",
+      "date": "2026-11-03T17:37Z",
+      "id": "598326",
+      "status": "Out",
+      "team": "New York Rangers"
+    },
+    "598329:St. Louis Blues": {
+      "athlete": "Colton Parayko",
+      "date": "2026-11-03T17:49Z",
+      "id": "598329",
+      "status": "Out",
+      "team": "St. Louis Blues"
     }
   }
 }
