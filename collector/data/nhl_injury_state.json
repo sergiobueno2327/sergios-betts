@@ -91,13 +91,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "594177:Buffalo Sabres": {
-      "athlete": "Conor Timmins",
-      "date": "2026-09-29T17:28Z",
-      "id": "594177",
-      "status": "Injured Reserve",
-      "team": "Buffalo Sabres"
-    },
     "594177:Dallas Stars": {
       "athlete": "Luke Krys",
       "date": "2026-09-29T16:18Z",
@@ -202,13 +195,6 @@
       "id": "594455",
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
-    },
-    "594913:Montreal Canadiens": {
-      "athlete": "Ivan Demidov",
-      "date": "2026-10-06T21:16Z",
-      "id": "594913",
-      "status": "Injured Reserve",
-      "team": "Montreal Canadiens"
     },
     "595090:Seattle Kraken": {
       "athlete": "Ryan Lindgren",
@@ -363,13 +349,6 @@
       "id": "596510",
       "status": "Injured Reserve",
       "team": "New York Islanders"
-    },
-    "596522:Winnipeg Jets": {
-      "athlete": "Josh Morrissey",
-      "date": "2026-10-19T15:39Z",
-      "id": "596522",
-      "status": "Injured Reserve",
-      "team": "Winnipeg Jets"
     },
     "596562:Calgary Flames": {
       "athlete": "Samuel Honzek",
@@ -888,6 +867,20 @@
       "id": "598496",
       "status": "Day-To-Day",
       "team": "Pittsburgh Penguins"
+    },
+    "598516:Montreal Canadiens": {
+      "athlete": "Ivan Demidov",
+      "date": "2026-11-04T21:04Z",
+      "id": "598516",
+      "status": "Injured Reserve",
+      "team": "Montreal Canadiens"
+    },
+    "598517:Winnipeg Jets": {
+      "athlete": "Josh Morrissey",
+      "date": "2026-11-04T21:04Z",
+      "id": "598517",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
     }
   }
 }
