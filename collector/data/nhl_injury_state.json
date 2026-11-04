@@ -805,26 +805,12 @@
       "status": "Day-To-Day",
       "team": "Montreal Canadiens"
     },
-    "598459:Detroit Red Wings": {
-      "athlete": "Albert Johansson",
-      "date": "2026-11-04T15:21Z",
-      "id": "598459",
-      "status": "Day-To-Day",
-      "team": "Detroit Red Wings"
-    },
     "598460:Vancouver Canucks": {
       "athlete": "Tom Willander",
       "date": "2026-11-04T15:21Z",
       "id": "598460",
       "status": "Day-To-Day",
       "team": "Vancouver Canucks"
-    },
-    "598461:Calgary Flames": {
-      "athlete": "Brennan Othmann",
-      "date": "2026-11-04T15:22Z",
-      "id": "598461",
-      "status": "Day-To-Day",
-      "team": "Calgary Flames"
     },
     "598476:Ottawa Senators": {
       "athlete": "Tyler Kleven",
@@ -881,6 +867,20 @@
       "id": "598517",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "598519:Detroit Red Wings": {
+      "athlete": "Albert Johansson",
+      "date": "2026-11-04T22:16Z",
+      "id": "598519",
+      "status": "Injured Reserve",
+      "team": "Detroit Red Wings"
+    },
+    "598520:Calgary Flames": {
+      "athlete": "Brennan Othmann",
+      "date": "2026-11-04T23:01Z",
+      "id": "598520",
+      "status": "Out",
+      "team": "Calgary Flames"
     }
   }
 }
