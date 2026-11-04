@@ -35,13 +35,6 @@
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
     },
-    "594107:Tampa Bay Lightning": {
-      "athlete": "Yanni Gourde",
-      "date": "2026-09-28T19:18Z",
-      "id": "594107",
-      "status": "Injured Reserve",
-      "team": "Tampa Bay Lightning"
-    },
     "594118:Buffalo Sabres": {
       "athlete": "Jack Rathbone",
       "date": "2026-09-28T20:52Z",
@@ -391,13 +384,6 @@
       "id": "596781",
       "status": "Injured Reserve",
       "team": "Vegas Golden Knights"
-    },
-    "596822:Montreal Canadiens": {
-      "athlete": "Nick Suzuki",
-      "date": "2026-10-22T15:30Z",
-      "id": "596822",
-      "status": "Out",
-      "team": "Montreal Canadiens"
     },
     "596825:Pittsburgh Penguins": {
       "athlete": "Bryan Rust",
@@ -777,26 +763,12 @@
       "status": "Day-To-Day",
       "team": "Detroit Red Wings"
     },
-    "598370:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
-      "date": "2026-11-04T01:52Z",
-      "id": "598370",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
     "598449:New York Rangers": {
       "athlete": "Joonas Korpisalo",
       "date": "2026-11-04T15:18Z",
       "id": "598449",
       "status": "Injured Reserve",
       "team": "New York Rangers"
-    },
-    "598450:Pittsburgh Penguins": {
-      "athlete": "Evgeni Malkin",
-      "date": "2026-11-04T15:21Z",
-      "id": "598450",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
     },
     "598451:Toronto Maple Leafs": {
       "athlete": "John Tavares",
@@ -875,6 +847,13 @@
       "status": "Day-To-Day",
       "team": "Calgary Flames"
     },
+    "598476:Ottawa Senators": {
+      "athlete": "Tyler Kleven",
+      "date": "2026-11-04T16:56Z",
+      "id": "598476",
+      "status": "Out",
+      "team": "Ottawa Senators"
+    },
     "598479:New York Islanders": {
       "athlete": "Mathew Barzal",
       "date": "2026-11-04T17:34Z",
@@ -882,12 +861,33 @@
       "status": "Injured Reserve",
       "team": "New York Islanders"
     },
-    "598476:Ottawa Senators": {
-      "athlete": "Tyler Kleven",
-      "date": "2026-11-04T16:56Z",
-      "id": "598476",
-      "status": "Out",
-      "team": "Ottawa Senators"
+    "598480:Tampa Bay Lightning": {
+      "athlete": "Yanni Gourde",
+      "date": "2026-11-04T17:51Z",
+      "id": "598480",
+      "status": "Injured Reserve",
+      "team": "Tampa Bay Lightning"
+    },
+    "598482:Dallas Stars": {
+      "athlete": "Miro Heiskanen",
+      "date": "2026-11-04T18:14Z",
+      "id": "598482",
+      "status": "Day-To-Day",
+      "team": "Dallas Stars"
+    },
+    "598483:Montreal Canadiens": {
+      "athlete": "Nick Suzuki",
+      "date": "2026-11-04T18:16Z",
+      "id": "598483",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
+    "598496:Pittsburgh Penguins": {
+      "athlete": "Evgeni Malkin",
+      "date": "2026-11-04T18:52Z",
+      "id": "598496",
+      "status": "Day-To-Day",
+      "team": "Pittsburgh Penguins"
     }
   }
 }
