@@ -84,13 +84,6 @@
       "status": "Out",
       "team": "Calgary Flames"
     },
-    "597868:Calgary Flames": {
-      "athlete": "Devin Cooley",
-      "date": "2026-10-30T16:32Z",
-      "id": "597868",
-      "status": "Injured Reserve",
-      "team": "Calgary Flames"
-    },
     "597121:Calgary Flames": {
       "athlete": "Jonathan Huberdeau",
       "date": "2026-10-24T18:14Z",
@@ -336,38 +329,38 @@
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
-    "597745:Minnesota Wild": {
-      "athlete": "Jared Spurgeon",
-      "date": "2026-10-29T23:51Z",
-      "id": "597745",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
-    "597704:Minnesota Wild": {
-      "athlete": "Brock Faber",
-      "date": "2026-10-29T16:28Z",
-      "id": "597704",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
-    "596475:Minnesota Wild": {
+    "598600:Minnesota Wild": {
       "athlete": "Filip Gustavsson",
-      "date": "2026-10-18T21:23Z",
-      "id": "596475",
+      "date": "2026-11-05T18:51Z",
+      "id": "598600",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "595638:Minnesota Wild": {
+    "598598:Minnesota Wild": {
       "athlete": "Marcus Foligno",
-      "date": "2026-10-12T22:12Z",
-      "id": "595638",
+      "date": "2026-11-05T18:36Z",
+      "id": "598598",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "595206:Minnesota Wild": {
+    "598597:Minnesota Wild": {
       "athlete": "Nick Foligno",
-      "date": "2026-10-09T15:50Z",
-      "id": "595206",
+      "date": "2026-11-05T18:32Z",
+      "id": "598597",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
+    "598592:Minnesota Wild": {
+      "athlete": "Jared Spurgeon",
+      "date": "2026-11-05T18:12Z",
+      "id": "598592",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
+    "598591:Minnesota Wild": {
+      "athlete": "Brock Faber",
+      "date": "2026-11-05T18:09Z",
+      "id": "598591",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
@@ -455,11 +448,11 @@
       "status": "Injured Reserve",
       "team": "New York Islanders"
     },
-    "598582:New York Rangers": {
+    "598604:New York Rangers": {
       "athlete": "Sean Durzi",
-      "date": "2026-11-05T17:15Z",
-      "id": "598582",
-      "status": "Out",
+      "date": "2026-11-05T19:23Z",
+      "id": "598604",
+      "status": "Injured Reserve",
       "team": "New York Rangers"
     },
     "598449:New York Rangers": {
