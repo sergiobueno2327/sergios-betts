@@ -70,11 +70,11 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "598520:Calgary Flames": {
+    "598554:Calgary Flames": {
       "athlete": "Brennan Othmann",
-      "date": "2026-11-04T23:01Z",
-      "id": "598520",
-      "status": "Out",
+      "date": "2026-11-05T13:59Z",
+      "id": "598554",
+      "status": "Day-To-Day",
       "team": "Calgary Flames"
     },
     "597871:Calgary Flames": {
@@ -301,13 +301,6 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
-    "598131:Los Angeles Kings": {
-      "athlete": "Adrian Kempe",
-      "date": "2026-11-01T13:42Z",
-      "id": "598131",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
     "597733:Los Angeles Kings": {
       "athlete": "Mats Zuccarello",
       "date": "2026-10-29T18:43Z",
@@ -518,18 +511,18 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "598521:Ottawa Senators": {
-      "athlete": "Ridly Greig",
-      "date": "2026-11-05T00:49Z",
-      "id": "598521",
-      "status": "Out",
+    "598553:Ottawa Senators": {
+      "athlete": "Tyler Kleven",
+      "date": "2026-11-05T13:59Z",
+      "id": "598553",
+      "status": "Day-To-Day",
       "team": "Ottawa Senators"
     },
-    "598476:Ottawa Senators": {
-      "athlete": "Tyler Kleven",
-      "date": "2026-11-04T16:56Z",
-      "id": "598476",
-      "status": "Out",
+    "598525:Ottawa Senators": {
+      "athlete": "Ridly Greig",
+      "date": "2026-11-05T04:02Z",
+      "id": "598525",
+      "status": "Day-To-Day",
       "team": "Ottawa Senators"
     },
     "598014:Ottawa Senators": {
