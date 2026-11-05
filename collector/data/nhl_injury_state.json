@@ -28,11 +28,11 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "598281:Boston Bruins": {
+    "598610:Boston Bruins": {
       "athlete": "Matthew Poitras",
-      "date": "2026-11-03T03:29Z",
-      "id": "598281",
-      "status": "Day-To-Day",
+      "date": "2026-11-05T22:59Z",
+      "id": "598610",
+      "status": "Out",
       "team": "Boston Bruins"
     },
     "598241:Buffalo Sabres": {
@@ -97,13 +97,6 @@
       "id": "596562",
       "status": "Injured Reserve",
       "team": "Calgary Flames"
-    },
-    "598452:Carolina Hurricanes": {
-      "athlete": "Taylor Hall",
-      "date": "2026-11-04T15:21Z",
-      "id": "598452",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
     },
     "597376:Carolina Hurricanes": {
       "athlete": "Alexander Nikishin",
@@ -672,13 +665,6 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "598453:Tampa Bay Lightning": {
-      "athlete": "Zemgus Girgensons",
-      "date": "2026-11-04T15:21Z",
-      "id": "598453",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "598451:Toronto Maple Leafs": {
       "athlete": "John Tavares",
       "date": "2026-11-04T15:21Z",
@@ -742,11 +728,11 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "598456:Utah Mammoth": {
+    "598614:Utah Mammoth": {
       "athlete": "Kailer Yamamoto",
-      "date": "2026-11-04T15:21Z",
-      "id": "598456",
-      "status": "Day-To-Day",
+      "date": "2026-11-05T23:37Z",
+      "id": "598614",
+      "status": "Out",
       "team": "Utah Mammoth"
     },
     "598158:Utah Mammoth": {
