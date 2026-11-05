@@ -154,11 +154,11 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
-    "598482:Dallas Stars": {
+    "598589:Dallas Stars": {
       "athlete": "Miro Heiskanen",
-      "date": "2026-11-04T18:14Z",
-      "id": "598482",
-      "status": "Day-To-Day",
+      "date": "2026-11-05T17:36Z",
+      "id": "598589",
+      "status": "Out",
       "team": "Dallas Stars"
     },
     "597987:Dallas Stars": {
@@ -189,38 +189,38 @@
       "status": "Injured Reserve",
       "team": "Dallas Stars"
     },
-    "598519:Detroit Red Wings": {
-      "athlete": "Albert Johansson",
-      "date": "2026-11-04T22:16Z",
-      "id": "598519",
+    "598581:Detroit Red Wings": {
+      "athlete": "Marco Kasper",
+      "date": "2026-11-05T16:57Z",
+      "id": "598581",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
     },
-    "598368:Detroit Red Wings": {
+    "598580:Detroit Red Wings": {
+      "athlete": "Mason Appleton",
+      "date": "2026-11-05T16:56Z",
+      "id": "598580",
+      "status": "Injured Reserve",
+      "team": "Detroit Red Wings"
+    },
+    "598579:Detroit Red Wings": {
+      "athlete": "Albert Johansson",
+      "date": "2026-11-05T16:49Z",
+      "id": "598579",
+      "status": "Injured Reserve",
+      "team": "Detroit Red Wings"
+    },
+    "598576:Detroit Red Wings": {
       "athlete": "John Gibson",
-      "date": "2026-11-04T01:07Z",
-      "id": "598368",
-      "status": "Day-To-Day",
+      "date": "2026-11-05T16:34Z",
+      "id": "598576",
+      "status": "Out",
       "team": "Detroit Red Wings"
     },
     "597989:Detroit Red Wings": {
       "athlete": "Dylan Larkin",
       "date": "2026-10-31T17:03Z",
       "id": "597989",
-      "status": "Injured Reserve",
-      "team": "Detroit Red Wings"
-    },
-    "597866:Detroit Red Wings": {
-      "athlete": "Mason Appleton",
-      "date": "2026-10-30T16:12Z",
-      "id": "597866",
-      "status": "Injured Reserve",
-      "team": "Detroit Red Wings"
-    },
-    "597865:Detroit Red Wings": {
-      "athlete": "Marco Kasper",
-      "date": "2026-10-30T16:10Z",
-      "id": "597865",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
     },
@@ -378,20 +378,6 @@
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
     },
-    "598483:Montreal Canadiens": {
-      "athlete": "Nick Suzuki",
-      "date": "2026-11-04T18:16Z",
-      "id": "598483",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
-    },
-    "598458:Montreal Canadiens": {
-      "athlete": "Kirby Dach",
-      "date": "2026-11-04T15:21Z",
-      "id": "598458",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
-    },
     "597972:Montreal Canadiens": {
       "athlete": "Mike Matheson",
       "date": "2026-10-31T15:31Z",
@@ -469,11 +455,11 @@
       "status": "Injured Reserve",
       "team": "New York Islanders"
     },
-    "598457:New York Rangers": {
+    "598582:New York Rangers": {
       "athlete": "Sean Durzi",
-      "date": "2026-11-04T15:21Z",
-      "id": "598457",
-      "status": "Day-To-Day",
+      "date": "2026-11-05T17:15Z",
+      "id": "598582",
+      "status": "Out",
       "team": "New York Rangers"
     },
     "598449:New York Rangers": {
@@ -567,13 +553,6 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
-    "598496:Pittsburgh Penguins": {
-      "athlete": "Evgeni Malkin",
-      "date": "2026-11-04T18:52Z",
-      "id": "598496",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
-    },
     "598232:Pittsburgh Penguins": {
       "athlete": "Elmer Soderblom",
       "date": "2026-11-02T15:52Z",
@@ -664,13 +643,6 @@
       "id": "594287",
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
-    },
-    "598455:St. Louis Blues": {
-      "athlete": "Colton Parayko",
-      "date": "2026-11-04T15:21Z",
-      "id": "598455",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
     },
     "598270:St. Louis Blues": {
       "athlete": "Logan Mailloux",
