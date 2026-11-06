@@ -70,13 +70,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "594118:Buffalo Sabres": {
-      "athlete": "Jack Rathbone",
-      "date": "2026-09-28T20:52Z",
-      "id": "594118",
-      "status": "Injured Reserve",
-      "team": "Buffalo Sabres"
-    },
     "598738:Calgary Flames": {
       "athlete": "Jonathan Huberdeau",
       "date": "2026-11-06T16:42Z",
@@ -147,17 +140,17 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
+    "598758:Dallas Stars": {
+      "athlete": "Miro Heiskanen",
+      "date": "2026-11-06T18:46Z",
+      "id": "598758",
+      "status": "Out",
+      "team": "Dallas Stars"
+    },
     "598725:Dallas Stars": {
       "athlete": "Sam Steel",
       "date": "2026-11-06T14:10Z",
       "id": "598725",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
-    "598727:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
-      "date": "2026-11-06T14:10Z",
-      "id": "598727",
       "status": "Day-To-Day",
       "team": "Dallas Stars"
     },
@@ -469,13 +462,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "598449:New York Rangers": {
-      "athlete": "Joonas Korpisalo",
-      "date": "2026-11-04T15:18Z",
-      "id": "598449",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
-    },
     "595531:New York Rangers": {
       "athlete": "Igor Shesterkin",
       "date": "2026-10-11T21:06Z",
@@ -644,10 +630,10 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
-    "598270:St. Louis Blues": {
+    "598761:St. Louis Blues": {
       "athlete": "Logan Mailloux",
-      "date": "2026-11-02T21:36Z",
-      "id": "598270",
+      "date": "2026-11-06T19:09Z",
+      "id": "598761",
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
     },
