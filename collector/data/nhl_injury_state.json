@@ -141,7 +141,7 @@
       "team": "Colorado Avalanche"
     },
     "598589:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
+      "athlete": "Sam Steel",
       "date": "2026-11-05T17:36Z",
       "id": "598589",
       "status": "Out",
@@ -217,11 +217,18 @@
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
     },
-    "598359:Edmonton Oilers": {
-      "athlete": "Isaac Howard",
-      "date": "2026-11-03T19:37Z",
-      "id": "598359",
+    "598620:Edmonton Oilers": {
+      "athlete": "Tristan Jarry",
+      "date": "2026-11-06T00:09Z",
+      "id": "598620",
       "status": "Out",
+      "team": "Edmonton Oilers"
+    },
+    "598619:Edmonton Oilers": {
+      "athlete": "Isaac Howard",
+      "date": "2026-11-06T00:04Z",
+      "id": "598619",
+      "status": "Injured Reserve",
       "team": "Edmonton Oilers"
     },
     "597580:Edmonton Oilers": {
@@ -728,6 +735,13 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
+    "598621:Utah Mammoth": {
+      "athlete": "Nate Schmidt",
+      "date": "2026-11-06T01:21Z",
+      "id": "598621",
+      "status": "Day-To-Day",
+      "team": "Utah Mammoth"
+    },
     "598614:Utah Mammoth": {
       "athlete": "Kailer Yamamoto",
       "date": "2026-11-05T23:37Z",
@@ -749,11 +763,11 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "598460:Vancouver Canucks": {
+    "598618:Vancouver Canucks": {
       "athlete": "Tom Willander",
-      "date": "2026-11-04T15:21Z",
-      "id": "598460",
-      "status": "Day-To-Day",
+      "date": "2026-11-05T23:54Z",
+      "id": "598618",
+      "status": "Out",
       "team": "Vancouver Canucks"
     },
     "598346:Vancouver Canucks": {
