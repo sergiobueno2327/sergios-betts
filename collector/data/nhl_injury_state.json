@@ -301,6 +301,13 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
+    "598764:Los Angeles Kings": {
+      "athlete": "Alex Turcotte",
+      "date": "2026-11-06T20:29Z",
+      "id": "598764",
+      "status": "Injured Reserve",
+      "team": "Los Angeles Kings"
+    },
     "597733:Los Angeles Kings": {
       "athlete": "Mats Zuccarello",
       "date": "2026-10-29T18:43Z",
@@ -312,13 +319,6 @@
       "athlete": "Kevin Fiala",
       "date": "2026-10-29T18:42Z",
       "id": "597732",
-      "status": "Injured Reserve",
-      "team": "Los Angeles Kings"
-    },
-    "595345:Los Angeles Kings": {
-      "athlete": "Alex Turcotte",
-      "date": "2026-10-10T18:09Z",
-      "id": "595345",
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
