@@ -595,13 +595,6 @@
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
     },
-    "598451:Toronto Maple Leafs": {
-      "athlete": "John Tavares",
-      "date": "2026-11-04T15:21Z",
-      "id": "598451",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "598479:New York Islanders": {
       "athlete": "Mathew Barzal",
       "date": "2026-11-04T17:34Z",
@@ -847,13 +840,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "598821:Boston Bruins": {
-      "athlete": "James Hagens",
-      "date": "2026-11-07T15:15Z",
-      "id": "598821",
-      "status": "Injured Reserve",
-      "team": "Boston Bruins"
-    },
     "598821:Calgary Flames": {
       "athlete": "Kevin Bahl",
       "date": "2026-11-07T09:12Z",
@@ -868,19 +854,26 @@
       "status": "Day-To-Day",
       "team": "Calgary Flames"
     },
-    "598823:Carolina Hurricanes": {
-      "athlete": "Alexander Nikishin",
-      "date": "2026-11-07T14:58Z",
-      "id": "598823",
-      "status": "Out",
-      "team": "Carolina Hurricanes"
-    },
     "598825:Florida Panthers": {
       "athlete": "Anton Lundell",
       "date": "2026-11-07T15:33Z",
       "id": "598825",
       "status": "Out",
       "team": "Florida Panthers"
+    },
+    "598831:Winnipeg Jets": {
+      "athlete": "Elias Salomonsson",
+      "date": "2026-11-07T16:41Z",
+      "id": "598831",
+      "status": "Day-To-Day",
+      "team": "Winnipeg Jets"
+    },
+    "598836:Boston Bruins": {
+      "athlete": "James Hagens",
+      "date": "2026-11-07T17:30Z",
+      "id": "598836",
+      "status": "Injured Reserve",
+      "team": "Boston Bruins"
     }
   }
 }
