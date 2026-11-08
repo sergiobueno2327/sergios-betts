@@ -658,13 +658,6 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "598878:Toronto Maple Leafs": {
-      "athlete": "Morgan Rielly",
-      "date": "2026-11-08T01:27Z",
-      "id": "598878",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "597716:Toronto Maple Leafs": {
       "athlete": "Kirill Marchenko",
       "date": "2026-10-29T17:28Z",
@@ -839,6 +832,13 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "599063:Toronto Maple Leafs": {
+      "athlete": "Morgan Rielly",
+      "date": "2026-11-08T21:47Z",
+      "id": "599063",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
