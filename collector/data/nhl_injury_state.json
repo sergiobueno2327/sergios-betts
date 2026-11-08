@@ -63,11 +63,18 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "598822:Calgary Flames": {
+    "599036:Calgary Flames": {
       "athlete": "Brennan Othmann",
-      "date": "2026-11-07T09:12Z",
-      "id": "598822",
-      "status": "Day-To-Day",
+      "date": "2026-11-08T18:04Z",
+      "id": "599036",
+      "status": "Out",
+      "team": "Calgary Flames"
+    },
+    "599020:Calgary Flames": {
+      "athlete": "Kevin Bahl",
+      "date": "2026-11-08T16:17Z",
+      "id": "599020",
+      "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
     "598738:Calgary Flames": {
@@ -90,6 +97,13 @@
       "id": "596562",
       "status": "Injured Reserve",
       "team": "Calgary Flames"
+    },
+    "598894:Carolina Hurricanes": {
+      "athlete": "William Carrier",
+      "date": "2026-11-08T04:04Z",
+      "id": "598894",
+      "status": "Day-To-Day",
+      "team": "Carolina Hurricanes"
     },
     "596031:Carolina Hurricanes": {
       "athlete": "Jordan Staal",
@@ -126,12 +140,12 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
-    "598769:Columbus Blue Jackets": {
-      "athlete": "Dmitri Voronkov",
-      "date": "2026-11-07T03:19Z",
-      "id": "598769",
+    "598983:Dallas Stars": {
+      "athlete": "Miro Heiskanen",
+      "date": "2026-11-08T13:39Z",
+      "id": "598983",
       "status": "Day-To-Day",
-      "team": "Columbus Blue Jackets"
+      "team": "Dallas Stars"
     },
     "597987:Dallas Stars": {
       "athlete": "Kyle Capobianco",
@@ -160,6 +174,13 @@
       "id": "594177",
       "status": "Injured Reserve",
       "team": "Dallas Stars"
+    },
+    "598978:Detroit Red Wings": {
+      "athlete": "John Gibson",
+      "date": "2026-11-08T13:39Z",
+      "id": "598978",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
     },
     "598749:Detroit Red Wings": {
       "athlete": "Albert Johansson",
@@ -195,6 +216,20 @@
       "id": "595897",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
+    },
+    "599004:Edmonton Oilers": {
+      "athlete": "Colton Dach",
+      "date": "2026-11-08T15:14Z",
+      "id": "599004",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "598910:Edmonton Oilers": {
+      "athlete": "Ryan Nugent-Hopkins",
+      "date": "2026-11-08T05:22Z",
+      "id": "598910",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
     },
     "598619:Edmonton Oilers": {
       "athlete": "Isaac Howard",
@@ -287,6 +322,13 @@
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
+    "598980:Minnesota Wild": {
+      "athlete": "Michael McCarron",
+      "date": "2026-11-08T13:39Z",
+      "id": "598980",
+      "status": "Day-To-Day",
+      "team": "Minnesota Wild"
+    },
     "598600:Minnesota Wild": {
       "athlete": "Filip Gustavsson",
       "date": "2026-11-05T18:51Z",
@@ -307,6 +349,13 @@
       "id": "598591",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
+    },
+    "598982:Montreal Canadiens": {
+      "athlete": "Josh Anderson",
+      "date": "2026-11-08T13:39Z",
+      "id": "598982",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
     },
     "598516:Montreal Canadiens": {
       "athlete": "Ivan Demidov",
@@ -342,6 +391,13 @@
       "id": "594183",
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
+    },
+    "598979:Nashville Predators": {
+      "athlete": "Jonathan Marchessault",
+      "date": "2026-11-08T13:39Z",
+      "id": "598979",
+      "status": "Day-To-Day",
+      "team": "Nashville Predators"
     },
     "594455:New Jersey Devils": {
       "athlete": "Seamus Casey",
@@ -385,6 +441,13 @@
       "status": "Injured Reserve",
       "team": "New York Islanders"
     },
+    "598987:New York Rangers": {
+      "athlete": "Alberts Smits",
+      "date": "2026-11-08T13:39Z",
+      "id": "598987",
+      "status": "Day-To-Day",
+      "team": "New York Rangers"
+    },
     "598604:New York Rangers": {
       "athlete": "Sean Durzi",
       "date": "2026-11-05T19:23Z",
@@ -419,6 +482,13 @@
       "id": "594156",
       "status": "Injured Reserve",
       "team": "New York Rangers"
+    },
+    "598985:Ottawa Senators": {
+      "athlete": "Ridly Greig",
+      "date": "2026-11-08T13:39Z",
+      "id": "598985",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
     },
     "598014:Ottawa Senators": {
       "athlete": "Andre Burakovsky",
@@ -588,6 +658,13 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
+    "598878:Toronto Maple Leafs": {
+      "athlete": "Morgan Rielly",
+      "date": "2026-11-08T01:27Z",
+      "id": "598878",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
     "597716:Toronto Maple Leafs": {
       "athlete": "Kirill Marchenko",
       "date": "2026-10-29T17:28Z",
@@ -644,6 +721,13 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
+    "598981:Utah Mammoth": {
+      "athlete": "Nate Schmidt",
+      "date": "2026-11-08T13:39Z",
+      "id": "598981",
+      "status": "Day-To-Day",
+      "team": "Utah Mammoth"
+    },
     "598820:Utah Mammoth": {
       "athlete": "Kailer Yamamoto",
       "date": "2026-11-07T15:04Z",
@@ -664,6 +748,13 @@
       "id": "594121",
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
+    },
+    "598986:Vancouver Canucks": {
+      "athlete": "Tom Willander",
+      "date": "2026-11-08T13:39Z",
+      "id": "598986",
+      "status": "Day-To-Day",
+      "team": "Vancouver Canucks"
     },
     "598346:Vancouver Canucks": {
       "athlete": "Filip Chytil",
@@ -721,6 +812,20 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
+    "599012:Winnipeg Jets": {
+      "athlete": "Josh Morrissey",
+      "date": "2026-11-08T15:51Z",
+      "id": "599012",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
+    },
+    "598871:Winnipeg Jets": {
+      "athlete": "Elias Salomonsson",
+      "date": "2026-11-08T00:05Z",
+      "id": "598871",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
+    },
     "597036:Winnipeg Jets": {
       "athlete": "Vladislav Namestnikov",
       "date": "2026-10-23T18:11Z",
@@ -734,125 +839,6 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "598878:Toronto Maple Leafs": {
-      "athlete": "Morgan Rielly",
-      "date": "2026-11-08T01:27Z",
-      "id": "598878",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
-    "598871:Winnipeg Jets": {
-      "athlete": "Elias Salomonsson",
-      "date": "2026-11-08T00:05Z",
-      "id": "598871",
-      "status": "Injured Reserve",
-      "team": "Winnipeg Jets"
-    },
-    "598894:Carolina Hurricanes": {
-      "athlete": "William Carrier",
-      "date": "2026-11-08T04:04Z",
-      "id": "598894",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
-    },
-    "598983:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
-      "date": "2026-11-08T13:39Z",
-      "id": "598983",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
-    "598978:Detroit Red Wings": {
-      "athlete": "John Gibson",
-      "date": "2026-11-08T13:39Z",
-      "id": "598978",
-      "status": "Day-To-Day",
-      "team": "Detroit Red Wings"
-    },
-    "599004:Edmonton Oilers": {
-      "athlete": "Colton Dach",
-      "date": "2026-11-08T15:14Z",
-      "id": "599004",
-      "status": "Day-To-Day",
-      "team": "Edmonton Oilers"
-    },
-    "598910:Edmonton Oilers": {
-      "athlete": "Ryan Nugent-Hopkins",
-      "date": "2026-11-08T05:22Z",
-      "id": "598910",
-      "status": "Day-To-Day",
-      "team": "Edmonton Oilers"
-    },
-    "598984:Florida Panthers": {
-      "athlete": "Anton Lundell",
-      "date": "2026-11-08T13:39Z",
-      "id": "598984",
-      "status": "Day-To-Day",
-      "team": "Florida Panthers"
-    },
-    "598980:Minnesota Wild": {
-      "athlete": "Michael McCarron",
-      "date": "2026-11-08T13:39Z",
-      "id": "598980",
-      "status": "Day-To-Day",
-      "team": "Minnesota Wild"
-    },
-    "598982:Montreal Canadiens": {
-      "athlete": "Josh Anderson",
-      "date": "2026-11-08T13:39Z",
-      "id": "598982",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
-    },
-    "598979:Nashville Predators": {
-      "athlete": "Jonathan Marchessault",
-      "date": "2026-11-08T13:39Z",
-      "id": "598979",
-      "status": "Day-To-Day",
-      "team": "Nashville Predators"
-    },
-    "598987:New York Rangers": {
-      "athlete": "Alberts Smits",
-      "date": "2026-11-08T13:39Z",
-      "id": "598987",
-      "status": "Day-To-Day",
-      "team": "New York Rangers"
-    },
-    "598985:Ottawa Senators": {
-      "athlete": "Ridly Greig",
-      "date": "2026-11-08T13:39Z",
-      "id": "598985",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
-    },
-    "598981:Utah Mammoth": {
-      "athlete": "Nate Schmidt",
-      "date": "2026-11-08T13:39Z",
-      "id": "598981",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
-    },
-    "598986:Vancouver Canucks": {
-      "athlete": "Tom Willander",
-      "date": "2026-11-08T13:39Z",
-      "id": "598986",
-      "status": "Day-To-Day",
-      "team": "Vancouver Canucks"
-    },
-    "599012:Winnipeg Jets": {
-      "athlete": "Josh Morrissey",
-      "date": "2026-11-08T15:51Z",
-      "id": "599012",
-      "status": "Injured Reserve",
-      "team": "Winnipeg Jets"
-    },
-    "599020:Calgary Flames": {
-      "athlete": "Kevin Bahl",
-      "date": "2026-11-08T16:17Z",
-      "id": "599020",
-      "status": "Injured Reserve",
-      "team": "Calgary Flames"
     }
   }
 }
