@@ -651,13 +651,6 @@
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
     },
-    "598480:Tampa Bay Lightning": {
-      "athlete": "Yanni Gourde",
-      "date": "2026-11-04T17:51Z",
-      "id": "598480",
-      "status": "Injured Reserve",
-      "team": "Tampa Bay Lightning"
-    },
     "597716:Toronto Maple Leafs": {
       "athlete": "Kirill Marchenko",
       "date": "2026-10-29T17:28Z",
@@ -839,6 +832,20 @@
       "id": "599063",
       "status": "Out",
       "team": "Toronto Maple Leafs"
+    },
+    "599081:Pittsburgh Penguins": {
+      "athlete": "Ville Koivunen",
+      "date": "2026-11-08T23:22Z",
+      "id": "599081",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
+    },
+    "599064:New Jersey Devils": {
+      "athlete": "Anthony Mantha",
+      "date": "2026-11-08T21:56Z",
+      "id": "599064",
+      "status": "Out",
+      "team": "New Jersey Devils"
     }
   }
 }
