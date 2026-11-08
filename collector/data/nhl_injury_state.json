@@ -273,13 +273,6 @@
       "status": "Out",
       "team": "Florida Panthers"
     },
-    "598825:Florida Panthers": {
-      "athlete": "Anton Lundell",
-      "date": "2026-11-07T15:33Z",
-      "id": "598825",
-      "status": "Out",
-      "team": "Florida Panthers"
-    },
     "598730:Florida Panthers": {
       "athlete": "Brad Marchand",
       "date": "2026-11-06T16:34Z",
@@ -328,13 +321,6 @@
       "id": "593687",
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
-    },
-    "598787:Minnesota Wild": {
-      "athlete": "Michael McCarron",
-      "date": "2026-11-07T04:47Z",
-      "id": "598787",
-      "status": "Day-To-Day",
-      "team": "Minnesota Wild"
     },
     "598600:Minnesota Wild": {
       "athlete": "Filip Gustavsson",
@@ -728,13 +714,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "598621:Utah Mammoth": {
-      "athlete": "Nate Schmidt",
-      "date": "2026-11-06T01:21Z",
-      "id": "598621",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
-    },
     "598158:Utah Mammoth": {
       "athlete": "John Marino",
       "date": "2026-11-01T20:27Z",
@@ -812,13 +791,6 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
-    "598841:Winnipeg Jets": {
-      "athlete": "Elias Salomonsson",
-      "date": "2026-11-07T17:49Z",
-      "id": "598841",
-      "status": "Out",
-      "team": "Winnipeg Jets"
-    },
     "598626:Winnipeg Jets": {
       "athlete": "Haydn Fleury",
       "date": "2026-11-06T03:31Z",
@@ -844,6 +816,41 @@
       "athlete": "Nick Bjugstad",
       "date": "2026-10-23T16:48Z",
       "id": "597009",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
+    },
+    "598871:Florida Panthers": {
+      "athlete": "Anton Lundell",
+      "date": "2026-11-08T00:01Z",
+      "id": "598871",
+      "status": "Out",
+      "team": "Florida Panthers"
+    },
+    "598870:Minnesota Wild": {
+      "athlete": "Michael McCarron",
+      "date": "2026-11-07T23:56Z",
+      "id": "598870",
+      "status": "Out",
+      "team": "Minnesota Wild"
+    },
+    "598878:Toronto Maple Leafs": {
+      "athlete": "Morgan Rielly",
+      "date": "2026-11-08T01:27Z",
+      "id": "598878",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "598869:Utah Mammoth": {
+      "athlete": "Nate Schmidt",
+      "date": "2026-11-07T23:40Z",
+      "id": "598869",
+      "status": "Out",
+      "team": "Utah Mammoth"
+    },
+    "598871:Winnipeg Jets": {
+      "athlete": "Elias Salomonsson",
+      "date": "2026-11-08T00:05Z",
+      "id": "598871",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     }
