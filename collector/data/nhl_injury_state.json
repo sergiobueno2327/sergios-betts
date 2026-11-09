@@ -217,6 +217,13 @@
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
     },
+    "599134:Edmonton Oilers": {
+      "athlete": "Colton Dach",
+      "date": "2026-11-09T17:48Z",
+      "id": "599134",
+      "status": "Out",
+      "team": "Edmonton Oilers"
+    },
     "598619:Edmonton Oilers": {
       "athlete": "Isaac Howard",
       "date": "2026-11-06T00:04Z",
@@ -280,6 +287,13 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
+    "599171:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-09T20:55Z",
+      "id": "599171",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
     "597733:Los Angeles Kings": {
       "athlete": "Mats Zuccarello",
       "date": "2026-10-29T18:43Z",
@@ -335,6 +349,13 @@
       "id": "598591",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
+    },
+    "599168:Montreal Canadiens": {
+      "athlete": "Jake Evans",
+      "date": "2026-11-09T20:03Z",
+      "id": "599168",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
     },
     "598982:Montreal Canadiens": {
       "athlete": "Josh Anderson",
@@ -398,6 +419,20 @@
       "id": "594455",
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
+    },
+    "599159:New York Islanders": {
+      "athlete": "Matias Maccelli",
+      "date": "2026-11-09T18:55Z",
+      "id": "599159",
+      "status": "Injured Reserve",
+      "team": "New York Islanders"
+    },
+    "599156:New York Islanders": {
+      "athlete": "Mathew Barzal",
+      "date": "2026-11-09T18:52Z",
+      "id": "599156",
+      "status": "Injured Reserve",
+      "team": "New York Islanders"
     },
     "598141:New York Islanders": {
       "athlete": "Ryan Pulock",
@@ -536,13 +571,6 @@
       "athlete": "Igor Chernyshov",
       "date": "2026-10-28T16:49Z",
       "id": "597585",
-      "status": "Injured Reserve",
-      "team": "San Jose Sharks"
-    },
-    "597584:San Jose Sharks": {
-      "athlete": "Alexander Wennberg",
-      "date": "2026-10-28T16:46Z",
-      "id": "597584",
       "status": "Injured Reserve",
       "team": "San Jose Sharks"
     },
@@ -707,11 +735,11 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "598981:Utah Mammoth": {
+    "599169:Utah Mammoth": {
       "athlete": "Nate Schmidt",
-      "date": "2026-11-08T13:39Z",
-      "id": "598981",
-      "status": "Day-To-Day",
+      "date": "2026-11-09T20:09Z",
+      "id": "599169",
+      "status": "Out",
       "team": "Utah Mammoth"
     },
     "598820:Utah Mammoth": {
@@ -734,6 +762,20 @@
       "id": "594121",
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
+    },
+    "599145:Vancouver Canucks": {
+      "athlete": "Filip Chytil",
+      "date": "2026-11-09T18:22Z",
+      "id": "599145",
+      "status": "Injured Reserve",
+      "team": "Vancouver Canucks"
+    },
+    "599144:Vancouver Canucks": {
+      "athlete": "Tom Willander",
+      "date": "2026-11-09T18:22Z",
+      "id": "599144",
+      "status": "Out",
+      "team": "Vancouver Canucks"
     },
     "594190:Vancouver Canucks": {
       "athlete": "Akil Thomas",
@@ -811,41 +853,6 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "599134:Edmonton Oilers": {
-      "athlete": "Colton Dach",
-      "date": "2026-11-09T17:48Z",
-      "id": "599134",
-      "status": "Out",
-      "team": "Edmonton Oilers"
-    },
-    "599159:New York Islanders": {
-      "athlete": "Matias Maccelli",
-      "date": "2026-11-09T18:55Z",
-      "id": "599159",
-      "status": "Injured Reserve",
-      "team": "New York Islanders"
-    },
-    "599156:New York Islanders": {
-      "athlete": "Mathew Barzal",
-      "date": "2026-11-09T18:52Z",
-      "id": "599156",
-      "status": "Injured Reserve",
-      "team": "New York Islanders"
-    },
-    "599145:Vancouver Canucks": {
-      "athlete": "Filip Chytil",
-      "date": "2026-11-09T18:22Z",
-      "id": "599145",
-      "status": "Injured Reserve",
-      "team": "Vancouver Canucks"
-    },
-    "599144:Vancouver Canucks": {
-      "athlete": "Tom Willander",
-      "date": "2026-11-09T18:22Z",
-      "id": "599144",
-      "status": "Out",
-      "team": "Vancouver Canucks"
     }
   }
 }
