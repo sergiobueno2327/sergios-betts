@@ -112,18 +112,18 @@
       "status": "Injured Reserve",
       "team": "Carolina Hurricanes"
     },
+    "599089:Chicago Blackhawks": {
+      "athlete": "Patrick Kane",
+      "date": "2026-11-09T01:34Z",
+      "id": "599089",
+      "status": "Injured Reserve",
+      "team": "Chicago Blackhawks"
+    },
     "598324:Chicago Blackhawks": {
       "athlete": "Bowen Byram",
       "date": "2026-11-03T17:31Z",
       "id": "598324",
       "status": "Injured Reserve",
-      "team": "Chicago Blackhawks"
-    },
-    "598282:Chicago Blackhawks": {
-      "athlete": "Patrick Kane",
-      "date": "2026-11-03T05:19Z",
-      "id": "598282",
-      "status": "Out",
       "team": "Chicago Blackhawks"
     },
     "597889:Colorado Avalanche": {
@@ -399,6 +399,13 @@
       "status": "Day-To-Day",
       "team": "Nashville Predators"
     },
+    "599064:New Jersey Devils": {
+      "athlete": "Anthony Mantha",
+      "date": "2026-11-08T21:56Z",
+      "id": "599064",
+      "status": "Out",
+      "team": "New Jersey Devils"
+    },
     "594455:New Jersey Devils": {
       "athlete": "Seamus Casey",
       "date": "2026-10-02T17:31Z",
@@ -525,6 +532,13 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
+    "599081:Pittsburgh Penguins": {
+      "athlete": "Ville Koivunen",
+      "date": "2026-11-08T23:22Z",
+      "id": "599081",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
+    },
     "598232:Pittsburgh Penguins": {
       "athlete": "Elmer Soderblom",
       "date": "2026-11-02T15:52Z",
@@ -650,6 +664,27 @@
       "id": "594281",
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
+    },
+    "599088:Tampa Bay Lightning": {
+      "athlete": "Brayden Point",
+      "date": "2026-11-09T01:15Z",
+      "id": "599088",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "599085:Toronto Maple Leafs": {
+      "athlete": "Jack Roslovic",
+      "date": "2026-11-09T00:11Z",
+      "id": "599085",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
+    },
+    "599063:Toronto Maple Leafs": {
+      "athlete": "Morgan Rielly",
+      "date": "2026-11-08T21:47Z",
+      "id": "599063",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
     },
     "597716:Toronto Maple Leafs": {
       "athlete": "Kirill Marchenko",
@@ -825,27 +860,6 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "599063:Toronto Maple Leafs": {
-      "athlete": "Morgan Rielly",
-      "date": "2026-11-08T21:47Z",
-      "id": "599063",
-      "status": "Out",
-      "team": "Toronto Maple Leafs"
-    },
-    "599081:Pittsburgh Penguins": {
-      "athlete": "Ville Koivunen",
-      "date": "2026-11-08T23:22Z",
-      "id": "599081",
-      "status": "Out",
-      "team": "Pittsburgh Penguins"
-    },
-    "599064:New Jersey Devils": {
-      "athlete": "Anthony Mantha",
-      "date": "2026-11-08T21:56Z",
-      "id": "599064",
-      "status": "Out",
-      "team": "New Jersey Devils"
     }
   }
 }
