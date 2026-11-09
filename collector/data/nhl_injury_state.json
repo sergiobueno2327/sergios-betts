@@ -63,13 +63,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "599036:Calgary Flames": {
-      "athlete": "Brennan Othmann",
-      "date": "2026-11-08T18:04Z",
-      "id": "599036",
-      "status": "Out",
-      "team": "Calgary Flames"
-    },
     "599020:Calgary Flames": {
       "athlete": "Kevin Bahl",
       "date": "2026-11-08T16:17Z",
@@ -111,13 +104,6 @@
       "id": "596031",
       "status": "Injured Reserve",
       "team": "Carolina Hurricanes"
-    },
-    "599089:Chicago Blackhawks": {
-      "athlete": "Patrick Kane",
-      "date": "2026-11-09T01:34Z",
-      "id": "599089",
-      "status": "Injured Reserve",
-      "team": "Chicago Blackhawks"
     },
     "598324:Chicago Blackhawks": {
       "athlete": "Bowen Byram",
@@ -532,13 +518,6 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
-    "599081:Pittsburgh Penguins": {
-      "athlete": "Ville Koivunen",
-      "date": "2026-11-08T23:22Z",
-      "id": "599081",
-      "status": "Out",
-      "team": "Pittsburgh Penguins"
-    },
     "598232:Pittsburgh Penguins": {
       "athlete": "Elmer Soderblom",
       "date": "2026-11-02T15:52Z",
@@ -671,20 +650,6 @@
       "id": "599088",
       "status": "Day-To-Day",
       "team": "Tampa Bay Lightning"
-    },
-    "599085:Toronto Maple Leafs": {
-      "athlete": "Jack Roslovic",
-      "date": "2026-11-09T00:11Z",
-      "id": "599085",
-      "status": "Out",
-      "team": "Toronto Maple Leafs"
-    },
-    "599063:Toronto Maple Leafs": {
-      "athlete": "Morgan Rielly",
-      "date": "2026-11-08T21:47Z",
-      "id": "599063",
-      "status": "Out",
-      "team": "Toronto Maple Leafs"
     },
     "597716:Toronto Maple Leafs": {
       "athlete": "Kirill Marchenko",
@@ -860,6 +825,48 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "599090:Chicago Blackhawks": {
+      "athlete": "Patrick Kane",
+      "date": "2026-11-09T01:39Z",
+      "id": "599090",
+      "status": "Injured Reserve",
+      "team": "Chicago Blackhawks"
+    },
+    "599120:Toronto Maple Leafs": {
+      "athlete": "Morgan Rielly",
+      "date": "2026-11-09T14:28Z",
+      "id": "599120",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "599121:Toronto Maple Leafs": {
+      "athlete": "Colton Sissons",
+      "date": "2026-11-09T14:28Z",
+      "id": "599121",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "599122:Toronto Maple Leafs": {
+      "athlete": "Jack Roslovic",
+      "date": "2026-11-09T14:28Z",
+      "id": "599122",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "599123:Calgary Flames": {
+      "athlete": "Brennan Othmann",
+      "date": "2026-11-09T14:28Z",
+      "id": "599123",
+      "status": "Day-To-Day",
+      "team": "Calgary Flames"
+    },
+    "599124:Pittsburgh Penguins": {
+      "athlete": "Ville Koivunen",
+      "date": "2026-11-09T14:28Z",
+      "id": "599124",
+      "status": "Day-To-Day",
+      "team": "Pittsburgh Penguins"
     }
   }
 }
