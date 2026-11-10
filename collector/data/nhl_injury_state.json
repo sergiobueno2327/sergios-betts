@@ -259,13 +259,6 @@
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
-    "599124:Minnesota Wild": {
-      "athlete": "Michael McCarron",
-      "date": "2026-11-09T16:36Z",
-      "id": "599124",
-      "status": "Day-To-Day",
-      "team": "Minnesota Wild"
-    },
     "598600:Minnesota Wild": {
       "athlete": "Filip Gustavsson",
       "date": "2026-11-05T18:51Z",
@@ -279,13 +272,6 @@
       "id": "598591",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
-    },
-    "599205:Montreal Canadiens": {
-      "athlete": "Jake Evans",
-      "date": "2026-11-10T16:14Z",
-      "id": "599205",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
     },
     "598516:Montreal Canadiens": {
       "athlete": "Ivan Demidov",
@@ -377,13 +363,6 @@
       "id": "596510",
       "status": "Injured Reserve",
       "team": "New York Islanders"
-    },
-    "599127:New York Rangers": {
-      "athlete": "Alberts Smits",
-      "date": "2026-11-09T17:10Z",
-      "id": "599127",
-      "status": "Out",
-      "team": "New York Rangers"
     },
     "598604:New York Rangers": {
       "athlete": "Sean Durzi",
@@ -790,6 +769,13 @@
       "id": "599237",
       "status": "Out",
       "team": "Vegas Golden Knights"
+    },
+    "599240:New York Rangers": {
+      "athlete": "Alberts Smits",
+      "date": "2026-11-10T22:13Z",
+      "id": "599240",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
     }
   }
 }
