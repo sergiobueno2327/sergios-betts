@@ -7,13 +7,6 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "598009:Anaheim Ducks": {
-      "athlete": "Troy Terry",
-      "date": "2026-10-31T19:55Z",
-      "id": "598009",
-      "status": "Injured Reserve",
-      "team": "Anaheim Ducks"
-    },
     "596179:Anaheim Ducks": {
       "athlete": "Ian Moore",
       "date": "2026-10-16T18:17Z",
@@ -257,13 +250,6 @@
       "date": "2026-11-10T18:56Z",
       "id": "599227",
       "status": "Injured Reserve",
-      "team": "Los Angeles Kings"
-    },
-    "599171:Los Angeles Kings": {
-      "athlete": "Erik Gustafsson",
-      "date": "2026-11-09T20:55Z",
-      "id": "599171",
-      "status": "Day-To-Day",
       "team": "Los Angeles Kings"
     },
     "593688:Los Angeles Kings": {
@@ -776,6 +762,34 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "599236:Anaheim Ducks": {
+      "athlete": "Troy Terry",
+      "date": "2026-11-10T20:24Z",
+      "id": "599236",
+      "status": "Injured Reserve",
+      "team": "Anaheim Ducks"
+    },
+    "599238:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-10T20:48Z",
+      "id": "599238",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "599233:Utah Mammoth": {
+      "athlete": "Dylan Guenther",
+      "date": "2026-11-10T19:46Z",
+      "id": "599233",
+      "status": "Day-To-Day",
+      "team": "Utah Mammoth"
+    },
+    "599237:Vegas Golden Knights": {
+      "athlete": "Noah Hanifin",
+      "date": "2026-11-10T20:34Z",
+      "id": "599237",
+      "status": "Out",
+      "team": "Vegas Golden Knights"
     }
   }
 }
