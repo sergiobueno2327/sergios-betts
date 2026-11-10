@@ -126,6 +126,13 @@
       "status": "Injured Reserve",
       "team": "Chicago Blackhawks"
     },
+    "599172:Colorado Avalanche": {
+      "athlete": "Josh Manson",
+      "date": "2026-11-09T22:18Z",
+      "id": "599172",
+      "status": "Injured Reserve",
+      "team": "Colorado Avalanche"
+    },
     "597046:Colorado Avalanche": {
       "athlete": "Zachary L'Heureux",
       "date": "2026-10-23T21:39Z",
@@ -846,13 +853,6 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "599172:Colorado Avalanche": {
-      "athlete": "Josh Manson",
-      "date": "2026-11-09T22:18Z",
-      "id": "599172",
-      "status": "Injured Reserve",
-      "team": "Colorado Avalanche"
     }
   }
 }
