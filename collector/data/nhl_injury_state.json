@@ -126,13 +126,6 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
-    "598983:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
-      "date": "2026-11-08T13:39Z",
-      "id": "598983",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
     "597987:Dallas Stars": {
       "athlete": "Kyle Capobianco",
       "date": "2026-10-31T16:54Z",
@@ -271,13 +264,6 @@
       "date": "2026-11-04T21:04Z",
       "id": "598516",
       "status": "Injured Reserve",
-      "team": "Montreal Canadiens"
-    },
-    "597972:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-10-31T15:31Z",
-      "id": "597972",
-      "status": "Out",
       "team": "Montreal Canadiens"
     },
     "597970:Montreal Canadiens": {
@@ -714,13 +700,6 @@
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     },
-    "599236:Anaheim Ducks": {
-      "athlete": "Troy Terry",
-      "date": "2026-11-10T20:24Z",
-      "id": "599236",
-      "status": "Injured Reserve",
-      "team": "Anaheim Ducks"
-    },
     "599233:Utah Mammoth": {
       "athlete": "Dylan Guenther",
       "date": "2026-11-10T19:46Z",
@@ -784,13 +763,6 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "599307:Buffalo Sabres": {
-      "athlete": "Louis Crevier",
-      "date": "2026-11-11T16:12Z",
-      "id": "599307",
-      "status": "Day-To-Day",
-      "team": "Buffalo Sabres"
-    },
     "599312:Ottawa Senators": {
       "athlete": "Nick Cousins",
       "date": "2026-11-11T17:15Z",
@@ -804,6 +776,20 @@
       "id": "599309",
       "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
+    },
+    "599316:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-11-11T17:55Z",
+      "id": "599316",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
+    "599320:Dallas Stars": {
+      "athlete": "Miro Heiskanen",
+      "date": "2026-11-11T18:26Z",
+      "id": "599320",
+      "status": "Out",
+      "team": "Dallas Stars"
     }
   }
 }
