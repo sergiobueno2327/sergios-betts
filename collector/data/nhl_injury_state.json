@@ -749,13 +749,6 @@
       "status": "Day-To-Day",
       "team": "New Jersey Devils"
     },
-    "599249:Ottawa Senators": {
-      "athlete": "Nick Cousins",
-      "date": "2026-11-11T03:15Z",
-      "id": "599249",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
-    },
     "599298:Toronto Maple Leafs": {
       "athlete": "Morgan Rielly",
       "date": "2026-11-11T14:56Z",
@@ -790,6 +783,27 @@
       "id": "599303",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
+    },
+    "599307:Buffalo Sabres": {
+      "athlete": "Louis Crevier",
+      "date": "2026-11-11T16:12Z",
+      "id": "599307",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
+    },
+    "599312:Ottawa Senators": {
+      "athlete": "Nick Cousins",
+      "date": "2026-11-11T17:15Z",
+      "id": "599312",
+      "status": "Out",
+      "team": "Ottawa Senators"
+    },
+    "599309:Toronto Maple Leafs": {
+      "athlete": "Zack MacEwen",
+      "date": "2026-11-11T16:47Z",
+      "id": "599309",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
