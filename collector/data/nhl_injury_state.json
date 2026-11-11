@@ -266,13 +266,6 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "598591:Minnesota Wild": {
-      "athlete": "Brock Faber",
-      "date": "2026-11-05T18:09Z",
-      "id": "598591",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
     "598516:Montreal Canadiens": {
       "athlete": "Ivan Demidov",
       "date": "2026-11-04T21:04Z",
@@ -307,13 +300,6 @@
       "id": "594183",
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
-    },
-    "598979:Nashville Predators": {
-      "athlete": "Jonathan Marchessault",
-      "date": "2026-11-08T13:39Z",
-      "id": "598979",
-      "status": "Day-To-Day",
-      "team": "Nashville Predators"
     },
     "599064:New Jersey Devils": {
       "athlete": "Anthony Mantha",
@@ -398,13 +384,6 @@
       "id": "594156",
       "status": "Injured Reserve",
       "team": "New York Rangers"
-    },
-    "599208:Ottawa Senators": {
-      "athlete": "Linus Ullmark",
-      "date": "2026-11-10T16:41Z",
-      "id": "599208",
-      "status": "Out",
-      "team": "Ottawa Senators"
     },
     "598014:Ottawa Senators": {
       "athlete": "Andre Burakovsky",
@@ -566,13 +545,6 @@
       "id": "599193",
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
-    },
-    "599197:Toronto Maple Leafs": {
-      "athlete": "Morgan Rielly",
-      "date": "2026-11-10T15:41Z",
-      "id": "599197",
-      "status": "Out",
-      "team": "Toronto Maple Leafs"
     },
     "599194:Toronto Maple Leafs": {
       "athlete": "Colton Sissons",
@@ -749,13 +721,6 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "599238:Los Angeles Kings": {
-      "athlete": "Erik Gustafsson",
-      "date": "2026-11-10T20:48Z",
-      "id": "599238",
-      "status": "Out",
-      "team": "Los Angeles Kings"
-    },
     "599233:Utah Mammoth": {
       "athlete": "Dylan Guenther",
       "date": "2026-11-10T19:46Z",
@@ -776,6 +741,55 @@
       "id": "599240",
       "status": "Injured Reserve",
       "team": "New York Rangers"
+    },
+    "599248:New Jersey Devils": {
+      "athlete": "Johnathan Kovacevic",
+      "date": "2026-11-11T03:12Z",
+      "id": "599248",
+      "status": "Day-To-Day",
+      "team": "New Jersey Devils"
+    },
+    "599249:Ottawa Senators": {
+      "athlete": "Nick Cousins",
+      "date": "2026-11-11T03:15Z",
+      "id": "599249",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "599298:Toronto Maple Leafs": {
+      "athlete": "Morgan Rielly",
+      "date": "2026-11-11T14:56Z",
+      "id": "599298",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "599299:Nashville Predators": {
+      "athlete": "Jonathan Marchessault",
+      "date": "2026-11-11T14:56Z",
+      "id": "599299",
+      "status": "Day-To-Day",
+      "team": "Nashville Predators"
+    },
+    "599300:Ottawa Senators": {
+      "athlete": "Linus Ullmark",
+      "date": "2026-11-11T14:56Z",
+      "id": "599300",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "599301:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-11T14:56Z",
+      "id": "599301",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "599303:Minnesota Wild": {
+      "athlete": "Brock Faber",
+      "date": "2026-11-11T15:34Z",
+      "id": "599303",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
     }
   }
 }
