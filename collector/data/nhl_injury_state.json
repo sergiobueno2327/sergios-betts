@@ -406,13 +406,6 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
-    "598141:New York Islanders": {
-      "athlete": "Ryan Pulock",
-      "date": "2026-11-01T17:56Z",
-      "id": "598141",
-      "status": "Out",
-      "team": "New York Islanders"
-    },
     "598158:Utah Mammoth": {
       "athlete": "John Marino",
       "date": "2026-11-01T20:27Z",
@@ -560,13 +553,6 @@
       "status": "Injured Reserve",
       "team": "New York Islanders"
     },
-    "599159:New York Islanders": {
-      "athlete": "Matias Maccelli",
-      "date": "2026-11-09T18:55Z",
-      "id": "599159",
-      "status": "Injured Reserve",
-      "team": "New York Islanders"
-    },
     "599172:Colorado Avalanche": {
       "athlete": "Josh Manson",
       "date": "2026-11-09T22:18Z",
@@ -594,13 +580,6 @@
       "id": "599219",
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
-    },
-    "599227:Los Angeles Kings": {
-      "athlete": "Kevin Fiala",
-      "date": "2026-11-10T18:56Z",
-      "id": "599227",
-      "status": "Injured Reserve",
-      "team": "Los Angeles Kings"
     },
     "599237:Vegas Golden Knights": {
       "athlete": "Noah Hanifin",
@@ -686,13 +665,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "599349:Utah Mammoth": {
-      "athlete": "Nate Schmidt",
-      "date": "2026-11-12T01:24Z",
-      "id": "599349",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
-    },
     "599364:Philadelphia Flyers": {
       "athlete": "Noel Acciari",
       "date": "2026-11-12T04:11Z",
@@ -720,20 +692,6 @@
       "id": "599407",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
-    },
-    "599393:Utah Mammoth": {
-      "athlete": "Logan Cooley",
-      "date": "2026-11-12T14:09Z",
-      "id": "599393",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
-    },
-    "599365:Utah Mammoth": {
-      "athlete": "Nick Schmaltz",
-      "date": "2026-11-12T04:45Z",
-      "id": "599365",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
     },
     "599424:Toronto Maple Leafs": {
       "athlete": "Zack MacEwen",
@@ -769,6 +727,34 @@
       "id": "599431",
       "status": "Day-To-Day",
       "team": "Nashville Predators"
+    },
+    "599452:Utah Mammoth": {
+      "athlete": "Nick Schmaltz",
+      "date": "2026-11-12T19:24Z",
+      "id": "599452",
+      "status": "Day-To-Day",
+      "team": "Utah Mammoth"
+    },
+    "599453:Utah Mammoth": {
+      "athlete": "Logan Cooley",
+      "date": "2026-11-12T19:25Z",
+      "id": "599453",
+      "status": "Out",
+      "team": "Utah Mammoth"
+    },
+    "599454:Utah Mammoth": {
+      "athlete": "Nate Schmidt",
+      "date": "2026-11-12T19:30Z",
+      "id": "599454",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "599455:New York Islanders": {
+      "athlete": "Jean-Gabriel Pageau",
+      "date": "2026-11-12T19:30Z",
+      "id": "599455",
+      "status": "Out",
+      "team": "New York Islanders"
     }
   }
 }
