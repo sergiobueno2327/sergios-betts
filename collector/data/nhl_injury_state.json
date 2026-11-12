@@ -581,13 +581,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "599298:Toronto Maple Leafs": {
-      "athlete": "Morgan Rielly",
-      "date": "2026-11-11T14:56Z",
-      "id": "599298",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "599303:Minnesota Wild": {
       "athlete": "Brock Faber",
       "date": "2026-11-11T15:34Z",
@@ -665,13 +658,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "599424:Toronto Maple Leafs": {
-      "athlete": "Zack MacEwen",
-      "date": "2026-11-12T16:46Z",
-      "id": "599424",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "599426:New Jersey Devils": {
       "athlete": "Brett Pesce",
       "date": "2026-11-12T16:48Z",
@@ -734,6 +720,20 @@
       "id": "599462",
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
+    },
+    "599466:Tampa Bay Lightning": {
+      "athlete": "Anthony Cirelli",
+      "date": "2026-11-12T23:04Z",
+      "id": "599466",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "599470:Toronto Maple Leafs": {
+      "athlete": "Morgan Rielly",
+      "date": "2026-11-12T23:41Z",
+      "id": "599470",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
