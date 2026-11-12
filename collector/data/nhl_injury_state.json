@@ -196,13 +196,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "595353:Seattle Kraken": {
-      "athlete": "Jacob Melanson",
-      "date": "2026-10-10T19:49Z",
-      "id": "595353",
-      "status": "Injured Reserve",
-      "team": "Seattle Kraken"
-    },
     "595356:St. Louis Blues": {
       "athlete": "Dillon Dube",
       "date": "2026-10-10T21:13Z",
@@ -546,13 +539,6 @@
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     },
-    "598894:Carolina Hurricanes": {
-      "athlete": "William Carrier",
-      "date": "2026-11-08T04:04Z",
-      "id": "598894",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
-    },
     "599020:Calgary Flames": {
       "athlete": "Kevin Bahl",
       "date": "2026-11-08T16:17Z",
@@ -566,13 +552,6 @@
       "id": "599090",
       "status": "Injured Reserve",
       "team": "Chicago Blackhawks"
-    },
-    "599124:Pittsburgh Penguins": {
-      "athlete": "Ville Koivunen",
-      "date": "2026-11-09T14:28Z",
-      "id": "599124",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
     },
     "599129:Washington Capitals": {
       "athlete": "Rasmus Sandin",
@@ -623,13 +602,6 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "599194:Toronto Maple Leafs": {
-      "athlete": "Colton Sissons",
-      "date": "2026-11-10T15:34Z",
-      "id": "599194",
-      "status": "Out",
-      "team": "Toronto Maple Leafs"
-    },
     "599219:Buffalo Sabres": {
       "athlete": "Alex Lyon",
       "date": "2026-11-10T17:54Z",
@@ -671,13 +643,6 @@
       "id": "599298",
       "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
-    },
-    "599299:Nashville Predators": {
-      "athlete": "Jonathan Marchessault",
-      "date": "2026-11-11T14:56Z",
-      "id": "599299",
-      "status": "Day-To-Day",
-      "team": "Nashville Predators"
     },
     "599300:Ottawa Senators": {
       "athlete": "Linus Ullmark",
@@ -768,6 +733,55 @@
       "date": "2026-11-12T01:24Z",
       "id": "599349",
       "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "599356:Nashville Predators": {
+      "athlete": "Jonathan Marchessault",
+      "date": "2026-11-12T02:37Z",
+      "id": "599356",
+      "status": "Out",
+      "team": "Nashville Predators"
+    },
+    "599364:Philadelphia Flyers": {
+      "athlete": "Noel Acciari",
+      "date": "2026-11-12T04:11Z",
+      "id": "599364",
+      "status": "Day-To-Day",
+      "team": "Philadelphia Flyers"
+    },
+    "599395:Seattle Kraken": {
+      "athlete": "Jacob Melanson",
+      "date": "2026-11-12T14:38Z",
+      "id": "599395",
+      "status": "Injured Reserve",
+      "team": "Seattle Kraken"
+    },
+    "599363:Tampa Bay Lightning": {
+      "athlete": "Erik Cernak",
+      "date": "2026-11-12T03:39Z",
+      "id": "599363",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "599407:Toronto Maple Leafs": {
+      "athlete": "Colton Sissons",
+      "date": "2026-11-12T15:24Z",
+      "id": "599407",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
+    },
+    "599393:Utah Mammoth": {
+      "athlete": "Logan Cooley",
+      "date": "2026-11-12T14:09Z",
+      "id": "599393",
+      "status": "Day-To-Day",
+      "team": "Utah Mammoth"
+    },
+    "599365:Utah Mammoth": {
+      "athlete": "Nick Schmaltz",
+      "date": "2026-11-12T04:45Z",
+      "id": "599365",
+      "status": "Day-To-Day",
       "team": "Utah Mammoth"
     }
   }
