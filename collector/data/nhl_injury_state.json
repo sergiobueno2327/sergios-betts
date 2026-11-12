@@ -525,13 +525,6 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
-    "598864:Florida Panthers": {
-      "athlete": "Sandis Vilmanis",
-      "date": "2026-11-07T21:02Z",
-      "id": "598864",
-      "status": "Out",
-      "team": "Florida Panthers"
-    },
     "598871:Winnipeg Jets": {
       "athlete": "Elias Salomonsson",
       "date": "2026-11-08T00:05Z",
@@ -545,13 +538,6 @@
       "id": "599020",
       "status": "Injured Reserve",
       "team": "Calgary Flames"
-    },
-    "599090:Chicago Blackhawks": {
-      "athlete": "Patrick Kane",
-      "date": "2026-11-09T01:39Z",
-      "id": "599090",
-      "status": "Injured Reserve",
-      "team": "Chicago Blackhawks"
     },
     "599129:Washington Capitals": {
       "athlete": "Rasmus Sandin",
@@ -630,26 +616,12 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "599248:New Jersey Devils": {
-      "athlete": "Johnathan Kovacevic",
-      "date": "2026-11-11T03:12Z",
-      "id": "599248",
-      "status": "Day-To-Day",
-      "team": "New Jersey Devils"
-    },
     "599298:Toronto Maple Leafs": {
       "athlete": "Morgan Rielly",
       "date": "2026-11-11T14:56Z",
       "id": "599298",
       "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
-    },
-    "599300:Ottawa Senators": {
-      "athlete": "Linus Ullmark",
-      "date": "2026-11-11T14:56Z",
-      "id": "599300",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
     },
     "599301:Los Angeles Kings": {
       "athlete": "Erik Gustafsson",
@@ -665,26 +637,12 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "599309:Toronto Maple Leafs": {
-      "athlete": "Zack MacEwen",
-      "date": "2026-11-11T16:47Z",
-      "id": "599309",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "599312:Ottawa Senators": {
       "athlete": "Nick Cousins",
       "date": "2026-11-11T17:15Z",
       "id": "599312",
       "status": "Out",
       "team": "Ottawa Senators"
-    },
-    "599316:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-11-11T17:55Z",
-      "id": "599316",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
     },
     "599320:Dallas Stars": {
       "athlete": "Miro Heiskanen",
@@ -735,13 +693,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "599356:Nashville Predators": {
-      "athlete": "Jonathan Marchessault",
-      "date": "2026-11-12T02:37Z",
-      "id": "599356",
-      "status": "Out",
-      "team": "Nashville Predators"
-    },
     "599364:Philadelphia Flyers": {
       "athlete": "Noel Acciari",
       "date": "2026-11-12T04:11Z",
@@ -783,6 +734,41 @@
       "id": "599365",
       "status": "Day-To-Day",
       "team": "Utah Mammoth"
+    },
+    "599424:Toronto Maple Leafs": {
+      "athlete": "Zack MacEwen",
+      "date": "2026-11-12T16:46Z",
+      "id": "599424",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "599425:Chicago Blackhawks": {
+      "athlete": "Patrick Kane",
+      "date": "2026-11-12T16:48Z",
+      "id": "599425",
+      "status": "Injured Reserve",
+      "team": "Chicago Blackhawks"
+    },
+    "599426:New Jersey Devils": {
+      "athlete": "Brett Pesce",
+      "date": "2026-11-12T16:48Z",
+      "id": "599426",
+      "status": "Out",
+      "team": "New Jersey Devils"
+    },
+    "599427:New Jersey Devils": {
+      "athlete": "Johnathan Kovacevic",
+      "date": "2026-11-12T16:52Z",
+      "id": "599427",
+      "status": "Out",
+      "team": "New Jersey Devils"
+    },
+    "599431:Nashville Predators": {
+      "athlete": "Jonathan Marchessault",
+      "date": "2026-11-12T17:02Z",
+      "id": "599431",
+      "status": "Day-To-Day",
+      "team": "Nashville Predators"
     }
   }
 }
