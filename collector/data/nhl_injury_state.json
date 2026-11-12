@@ -518,13 +518,6 @@
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
     },
-    "598820:Utah Mammoth": {
-      "athlete": "Kailer Yamamoto",
-      "date": "2026-11-07T15:04Z",
-      "id": "598820",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
-    },
     "598836:Boston Bruins": {
       "athlete": "James Hagens",
       "date": "2026-11-07T17:30Z",
@@ -609,13 +602,6 @@
       "status": "Injured Reserve",
       "team": "New York Islanders"
     },
-    "599169:Utah Mammoth": {
-      "athlete": "Nate Schmidt",
-      "date": "2026-11-09T20:09Z",
-      "id": "599169",
-      "status": "Out",
-      "team": "Utah Mammoth"
-    },
     "599172:Colorado Avalanche": {
       "athlete": "Josh Manson",
       "date": "2026-11-09T22:18Z",
@@ -657,13 +643,6 @@
       "id": "599227",
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
-    },
-    "599233:Utah Mammoth": {
-      "athlete": "Dylan Guenther",
-      "date": "2026-11-10T19:46Z",
-      "id": "599233",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
     },
     "599237:Vegas Golden Knights": {
       "athlete": "Noah Hanifin",
@@ -776,6 +755,20 @@
       "id": "599345",
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
+    },
+    "599348:Utah Mammoth": {
+      "athlete": "Dylan Guenther",
+      "date": "2026-11-12T01:21Z",
+      "id": "599348",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "599349:Utah Mammoth": {
+      "athlete": "Nate Schmidt",
+      "date": "2026-11-12T01:24Z",
+      "id": "599349",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
     }
   }
 }
