@@ -420,13 +420,6 @@
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
     },
-    "598241:Buffalo Sabres": {
-      "athlete": "Konsta Helenius",
-      "date": "2026-11-02T17:29Z",
-      "id": "598241",
-      "status": "Out",
-      "team": "Buffalo Sabres"
-    },
     "598256:Anaheim Ducks": {
       "athlete": "A.J. Greer",
       "date": "2026-11-02T18:46Z",
@@ -574,13 +567,6 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "599219:Buffalo Sabres": {
-      "athlete": "Alex Lyon",
-      "date": "2026-11-10T17:54Z",
-      "id": "599219",
-      "status": "Injured Reserve",
-      "team": "Buffalo Sabres"
-    },
     "599237:Vegas Golden Knights": {
       "athlete": "Noah Hanifin",
       "date": "2026-11-10T20:34Z",
@@ -601,13 +587,6 @@
       "id": "599298",
       "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
-    },
-    "599301:Los Angeles Kings": {
-      "athlete": "Erik Gustafsson",
-      "date": "2026-11-11T14:56Z",
-      "id": "599301",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
     },
     "599303:Minnesota Wild": {
       "athlete": "Brock Faber",
@@ -636,13 +615,6 @@
       "id": "599327",
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
-    },
-    "599339:Los Angeles Kings": {
-      "athlete": "Drew Doughty",
-      "date": "2026-11-11T20:40Z",
-      "id": "599339",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
     },
     "599341:New Jersey Devils": {
       "athlete": "Anthony Mantha",
@@ -700,13 +672,6 @@
       "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
     },
-    "599425:Chicago Blackhawks": {
-      "athlete": "Patrick Kane",
-      "date": "2026-11-12T16:48Z",
-      "id": "599425",
-      "status": "Injured Reserve",
-      "team": "Chicago Blackhawks"
-    },
     "599426:New Jersey Devils": {
       "athlete": "Brett Pesce",
       "date": "2026-11-12T16:48Z",
@@ -755,6 +720,20 @@
       "id": "599455",
       "status": "Out",
       "team": "New York Islanders"
+    },
+    "599461:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-12T20:04Z",
+      "id": "599461",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "599462:Buffalo Sabres": {
+      "athlete": "Konsta Helenius",
+      "date": "2026-11-12T21:00Z",
+      "id": "599462",
+      "status": "Injured Reserve",
+      "team": "Buffalo Sabres"
     }
   }
 }
