@@ -679,13 +679,6 @@
       "status": "Day-To-Day",
       "team": "Nashville Predators"
     },
-    "599452:Utah Mammoth": {
-      "athlete": "Nick Schmaltz",
-      "date": "2026-11-12T19:24Z",
-      "id": "599452",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
-    },
     "599453:Utah Mammoth": {
       "athlete": "Logan Cooley",
       "date": "2026-11-12T19:25Z",
@@ -734,6 +727,20 @@
       "id": "599470",
       "status": "Out",
       "team": "Toronto Maple Leafs"
+    },
+    "599474:Dallas Stars": {
+      "athlete": "Lian Bichsel",
+      "date": "2026-11-13T01:43Z",
+      "id": "599474",
+      "status": "Day-To-Day",
+      "team": "Dallas Stars"
+    },
+    "599472:Utah Mammoth": {
+      "athlete": "Nick Schmaltz",
+      "date": "2026-11-13T01:30Z",
+      "id": "599472",
+      "status": "Out",
+      "team": "Utah Mammoth"
     }
   }
 }
