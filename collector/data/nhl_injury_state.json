@@ -686,13 +686,6 @@
       "status": "Injured Reserve",
       "team": "Carolina Hurricanes"
     },
-    "599550:Utah Mammoth": {
-      "athlete": "Logan Cooley",
-      "date": "2026-11-13T13:57Z",
-      "id": "599550",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
-    },
     "599551:Seattle Kraken": {
       "athlete": "Ryan Lindgren",
       "date": "2026-11-13T14:36Z",
@@ -706,13 +699,6 @@
       "id": "599552",
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
-    },
-    "599555:Vancouver Canucks": {
-      "athlete": "Filip Chytil",
-      "date": "2026-11-13T14:50Z",
-      "id": "599555",
-      "status": "Injured Reserve",
-      "team": "Vancouver Canucks"
     },
     "599578:Winnipeg Jets": {
       "athlete": "Dylan DeMelo",
@@ -769,6 +755,20 @@
       "id": "599616",
       "status": "Day-To-Day",
       "team": "San Jose Sharks"
+    },
+    "599620:Utah Mammoth": {
+      "athlete": "Logan Cooley",
+      "date": "2026-11-13T23:19Z",
+      "id": "599620",
+      "status": "Out",
+      "team": "Utah Mammoth"
+    },
+    "599618:Vancouver Canucks": {
+      "athlete": "Guillaume Brisebois",
+      "date": "2026-11-13T22:59Z",
+      "id": "599618",
+      "status": "Injured Reserve",
+      "team": "Vancouver Canucks"
     }
   }
 }
