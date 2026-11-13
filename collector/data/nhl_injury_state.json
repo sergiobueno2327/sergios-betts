@@ -126,13 +126,6 @@
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
     },
-    "594192:Washington Capitals": {
-      "athlete": "Patrick Thomas",
-      "date": "2026-09-29T17:07Z",
-      "id": "594192",
-      "status": "Injured Reserve",
-      "team": "Washington Capitals"
-    },
     "594278:Toronto Maple Leafs": {
       "athlete": "Max Domi",
       "date": "2026-09-30T18:51Z",
@@ -679,13 +672,6 @@
       "status": "Out",
       "team": "Dallas Stars"
     },
-    "599488:Winnipeg Jets": {
-      "athlete": "Dylan DeMelo",
-      "date": "2026-11-13T04:29Z",
-      "id": "599488",
-      "status": "Out",
-      "team": "Winnipeg Jets"
-    },
     "599542:New York Islanders": {
       "athlete": "Jean-Gabriel Pageau",
       "date": "2026-11-13T13:57Z",
@@ -783,6 +769,13 @@
       "id": "599555",
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
+    },
+    "599578:Winnipeg Jets": {
+      "athlete": "Dylan DeMelo",
+      "date": "2026-11-13T16:33Z",
+      "id": "599578",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
     }
   }
 }
