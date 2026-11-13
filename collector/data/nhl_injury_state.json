@@ -762,6 +762,13 @@
       "id": "599610",
       "status": "Out",
       "team": "Winnipeg Jets"
+    },
+    "599616:San Jose Sharks": {
+      "athlete": "Alexander Wennberg",
+      "date": "2026-11-13T20:30Z",
+      "id": "599616",
+      "status": "Day-To-Day",
+      "team": "San Jose Sharks"
     }
   }
 }
