@@ -77,13 +77,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "594177:Dallas Stars": {
-      "athlete": "Luke Krys",
-      "date": "2026-09-29T16:18Z",
-      "id": "594177",
-      "status": "Injured Reserve",
-      "team": "Dallas Stars"
-    },
     "594178:Edmonton Oilers": {
       "athlete": "Mattias Janmark",
       "date": "2026-09-29T17:52Z",
@@ -462,13 +455,6 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
-    "598738:Calgary Flames": {
-      "athlete": "Jonathan Huberdeau",
-      "date": "2026-11-06T16:42Z",
-      "id": "598738",
-      "status": "Injured Reserve",
-      "team": "Calgary Flames"
-    },
     "598749:Detroit Red Wings": {
       "athlete": "Albert Johansson",
       "date": "2026-11-06T17:30Z",
@@ -524,13 +510,6 @@
       "id": "599172",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
-    },
-    "599189:Vancouver Canucks": {
-      "athlete": "Tom Willander",
-      "date": "2026-11-10T14:24Z",
-      "id": "599189",
-      "status": "Day-To-Day",
-      "team": "Vancouver Canucks"
     },
     "599193:Tampa Bay Lightning": {
       "athlete": "Brayden Point",
@@ -609,20 +588,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "599427:New Jersey Devils": {
-      "athlete": "Johnathan Kovacevic",
-      "date": "2026-11-12T16:52Z",
-      "id": "599427",
-      "status": "Out",
-      "team": "New Jersey Devils"
-    },
-    "599431:Nashville Predators": {
-      "athlete": "Jonathan Marchessault",
-      "date": "2026-11-12T17:02Z",
-      "id": "599431",
-      "status": "Day-To-Day",
-      "team": "Nashville Predators"
-    },
     "599454:Utah Mammoth": {
       "athlete": "Nate Schmidt",
       "date": "2026-11-12T19:30Z",
@@ -664,13 +629,6 @@
       "id": "599482",
       "status": "Day-To-Day",
       "team": "Montreal Canadiens"
-    },
-    "599487:Dallas Stars": {
-      "athlete": "Lian Bichsel",
-      "date": "2026-11-13T04:21Z",
-      "id": "599487",
-      "status": "Out",
-      "team": "Dallas Stars"
     },
     "599542:New York Islanders": {
       "athlete": "Jean-Gabriel Pageau",
@@ -728,26 +686,12 @@
       "status": "Injured Reserve",
       "team": "Carolina Hurricanes"
     },
-    "599549:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
-      "date": "2026-11-13T13:57Z",
-      "id": "599549",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
     "599550:Utah Mammoth": {
       "athlete": "Logan Cooley",
       "date": "2026-11-13T13:57Z",
       "id": "599550",
       "status": "Day-To-Day",
       "team": "Utah Mammoth"
-    },
-    "599551:Columbus Blue Jackets": {
-      "athlete": "Sean Monahan",
-      "date": "2026-11-13T14:11Z",
-      "id": "599551",
-      "status": "Day-To-Day",
-      "team": "Columbus Blue Jackets"
     },
     "599551:Seattle Kraken": {
       "athlete": "Ryan Lindgren",
@@ -775,6 +719,48 @@
       "date": "2026-11-13T16:33Z",
       "id": "599578",
       "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
+    },
+    "599579:Calgary Flames": {
+      "athlete": "Jonathan Huberdeau",
+      "date": "2026-11-13T17:38Z",
+      "id": "599579",
+      "status": "Injured Reserve",
+      "team": "Calgary Flames"
+    },
+    "599581:Dallas Stars": {
+      "athlete": "Lian Bichsel",
+      "date": "2026-11-13T17:41Z",
+      "id": "599581",
+      "status": "Out",
+      "team": "Dallas Stars"
+    },
+    "599580:Dallas Stars": {
+      "athlete": "Miro Heiskanen",
+      "date": "2026-11-13T17:41Z",
+      "id": "599580",
+      "status": "Out",
+      "team": "Dallas Stars"
+    },
+    "599613:Nashville Predators": {
+      "athlete": "Jonathan Marchessault",
+      "date": "2026-11-13T19:39Z",
+      "id": "599613",
+      "status": "Out",
+      "team": "Nashville Predators"
+    },
+    "599592:New Jersey Devils": {
+      "athlete": "Johnathan Kovacevic",
+      "date": "2026-11-13T18:44Z",
+      "id": "599592",
+      "status": "Injured Reserve",
+      "team": "New Jersey Devils"
+    },
+    "599610:Winnipeg Jets": {
+      "athlete": "Isak Rosen",
+      "date": "2026-11-13T19:25Z",
+      "id": "599610",
+      "status": "Out",
       "team": "Winnipeg Jets"
     }
   }
