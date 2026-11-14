@@ -154,13 +154,6 @@
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
     },
-    "594455:New Jersey Devils": {
-      "athlete": "Seamus Casey",
-      "date": "2026-10-02T17:31Z",
-      "id": "594455",
-      "status": "Injured Reserve",
-      "team": "New Jersey Devils"
-    },
     "595327:Philadelphia Flyers": {
       "athlete": "Nikita Grebenkin",
       "date": "2026-10-10T16:58Z",
@@ -769,6 +762,13 @@
       "id": "599618",
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
+    },
+    "599621:New Jersey Devils": {
+      "athlete": "Seamus Casey",
+      "date": "2026-11-13T23:49Z",
+      "id": "599621",
+      "status": "Injured Reserve",
+      "team": "New Jersey Devils"
     }
   }
 }
