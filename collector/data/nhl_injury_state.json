@@ -483,13 +483,6 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
-    "599156:New York Islanders": {
-      "athlete": "Mathew Barzal",
-      "date": "2026-11-09T18:52Z",
-      "id": "599156",
-      "status": "Injured Reserve",
-      "team": "New York Islanders"
-    },
     "599172:Colorado Avalanche": {
       "athlete": "Josh Manson",
       "date": "2026-11-09T22:18Z",
@@ -553,13 +546,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "599364:Philadelphia Flyers": {
-      "athlete": "Noel Acciari",
-      "date": "2026-11-12T04:11Z",
-      "id": "599364",
-      "status": "Day-To-Day",
-      "team": "Philadelphia Flyers"
-    },
     "599407:Toronto Maple Leafs": {
       "athlete": "Colton Sissons",
       "date": "2026-11-12T15:24Z",
@@ -594,20 +580,6 @@
       "id": "599543",
       "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
-    },
-    "599544:New Jersey Devils": {
-      "athlete": "Brett Pesce",
-      "date": "2026-11-13T13:57Z",
-      "id": "599544",
-      "status": "Day-To-Day",
-      "team": "New Jersey Devils"
-    },
-    "599545:Utah Mammoth": {
-      "athlete": "Nick Schmaltz",
-      "date": "2026-11-13T13:57Z",
-      "id": "599545",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
     },
     "599546:Los Angeles Kings": {
       "athlete": "Erik Gustafsson",
@@ -650,13 +622,6 @@
       "id": "599579",
       "status": "Injured Reserve",
       "team": "Calgary Flames"
-    },
-    "599580:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
-      "date": "2026-11-13T17:41Z",
-      "id": "599580",
-      "status": "Out",
-      "team": "Dallas Stars"
     },
     "599592:New Jersey Devils": {
       "athlete": "Johnathan Kovacevic",
@@ -748,6 +713,41 @@
       "id": "599680",
       "status": "Day-To-Day",
       "team": "Montreal Canadiens"
+    },
+    "599688:Dallas Stars": {
+      "athlete": "Miro Heiskanen",
+      "date": "2026-11-14T17:54Z",
+      "id": "599688",
+      "status": "Out",
+      "team": "Dallas Stars"
+    },
+    "599701:Los Angeles Kings": {
+      "athlete": "Artemi Panarin",
+      "date": "2026-11-14T19:34Z",
+      "id": "599701",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "599692:New Jersey Devils": {
+      "athlete": "Vladislav Kolyachonok",
+      "date": "2026-11-14T18:20Z",
+      "id": "599692",
+      "status": "Out",
+      "team": "New Jersey Devils"
+    },
+    "599691:New Jersey Devils": {
+      "athlete": "Brett Pesce",
+      "date": "2026-11-14T18:16Z",
+      "id": "599691",
+      "status": "Out",
+      "team": "New Jersey Devils"
+    },
+    "599695:Utah Mammoth": {
+      "athlete": "Nick Schmaltz",
+      "date": "2026-11-14T18:48Z",
+      "id": "599695",
+      "status": "Out",
+      "team": "Utah Mammoth"
     }
   }
 }
