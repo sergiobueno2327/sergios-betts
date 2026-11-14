@@ -343,13 +343,6 @@
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
     },
-    "597987:Dallas Stars": {
-      "athlete": "Kyle Capobianco",
-      "date": "2026-10-31T16:54Z",
-      "id": "597987",
-      "status": "Injured Reserve",
-      "team": "Dallas Stars"
-    },
     "597989:Detroit Red Wings": {
       "athlete": "Dylan Larkin",
       "date": "2026-10-31T17:03Z",
@@ -672,20 +665,6 @@
       "status": "Day-To-Day",
       "team": "Tampa Bay Lightning"
     },
-    "599549:Carolina Hurricanes": {
-      "athlete": "Jordan Staal",
-      "date": "2026-11-13T14:30Z",
-      "id": "599549",
-      "status": "Injured Reserve",
-      "team": "Carolina Hurricanes"
-    },
-    "599551:Seattle Kraken": {
-      "athlete": "Ryan Lindgren",
-      "date": "2026-11-13T14:36Z",
-      "id": "599551",
-      "status": "Injured Reserve",
-      "team": "Seattle Kraken"
-    },
     "599552:Seattle Kraken": {
       "athlete": "Jacob Melanson",
       "date": "2026-11-13T14:39Z",
@@ -707,26 +686,12 @@
       "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
-    "599581:Dallas Stars": {
-      "athlete": "Lian Bichsel",
-      "date": "2026-11-13T17:41Z",
-      "id": "599581",
-      "status": "Out",
-      "team": "Dallas Stars"
-    },
     "599580:Dallas Stars": {
       "athlete": "Miro Heiskanen",
       "date": "2026-11-13T17:41Z",
       "id": "599580",
       "status": "Out",
       "team": "Dallas Stars"
-    },
-    "599613:Nashville Predators": {
-      "athlete": "Jonathan Marchessault",
-      "date": "2026-11-13T19:39Z",
-      "id": "599613",
-      "status": "Out",
-      "team": "Nashville Predators"
     },
     "599592:New Jersey Devils": {
       "athlete": "Johnathan Kovacevic",
@@ -769,6 +734,27 @@
       "id": "599621",
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
+    },
+    "599656:Nashville Predators": {
+      "athlete": "Jonathan Marchessault",
+      "date": "2026-11-14T14:19Z",
+      "id": "599656",
+      "status": "Day-To-Day",
+      "team": "Nashville Predators"
+    },
+    "599660:Dallas Stars": {
+      "athlete": "Lian Bichsel",
+      "date": "2026-11-14T15:10Z",
+      "id": "599660",
+      "status": "Injured Reserve",
+      "team": "Dallas Stars"
+    },
+    "599661:Dallas Stars": {
+      "athlete": "Kyle Capobianco",
+      "date": "2026-11-14T15:14Z",
+      "id": "599661",
+      "status": "Injured Reserve",
+      "team": "Dallas Stars"
     }
   }
 }
