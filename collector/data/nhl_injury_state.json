@@ -581,20 +581,6 @@
       "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
     },
-    "599547:Tampa Bay Lightning": {
-      "athlete": "Erik Cernak",
-      "date": "2026-11-13T13:57Z",
-      "id": "599547",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
-    "599548:Tampa Bay Lightning": {
-      "athlete": "Anthony Cirelli",
-      "date": "2026-11-13T13:57Z",
-      "id": "599548",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "599552:Seattle Kraken": {
       "athlete": "Jacob Melanson",
       "date": "2026-11-13T14:39Z",
@@ -630,19 +616,19 @@
       "status": "Out",
       "team": "Winnipeg Jets"
     },
-    "599620:Utah Mammoth": {
-      "athlete": "Logan Cooley",
-      "date": "2026-11-13T23:19Z",
-      "id": "599620",
-      "status": "Out",
-      "team": "Utah Mammoth"
-    },
     "599618:Vancouver Canucks": {
       "athlete": "Guillaume Brisebois",
       "date": "2026-11-13T22:59Z",
       "id": "599618",
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
+    },
+    "599620:Utah Mammoth": {
+      "athlete": "Logan Cooley",
+      "date": "2026-11-13T23:19Z",
+      "id": "599620",
+      "status": "Out",
+      "team": "Utah Mammoth"
     },
     "599621:New Jersey Devils": {
       "athlete": "Seamus Casey",
@@ -679,13 +665,6 @@
       "status": "Out",
       "team": "Montreal Canadiens"
     },
-    "599685:Colorado Avalanche": {
-      "athlete": "Cale Makar",
-      "date": "2026-11-14T17:37Z",
-      "id": "599685",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
     "599684:Colorado Avalanche": {
       "athlete": "Nathan MacKinnon",
       "date": "2026-11-14T17:30Z",
@@ -693,12 +672,12 @@
       "status": "Out",
       "team": "Colorado Avalanche"
     },
-    "599680:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-11-14T17:10Z",
-      "id": "599680",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
+    "599685:Colorado Avalanche": {
+      "athlete": "Cale Makar",
+      "date": "2026-11-14T17:37Z",
+      "id": "599685",
+      "status": "Out",
+      "team": "Colorado Avalanche"
     },
     "599688:Dallas Stars": {
       "athlete": "Miro Heiskanen",
@@ -707,24 +686,17 @@
       "status": "Out",
       "team": "Dallas Stars"
     },
-    "599701:Los Angeles Kings": {
-      "athlete": "Artemi Panarin",
-      "date": "2026-11-14T19:34Z",
-      "id": "599701",
+    "599691:New Jersey Devils": {
+      "athlete": "Brett Pesce",
+      "date": "2026-11-14T18:16Z",
+      "id": "599691",
       "status": "Out",
-      "team": "Los Angeles Kings"
+      "team": "New Jersey Devils"
     },
     "599692:New Jersey Devils": {
       "athlete": "Vladislav Kolyachonok",
       "date": "2026-11-14T18:20Z",
       "id": "599692",
-      "status": "Out",
-      "team": "New Jersey Devils"
-    },
-    "599691:New Jersey Devils": {
-      "athlete": "Brett Pesce",
-      "date": "2026-11-14T18:16Z",
-      "id": "599691",
       "status": "Out",
       "team": "New Jersey Devils"
     },
@@ -735,10 +707,10 @@
       "status": "Out",
       "team": "Utah Mammoth"
     },
-    "599707:Los Angeles Kings": {
-      "athlete": "Erik Gustafsson",
-      "date": "2026-11-14T20:41Z",
-      "id": "599707",
+    "599701:Los Angeles Kings": {
+      "athlete": "Artemi Panarin",
+      "date": "2026-11-14T19:34Z",
+      "id": "599701",
       "status": "Out",
       "team": "Los Angeles Kings"
     },
@@ -748,6 +720,34 @@
       "id": "599702",
       "status": "Out",
       "team": "San Jose Sharks"
+    },
+    "599707:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-14T20:41Z",
+      "id": "599707",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "599708:Tampa Bay Lightning": {
+      "athlete": "Anthony Cirelli",
+      "date": "2026-11-14T22:52Z",
+      "id": "599708",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "599709:Tampa Bay Lightning": {
+      "athlete": "Erik Cernak",
+      "date": "2026-11-14T22:54Z",
+      "id": "599709",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "599710:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-11-14T23:39Z",
+      "id": "599710",
+      "status": "Out",
+      "team": "Montreal Canadiens"
     }
   }
 }
