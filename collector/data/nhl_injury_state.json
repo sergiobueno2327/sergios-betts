@@ -581,13 +581,6 @@
       "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
     },
-    "599546:Los Angeles Kings": {
-      "athlete": "Erik Gustafsson",
-      "date": "2026-11-13T13:57Z",
-      "id": "599546",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
     "599547:Tampa Bay Lightning": {
       "athlete": "Erik Cernak",
       "date": "2026-11-13T13:57Z",
@@ -636,13 +629,6 @@
       "id": "599610",
       "status": "Out",
       "team": "Winnipeg Jets"
-    },
-    "599616:San Jose Sharks": {
-      "athlete": "Alexander Wennberg",
-      "date": "2026-11-13T20:30Z",
-      "id": "599616",
-      "status": "Day-To-Day",
-      "team": "San Jose Sharks"
     },
     "599620:Utah Mammoth": {
       "athlete": "Logan Cooley",
@@ -748,6 +734,20 @@
       "id": "599695",
       "status": "Out",
       "team": "Utah Mammoth"
+    },
+    "599707:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-14T20:41Z",
+      "id": "599707",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "599702:San Jose Sharks": {
+      "athlete": "Alexander Wennberg",
+      "date": "2026-11-14T19:54Z",
+      "id": "599702",
+      "status": "Out",
+      "team": "San Jose Sharks"
     }
   }
 }
