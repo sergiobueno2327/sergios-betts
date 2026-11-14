@@ -518,13 +518,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "599303:Minnesota Wild": {
-      "athlete": "Brock Faber",
-      "date": "2026-11-11T15:34Z",
-      "id": "599303",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
     "599312:Ottawa Senators": {
       "athlete": "Nick Cousins",
       "date": "2026-11-11T17:15Z",
@@ -587,34 +580,6 @@
       "id": "599462",
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
-    },
-    "599475:Colorado Avalanche": {
-      "athlete": "Nathan MacKinnon",
-      "date": "2026-11-13T02:06Z",
-      "id": "599475",
-      "status": "Day-To-Day",
-      "team": "Colorado Avalanche"
-    },
-    "599476:Colorado Avalanche": {
-      "athlete": "Cale Makar",
-      "date": "2026-11-13T02:10Z",
-      "id": "599476",
-      "status": "Day-To-Day",
-      "team": "Colorado Avalanche"
-    },
-    "599481:Minnesota Wild": {
-      "athlete": "Joel Eriksson Ek",
-      "date": "2026-11-13T03:12Z",
-      "id": "599481",
-      "status": "Day-To-Day",
-      "team": "Minnesota Wild"
-    },
-    "599482:Montreal Canadiens": {
-      "athlete": "Chris Kreider",
-      "date": "2026-11-13T03:37Z",
-      "id": "599482",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
     },
     "599542:New York Islanders": {
       "athlete": "Jean-Gabriel Pageau",
@@ -755,6 +720,34 @@
       "id": "599661",
       "status": "Injured Reserve",
       "team": "Dallas Stars"
+    },
+    "599665:Montreal Canadiens": {
+      "athlete": "Chris Kreider",
+      "date": "2026-11-14T15:55Z",
+      "id": "599665",
+      "status": "Out",
+      "team": "Montreal Canadiens"
+    },
+    "599685:Colorado Avalanche": {
+      "athlete": "Cale Makar",
+      "date": "2026-11-14T17:37Z",
+      "id": "599685",
+      "status": "Out",
+      "team": "Colorado Avalanche"
+    },
+    "599684:Colorado Avalanche": {
+      "athlete": "Nathan MacKinnon",
+      "date": "2026-11-14T17:30Z",
+      "id": "599684",
+      "status": "Out",
+      "team": "Colorado Avalanche"
+    },
+    "599680:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-11-14T17:10Z",
+      "id": "599680",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
     }
   }
 }
