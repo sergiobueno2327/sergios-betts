@@ -259,20 +259,6 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "599832:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-11-15T14:13Z",
-      "id": "599832",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
-    },
-    "599665:Montreal Canadiens": {
-      "athlete": "Chris Kreider",
-      "date": "2026-11-14T15:55Z",
-      "id": "599665",
-      "status": "Out",
-      "team": "Montreal Canadiens"
-    },
     "598516:Montreal Canadiens": {
       "athlete": "Ivan Demidov",
       "date": "2026-11-04T21:04Z",
@@ -553,13 +539,6 @@
       "status": "Day-To-Day",
       "team": "St. Louis Blues"
     },
-    "599726:St. Louis Blues": {
-      "athlete": "Philip Broberg",
-      "date": "2026-11-15T02:26Z",
-      "id": "599726",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
     "595648:St. Louis Blues": {
       "athlete": "Torey Krug",
       "date": "2026-10-13T01:42Z",
@@ -790,6 +769,41 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "599873:Montreal Canadiens": {
+      "athlete": "Chris Kreider",
+      "date": "2026-11-15T18:04Z",
+      "id": "599873",
+      "status": "Injured Reserve",
+      "team": "Montreal Canadiens"
+    },
+    "599874:Montreal Canadiens": {
+      "athlete": "Josh Anderson",
+      "date": "2026-11-15T18:09Z",
+      "id": "599874",
+      "status": "Injured Reserve",
+      "team": "Montreal Canadiens"
+    },
+    "599875:St. Louis Blues": {
+      "athlete": "Philip Broberg",
+      "date": "2026-11-15T18:21Z",
+      "id": "599875",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "599877:St. Louis Blues": {
+      "athlete": "Jake Neighbours",
+      "date": "2026-11-15T18:25Z",
+      "id": "599877",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "599884:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-11-15T18:42Z",
+      "id": "599884",
+      "status": "Out",
+      "team": "Montreal Canadiens"
     }
   }
 }
