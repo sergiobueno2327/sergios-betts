@@ -7,13 +7,6 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "599327:Anaheim Ducks": {
-      "athlete": "Ian Moore",
-      "date": "2026-11-11T18:59Z",
-      "id": "599327",
-      "status": "Injured Reserve",
-      "team": "Anaheim Ducks"
-    },
     "598256:Anaheim Ducks": {
       "athlete": "A.J. Greer",
       "date": "2026-11-02T18:46Z",
@@ -258,6 +251,27 @@
       "id": "598600",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
+    },
+    "599884:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-11-15T18:42Z",
+      "id": "599884",
+      "status": "Out",
+      "team": "Montreal Canadiens"
+    },
+    "599874:Montreal Canadiens": {
+      "athlete": "Josh Anderson",
+      "date": "2026-11-15T18:09Z",
+      "id": "599874",
+      "status": "Injured Reserve",
+      "team": "Montreal Canadiens"
+    },
+    "599873:Montreal Canadiens": {
+      "athlete": "Chris Kreider",
+      "date": "2026-11-15T18:04Z",
+      "id": "599873",
+      "status": "Injured Reserve",
+      "team": "Montreal Canadiens"
     },
     "598516:Montreal Canadiens": {
       "athlete": "Ivan Demidov",
@@ -532,6 +546,20 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
+    "599877:St. Louis Blues": {
+      "athlete": "Jake Neighbours",
+      "date": "2026-11-15T18:25Z",
+      "id": "599877",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "599875:St. Louis Blues": {
+      "athlete": "Philip Broberg",
+      "date": "2026-11-15T18:21Z",
+      "id": "599875",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
     "599744:St. Louis Blues": {
       "athlete": "Aleksanteri Kaskimaki",
       "date": "2026-11-15T03:55Z",
@@ -769,41 +797,6 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "599873:Montreal Canadiens": {
-      "athlete": "Chris Kreider",
-      "date": "2026-11-15T18:04Z",
-      "id": "599873",
-      "status": "Injured Reserve",
-      "team": "Montreal Canadiens"
-    },
-    "599874:Montreal Canadiens": {
-      "athlete": "Josh Anderson",
-      "date": "2026-11-15T18:09Z",
-      "id": "599874",
-      "status": "Injured Reserve",
-      "team": "Montreal Canadiens"
-    },
-    "599875:St. Louis Blues": {
-      "athlete": "Philip Broberg",
-      "date": "2026-11-15T18:21Z",
-      "id": "599875",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
-    "599877:St. Louis Blues": {
-      "athlete": "Jake Neighbours",
-      "date": "2026-11-15T18:25Z",
-      "id": "599877",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
-    "599884:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-11-15T18:42Z",
-      "id": "599884",
-      "status": "Out",
-      "team": "Montreal Canadiens"
     }
   }
 }
