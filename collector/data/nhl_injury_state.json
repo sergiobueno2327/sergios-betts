@@ -189,13 +189,6 @@
       "status": "Injured Reserve",
       "team": "Dallas Stars"
     },
-    "595604:Pittsburgh Penguins": {
-      "athlete": "Trevor van Riemsdyk",
-      "date": "2026-10-12T17:51Z",
-      "id": "595604",
-      "status": "Injured Reserve",
-      "team": "Pittsburgh Penguins"
-    },
     "595648:St. Louis Blues": {
       "athlete": "Torey Krug",
       "date": "2026-10-13T01:42Z",
@@ -574,13 +567,6 @@
       "status": "Day-To-Day",
       "team": "New York Islanders"
     },
-    "599543:Toronto Maple Leafs": {
-      "athlete": "Morgan Rielly",
-      "date": "2026-11-13T13:57Z",
-      "id": "599543",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "599552:Seattle Kraken": {
       "athlete": "Jacob Melanson",
       "date": "2026-11-13T14:39Z",
@@ -748,6 +734,20 @@
       "id": "599710",
       "status": "Out",
       "team": "Montreal Canadiens"
+    },
+    "599713:Chicago Blackhawks": {
+      "athlete": "Tyler Bertuzzi",
+      "date": "2026-11-15T00:03Z",
+      "id": "599713",
+      "status": "Day-To-Day",
+      "team": "Chicago Blackhawks"
+    },
+    "599712:Toronto Maple Leafs": {
+      "athlete": "Morgan Rielly",
+      "date": "2026-11-14T23:51Z",
+      "id": "599712",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
