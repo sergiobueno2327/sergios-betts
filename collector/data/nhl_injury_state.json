@@ -252,20 +252,6 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "599884:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-11-15T18:42Z",
-      "id": "599884",
-      "status": "Out",
-      "team": "Montreal Canadiens"
-    },
-    "599874:Montreal Canadiens": {
-      "athlete": "Josh Anderson",
-      "date": "2026-11-15T18:09Z",
-      "id": "599874",
-      "status": "Injured Reserve",
-      "team": "Montreal Canadiens"
-    },
     "599873:Montreal Canadiens": {
       "athlete": "Chris Kreider",
       "date": "2026-11-15T18:04Z",
@@ -482,13 +468,6 @@
       "id": "593985",
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
-    },
-    "599834:San Jose Sharks": {
-      "athlete": "Alexander Wennberg",
-      "date": "2026-11-15T14:13Z",
-      "id": "599834",
-      "status": "Day-To-Day",
-      "team": "San Jose Sharks"
     },
     "597585:San Jose Sharks": {
       "athlete": "Igor Chernyshov",
@@ -797,6 +776,41 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "599900:Montreal Canadiens": {
+      "athlete": "Josh Anderson",
+      "date": "2026-11-15T22:15Z",
+      "id": "599900",
+      "status": "Injured Reserve",
+      "team": "Montreal Canadiens"
+    },
+    "599901:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-11-15T22:23Z",
+      "id": "599901",
+      "status": "Out",
+      "team": "Montreal Canadiens"
+    },
+    "599903:Philadelphia Flyers": {
+      "athlete": "Denver Barkey",
+      "date": "2026-11-15T22:26Z",
+      "id": "599903",
+      "status": "Out",
+      "team": "Philadelphia Flyers"
+    },
+    "599909:Edmonton Oilers": {
+      "athlete": "Ryan Nugent-Hopkins",
+      "date": "2026-11-15T23:26Z",
+      "id": "599909",
+      "status": "Out",
+      "team": "Edmonton Oilers"
+    },
+    "599910:San Jose Sharks": {
+      "athlete": "Alexander Wennberg",
+      "date": "2026-11-15T23:38Z",
+      "id": "599910",
+      "status": "Out",
+      "team": "San Jose Sharks"
     }
   }
 }
