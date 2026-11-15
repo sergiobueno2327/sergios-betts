@@ -560,13 +560,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "599542:New York Islanders": {
-      "athlete": "Jean-Gabriel Pageau",
-      "date": "2026-11-13T13:57Z",
-      "id": "599542",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
-    },
     "599552:Seattle Kraken": {
       "athlete": "Jacob Melanson",
       "date": "2026-11-13T14:39Z",
@@ -595,26 +588,12 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
-    "599610:Winnipeg Jets": {
-      "athlete": "Isak Rosen",
-      "date": "2026-11-13T19:25Z",
-      "id": "599610",
-      "status": "Out",
-      "team": "Winnipeg Jets"
-    },
     "599618:Vancouver Canucks": {
       "athlete": "Guillaume Brisebois",
       "date": "2026-11-13T22:59Z",
       "id": "599618",
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
-    },
-    "599620:Utah Mammoth": {
-      "athlete": "Logan Cooley",
-      "date": "2026-11-13T23:19Z",
-      "id": "599620",
-      "status": "Out",
-      "team": "Utah Mammoth"
     },
     "599621:New Jersey Devils": {
       "athlete": "Seamus Casey",
@@ -672,68 +651,12 @@
       "status": "Out",
       "team": "Dallas Stars"
     },
-    "599691:New Jersey Devils": {
-      "athlete": "Brett Pesce",
-      "date": "2026-11-14T18:16Z",
-      "id": "599691",
-      "status": "Out",
-      "team": "New Jersey Devils"
-    },
-    "599692:New Jersey Devils": {
-      "athlete": "Vladislav Kolyachonok",
-      "date": "2026-11-14T18:20Z",
-      "id": "599692",
-      "status": "Out",
-      "team": "New Jersey Devils"
-    },
     "599695:Utah Mammoth": {
       "athlete": "Nick Schmaltz",
       "date": "2026-11-14T18:48Z",
       "id": "599695",
       "status": "Out",
       "team": "Utah Mammoth"
-    },
-    "599701:Los Angeles Kings": {
-      "athlete": "Artemi Panarin",
-      "date": "2026-11-14T19:34Z",
-      "id": "599701",
-      "status": "Out",
-      "team": "Los Angeles Kings"
-    },
-    "599702:San Jose Sharks": {
-      "athlete": "Alexander Wennberg",
-      "date": "2026-11-14T19:54Z",
-      "id": "599702",
-      "status": "Out",
-      "team": "San Jose Sharks"
-    },
-    "599707:Los Angeles Kings": {
-      "athlete": "Erik Gustafsson",
-      "date": "2026-11-14T20:41Z",
-      "id": "599707",
-      "status": "Out",
-      "team": "Los Angeles Kings"
-    },
-    "599708:Tampa Bay Lightning": {
-      "athlete": "Anthony Cirelli",
-      "date": "2026-11-14T22:52Z",
-      "id": "599708",
-      "status": "Out",
-      "team": "Tampa Bay Lightning"
-    },
-    "599709:Tampa Bay Lightning": {
-      "athlete": "Erik Cernak",
-      "date": "2026-11-14T22:54Z",
-      "id": "599709",
-      "status": "Out",
-      "team": "Tampa Bay Lightning"
-    },
-    "599710:Montreal Canadiens": {
-      "athlete": "Mike Matheson",
-      "date": "2026-11-14T23:39Z",
-      "id": "599710",
-      "status": "Out",
-      "team": "Montreal Canadiens"
     },
     "599713:Chicago Blackhawks": {
       "athlete": "Tyler Bertuzzi",
@@ -742,12 +665,131 @@
       "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
     },
-    "599712:Toronto Maple Leafs": {
+    "599726:St. Louis Blues": {
+      "athlete": "Philip Broberg",
+      "date": "2026-11-15T02:26Z",
+      "id": "599726",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "599734:Ottawa Senators": {
+      "athlete": "Hayden Hodgson",
+      "date": "2026-11-15T03:25Z",
+      "id": "599734",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "599744:St. Louis Blues": {
+      "athlete": "Aleksanteri Kaskimaki",
+      "date": "2026-11-15T03:55Z",
+      "id": "599744",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "599760:New York Islanders": {
+      "athlete": "Logan Stanley",
+      "date": "2026-11-15T05:17Z",
+      "id": "599760",
+      "status": "Day-To-Day",
+      "team": "New York Islanders"
+    },
+    "599762:New York Islanders": {
+      "athlete": "Bo Horvat",
+      "date": "2026-11-15T06:01Z",
+      "id": "599762",
+      "status": "Day-To-Day",
+      "team": "New York Islanders"
+    },
+    "599830:New York Islanders": {
+      "athlete": "Jean-Gabriel Pageau",
+      "date": "2026-11-15T14:13Z",
+      "id": "599830",
+      "status": "Day-To-Day",
+      "team": "New York Islanders"
+    },
+    "599831:Toronto Maple Leafs": {
       "athlete": "Morgan Rielly",
-      "date": "2026-11-14T23:51Z",
-      "id": "599712",
-      "status": "Out",
+      "date": "2026-11-15T14:13Z",
+      "id": "599831",
+      "status": "Day-To-Day",
       "team": "Toronto Maple Leafs"
+    },
+    "599832:Montreal Canadiens": {
+      "athlete": "Mike Matheson",
+      "date": "2026-11-15T14:13Z",
+      "id": "599832",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
+    "599833:Columbus Blue Jackets": {
+      "athlete": "Sean Monahan",
+      "date": "2026-11-15T14:13Z",
+      "id": "599833",
+      "status": "Day-To-Day",
+      "team": "Columbus Blue Jackets"
+    },
+    "599834:San Jose Sharks": {
+      "athlete": "Alexander Wennberg",
+      "date": "2026-11-15T14:13Z",
+      "id": "599834",
+      "status": "Day-To-Day",
+      "team": "San Jose Sharks"
+    },
+    "599835:New Jersey Devils": {
+      "athlete": "Brett Pesce",
+      "date": "2026-11-15T14:13Z",
+      "id": "599835",
+      "status": "Day-To-Day",
+      "team": "New Jersey Devils"
+    },
+    "599836:Los Angeles Kings": {
+      "athlete": "Artemi Panarin",
+      "date": "2026-11-15T14:13Z",
+      "id": "599836",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "599837:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-15T14:13Z",
+      "id": "599837",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "599838:Tampa Bay Lightning": {
+      "athlete": "Erik Cernak",
+      "date": "2026-11-15T14:13Z",
+      "id": "599838",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "599839:Tampa Bay Lightning": {
+      "athlete": "Anthony Cirelli",
+      "date": "2026-11-15T14:13Z",
+      "id": "599839",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "599840:New Jersey Devils": {
+      "athlete": "Vladislav Kolyachonok",
+      "date": "2026-11-15T14:13Z",
+      "id": "599840",
+      "status": "Day-To-Day",
+      "team": "New Jersey Devils"
+    },
+    "599841:Winnipeg Jets": {
+      "athlete": "Isak Rosen",
+      "date": "2026-11-15T14:13Z",
+      "id": "599841",
+      "status": "Day-To-Day",
+      "team": "Winnipeg Jets"
+    },
+    "599842:Utah Mammoth": {
+      "athlete": "Logan Cooley",
+      "date": "2026-11-15T14:13Z",
+      "id": "599842",
+      "status": "Day-To-Day",
+      "team": "Utah Mammoth"
     }
   }
 }
