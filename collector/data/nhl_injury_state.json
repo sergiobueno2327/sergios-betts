@@ -63,6 +63,13 @@
       "status": "Out",
       "team": "Calgary Flames"
     },
+    "599994:Chicago Blackhawks": {
+      "athlete": "Bowen Byram",
+      "date": "2026-11-16T18:59Z",
+      "id": "599994",
+      "status": "Injured Reserve",
+      "team": "Chicago Blackhawks"
+    },
     "599685:Colorado Avalanche": {
       "athlete": "Cale Makar",
       "date": "2026-11-14T17:37Z",
@@ -130,13 +137,6 @@
       "athlete": "Oskar Back",
       "date": "2026-10-24T18:32Z",
       "id": "597129",
-      "status": "Injured Reserve",
-      "team": "Dallas Stars"
-    },
-    "595599:Dallas Stars": {
-      "athlete": "Matt Duchene",
-      "date": "2026-10-12T16:46Z",
-      "id": "595599",
       "status": "Injured Reserve",
       "team": "Dallas Stars"
     },
@@ -217,11 +217,11 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
-    "599836:Los Angeles Kings": {
+    "599997:Los Angeles Kings": {
       "athlete": "Artemi Panarin",
-      "date": "2026-11-15T14:13Z",
-      "id": "599836",
-      "status": "Day-To-Day",
+      "date": "2026-11-16T20:36Z",
+      "id": "599997",
+      "status": "Out",
       "team": "Los Angeles Kings"
     },
     "599837:Los Angeles Kings": {
@@ -237,6 +237,13 @@
       "id": "593688",
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
+    },
+    "599998:Minnesota Wild": {
+      "athlete": "Olli Maatta",
+      "date": "2026-11-16T21:33Z",
+      "id": "599998",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
     },
     "598600:Minnesota Wild": {
       "athlete": "Filip Gustavsson",
@@ -546,6 +553,13 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
+    "599992:St. Louis Blues": {
+      "athlete": "Ross Johnston",
+      "date": "2026-11-16T18:51Z",
+      "id": "599992",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
     "599744:St. Louis Blues": {
       "athlete": "Aleksanteri Kaskimaki",
       "date": "2026-11-15T03:55Z",
@@ -783,27 +797,6 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "599977:Minnesota Wild": {
-      "athlete": "Olli Maatta",
-      "date": "2026-11-16T17:52Z",
-      "id": "599977",
-      "status": "Out",
-      "team": "Minnesota Wild"
-    },
-    "599992:St. Louis Blues": {
-      "athlete": "Ross Johnston",
-      "date": "2026-11-16T18:51Z",
-      "id": "599992",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
-    "599994:Chicago Blackhawks": {
-      "athlete": "Bowen Byram",
-      "date": "2026-11-16T18:59Z",
-      "id": "599994",
-      "status": "Injured Reserve",
-      "team": "Chicago Blackhawks"
     }
   }
 }
