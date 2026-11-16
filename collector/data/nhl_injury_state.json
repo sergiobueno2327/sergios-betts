@@ -609,13 +609,6 @@
       "status": "Out",
       "team": "Colorado Avalanche"
     },
-    "599688:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
-      "date": "2026-11-14T17:54Z",
-      "id": "599688",
-      "status": "Out",
-      "team": "Dallas Stars"
-    },
     "599695:Utah Mammoth": {
       "athlete": "Nick Schmaltz",
       "date": "2026-11-14T18:48Z",
@@ -770,27 +763,6 @@
       "status": "Out",
       "team": "Montreal Canadiens"
     },
-    "599903:Philadelphia Flyers": {
-      "athlete": "Denver Barkey",
-      "date": "2026-11-15T22:26Z",
-      "id": "599903",
-      "status": "Out",
-      "team": "Philadelphia Flyers"
-    },
-    "599909:Edmonton Oilers": {
-      "athlete": "Ryan Nugent-Hopkins",
-      "date": "2026-11-15T23:26Z",
-      "id": "599909",
-      "status": "Out",
-      "team": "Edmonton Oilers"
-    },
-    "599910:San Jose Sharks": {
-      "athlete": "Alexander Wennberg",
-      "date": "2026-11-15T23:38Z",
-      "id": "599910",
-      "status": "Out",
-      "team": "San Jose Sharks"
-    },
     "599912:San Jose Sharks": {
       "athlete": "Quentin Musty",
       "date": "2026-11-15T23:51Z",
@@ -805,12 +777,54 @@
       "status": "Injured Reserve",
       "team": "San Jose Sharks"
     },
-    "599918:Nashville Predators": {
+    "599927:San Jose Sharks": {
+      "athlete": "Kiefer Sherwood",
+      "date": "2026-11-16T05:16Z",
+      "id": "599927",
+      "status": "Day-To-Day",
+      "team": "San Jose Sharks"
+    },
+    "599948:Dallas Stars": {
+      "athlete": "Tyler Myers",
+      "date": "2026-11-16T14:05Z",
+      "id": "599948",
+      "status": "Day-To-Day",
+      "team": "Dallas Stars"
+    },
+    "599949:Edmonton Oilers": {
+      "athlete": "Ryan Nugent-Hopkins",
+      "date": "2026-11-16T14:05Z",
+      "id": "599949",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "599950:Nashville Predators": {
       "athlete": "Jonathan Marchessault",
-      "date": "2026-11-16T01:40Z",
-      "id": "599918",
-      "status": "Out",
+      "date": "2026-11-16T14:05Z",
+      "id": "599950",
+      "status": "Day-To-Day",
       "team": "Nashville Predators"
+    },
+    "599951:San Jose Sharks": {
+      "athlete": "Alexander Wennberg",
+      "date": "2026-11-16T14:05Z",
+      "id": "599951",
+      "status": "Day-To-Day",
+      "team": "San Jose Sharks"
+    },
+    "599952:Dallas Stars": {
+      "athlete": "Miro Heiskanen",
+      "date": "2026-11-16T14:05Z",
+      "id": "599952",
+      "status": "Day-To-Day",
+      "team": "Dallas Stars"
+    },
+    "599953:Philadelphia Flyers": {
+      "athlete": "Denver Barkey",
+      "date": "2026-11-16T14:05Z",
+      "id": "599953",
+      "status": "Day-To-Day",
+      "team": "Philadelphia Flyers"
     }
   }
 }
