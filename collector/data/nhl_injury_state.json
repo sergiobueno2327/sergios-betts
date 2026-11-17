@@ -546,27 +546,6 @@
       "status": "Out",
       "team": "Colorado Avalanche"
     },
-    "599695:Utah Mammoth": {
-      "athlete": "Nick Schmaltz",
-      "date": "2026-11-14T18:48Z",
-      "id": "599695",
-      "status": "Out",
-      "team": "Utah Mammoth"
-    },
-    "599838:Tampa Bay Lightning": {
-      "athlete": "Erik Cernak",
-      "date": "2026-11-15T14:13Z",
-      "id": "599838",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
-    "599839:Tampa Bay Lightning": {
-      "athlete": "Anthony Cirelli",
-      "date": "2026-11-15T14:13Z",
-      "id": "599839",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "599873:Montreal Canadiens": {
       "athlete": "Chris Kreider",
       "date": "2026-11-15T18:04Z",
@@ -657,13 +636,6 @@
       "id": "600022",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "600027:New York Islanders": {
-      "athlete": "Jean-Gabriel Pageau",
-      "date": "2026-11-17T15:46Z",
-      "id": "600027",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
     },
     "600028:Chicago Blackhawks": {
       "athlete": "Bowen Byram",
@@ -769,6 +741,27 @@
       "id": "600072",
       "status": "Out",
       "team": "Dallas Stars"
+    },
+    "600077:Utah Mammoth": {
+      "athlete": "Nick Schmaltz",
+      "date": "2026-11-17T22:14Z",
+      "id": "600077",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "600081:Tampa Bay Lightning": {
+      "athlete": "Brandon Hagel",
+      "date": "2026-11-17T23:17Z",
+      "id": "600081",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "600083:New York Islanders": {
+      "athlete": "Jean-Gabriel Pageau",
+      "date": "2026-11-17T23:32Z",
+      "id": "600083",
+      "status": "Out",
+      "team": "New York Islanders"
     }
   }
 }
