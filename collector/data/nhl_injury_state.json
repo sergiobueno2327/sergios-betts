@@ -378,13 +378,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "598604:New York Rangers": {
-      "athlete": "Sean Durzi",
-      "date": "2026-11-05T19:23Z",
-      "id": "598604",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
-    },
     "595531:New York Rangers": {
       "athlete": "Igor Shesterkin",
       "date": "2026-10-11T21:06Z",
@@ -679,13 +672,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "599842:Utah Mammoth": {
-      "athlete": "Logan Cooley",
-      "date": "2026-11-15T14:13Z",
-      "id": "599842",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
-    },
     "599695:Utah Mammoth": {
       "athlete": "Nick Schmaltz",
       "date": "2026-11-14T18:48Z",
@@ -763,13 +749,6 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
-    "599841:Winnipeg Jets": {
-      "athlete": "Isak Rosen",
-      "date": "2026-11-15T14:13Z",
-      "id": "599841",
-      "status": "Day-To-Day",
-      "team": "Winnipeg Jets"
-    },
     "599578:Winnipeg Jets": {
       "athlete": "Dylan DeMelo",
       "date": "2026-11-13T16:33Z",
@@ -805,12 +784,26 @@
       "status": "Injured Reserve",
       "team": "Dallas Stars"
     },
-    "600002:New York Rangers": {
+    "600021:New York Rangers": {
       "athlete": "Pavel Dorofeyev",
-      "date": "2026-11-17T00:12Z",
-      "id": "600002",
-      "status": "Out",
+      "date": "2026-11-17T14:23Z",
+      "id": "600021",
+      "status": "Day-To-Day",
       "team": "New York Rangers"
+    },
+    "600008:New York Rangers": {
+      "athlete": "Sean Durzi",
+      "date": "2026-11-17T04:32Z",
+      "id": "600008",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
+    },
+    "600022:Winnipeg Jets": {
+      "athlete": "Isak Rosen",
+      "date": "2026-11-17T15:15Z",
+      "id": "600022",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
     }
   }
 }
