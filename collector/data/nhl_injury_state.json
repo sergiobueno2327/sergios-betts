@@ -602,27 +602,6 @@
       "status": "Injured Reserve",
       "team": "San Jose Sharks"
     },
-    "599948:Dallas Stars": {
-      "athlete": "Tyler Myers",
-      "date": "2026-11-16T14:05Z",
-      "id": "599948",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
-    "599951:San Jose Sharks": {
-      "athlete": "Alexander Wennberg",
-      "date": "2026-11-16T14:05Z",
-      "id": "599951",
-      "status": "Day-To-Day",
-      "team": "San Jose Sharks"
-    },
-    "599952:Dallas Stars": {
-      "athlete": "Miro Heiskanen",
-      "date": "2026-11-16T14:05Z",
-      "id": "599952",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
     "599971:Ottawa Senators": {
       "athlete": "Warren Foegele",
       "date": "2026-11-16T16:53Z",
@@ -714,26 +693,12 @@
       "status": "Day-To-Day",
       "team": "Carolina Hurricanes"
     },
-    "600047:St. Louis Blues": {
-      "athlete": "Ross Johnston",
-      "date": "2026-11-17T17:49Z",
-      "id": "600047",
-      "status": "Out",
-      "team": "St. Louis Blues"
-    },
     "600044:New Jersey Devils": {
       "athlete": "Johnathan Kovacevic",
       "date": "2026-11-17T17:39Z",
       "id": "600044",
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
-    },
-    "600060:Montreal Canadiens": {
-      "athlete": "Alexandre Texier",
-      "date": "2026-11-17T18:35Z",
-      "id": "600060",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
     },
     "600045:Detroit Red Wings": {
       "athlete": "William Wallinder",
@@ -742,26 +707,19 @@
       "status": "Day-To-Day",
       "team": "Detroit Red Wings"
     },
+    "600047:St. Louis Blues": {
+      "athlete": "Ross Johnston",
+      "date": "2026-11-17T17:49Z",
+      "id": "600047",
+      "status": "Out",
+      "team": "St. Louis Blues"
+    },
     "600050:Detroit Red Wings": {
       "athlete": "Albert Johansson",
       "date": "2026-11-17T17:59Z",
       "id": "600050",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
-    },
-    "600056:Tampa Bay Lightning": {
-      "athlete": "Conor Geekie",
-      "date": "2026-11-17T18:19Z",
-      "id": "600056",
-      "status": "Injured Reserve",
-      "team": "Tampa Bay Lightning"
-    },
-    "600068:San Jose Sharks": {
-      "athlete": "Kiefer Sherwood",
-      "date": "2026-11-17T19:39Z",
-      "id": "600068",
-      "status": "Out",
-      "team": "San Jose Sharks"
     },
     "600052:New Jersey Devils": {
       "athlete": "Anthony Mantha",
@@ -770,12 +728,47 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
+    "600056:Tampa Bay Lightning": {
+      "athlete": "Conor Geekie",
+      "date": "2026-11-17T18:19Z",
+      "id": "600056",
+      "status": "Injured Reserve",
+      "team": "Tampa Bay Lightning"
+    },
+    "600060:Montreal Canadiens": {
+      "athlete": "Alexandre Texier",
+      "date": "2026-11-17T18:35Z",
+      "id": "600060",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
     "600065:New York Islanders": {
       "athlete": "Logan Stanley",
       "date": "2026-11-17T19:05Z",
       "id": "600065",
       "status": "Out",
       "team": "New York Islanders"
+    },
+    "600068:San Jose Sharks": {
+      "athlete": "Kiefer Sherwood",
+      "date": "2026-11-17T19:39Z",
+      "id": "600068",
+      "status": "Out",
+      "team": "San Jose Sharks"
+    },
+    "600069:Colorado Avalanche": {
+      "athlete": "Scott Wedgewood",
+      "date": "2026-11-17T19:44Z",
+      "id": "600069",
+      "status": "Day-To-Day",
+      "team": "Colorado Avalanche"
+    },
+    "600072:Dallas Stars": {
+      "athlete": "Tyler Myers",
+      "date": "2026-11-17T20:12Z",
+      "id": "600072",
+      "status": "Out",
+      "team": "Dallas Stars"
     }
   }
 }
