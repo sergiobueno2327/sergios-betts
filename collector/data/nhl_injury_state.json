@@ -804,6 +804,13 @@
       "id": "595599",
       "status": "Injured Reserve",
       "team": "Dallas Stars"
+    },
+    "600002:New York Rangers": {
+      "athlete": "Pavel Dorofeyev",
+      "date": "2026-11-17T00:12Z",
+      "id": "600002",
+      "status": "Out",
+      "team": "New York Rangers"
     }
   }
 }
