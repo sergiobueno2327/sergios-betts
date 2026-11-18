@@ -280,13 +280,6 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
-    "597383:New York Islanders": {
-      "athlete": "Calum Ritchie",
-      "date": "2026-10-26T17:28Z",
-      "id": "597383",
-      "status": "Injured Reserve",
-      "team": "New York Islanders"
-    },
     "597628:Toronto Maple Leafs": {
       "athlete": "Miles Wood",
       "date": "2026-10-29T00:11Z",
@@ -335,13 +328,6 @@
       "id": "598014",
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
-    },
-    "598158:Utah Mammoth": {
-      "athlete": "John Marino",
-      "date": "2026-11-01T20:27Z",
-      "id": "598158",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
     },
     "598232:Pittsburgh Penguins": {
       "athlete": "Elmer Soderblom",
@@ -447,13 +433,6 @@
       "id": "599345",
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
-    },
-    "599348:Utah Mammoth": {
-      "athlete": "Dylan Guenther",
-      "date": "2026-11-12T01:21Z",
-      "id": "599348",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
     },
     "599407:Toronto Maple Leafs": {
       "athlete": "Colton Sissons",
@@ -672,13 +651,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600087:Tampa Bay Lightning": {
-      "athlete": "Zemgus Girgensons",
-      "date": "2026-11-18T02:22Z",
-      "id": "600087",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "600098:Ottawa Senators": {
       "athlete": "Thomas Chabot",
       "date": "2026-11-18T03:35Z",
@@ -749,13 +721,6 @@
       "status": "Day-To-Day",
       "team": "New York Islanders"
     },
-    "600193:Tampa Bay Lightning": {
-      "athlete": "Brandon Hagel",
-      "date": "2026-11-18T14:37Z",
-      "id": "600193",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "600194:Anaheim Ducks": {
       "athlete": "Beckett Sennecke",
       "date": "2026-11-18T14:37Z",
@@ -790,6 +755,34 @@
       "id": "600196",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
+    },
+    "600212:Utah Mammoth": {
+      "athlete": "John Marino",
+      "date": "2026-11-18T18:29Z",
+      "id": "600212",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "600213:Utah Mammoth": {
+      "athlete": "Dylan Guenther",
+      "date": "2026-11-18T18:29Z",
+      "id": "600213",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "600210:Tampa Bay Lightning": {
+      "athlete": "Brandon Hagel",
+      "date": "2026-11-18T18:12Z",
+      "id": "600210",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "600209:Tampa Bay Lightning": {
+      "athlete": "Zemgus Girgensons",
+      "date": "2026-11-18T18:08Z",
+      "id": "600209",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
     }
   }
 }
