@@ -665,13 +665,6 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "600185:Dallas Stars": {
-      "athlete": "Tyler Myers",
-      "date": "2026-11-18T14:37Z",
-      "id": "600185",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
     "600186:Edmonton Oilers": {
       "athlete": "Ryan Nugent-Hopkins",
       "date": "2026-11-18T14:37Z",
@@ -783,6 +776,13 @@
       "id": "600209",
       "status": "Day-To-Day",
       "team": "Tampa Bay Lightning"
+    },
+    "600225:Dallas Stars": {
+      "athlete": "Tyler Myers",
+      "date": "2026-11-18T20:37Z",
+      "id": "600225",
+      "status": "Out",
+      "team": "Dallas Stars"
     }
   }
 }
