@@ -623,26 +623,12 @@
       "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
-    "600043:Carolina Hurricanes": {
-      "athlete": "Pyotr Kochetkov",
-      "date": "2026-11-17T17:31Z",
-      "id": "600043",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
-    },
     "600044:New Jersey Devils": {
       "athlete": "Johnathan Kovacevic",
       "date": "2026-11-17T17:39Z",
       "id": "600044",
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
-    },
-    "600050:Detroit Red Wings": {
-      "athlete": "Albert Johansson",
-      "date": "2026-11-17T17:59Z",
-      "id": "600050",
-      "status": "Injured Reserve",
-      "team": "Detroit Red Wings"
     },
     "600052:New Jersey Devils": {
       "athlete": "Anthony Mantha",
@@ -699,13 +685,6 @@
       "id": "600098",
       "status": "Day-To-Day",
       "team": "Ottawa Senators"
-    },
-    "600099:Chicago Blackhawks": {
-      "athlete": "Connor Bedard",
-      "date": "2026-11-18T03:41Z",
-      "id": "600099",
-      "status": "Day-To-Day",
-      "team": "Chicago Blackhawks"
     },
     "600109:Minnesota Wild": {
       "athlete": "Filip Gustavsson",
@@ -783,6 +762,34 @@
       "id": "600194",
       "status": "Day-To-Day",
       "team": "Anaheim Ducks"
+    },
+    "600208:New Jersey Devils": {
+      "athlete": "Jonas Siegenthaler",
+      "date": "2026-11-18T17:02Z",
+      "id": "600208",
+      "status": "Day-To-Day",
+      "team": "New Jersey Devils"
+    },
+    "600205:Chicago Blackhawks": {
+      "athlete": "Connor Bedard",
+      "date": "2026-11-18T16:42Z",
+      "id": "600205",
+      "status": "Day-To-Day",
+      "team": "Chicago Blackhawks"
+    },
+    "600197:Detroit Red Wings": {
+      "athlete": "William Wallinder",
+      "date": "2026-11-18T16:15Z",
+      "id": "600197",
+      "status": "Out",
+      "team": "Detroit Red Wings"
+    },
+    "600196:Detroit Red Wings": {
+      "athlete": "Albert Johansson",
+      "date": "2026-11-18T16:14Z",
+      "id": "600196",
+      "status": "Injured Reserve",
+      "team": "Detroit Red Wings"
     }
   }
 }
