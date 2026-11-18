@@ -371,13 +371,6 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
-    "598600:Minnesota Wild": {
-      "athlete": "Filip Gustavsson",
-      "date": "2026-11-05T18:51Z",
-      "id": "598600",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
     "598729:Florida Panthers": {
       "athlete": "Aleksander Barkov",
       "date": "2026-11-06T16:30Z",
@@ -447,13 +440,6 @@
       "id": "599240",
       "status": "Injured Reserve",
       "team": "New York Rangers"
-    },
-    "599312:Ottawa Senators": {
-      "athlete": "Nick Cousins",
-      "date": "2026-11-11T17:15Z",
-      "id": "599312",
-      "status": "Out",
-      "team": "Ottawa Senators"
     },
     "599345:Anaheim Ducks": {
       "athlete": "Ryan Poehling",
@@ -588,26 +574,12 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
-    "599972:Ottawa Senators": {
-      "athlete": "Hayden Hodgson",
-      "date": "2026-11-16T16:55Z",
-      "id": "599972",
-      "status": "Out",
-      "team": "Ottawa Senators"
-    },
     "599975:Columbus Blue Jackets": {
       "athlete": "Sean Monahan",
       "date": "2026-11-16T17:42Z",
       "id": "599975",
       "status": "Out",
       "team": "Columbus Blue Jackets"
-    },
-    "599997:Los Angeles Kings": {
-      "athlete": "Artemi Panarin",
-      "date": "2026-11-16T20:36Z",
-      "id": "599997",
-      "status": "Out",
-      "team": "Los Angeles Kings"
     },
     "599998:Minnesota Wild": {
       "athlete": "Olli Maatta",
@@ -651,13 +623,6 @@
       "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
-    "600038:Edmonton Oilers": {
-      "athlete": "Ryan Nugent-Hopkins",
-      "date": "2026-11-17T17:11Z",
-      "id": "600038",
-      "status": "Out",
-      "team": "Edmonton Oilers"
-    },
     "600043:Carolina Hurricanes": {
       "athlete": "Pyotr Kochetkov",
       "date": "2026-11-17T17:31Z",
@@ -671,20 +636,6 @@
       "id": "600044",
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
-    },
-    "600045:Detroit Red Wings": {
-      "athlete": "William Wallinder",
-      "date": "2026-11-17T17:40Z",
-      "id": "600045",
-      "status": "Day-To-Day",
-      "team": "Detroit Red Wings"
-    },
-    "600047:St. Louis Blues": {
-      "athlete": "Ross Johnston",
-      "date": "2026-11-17T17:49Z",
-      "id": "600047",
-      "status": "Out",
-      "team": "St. Louis Blues"
     },
     "600050:Detroit Red Wings": {
       "athlete": "Albert Johansson",
@@ -714,13 +665,6 @@
       "status": "Day-To-Day",
       "team": "Montreal Canadiens"
     },
-    "600065:New York Islanders": {
-      "athlete": "Logan Stanley",
-      "date": "2026-11-17T19:05Z",
-      "id": "600065",
-      "status": "Out",
-      "team": "New York Islanders"
-    },
     "600068:San Jose Sharks": {
       "athlete": "Kiefer Sherwood",
       "date": "2026-11-17T19:39Z",
@@ -735,13 +679,6 @@
       "status": "Day-To-Day",
       "team": "Colorado Avalanche"
     },
-    "600072:Dallas Stars": {
-      "athlete": "Tyler Myers",
-      "date": "2026-11-17T20:12Z",
-      "id": "600072",
-      "status": "Out",
-      "team": "Dallas Stars"
-    },
     "600077:Utah Mammoth": {
       "athlete": "Nick Schmaltz",
       "date": "2026-11-17T22:14Z",
@@ -749,25 +686,102 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600081:Tampa Bay Lightning": {
-      "athlete": "Brandon Hagel",
-      "date": "2026-11-17T23:17Z",
-      "id": "600081",
-      "status": "Out",
+    "600087:Tampa Bay Lightning": {
+      "athlete": "Zemgus Girgensons",
+      "date": "2026-11-18T02:22Z",
+      "id": "600087",
+      "status": "Day-To-Day",
       "team": "Tampa Bay Lightning"
     },
-    "600083:New York Islanders": {
+    "600098:Ottawa Senators": {
+      "athlete": "Thomas Chabot",
+      "date": "2026-11-18T03:35Z",
+      "id": "600098",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "600099:Chicago Blackhawks": {
+      "athlete": "Connor Bedard",
+      "date": "2026-11-18T03:41Z",
+      "id": "600099",
+      "status": "Day-To-Day",
+      "team": "Chicago Blackhawks"
+    },
+    "600109:Minnesota Wild": {
+      "athlete": "Filip Gustavsson",
+      "date": "2026-11-18T04:51Z",
+      "id": "600109",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
+    "600185:Dallas Stars": {
+      "athlete": "Tyler Myers",
+      "date": "2026-11-18T14:37Z",
+      "id": "600185",
+      "status": "Day-To-Day",
+      "team": "Dallas Stars"
+    },
+    "600186:Edmonton Oilers": {
+      "athlete": "Ryan Nugent-Hopkins",
+      "date": "2026-11-18T14:37Z",
+      "id": "600186",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "600187:Ottawa Senators": {
+      "athlete": "Nick Cousins",
+      "date": "2026-11-18T14:37Z",
+      "id": "600187",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "600188:New York Islanders": {
       "athlete": "Jean-Gabriel Pageau",
-      "date": "2026-11-17T23:32Z",
-      "id": "600083",
-      "status": "Out",
+      "date": "2026-11-18T14:37Z",
+      "id": "600188",
+      "status": "Day-To-Day",
       "team": "New York Islanders"
     },
-    "600086:Anaheim Ducks": {
+    "600189:St. Louis Blues": {
+      "athlete": "Ross Johnston",
+      "date": "2026-11-18T14:37Z",
+      "id": "600189",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "600190:Ottawa Senators": {
+      "athlete": "Hayden Hodgson",
+      "date": "2026-11-18T14:37Z",
+      "id": "600190",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "600191:Los Angeles Kings": {
+      "athlete": "Artemi Panarin",
+      "date": "2026-11-18T14:37Z",
+      "id": "600191",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600192:New York Islanders": {
+      "athlete": "Logan Stanley",
+      "date": "2026-11-18T14:37Z",
+      "id": "600192",
+      "status": "Day-To-Day",
+      "team": "New York Islanders"
+    },
+    "600193:Tampa Bay Lightning": {
+      "athlete": "Brandon Hagel",
+      "date": "2026-11-18T14:37Z",
+      "id": "600193",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "600194:Anaheim Ducks": {
       "athlete": "Beckett Sennecke",
-      "date": "2026-11-18T00:57Z",
-      "id": "600086",
-      "status": "Out",
+      "date": "2026-11-18T14:37Z",
+      "id": "600194",
+      "status": "Day-To-Day",
       "team": "Anaheim Ducks"
     }
   }
