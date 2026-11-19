@@ -588,13 +588,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600098:Ottawa Senators": {
-      "athlete": "Thomas Chabot",
-      "date": "2026-11-18T03:35Z",
-      "id": "600098",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
-    },
     "600186:Edmonton Oilers": {
       "athlete": "Ryan Nugent-Hopkins",
       "date": "2026-11-18T14:37Z",
@@ -602,26 +595,12 @@
       "status": "Day-To-Day",
       "team": "Edmonton Oilers"
     },
-    "600187:Ottawa Senators": {
-      "athlete": "Nick Cousins",
-      "date": "2026-11-18T14:37Z",
-      "id": "600187",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
-    },
     "600189:St. Louis Blues": {
       "athlete": "Ross Johnston",
       "date": "2026-11-18T14:37Z",
       "id": "600189",
       "status": "Day-To-Day",
       "team": "St. Louis Blues"
-    },
-    "600190:Ottawa Senators": {
-      "athlete": "Hayden Hodgson",
-      "date": "2026-11-18T14:37Z",
-      "id": "600190",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
     },
     "600192:New York Islanders": {
       "athlete": "Logan Stanley",
@@ -650,13 +629,6 @@
       "id": "600213",
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
-    },
-    "600209:Tampa Bay Lightning": {
-      "athlete": "Zemgus Girgensons",
-      "date": "2026-11-18T18:08Z",
-      "id": "600209",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
     },
     "600225:Dallas Stars": {
       "athlete": "Tyler Myers",
@@ -790,6 +762,27 @@
       "id": "600307",
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
+    },
+    "600318:Ottawa Senators": {
+      "athlete": "Nick Cousins",
+      "date": "2026-11-19T21:58Z",
+      "id": "600318",
+      "status": "Out",
+      "team": "Ottawa Senators"
+    },
+    "600317:Ottawa Senators": {
+      "athlete": "Hayden Hodgson",
+      "date": "2026-11-19T21:56Z",
+      "id": "600317",
+      "status": "Out",
+      "team": "Ottawa Senators"
+    },
+    "600319:Tampa Bay Lightning": {
+      "athlete": "Zemgus Girgensons",
+      "date": "2026-11-19T23:24Z",
+      "id": "600319",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
     }
   }
 }
