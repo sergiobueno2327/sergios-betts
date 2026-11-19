@@ -1,12 +1,5 @@
 {
   "entries": {
-    "593266:Florida Panthers": {
-      "athlete": "Jonah Gadjovich",
-      "date": "2026-09-17T20:53Z",
-      "id": "593266",
-      "status": "Injured Reserve",
-      "team": "Florida Panthers"
-    },
     "593688:Los Angeles Kings": {
       "athlete": "Jakub Dvorak",
       "date": "2026-09-24T19:49Z",
@@ -462,13 +455,6 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
-    "599578:Winnipeg Jets": {
-      "athlete": "Dylan DeMelo",
-      "date": "2026-11-13T16:33Z",
-      "id": "599578",
-      "status": "Injured Reserve",
-      "team": "Winnipeg Jets"
-    },
     "599618:Vancouver Canucks": {
       "athlete": "Guillaume Brisebois",
       "date": "2026-11-13T22:59Z",
@@ -595,13 +581,6 @@
       "status": "Injured Reserve",
       "team": "Chicago Blackhawks"
     },
-    "600037:Calgary Flames": {
-      "athlete": "Jonathan Huberdeau",
-      "date": "2026-11-17T17:10Z",
-      "id": "600037",
-      "status": "Injured Reserve",
-      "team": "Calgary Flames"
-    },
     "600044:New Jersey Devils": {
       "athlete": "Johnathan Kovacevic",
       "date": "2026-11-17T17:39Z",
@@ -629,13 +608,6 @@
       "id": "600068",
       "status": "Out",
       "team": "San Jose Sharks"
-    },
-    "600069:Colorado Avalanche": {
-      "athlete": "Scott Wedgewood",
-      "date": "2026-11-17T19:44Z",
-      "id": "600069",
-      "status": "Day-To-Day",
-      "team": "Colorado Avalanche"
     },
     "600077:Utah Mammoth": {
       "athlete": "Nick Schmaltz",
@@ -672,13 +644,6 @@
       "status": "Day-To-Day",
       "team": "Ottawa Senators"
     },
-    "600188:New York Islanders": {
-      "athlete": "Jean-Gabriel Pageau",
-      "date": "2026-11-18T14:37Z",
-      "id": "600188",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
-    },
     "600189:St. Louis Blues": {
       "athlete": "Ross Johnston",
       "date": "2026-11-18T14:37Z",
@@ -693,13 +658,6 @@
       "status": "Day-To-Day",
       "team": "Ottawa Senators"
     },
-    "600191:Los Angeles Kings": {
-      "athlete": "Artemi Panarin",
-      "date": "2026-11-18T14:37Z",
-      "id": "600191",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
     "600192:New York Islanders": {
       "athlete": "Logan Stanley",
       "date": "2026-11-18T14:37Z",
@@ -713,20 +671,6 @@
       "id": "600194",
       "status": "Day-To-Day",
       "team": "Anaheim Ducks"
-    },
-    "600205:Chicago Blackhawks": {
-      "athlete": "Connor Bedard",
-      "date": "2026-11-18T16:42Z",
-      "id": "600205",
-      "status": "Day-To-Day",
-      "team": "Chicago Blackhawks"
-    },
-    "600197:Detroit Red Wings": {
-      "athlete": "William Wallinder",
-      "date": "2026-11-18T16:15Z",
-      "id": "600197",
-      "status": "Out",
-      "team": "Detroit Red Wings"
     },
     "600196:Detroit Red Wings": {
       "athlete": "Albert Johansson",
@@ -749,13 +693,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600210:Tampa Bay Lightning": {
-      "athlete": "Brandon Hagel",
-      "date": "2026-11-18T18:12Z",
-      "id": "600210",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "600209:Tampa Bay Lightning": {
       "athlete": "Zemgus Girgensons",
       "date": "2026-11-18T18:08Z",
@@ -769,6 +706,97 @@
       "id": "600225",
       "status": "Out",
       "team": "Dallas Stars"
+    },
+    "600238:Calgary Flames": {
+      "athlete": "Jonathan Huberdeau",
+      "date": "2026-11-19T04:00Z",
+      "id": "600238",
+      "status": "Injured Reserve",
+      "team": "Calgary Flames"
+    },
+    "600242:Colorado Avalanche": {
+      "athlete": "Gavin Brindley",
+      "date": "2026-11-19T04:38Z",
+      "id": "600242",
+      "status": "Day-To-Day",
+      "team": "Colorado Avalanche"
+    },
+    "600244:Montreal Canadiens": {
+      "athlete": "Zack Bolduc",
+      "date": "2026-11-19T05:26Z",
+      "id": "600244",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
+    "600273:Detroit Red Wings": {
+      "athlete": "William Wallinder",
+      "date": "2026-11-19T14:06Z",
+      "id": "600273",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
+    },
+    "600275:Tampa Bay Lightning": {
+      "athlete": "Brandon Hagel",
+      "date": "2026-11-19T15:54Z",
+      "id": "600275",
+      "status": "Injured Reserve",
+      "team": "Tampa Bay Lightning"
+    },
+    "600278:Florida Panthers": {
+      "athlete": "Jonah Gadjovich",
+      "date": "2026-11-19T16:20Z",
+      "id": "600278",
+      "status": "Injured Reserve",
+      "team": "Florida Panthers"
+    },
+    "600279:Los Angeles Kings": {
+      "athlete": "Artemi Panarin",
+      "date": "2026-11-19T16:23Z",
+      "id": "600279",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "600282:Pittsburgh Penguins": {
+      "athlete": "Nick Robertson",
+      "date": "2026-11-19T16:36Z",
+      "id": "600282",
+      "status": "Day-To-Day",
+      "team": "Pittsburgh Penguins"
+    },
+    "600283:Buffalo Sabres": {
+      "athlete": "Mattias Samuelsson",
+      "date": "2026-11-19T16:37Z",
+      "id": "600283",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
+    },
+    "600284:Winnipeg Jets": {
+      "athlete": "Dylan DeMelo",
+      "date": "2026-11-19T16:39Z",
+      "id": "600284",
+      "status": "Injured Reserve",
+      "team": "Winnipeg Jets"
+    },
+    "600286:Chicago Blackhawks": {
+      "athlete": "Connor Bedard",
+      "date": "2026-11-19T16:45Z",
+      "id": "600286",
+      "status": "Out",
+      "team": "Chicago Blackhawks"
+    },
+    "600287:New York Islanders": {
+      "athlete": "Jean-Gabriel Pageau",
+      "date": "2026-11-19T17:04Z",
+      "id": "600287",
+      "status": "Day-To-Day",
+      "team": "New York Islanders"
+    },
+    "600290:Los Angeles Kings": {
+      "athlete": "Trevor Moore",
+      "date": "2026-11-19T17:25Z",
+      "id": "600290",
+      "status": "Out",
+      "team": "Los Angeles Kings"
     }
   }
 }
