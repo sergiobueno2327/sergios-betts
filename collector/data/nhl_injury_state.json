@@ -448,13 +448,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "599552:Seattle Kraken": {
-      "athlete": "Jacob Melanson",
-      "date": "2026-11-13T14:39Z",
-      "id": "599552",
-      "status": "Injured Reserve",
-      "team": "Seattle Kraken"
-    },
     "599618:Vancouver Canucks": {
       "athlete": "Guillaume Brisebois",
       "date": "2026-11-13T22:59Z",
@@ -665,13 +658,6 @@
       "status": "Day-To-Day",
       "team": "New York Islanders"
     },
-    "600194:Anaheim Ducks": {
-      "athlete": "Beckett Sennecke",
-      "date": "2026-11-18T14:37Z",
-      "id": "600194",
-      "status": "Day-To-Day",
-      "team": "Anaheim Ducks"
-    },
     "600196:Detroit Red Wings": {
       "athlete": "Albert Johansson",
       "date": "2026-11-18T16:14Z",
@@ -720,20 +706,6 @@
       "id": "600242",
       "status": "Day-To-Day",
       "team": "Colorado Avalanche"
-    },
-    "600244:Montreal Canadiens": {
-      "athlete": "Zack Bolduc",
-      "date": "2026-11-19T05:26Z",
-      "id": "600244",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
-    },
-    "600273:Detroit Red Wings": {
-      "athlete": "William Wallinder",
-      "date": "2026-11-19T14:06Z",
-      "id": "600273",
-      "status": "Day-To-Day",
-      "team": "Detroit Red Wings"
     },
     "600275:Tampa Bay Lightning": {
       "athlete": "Brandon Hagel",
@@ -797,6 +769,34 @@
       "id": "600290",
       "status": "Out",
       "team": "Los Angeles Kings"
+    },
+    "600291:Minnesota Wild": {
+      "athlete": "Yakov Trenin",
+      "date": "2026-11-19T17:45Z",
+      "id": "600291",
+      "status": "Out",
+      "team": "Minnesota Wild"
+    },
+    "600293:Detroit Red Wings": {
+      "athlete": "William Wallinder",
+      "date": "2026-11-19T17:54Z",
+      "id": "600293",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
+    },
+    "600294:Montreal Canadiens": {
+      "athlete": "Zack Bolduc",
+      "date": "2026-11-19T17:59Z",
+      "id": "600294",
+      "status": "Out",
+      "team": "Montreal Canadiens"
+    },
+    "600298:Seattle Kraken": {
+      "athlete": "Jacob Melanson",
+      "date": "2026-11-19T19:03Z",
+      "id": "600298",
+      "status": "Injured Reserve",
+      "team": "Seattle Kraken"
     }
   }
 }
