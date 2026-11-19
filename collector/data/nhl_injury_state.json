@@ -119,13 +119,6 @@
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
     },
-    "594287:Seattle Kraken": {
-      "athlete": "Jake O'Brien",
-      "date": "2026-10-01T00:06Z",
-      "id": "594287",
-      "status": "Injured Reserve",
-      "team": "Seattle Kraken"
-    },
     "594319:Edmonton Oilers": {
       "athlete": "Matt Savoie",
       "date": "2026-10-01T14:05Z",
@@ -258,13 +251,6 @@
       "id": "597046",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
-    },
-    "597129:Dallas Stars": {
-      "athlete": "Oskar Back",
-      "date": "2026-10-24T18:32Z",
-      "id": "597129",
-      "status": "Injured Reserve",
-      "team": "Dallas Stars"
     },
     "597280:Seattle Kraken": {
       "athlete": "Jared McCann",
@@ -483,13 +469,6 @@
       "status": "Out",
       "team": "Colorado Avalanche"
     },
-    "599685:Colorado Avalanche": {
-      "athlete": "Cale Makar",
-      "date": "2026-11-14T17:37Z",
-      "id": "599685",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
     "599873:Montreal Canadiens": {
       "athlete": "Chris Kreider",
       "date": "2026-11-15T18:04Z",
@@ -616,13 +595,6 @@
       "status": "Day-To-Day",
       "team": "Ottawa Senators"
     },
-    "600109:Minnesota Wild": {
-      "athlete": "Filip Gustavsson",
-      "date": "2026-11-18T04:51Z",
-      "id": "600109",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
     "600186:Edmonton Oilers": {
       "athlete": "Ryan Nugent-Hopkins",
       "date": "2026-11-18T14:37Z",
@@ -699,13 +671,6 @@
       "id": "600238",
       "status": "Injured Reserve",
       "team": "Calgary Flames"
-    },
-    "600242:Colorado Avalanche": {
-      "athlete": "Gavin Brindley",
-      "date": "2026-11-19T04:38Z",
-      "id": "600242",
-      "status": "Day-To-Day",
-      "team": "Colorado Avalanche"
     },
     "600275:Tampa Bay Lightning": {
       "athlete": "Brandon Hagel",
@@ -791,10 +756,38 @@
       "status": "Out",
       "team": "Montreal Canadiens"
     },
-    "600298:Seattle Kraken": {
-      "athlete": "Jacob Melanson",
-      "date": "2026-11-19T19:03Z",
-      "id": "600298",
+    "600312:Colorado Avalanche": {
+      "athlete": "Gavin Brindley",
+      "date": "2026-11-19T21:28Z",
+      "id": "600312",
+      "status": "Out",
+      "team": "Colorado Avalanche"
+    },
+    "600308:Minnesota Wild": {
+      "athlete": "Filip Gustavsson",
+      "date": "2026-11-19T20:31Z",
+      "id": "600308",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
+    "600313:Colorado Avalanche": {
+      "athlete": "Cale Makar",
+      "date": "2026-11-19T21:33Z",
+      "id": "600313",
+      "status": "Injured Reserve",
+      "team": "Colorado Avalanche"
+    },
+    "600306:Dallas Stars": {
+      "athlete": "Oskar Back",
+      "date": "2026-11-19T20:29Z",
+      "id": "600306",
+      "status": "Injured Reserve",
+      "team": "Dallas Stars"
+    },
+    "600307:Seattle Kraken": {
+      "athlete": "Jake O'Brien",
+      "date": "2026-11-19T20:30Z",
+      "id": "600307",
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     }
