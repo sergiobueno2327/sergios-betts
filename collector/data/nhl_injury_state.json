@@ -623,13 +623,6 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "600060:Montreal Canadiens": {
-      "athlete": "Alexandre Texier",
-      "date": "2026-11-17T18:35Z",
-      "id": "600060",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
-    },
     "600068:San Jose Sharks": {
       "athlete": "Kiefer Sherwood",
       "date": "2026-11-17T19:39Z",
@@ -720,13 +713,6 @@
       "id": "600194",
       "status": "Day-To-Day",
       "team": "Anaheim Ducks"
-    },
-    "600208:New Jersey Devils": {
-      "athlete": "Jonas Siegenthaler",
-      "date": "2026-11-18T17:02Z",
-      "id": "600208",
-      "status": "Day-To-Day",
-      "team": "New Jersey Devils"
     },
     "600205:Chicago Blackhawks": {
       "athlete": "Connor Bedard",
