@@ -245,13 +245,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "597716:Toronto Maple Leafs": {
-      "athlete": "Kirill Marchenko",
-      "date": "2026-10-29T17:28Z",
-      "id": "597716",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "597739:Buffalo Sabres": {
       "athlete": "Justin Danforth",
       "date": "2026-10-29T22:06Z",
@@ -363,13 +356,6 @@
       "id": "599172",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
-    },
-    "599237:Vegas Golden Knights": {
-      "athlete": "Noah Hanifin",
-      "date": "2026-11-10T20:34Z",
-      "id": "599237",
-      "status": "Out",
-      "team": "Vegas Golden Knights"
     },
     "599240:New York Rangers": {
       "athlete": "Alberts Smits",
@@ -560,13 +546,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600213:Utah Mammoth": {
-      "athlete": "Dylan Guenther",
-      "date": "2026-11-18T18:29Z",
-      "id": "600213",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
-    },
     "600238:Calgary Flames": {
       "athlete": "Jonathan Huberdeau",
       "date": "2026-11-19T04:00Z",
@@ -721,13 +700,6 @@
       "status": "Day-To-Day",
       "team": "Los Angeles Kings"
     },
-    "600407:Minnesota Wild": {
-      "athlete": "Yakov Trenin",
-      "date": "2026-11-20T14:41Z",
-      "id": "600407",
-      "status": "Day-To-Day",
-      "team": "Minnesota Wild"
-    },
     "600408:New York Islanders": {
       "athlete": "Logan Stanley",
       "date": "2026-11-20T14:41Z",
@@ -804,6 +776,41 @@
       "id": "600418",
       "status": "Out",
       "team": "Pittsburgh Penguins"
+    },
+    "600435:Toronto Maple Leafs": {
+      "athlete": "Kirill Marchenko",
+      "date": "2026-11-20T17:49Z",
+      "id": "600435",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
+    },
+    "600436:St. Louis Blues": {
+      "athlete": "Connor McMichael",
+      "date": "2026-11-20T18:15Z",
+      "id": "600436",
+      "status": "Out",
+      "team": "St. Louis Blues"
+    },
+    "600437:Utah Mammoth": {
+      "athlete": "Dylan Guenther",
+      "date": "2026-11-20T18:26Z",
+      "id": "600437",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "600459:Minnesota Wild": {
+      "athlete": "Yakov Trenin",
+      "date": "2026-11-20T19:16Z",
+      "id": "600459",
+      "status": "Day-To-Day",
+      "team": "Minnesota Wild"
+    },
+    "600464:Toronto Maple Leafs": {
+      "athlete": "Cole McWard",
+      "date": "2026-11-20T19:42Z",
+      "id": "600464",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
