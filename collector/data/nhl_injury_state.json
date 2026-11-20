@@ -588,27 +588,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600186:Edmonton Oilers": {
-      "athlete": "Ryan Nugent-Hopkins",
-      "date": "2026-11-18T14:37Z",
-      "id": "600186",
-      "status": "Day-To-Day",
-      "team": "Edmonton Oilers"
-    },
-    "600189:St. Louis Blues": {
-      "athlete": "Ross Johnston",
-      "date": "2026-11-18T14:37Z",
-      "id": "600189",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
-    "600192:New York Islanders": {
-      "athlete": "Logan Stanley",
-      "date": "2026-11-18T14:37Z",
-      "id": "600192",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
-    },
     "600196:Detroit Red Wings": {
       "athlete": "Albert Johansson",
       "date": "2026-11-18T16:14Z",
@@ -665,20 +644,6 @@
       "status": "Out",
       "team": "Los Angeles Kings"
     },
-    "600282:Pittsburgh Penguins": {
-      "athlete": "Nick Robertson",
-      "date": "2026-11-19T16:36Z",
-      "id": "600282",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
-    },
-    "600283:Buffalo Sabres": {
-      "athlete": "Mattias Samuelsson",
-      "date": "2026-11-19T16:37Z",
-      "id": "600283",
-      "status": "Day-To-Day",
-      "team": "Buffalo Sabres"
-    },
     "600284:Winnipeg Jets": {
       "athlete": "Dylan DeMelo",
       "date": "2026-11-19T16:39Z",
@@ -692,13 +657,6 @@
       "id": "600286",
       "status": "Out",
       "team": "Chicago Blackhawks"
-    },
-    "600287:New York Islanders": {
-      "athlete": "Jean-Gabriel Pageau",
-      "date": "2026-11-19T17:04Z",
-      "id": "600287",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
     },
     "600290:Los Angeles Kings": {
       "athlete": "Trevor Moore",
@@ -728,27 +686,6 @@
       "status": "Out",
       "team": "Montreal Canadiens"
     },
-    "600312:Colorado Avalanche": {
-      "athlete": "Gavin Brindley",
-      "date": "2026-11-19T21:28Z",
-      "id": "600312",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
-    "600308:Minnesota Wild": {
-      "athlete": "Filip Gustavsson",
-      "date": "2026-11-19T20:31Z",
-      "id": "600308",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
-    "600313:Colorado Avalanche": {
-      "athlete": "Cale Makar",
-      "date": "2026-11-19T21:33Z",
-      "id": "600313",
-      "status": "Injured Reserve",
-      "team": "Colorado Avalanche"
-    },
     "600306:Dallas Stars": {
       "athlete": "Oskar Back",
       "date": "2026-11-19T20:29Z",
@@ -763,17 +700,38 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
-    "600318:Ottawa Senators": {
-      "athlete": "Nick Cousins",
-      "date": "2026-11-19T21:58Z",
-      "id": "600318",
+    "600308:Minnesota Wild": {
+      "athlete": "Filip Gustavsson",
+      "date": "2026-11-19T20:31Z",
+      "id": "600308",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
+    "600312:Colorado Avalanche": {
+      "athlete": "Gavin Brindley",
+      "date": "2026-11-19T21:28Z",
+      "id": "600312",
       "status": "Out",
-      "team": "Ottawa Senators"
+      "team": "Colorado Avalanche"
+    },
+    "600313:Colorado Avalanche": {
+      "athlete": "Cale Makar",
+      "date": "2026-11-19T21:33Z",
+      "id": "600313",
+      "status": "Injured Reserve",
+      "team": "Colorado Avalanche"
     },
     "600317:Ottawa Senators": {
       "athlete": "Hayden Hodgson",
       "date": "2026-11-19T21:56Z",
       "id": "600317",
+      "status": "Out",
+      "team": "Ottawa Senators"
+    },
+    "600318:Ottawa Senators": {
+      "athlete": "Nick Cousins",
+      "date": "2026-11-19T21:58Z",
+      "id": "600318",
       "status": "Out",
       "team": "Ottawa Senators"
     },
@@ -783,6 +741,34 @@
       "id": "600319",
       "status": "Out",
       "team": "Tampa Bay Lightning"
+    },
+    "600321:New York Islanders": {
+      "athlete": "Logan Stanley",
+      "date": "2026-11-19T23:39Z",
+      "id": "600321",
+      "status": "Out",
+      "team": "New York Islanders"
+    },
+    "600323:Pittsburgh Penguins": {
+      "athlete": "Nick Robertson",
+      "date": "2026-11-19T23:50Z",
+      "id": "600323",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
+    },
+    "600325:St. Louis Blues": {
+      "athlete": "Ross Johnston",
+      "date": "2026-11-19T23:56Z",
+      "id": "600325",
+      "status": "Out",
+      "team": "St. Louis Blues"
+    },
+    "600327:Edmonton Oilers": {
+      "athlete": "Ryan Nugent-Hopkins",
+      "date": "2026-11-20T00:24Z",
+      "id": "600327",
+      "status": "Out",
+      "team": "Edmonton Oilers"
     }
   }
 }
