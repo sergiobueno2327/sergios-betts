@@ -140,13 +140,6 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
-    "595332:New York Rangers": {
-      "athlete": "Joe Veleno",
-      "date": "2026-10-10T17:18Z",
-      "id": "595332",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
-    },
     "595356:St. Louis Blues": {
       "athlete": "Dillon Dube",
       "date": "2026-10-10T21:13Z",
@@ -203,13 +196,6 @@
       "status": "Injured Reserve",
       "team": "New York Islanders"
     },
-    "596825:Pittsburgh Penguins": {
-      "athlete": "Bryan Rust",
-      "date": "2026-10-22T15:54Z",
-      "id": "596825",
-      "status": "Injured Reserve",
-      "team": "Pittsburgh Penguins"
-    },
     "596884:Toronto Maple Leafs": {
       "athlete": "Marshall Rifai",
       "date": "2026-10-23T02:22Z",
@@ -237,13 +223,6 @@
       "id": "597036",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "597041:Washington Capitals": {
-      "athlete": "Vincent Desharnais",
-      "date": "2026-10-23T20:39Z",
-      "id": "597041",
-      "status": "Injured Reserve",
-      "team": "Washington Capitals"
     },
     "597046:Colorado Avalanche": {
       "athlete": "Zachary L'Heureux",
@@ -300,13 +279,6 @@
       "id": "597989",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
-    },
-    "598014:Ottawa Senators": {
-      "athlete": "Andre Burakovsky",
-      "date": "2026-10-31T21:35Z",
-      "id": "598014",
-      "status": "Injured Reserve",
-      "team": "Ottawa Senators"
     },
     "598232:Pittsburgh Penguins": {
       "athlete": "Elmer Soderblom",
@@ -581,13 +553,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600196:Detroit Red Wings": {
-      "athlete": "Albert Johansson",
-      "date": "2026-11-18T16:14Z",
-      "id": "600196",
-      "status": "Injured Reserve",
-      "team": "Detroit Red Wings"
-    },
     "600212:Utah Mammoth": {
       "athlete": "John Marino",
       "date": "2026-11-18T18:29Z",
@@ -777,13 +742,6 @@
       "status": "Day-To-Day",
       "team": "Los Angeles Kings"
     },
-    "600410:Pittsburgh Penguins": {
-      "athlete": "Nick Robertson",
-      "date": "2026-11-20T14:41Z",
-      "id": "600410",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
-    },
     "600411:Montreal Canadiens": {
       "athlete": "Zack Bolduc",
       "date": "2026-11-20T14:41Z",
@@ -797,6 +755,55 @@
       "id": "600412",
       "status": "Day-To-Day",
       "team": "Colorado Avalanche"
+    },
+    "600431:Ottawa Senators": {
+      "athlete": "Andre Burakovsky",
+      "date": "2026-11-20T17:06Z",
+      "id": "600431",
+      "status": "Injured Reserve",
+      "team": "Ottawa Senators"
+    },
+    "600420:New York Rangers": {
+      "athlete": "Joe Veleno",
+      "date": "2026-11-20T16:23Z",
+      "id": "600420",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
+    },
+    "600430:Pittsburgh Penguins": {
+      "athlete": "Bryan Rust",
+      "date": "2026-11-20T16:56Z",
+      "id": "600430",
+      "status": "Injured Reserve",
+      "team": "Pittsburgh Penguins"
+    },
+    "600415:Washington Capitals": {
+      "athlete": "Vincent Desharnais",
+      "date": "2026-11-20T16:03Z",
+      "id": "600415",
+      "status": "Injured Reserve",
+      "team": "Washington Capitals"
+    },
+    "600419:New York Rangers": {
+      "athlete": "Oliver Bjorkstrand",
+      "date": "2026-11-20T16:21Z",
+      "id": "600419",
+      "status": "Day-To-Day",
+      "team": "New York Rangers"
+    },
+    "600416:Pittsburgh Penguins": {
+      "athlete": "Nick Robertson",
+      "date": "2026-11-20T16:08Z",
+      "id": "600416",
+      "status": "Injured Reserve",
+      "team": "Pittsburgh Penguins"
+    },
+    "600418:Pittsburgh Penguins": {
+      "athlete": "Evgeni Malkin",
+      "date": "2026-11-20T16:16Z",
+      "id": "600418",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
     }
   }
 }
