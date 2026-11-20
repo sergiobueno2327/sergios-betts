@@ -406,13 +406,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "599345:Anaheim Ducks": {
-      "athlete": "Ryan Poehling",
-      "date": "2026-11-11T22:59Z",
-      "id": "599345",
-      "status": "Injured Reserve",
-      "team": "Anaheim Ducks"
-    },
     "599407:Toronto Maple Leafs": {
       "athlete": "Colton Sissons",
       "date": "2026-11-12T15:24Z",
@@ -609,13 +602,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600225:Dallas Stars": {
-      "athlete": "Tyler Myers",
-      "date": "2026-11-18T20:37Z",
-      "id": "600225",
-      "status": "Out",
-      "team": "Dallas Stars"
-    },
     "600238:Calgary Flames": {
       "athlete": "Jonathan Huberdeau",
       "date": "2026-11-19T04:00Z",
@@ -637,13 +623,6 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
-    "600279:Los Angeles Kings": {
-      "athlete": "Artemi Panarin",
-      "date": "2026-11-19T16:23Z",
-      "id": "600279",
-      "status": "Out",
-      "team": "Los Angeles Kings"
-    },
     "600284:Winnipeg Jets": {
       "athlete": "Dylan DeMelo",
       "date": "2026-11-19T16:39Z",
@@ -658,33 +637,12 @@
       "status": "Out",
       "team": "Chicago Blackhawks"
     },
-    "600290:Los Angeles Kings": {
-      "athlete": "Trevor Moore",
-      "date": "2026-11-19T17:25Z",
-      "id": "600290",
-      "status": "Out",
-      "team": "Los Angeles Kings"
-    },
-    "600291:Minnesota Wild": {
-      "athlete": "Yakov Trenin",
-      "date": "2026-11-19T17:45Z",
-      "id": "600291",
-      "status": "Out",
-      "team": "Minnesota Wild"
-    },
     "600293:Detroit Red Wings": {
       "athlete": "William Wallinder",
       "date": "2026-11-19T17:54Z",
       "id": "600293",
       "status": "Day-To-Day",
       "team": "Detroit Red Wings"
-    },
-    "600294:Montreal Canadiens": {
-      "athlete": "Zack Bolduc",
-      "date": "2026-11-19T17:59Z",
-      "id": "600294",
-      "status": "Out",
-      "team": "Montreal Canadiens"
     },
     "600306:Dallas Stars": {
       "athlete": "Oskar Back",
@@ -707,13 +665,6 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "600312:Colorado Avalanche": {
-      "athlete": "Gavin Brindley",
-      "date": "2026-11-19T21:28Z",
-      "id": "600312",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
     "600313:Colorado Avalanche": {
       "athlete": "Cale Makar",
       "date": "2026-11-19T21:33Z",
@@ -721,54 +672,131 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
-    "600317:Ottawa Senators": {
-      "athlete": "Hayden Hodgson",
-      "date": "2026-11-19T21:56Z",
-      "id": "600317",
-      "status": "Out",
-      "team": "Ottawa Senators"
-    },
-    "600318:Ottawa Senators": {
-      "athlete": "Nick Cousins",
-      "date": "2026-11-19T21:58Z",
-      "id": "600318",
-      "status": "Out",
-      "team": "Ottawa Senators"
-    },
-    "600319:Tampa Bay Lightning": {
-      "athlete": "Zemgus Girgensons",
-      "date": "2026-11-19T23:24Z",
-      "id": "600319",
-      "status": "Out",
-      "team": "Tampa Bay Lightning"
-    },
-    "600321:New York Islanders": {
-      "athlete": "Logan Stanley",
-      "date": "2026-11-19T23:39Z",
-      "id": "600321",
-      "status": "Out",
+    "600331:New York Islanders": {
+      "athlete": "Ryan Pulock",
+      "date": "2026-11-20T02:53Z",
+      "id": "600331",
+      "status": "Day-To-Day",
       "team": "New York Islanders"
     },
-    "600323:Pittsburgh Penguins": {
-      "athlete": "Nick Robertson",
-      "date": "2026-11-19T23:50Z",
-      "id": "600323",
-      "status": "Out",
-      "team": "Pittsburgh Penguins"
+    "600332:Anaheim Ducks": {
+      "athlete": "Ryan Poehling",
+      "date": "2026-11-20T03:31Z",
+      "id": "600332",
+      "status": "Injured Reserve",
+      "team": "Anaheim Ducks"
     },
-    "600325:St. Louis Blues": {
+    "600333:Columbus Blue Jackets": {
+      "athlete": "Mathieu Olivier",
+      "date": "2026-11-20T03:56Z",
+      "id": "600333",
+      "status": "Day-To-Day",
+      "team": "Columbus Blue Jackets"
+    },
+    "600334:Minnesota Wild": {
+      "athlete": "Quinn Hughes",
+      "date": "2026-11-20T04:12Z",
+      "id": "600334",
+      "status": "Day-To-Day",
+      "team": "Minnesota Wild"
+    },
+    "600337:Vancouver Canucks": {
+      "athlete": "Brendan Gallagher",
+      "date": "2026-11-20T05:02Z",
+      "id": "600337",
+      "status": "Day-To-Day",
+      "team": "Vancouver Canucks"
+    },
+    "600400:Dallas Stars": {
+      "athlete": "Tyler Myers",
+      "date": "2026-11-20T14:41Z",
+      "id": "600400",
+      "status": "Day-To-Day",
+      "team": "Dallas Stars"
+    },
+    "600401:Edmonton Oilers": {
+      "athlete": "Ryan Nugent-Hopkins",
+      "date": "2026-11-20T14:41Z",
+      "id": "600401",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "600402:Ottawa Senators": {
+      "athlete": "Nick Cousins",
+      "date": "2026-11-20T14:41Z",
+      "id": "600402",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "600403:Tampa Bay Lightning": {
+      "athlete": "Zemgus Girgensons",
+      "date": "2026-11-20T14:41Z",
+      "id": "600403",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "600404:St. Louis Blues": {
       "athlete": "Ross Johnston",
-      "date": "2026-11-19T23:56Z",
-      "id": "600325",
-      "status": "Out",
+      "date": "2026-11-20T14:41Z",
+      "id": "600404",
+      "status": "Day-To-Day",
       "team": "St. Louis Blues"
     },
-    "600327:Edmonton Oilers": {
-      "athlete": "Ryan Nugent-Hopkins",
-      "date": "2026-11-20T00:24Z",
-      "id": "600327",
-      "status": "Out",
-      "team": "Edmonton Oilers"
+    "600405:Ottawa Senators": {
+      "athlete": "Hayden Hodgson",
+      "date": "2026-11-20T14:41Z",
+      "id": "600405",
+      "status": "Day-To-Day",
+      "team": "Ottawa Senators"
+    },
+    "600406:Los Angeles Kings": {
+      "athlete": "Artemi Panarin",
+      "date": "2026-11-20T14:41Z",
+      "id": "600406",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600407:Minnesota Wild": {
+      "athlete": "Yakov Trenin",
+      "date": "2026-11-20T14:41Z",
+      "id": "600407",
+      "status": "Day-To-Day",
+      "team": "Minnesota Wild"
+    },
+    "600408:New York Islanders": {
+      "athlete": "Logan Stanley",
+      "date": "2026-11-20T14:41Z",
+      "id": "600408",
+      "status": "Day-To-Day",
+      "team": "New York Islanders"
+    },
+    "600409:Los Angeles Kings": {
+      "athlete": "Trevor Moore",
+      "date": "2026-11-20T14:41Z",
+      "id": "600409",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600410:Pittsburgh Penguins": {
+      "athlete": "Nick Robertson",
+      "date": "2026-11-20T14:41Z",
+      "id": "600410",
+      "status": "Day-To-Day",
+      "team": "Pittsburgh Penguins"
+    },
+    "600411:Montreal Canadiens": {
+      "athlete": "Zack Bolduc",
+      "date": "2026-11-20T14:41Z",
+      "id": "600411",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
+    "600412:Colorado Avalanche": {
+      "athlete": "Gavin Brindley",
+      "date": "2026-11-20T14:41Z",
+      "id": "600412",
+      "status": "Day-To-Day",
+      "team": "Colorado Avalanche"
     }
   }
 }
