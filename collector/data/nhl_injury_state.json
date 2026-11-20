@@ -476,13 +476,6 @@
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
     },
-    "600008:New York Rangers": {
-      "athlete": "Sean Durzi",
-      "date": "2026-11-17T04:32Z",
-      "id": "600008",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
-    },
     "600021:New York Rangers": {
       "athlete": "Pavel Dorofeyev",
       "date": "2026-11-17T14:23Z",
@@ -536,13 +529,6 @@
       "athlete": "Nick Schmaltz",
       "date": "2026-11-17T22:14Z",
       "id": "600077",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
-    },
-    "600212:Utah Mammoth": {
-      "athlete": "John Marino",
-      "date": "2026-11-18T18:29Z",
-      "id": "600212",
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
@@ -791,13 +777,6 @@
       "status": "Out",
       "team": "St. Louis Blues"
     },
-    "600437:Utah Mammoth": {
-      "athlete": "Dylan Guenther",
-      "date": "2026-11-20T18:26Z",
-      "id": "600437",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
-    },
     "600459:Minnesota Wild": {
       "athlete": "Yakov Trenin",
       "date": "2026-11-20T19:16Z",
@@ -811,6 +790,27 @@
       "id": "600464",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
+    },
+    "600465:New York Rangers": {
+      "athlete": "Sean Durzi",
+      "date": "2026-11-20T19:51Z",
+      "id": "600465",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
+    },
+    "600466:Utah Mammoth": {
+      "athlete": "Dylan Guenther",
+      "date": "2026-11-20T19:59Z",
+      "id": "600466",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "600467:Utah Mammoth": {
+      "athlete": "John Marino",
+      "date": "2026-11-20T20:04Z",
+      "id": "600467",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
     }
   }
 }
