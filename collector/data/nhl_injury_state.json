@@ -287,13 +287,6 @@
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
     },
-    "598522:Seattle Kraken": {
-      "athlete": "Curtis Douglas",
-      "date": "2026-11-05T01:12Z",
-      "id": "598522",
-      "status": "Injured Reserve",
-      "team": "Seattle Kraken"
-    },
     "598836:Boston Bruins": {
       "athlete": "James Hagens",
       "date": "2026-11-07T17:30Z",
@@ -441,13 +434,6 @@
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     },
-    "600028:Chicago Blackhawks": {
-      "athlete": "Bowen Byram",
-      "date": "2026-11-17T15:51Z",
-      "id": "600028",
-      "status": "Injured Reserve",
-      "team": "Chicago Blackhawks"
-    },
     "600044:New Jersey Devils": {
       "athlete": "Johnathan Kovacevic",
       "date": "2026-11-17T17:39Z",
@@ -560,27 +546,6 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "600333:Columbus Blue Jackets": {
-      "athlete": "Mathieu Olivier",
-      "date": "2026-11-20T03:56Z",
-      "id": "600333",
-      "status": "Day-To-Day",
-      "team": "Columbus Blue Jackets"
-    },
-    "600334:Minnesota Wild": {
-      "athlete": "Quinn Hughes",
-      "date": "2026-11-20T04:12Z",
-      "id": "600334",
-      "status": "Day-To-Day",
-      "team": "Minnesota Wild"
-    },
-    "600400:Dallas Stars": {
-      "athlete": "Tyler Myers",
-      "date": "2026-11-20T14:41Z",
-      "id": "600400",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
     "600403:Tampa Bay Lightning": {
       "athlete": "Zemgus Girgensons",
       "date": "2026-11-20T14:41Z",
@@ -595,26 +560,12 @@
       "status": "Day-To-Day",
       "team": "Ottawa Senators"
     },
-    "600406:Los Angeles Kings": {
-      "athlete": "Artemi Panarin",
-      "date": "2026-11-20T14:41Z",
-      "id": "600406",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
     "600408:New York Islanders": {
       "athlete": "Logan Stanley",
       "date": "2026-11-20T14:41Z",
       "id": "600408",
       "status": "Day-To-Day",
       "team": "New York Islanders"
-    },
-    "600409:Los Angeles Kings": {
-      "athlete": "Trevor Moore",
-      "date": "2026-11-20T14:41Z",
-      "id": "600409",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
     },
     "600412:Colorado Avalanche": {
       "athlete": "Gavin Brindley",
@@ -776,6 +727,55 @@
       "id": "600500",
       "status": "Injured Reserve",
       "team": "New York Rangers"
+    },
+    "600528:Anaheim Ducks": {
+      "athlete": "Beckett Sennecke",
+      "date": "2026-11-21T18:32Z",
+      "id": "600528",
+      "status": "Injured Reserve",
+      "team": "Anaheim Ducks"
+    },
+    "600541:Chicago Blackhawks": {
+      "athlete": "Bowen Byram",
+      "date": "2026-11-21T19:21Z",
+      "id": "600541",
+      "status": "Injured Reserve",
+      "team": "Chicago Blackhawks"
+    },
+    "600540:Dallas Stars": {
+      "athlete": "Tyler Myers",
+      "date": "2026-11-21T19:15Z",
+      "id": "600540",
+      "status": "Out",
+      "team": "Dallas Stars"
+    },
+    "600526:Los Angeles Kings": {
+      "athlete": "Artemi Panarin",
+      "date": "2026-11-21T18:20Z",
+      "id": "600526",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "600525:Los Angeles Kings": {
+      "athlete": "Trevor Moore",
+      "date": "2026-11-21T18:13Z",
+      "id": "600525",
+      "status": "Out",
+      "team": "Los Angeles Kings"
+    },
+    "600529:Minnesota Wild": {
+      "athlete": "Quinn Hughes",
+      "date": "2026-11-21T18:43Z",
+      "id": "600529",
+      "status": "Out",
+      "team": "Minnesota Wild"
+    },
+    "600537:Vancouver Canucks": {
+      "athlete": "Elias Pettersson",
+      "date": "2026-11-21T19:10Z",
+      "id": "600537",
+      "status": "Out",
+      "team": "Vancouver Canucks"
     }
   }
 }
