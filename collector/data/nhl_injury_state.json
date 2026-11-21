@@ -322,13 +322,6 @@
       "status": "Injured Reserve",
       "team": "Boston Bruins"
     },
-    "598862:Seattle Kraken": {
-      "athlete": "Nikke Kokko",
-      "date": "2026-11-07T20:12Z",
-      "id": "598862",
-      "status": "Injured Reserve",
-      "team": "Seattle Kraken"
-    },
     "598871:Winnipeg Jets": {
       "athlete": "Elias Salomonsson",
       "date": "2026-11-08T00:05Z",
@@ -742,13 +735,6 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
-    "600419:New York Rangers": {
-      "athlete": "Oliver Bjorkstrand",
-      "date": "2026-11-20T16:21Z",
-      "id": "600419",
-      "status": "Day-To-Day",
-      "team": "New York Rangers"
-    },
     "600416:Pittsburgh Penguins": {
       "athlete": "Nick Robertson",
       "date": "2026-11-20T16:08Z",
@@ -811,6 +797,13 @@
       "id": "600467",
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
+    },
+    "600471:New York Rangers": {
+      "athlete": "Oliver Bjorkstrand",
+      "date": "2026-11-21T00:13Z",
+      "id": "600471",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
     }
   }
 }
