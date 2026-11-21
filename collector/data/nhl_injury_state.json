@@ -364,13 +364,6 @@
       "status": "Injured Reserve",
       "team": "Dallas Stars"
     },
-    "599684:Colorado Avalanche": {
-      "athlete": "Nathan MacKinnon",
-      "date": "2026-11-14T17:30Z",
-      "id": "599684",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
     "599873:Montreal Canadiens": {
       "athlete": "Chris Kreider",
       "date": "2026-11-15T18:04Z",
@@ -448,13 +441,6 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
-    "600056:Tampa Bay Lightning": {
-      "athlete": "Conor Geekie",
-      "date": "2026-11-17T18:19Z",
-      "id": "600056",
-      "status": "Injured Reserve",
-      "team": "Tampa Bay Lightning"
-    },
     "600068:San Jose Sharks": {
       "athlete": "Kiefer Sherwood",
       "date": "2026-11-17T19:39Z",
@@ -503,13 +489,6 @@
       "id": "600286",
       "status": "Out",
       "team": "Chicago Blackhawks"
-    },
-    "600293:Detroit Red Wings": {
-      "athlete": "William Wallinder",
-      "date": "2026-11-19T17:54Z",
-      "id": "600293",
-      "status": "Day-To-Day",
-      "team": "Detroit Red Wings"
     },
     "600306:Dallas Stars": {
       "athlete": "Oskar Back",
@@ -567,13 +546,6 @@
       "status": "Day-To-Day",
       "team": "New York Islanders"
     },
-    "600412:Colorado Avalanche": {
-      "athlete": "Gavin Brindley",
-      "date": "2026-11-20T14:41Z",
-      "id": "600412",
-      "status": "Day-To-Day",
-      "team": "Colorado Avalanche"
-    },
     "600431:Ottawa Senators": {
       "athlete": "Andre Burakovsky",
       "date": "2026-11-20T17:06Z",
@@ -622,13 +594,6 @@
       "id": "600436",
       "status": "Out",
       "team": "St. Louis Blues"
-    },
-    "600459:Minnesota Wild": {
-      "athlete": "Yakov Trenin",
-      "date": "2026-11-20T19:16Z",
-      "id": "600459",
-      "status": "Day-To-Day",
-      "team": "Minnesota Wild"
     },
     "600465:New York Rangers": {
       "athlete": "Sean Durzi",
@@ -692,13 +657,6 @@
       "id": "600496",
       "status": "Injured Reserve",
       "team": "Florida Panthers"
-    },
-    "600518:Edmonton Oilers": {
-      "athlete": "Ryan Nugent-Hopkins",
-      "date": "2026-11-21T17:40Z",
-      "id": "600518",
-      "status": "Out",
-      "team": "Edmonton Oilers"
     },
     "600504:New York Rangers": {
       "athlete": "Oliver Bjorkstrand",
@@ -776,6 +734,55 @@
       "id": "600537",
       "status": "Out",
       "team": "Vancouver Canucks"
+    },
+    "600548:Colorado Avalanche": {
+      "athlete": "Nathan MacKinnon",
+      "date": "2026-11-21T20:30Z",
+      "id": "600548",
+      "status": "Out",
+      "team": "Colorado Avalanche"
+    },
+    "600553:Carolina Hurricanes": {
+      "athlete": "Nikolaj Ehlers",
+      "date": "2026-11-21T21:30Z",
+      "id": "600553",
+      "status": "Out",
+      "team": "Carolina Hurricanes"
+    },
+    "600552:Edmonton Oilers": {
+      "athlete": "Ryan Nugent-Hopkins",
+      "date": "2026-11-21T21:28Z",
+      "id": "600552",
+      "status": "Out",
+      "team": "Edmonton Oilers"
+    },
+    "600550:Colorado Avalanche": {
+      "athlete": "Gavin Brindley",
+      "date": "2026-11-21T20:47Z",
+      "id": "600550",
+      "status": "Out",
+      "team": "Colorado Avalanche"
+    },
+    "600547:Edmonton Oilers": {
+      "athlete": "Zach Hyman",
+      "date": "2026-11-21T20:26Z",
+      "id": "600547",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "600554:Detroit Red Wings": {
+      "athlete": "William Wallinder",
+      "date": "2026-11-21T21:44Z",
+      "id": "600554",
+      "status": "Out",
+      "team": "Detroit Red Wings"
+    },
+    "600546:Tampa Bay Lightning": {
+      "athlete": "Conor Geekie",
+      "date": "2026-11-21T20:20Z",
+      "id": "600546",
+      "status": "Injured Reserve",
+      "team": "Tampa Bay Lightning"
     }
   }
 }
