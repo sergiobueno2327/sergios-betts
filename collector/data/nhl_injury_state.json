@@ -294,33 +294,12 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
-    "598729:Florida Panthers": {
-      "athlete": "Aleksander Barkov",
-      "date": "2026-11-06T16:30Z",
-      "id": "598729",
-      "status": "Injured Reserve",
-      "team": "Florida Panthers"
-    },
-    "598730:Florida Panthers": {
-      "athlete": "Brad Marchand",
-      "date": "2026-11-06T16:34Z",
-      "id": "598730",
-      "status": "Injured Reserve",
-      "team": "Florida Panthers"
-    },
     "598836:Boston Bruins": {
       "athlete": "James Hagens",
       "date": "2026-11-07T17:30Z",
       "id": "598836",
       "status": "Injured Reserve",
       "team": "Boston Bruins"
-    },
-    "598871:Winnipeg Jets": {
-      "athlete": "Elias Salomonsson",
-      "date": "2026-11-08T00:05Z",
-      "id": "598871",
-      "status": "Injured Reserve",
-      "team": "Winnipeg Jets"
     },
     "599020:Calgary Flames": {
       "athlete": "Kevin Bahl",
@@ -342,13 +321,6 @@
       "id": "599172",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
-    },
-    "599240:New York Rangers": {
-      "athlete": "Alberts Smits",
-      "date": "2026-11-10T22:13Z",
-      "id": "599240",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
     },
     "599407:Toronto Maple Leafs": {
       "athlete": "Colton Sissons",
@@ -461,13 +433,6 @@
       "id": "599998",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
-    },
-    "600021:New York Rangers": {
-      "athlete": "Pavel Dorofeyev",
-      "date": "2026-11-17T14:23Z",
-      "id": "600021",
-      "status": "Day-To-Day",
-      "team": "New York Rangers"
     },
     "600022:Winnipeg Jets": {
       "athlete": "Isak Rosen",
@@ -588,13 +553,6 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
-    "600331:New York Islanders": {
-      "athlete": "Ryan Pulock",
-      "date": "2026-11-20T02:53Z",
-      "id": "600331",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
-    },
     "600332:Anaheim Ducks": {
       "athlete": "Ryan Poehling",
       "date": "2026-11-20T03:31Z",
@@ -616,13 +574,6 @@
       "status": "Day-To-Day",
       "team": "Minnesota Wild"
     },
-    "600337:Vancouver Canucks": {
-      "athlete": "Brendan Gallagher",
-      "date": "2026-11-20T05:02Z",
-      "id": "600337",
-      "status": "Day-To-Day",
-      "team": "Vancouver Canucks"
-    },
     "600400:Dallas Stars": {
       "athlete": "Tyler Myers",
       "date": "2026-11-20T14:41Z",
@@ -630,33 +581,12 @@
       "status": "Day-To-Day",
       "team": "Dallas Stars"
     },
-    "600401:Edmonton Oilers": {
-      "athlete": "Ryan Nugent-Hopkins",
-      "date": "2026-11-20T14:41Z",
-      "id": "600401",
-      "status": "Day-To-Day",
-      "team": "Edmonton Oilers"
-    },
-    "600402:Ottawa Senators": {
-      "athlete": "Nick Cousins",
-      "date": "2026-11-20T14:41Z",
-      "id": "600402",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
-    },
     "600403:Tampa Bay Lightning": {
       "athlete": "Zemgus Girgensons",
       "date": "2026-11-20T14:41Z",
       "id": "600403",
       "status": "Day-To-Day",
       "team": "Tampa Bay Lightning"
-    },
-    "600404:St. Louis Blues": {
-      "athlete": "Ross Johnston",
-      "date": "2026-11-20T14:41Z",
-      "id": "600404",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
     },
     "600405:Ottawa Senators": {
       "athlete": "Hayden Hodgson",
@@ -685,13 +615,6 @@
       "id": "600409",
       "status": "Day-To-Day",
       "team": "Los Angeles Kings"
-    },
-    "600411:Montreal Canadiens": {
-      "athlete": "Zack Bolduc",
-      "date": "2026-11-20T14:41Z",
-      "id": "600411",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
     },
     "600412:Colorado Avalanche": {
       "athlete": "Gavin Brindley",
@@ -777,13 +700,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600471:New York Rangers": {
-      "athlete": "Oliver Bjorkstrand",
-      "date": "2026-11-21T00:13Z",
-      "id": "600471",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
-    },
     "600490:Toronto Maple Leafs": {
       "athlete": "Nick Blankenburg",
       "date": "2026-11-21T15:07Z",
@@ -804,6 +720,62 @@
       "id": "600492",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
+    },
+    "600497:Florida Panthers": {
+      "athlete": "Brad Marchand",
+      "date": "2026-11-21T16:06Z",
+      "id": "600497",
+      "status": "Injured Reserve",
+      "team": "Florida Panthers"
+    },
+    "600498:New York Rangers": {
+      "athlete": "Pavel Dorofeyev",
+      "date": "2026-11-21T16:11Z",
+      "id": "600498",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
+    },
+    "600496:Florida Panthers": {
+      "athlete": "Aleksander Barkov",
+      "date": "2026-11-21T15:57Z",
+      "id": "600496",
+      "status": "Injured Reserve",
+      "team": "Florida Panthers"
+    },
+    "600518:Edmonton Oilers": {
+      "athlete": "Ryan Nugent-Hopkins",
+      "date": "2026-11-21T17:40Z",
+      "id": "600518",
+      "status": "Out",
+      "team": "Edmonton Oilers"
+    },
+    "600504:New York Rangers": {
+      "athlete": "Oliver Bjorkstrand",
+      "date": "2026-11-21T16:33Z",
+      "id": "600504",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
+    },
+    "600514:Vancouver Canucks": {
+      "athlete": "Brendan Gallagher",
+      "date": "2026-11-21T17:13Z",
+      "id": "600514",
+      "status": "Injured Reserve",
+      "team": "Vancouver Canucks"
+    },
+    "600512:New York Islanders": {
+      "athlete": "Ryan Pulock",
+      "date": "2026-11-21T17:06Z",
+      "id": "600512",
+      "status": "Out",
+      "team": "New York Islanders"
+    },
+    "600500:New York Rangers": {
+      "athlete": "Alberts Smits",
+      "date": "2026-11-21T16:18Z",
+      "id": "600500",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
     }
   }
 }
