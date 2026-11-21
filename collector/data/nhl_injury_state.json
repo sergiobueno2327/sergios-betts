@@ -539,13 +539,6 @@
       "status": "Day-To-Day",
       "team": "Ottawa Senators"
     },
-    "600408:New York Islanders": {
-      "athlete": "Logan Stanley",
-      "date": "2026-11-20T14:41Z",
-      "id": "600408",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
-    },
     "600431:Ottawa Senators": {
       "athlete": "Andre Burakovsky",
       "date": "2026-11-20T17:06Z",
@@ -783,6 +776,20 @@
       "id": "600546",
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
+    },
+    "600558:Chicago Blackhawks": {
+      "athlete": "Anton Frondell",
+      "date": "2026-11-21T22:45Z",
+      "id": "600558",
+      "status": "Day-To-Day",
+      "team": "Chicago Blackhawks"
+    },
+    "600560:Calgary Flames": {
+      "athlete": "Martin Pospisil",
+      "date": "2026-11-21T22:54Z",
+      "id": "600560",
+      "status": "Day-To-Day",
+      "team": "Calgary Flames"
     }
   }
 }
