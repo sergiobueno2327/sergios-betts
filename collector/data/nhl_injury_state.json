@@ -203,13 +203,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "597001:Toronto Maple Leafs": {
-      "athlete": "Nick Blankenburg",
-      "date": "2026-10-23T15:29Z",
-      "id": "597001",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "597009:Winnipeg Jets": {
       "athlete": "Nick Bjugstad",
       "date": "2026-10-23T16:48Z",
@@ -749,13 +742,6 @@
       "status": "Out",
       "team": "Pittsburgh Penguins"
     },
-    "600435:Toronto Maple Leafs": {
-      "athlete": "Kirill Marchenko",
-      "date": "2026-11-20T17:49Z",
-      "id": "600435",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "600436:St. Louis Blues": {
       "athlete": "Connor McMichael",
       "date": "2026-11-20T18:15Z",
@@ -769,13 +755,6 @@
       "id": "600459",
       "status": "Day-To-Day",
       "team": "Minnesota Wild"
-    },
-    "600464:Toronto Maple Leafs": {
-      "athlete": "Cole McWard",
-      "date": "2026-11-20T19:42Z",
-      "id": "600464",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
     },
     "600465:New York Rangers": {
       "athlete": "Sean Durzi",
@@ -804,6 +783,27 @@
       "id": "600471",
       "status": "Injured Reserve",
       "team": "New York Rangers"
+    },
+    "600490:Toronto Maple Leafs": {
+      "athlete": "Nick Blankenburg",
+      "date": "2026-11-21T15:07Z",
+      "id": "600490",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
+    },
+    "600491:Toronto Maple Leafs": {
+      "athlete": "Cole McWard",
+      "date": "2026-11-21T15:10Z",
+      "id": "600491",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
+    },
+    "600492:Toronto Maple Leafs": {
+      "athlete": "Kirill Marchenko",
+      "date": "2026-11-21T15:14Z",
+      "id": "600492",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
