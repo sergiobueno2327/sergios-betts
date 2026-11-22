@@ -308,13 +308,6 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
-    "599407:Toronto Maple Leafs": {
-      "athlete": "Colton Sissons",
-      "date": "2026-11-12T15:24Z",
-      "id": "599407",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "599454:Utah Mammoth": {
       "athlete": "Nate Schmidt",
       "date": "2026-11-12T19:30Z",
@@ -560,13 +553,6 @@
       "status": "Out",
       "team": "Pittsburgh Penguins"
     },
-    "600465:New York Rangers": {
-      "athlete": "Sean Durzi",
-      "date": "2026-11-20T19:51Z",
-      "id": "600465",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
-    },
     "600466:Utah Mammoth": {
       "athlete": "Dylan Guenther",
       "date": "2026-11-20T19:59Z",
@@ -804,6 +790,20 @@
       "id": "600695",
       "status": "Day-To-Day",
       "team": "Detroit Red Wings"
+    },
+    "600714:Toronto Maple Leafs": {
+      "athlete": "Jack Roslovic",
+      "date": "2026-11-22T17:15Z",
+      "id": "600714",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "600718:Toronto Maple Leafs": {
+      "athlete": "Colton Sissons",
+      "date": "2026-11-22T17:19Z",
+      "id": "600718",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
