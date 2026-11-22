@@ -245,13 +245,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "597871:Calgary Flames": {
-      "athlete": "Connor Zary",
-      "date": "2026-10-30T16:44Z",
-      "id": "597871",
-      "status": "Out",
-      "team": "Calgary Flames"
-    },
     "597970:Montreal Canadiens": {
       "athlete": "Sam Montembeault",
       "date": "2026-10-31T15:25Z",
@@ -567,13 +560,6 @@
       "status": "Out",
       "team": "Pittsburgh Penguins"
     },
-    "600436:St. Louis Blues": {
-      "athlete": "Connor McMichael",
-      "date": "2026-11-20T18:15Z",
-      "id": "600436",
-      "status": "Out",
-      "team": "St. Louis Blues"
-    },
     "600465:New York Rangers": {
       "athlete": "Sean Durzi",
       "date": "2026-11-20T19:51Z",
@@ -651,13 +637,6 @@
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
     },
-    "600512:New York Islanders": {
-      "athlete": "Ryan Pulock",
-      "date": "2026-11-21T17:06Z",
-      "id": "600512",
-      "status": "Out",
-      "team": "New York Islanders"
-    },
     "600500:New York Rangers": {
       "athlete": "Alberts Smits",
       "date": "2026-11-21T16:18Z",
@@ -685,20 +664,6 @@
       "id": "600540",
       "status": "Out",
       "team": "Dallas Stars"
-    },
-    "600526:Los Angeles Kings": {
-      "athlete": "Artemi Panarin",
-      "date": "2026-11-21T18:20Z",
-      "id": "600526",
-      "status": "Out",
-      "team": "Los Angeles Kings"
-    },
-    "600525:Los Angeles Kings": {
-      "athlete": "Trevor Moore",
-      "date": "2026-11-21T18:13Z",
-      "id": "600525",
-      "status": "Out",
-      "team": "Los Angeles Kings"
     },
     "600529:Minnesota Wild": {
       "athlete": "Quinn Hughes",
@@ -749,13 +714,6 @@
       "status": "Day-To-Day",
       "team": "Edmonton Oilers"
     },
-    "600554:Detroit Red Wings": {
-      "athlete": "William Wallinder",
-      "date": "2026-11-21T21:44Z",
-      "id": "600554",
-      "status": "Out",
-      "team": "Detroit Red Wings"
-    },
     "600546:Tampa Bay Lightning": {
       "athlete": "Conor Geekie",
       "date": "2026-11-21T20:20Z",
@@ -777,26 +735,75 @@
       "status": "Day-To-Day",
       "team": "Calgary Flames"
     },
-    "600566:Chicago Blackhawks": {
+    "600582:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-22T02:05Z",
+      "id": "600582",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600597:Anaheim Ducks": {
+      "athlete": "Leo Carlsson",
+      "date": "2026-11-22T04:05Z",
+      "id": "600597",
+      "status": "Day-To-Day",
+      "team": "Anaheim Ducks"
+    },
+    "600689:New York Islanders": {
+      "athlete": "Ryan Pulock",
+      "date": "2026-11-22T13:40Z",
+      "id": "600689",
+      "status": "Day-To-Day",
+      "team": "New York Islanders"
+    },
+    "600690:Chicago Blackhawks": {
       "athlete": "Connor Bedard",
-      "date": "2026-11-22T00:07Z",
-      "id": "600566",
-      "status": "Out",
+      "date": "2026-11-22T15:10Z",
+      "id": "600690",
+      "status": "Injured Reserve",
       "team": "Chicago Blackhawks"
     },
-    "600565:Ottawa Senators": {
+    "600690:Ottawa Senators": {
       "athlete": "Hayden Hodgson",
-      "date": "2026-11-22T00:00Z",
-      "id": "600565",
-      "status": "Out",
+      "date": "2026-11-22T13:40Z",
+      "id": "600690",
+      "status": "Day-To-Day",
       "team": "Ottawa Senators"
     },
-    "600574:Utah Mammoth": {
+    "600691:Los Angeles Kings": {
+      "athlete": "Artemi Panarin",
+      "date": "2026-11-22T13:40Z",
+      "id": "600691",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600692:Utah Mammoth": {
       "athlete": "Clayton Keller",
-      "date": "2026-11-22T01:31Z",
-      "id": "600574",
-      "status": "Out",
+      "date": "2026-11-22T13:40Z",
+      "id": "600692",
+      "status": "Day-To-Day",
       "team": "Utah Mammoth"
+    },
+    "600693:Los Angeles Kings": {
+      "athlete": "Trevor Moore",
+      "date": "2026-11-22T13:40Z",
+      "id": "600693",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600694:St. Louis Blues": {
+      "athlete": "Connor McMichael",
+      "date": "2026-11-22T13:40Z",
+      "id": "600694",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "600695:Detroit Red Wings": {
+      "athlete": "William Wallinder",
+      "date": "2026-11-22T13:40Z",
+      "id": "600695",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
     }
   }
 }
