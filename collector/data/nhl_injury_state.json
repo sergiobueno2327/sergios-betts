@@ -804,6 +804,13 @@
       "id": "600718",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
+    },
+    "600738:Chicago Blackhawks": {
+      "athlete": "Wyatt Kaiser",
+      "date": "2026-11-22T18:51Z",
+      "id": "600738",
+      "status": "Suspension",
+      "team": "Chicago Blackhawks"
     }
   }
 }
