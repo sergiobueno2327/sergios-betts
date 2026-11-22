@@ -504,13 +504,6 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "600403:Tampa Bay Lightning": {
-      "athlete": "Zemgus Girgensons",
-      "date": "2026-11-20T14:41Z",
-      "id": "600403",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "600431:Ottawa Senators": {
       "athlete": "Andre Burakovsky",
       "date": "2026-11-20T17:06Z",
@@ -728,13 +721,6 @@
       "status": "Day-To-Day",
       "team": "Los Angeles Kings"
     },
-    "600597:Anaheim Ducks": {
-      "athlete": "Leo Carlsson",
-      "date": "2026-11-22T04:05Z",
-      "id": "600597",
-      "status": "Day-To-Day",
-      "team": "Anaheim Ducks"
-    },
     "600689:New York Islanders": {
       "athlete": "Ryan Pulock",
       "date": "2026-11-22T13:40Z",
@@ -811,6 +797,20 @@
       "id": "600738",
       "status": "Suspension",
       "team": "Chicago Blackhawks"
+    },
+    "600773:Anaheim Ducks": {
+      "athlete": "Leo Carlsson",
+      "date": "2026-11-22T21:11Z",
+      "id": "600773",
+      "status": "Day-To-Day",
+      "team": "Anaheim Ducks"
+    },
+    "600772:Tampa Bay Lightning": {
+      "athlete": "Zemgus Girgensons",
+      "date": "2026-11-22T20:52Z",
+      "id": "600772",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
     }
   }
 }
