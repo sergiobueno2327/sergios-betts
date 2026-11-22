@@ -483,13 +483,6 @@
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     },
-    "600286:Chicago Blackhawks": {
-      "athlete": "Connor Bedard",
-      "date": "2026-11-19T16:45Z",
-      "id": "600286",
-      "status": "Out",
-      "team": "Chicago Blackhawks"
-    },
     "600306:Dallas Stars": {
       "athlete": "Oskar Back",
       "date": "2026-11-19T20:29Z",
@@ -531,13 +524,6 @@
       "id": "600403",
       "status": "Day-To-Day",
       "team": "Tampa Bay Lightning"
-    },
-    "600405:Ottawa Senators": {
-      "athlete": "Hayden Hodgson",
-      "date": "2026-11-20T14:41Z",
-      "id": "600405",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
     },
     "600431:Ottawa Senators": {
       "athlete": "Andre Burakovsky",
@@ -790,6 +776,27 @@
       "id": "600560",
       "status": "Day-To-Day",
       "team": "Calgary Flames"
+    },
+    "600566:Chicago Blackhawks": {
+      "athlete": "Connor Bedard",
+      "date": "2026-11-22T00:07Z",
+      "id": "600566",
+      "status": "Out",
+      "team": "Chicago Blackhawks"
+    },
+    "600565:Ottawa Senators": {
+      "athlete": "Hayden Hodgson",
+      "date": "2026-11-22T00:00Z",
+      "id": "600565",
+      "status": "Out",
+      "team": "Ottawa Senators"
+    },
+    "600574:Utah Mammoth": {
+      "athlete": "Clayton Keller",
+      "date": "2026-11-22T01:31Z",
+      "id": "600574",
+      "status": "Out",
+      "team": "Utah Mammoth"
     }
   }
 }
