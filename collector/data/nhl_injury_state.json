@@ -224,40 +224,12 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
-    "600693:Los Angeles Kings": {
-      "athlete": "Trevor Moore",
-      "date": "2026-11-22T13:40Z",
-      "id": "600693",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
-    "600582:Los Angeles Kings": {
-      "athlete": "Erik Gustafsson",
-      "date": "2026-11-22T02:05Z",
-      "id": "600582",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
     "593688:Los Angeles Kings": {
       "athlete": "Jakub Dvorak",
       "date": "2026-09-24T19:49Z",
       "id": "593688",
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
-    },
-    "600529:Minnesota Wild": {
-      "athlete": "Quinn Hughes",
-      "date": "2026-11-21T18:43Z",
-      "id": "600529",
-      "status": "Out",
-      "team": "Minnesota Wild"
-    },
-    "600308:Minnesota Wild": {
-      "athlete": "Filip Gustavsson",
-      "date": "2026-11-19T20:31Z",
-      "id": "600308",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
     },
     "599998:Minnesota Wild": {
       "athlete": "Olli Maatta",
@@ -518,13 +490,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "600714:Toronto Maple Leafs": {
-      "athlete": "Jack Roslovic",
-      "date": "2026-11-22T17:15Z",
-      "id": "600714",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "600492:Toronto Maple Leafs": {
       "athlete": "Kirill Marchenko",
       "date": "2026-11-21T15:14Z",
@@ -587,20 +552,6 @@
       "id": "594164",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
-    },
-    "600467:Utah Mammoth": {
-      "athlete": "John Marino",
-      "date": "2026-11-20T20:04Z",
-      "id": "600467",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
-    },
-    "600466:Utah Mammoth": {
-      "athlete": "Dylan Guenther",
-      "date": "2026-11-20T19:59Z",
-      "id": "600466",
-      "status": "Injured Reserve",
-      "team": "Utah Mammoth"
     },
     "600077:Utah Mammoth": {
       "athlete": "Nick Schmaltz",
@@ -804,6 +755,69 @@
       "id": "600854",
       "status": "Injured Reserve",
       "team": "San Jose Sharks"
+    },
+    "600871:Los Angeles Kings": {
+      "athlete": "Erik Gustafsson",
+      "date": "2026-11-23T19:02Z",
+      "id": "600871",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600862:Los Angeles Kings": {
+      "athlete": "Joel Edmundson",
+      "date": "2026-11-23T18:37Z",
+      "id": "600862",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600860:Los Angeles Kings": {
+      "athlete": "Trevor Moore",
+      "date": "2026-11-23T18:31Z",
+      "id": "600860",
+      "status": "Day-To-Day",
+      "team": "Los Angeles Kings"
+    },
+    "600878:Minnesota Wild": {
+      "athlete": "Quinn Hughes",
+      "date": "2026-11-23T19:43Z",
+      "id": "600878",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
+    "600877:San Jose Sharks": {
+      "athlete": "Jacob Trouba",
+      "date": "2026-11-23T19:34Z",
+      "id": "600877",
+      "status": "Out",
+      "team": "San Jose Sharks"
+    },
+    "600859:Toronto Maple Leafs": {
+      "athlete": "Jack Roslovic",
+      "date": "2026-11-23T18:03Z",
+      "id": "600859",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "600867:Utah Mammoth": {
+      "athlete": "John Marino",
+      "date": "2026-11-23T18:57Z",
+      "id": "600867",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "600857:Utah Mammoth": {
+      "athlete": "Michael Carcone",
+      "date": "2026-11-23T17:53Z",
+      "id": "600857",
+      "status": "Out",
+      "team": "Utah Mammoth"
+    },
+    "600855:Utah Mammoth": {
+      "athlete": "Dylan Guenther",
+      "date": "2026-11-23T17:47Z",
+      "id": "600855",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
     }
   }
 }
