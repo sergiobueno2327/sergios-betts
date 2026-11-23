@@ -84,6 +84,13 @@
       "status": "Out",
       "team": "Carolina Hurricanes"
     },
+    "600779:Chicago Blackhawks": {
+      "athlete": "Anton Frondell",
+      "date": "2026-11-22T23:45Z",
+      "id": "600779",
+      "status": "Out",
+      "team": "Chicago Blackhawks"
+    },
     "600738:Chicago Blackhawks": {
       "athlete": "Wyatt Kaiser",
       "date": "2026-11-22T18:51Z",
@@ -96,13 +103,6 @@
       "date": "2026-11-22T15:10Z",
       "id": "600690",
       "status": "Injured Reserve",
-      "team": "Chicago Blackhawks"
-    },
-    "600558:Chicago Blackhawks": {
-      "athlete": "Anton Frondell",
-      "date": "2026-11-21T22:45Z",
-      "id": "600558",
-      "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
     },
     "600541:Chicago Blackhawks": {
