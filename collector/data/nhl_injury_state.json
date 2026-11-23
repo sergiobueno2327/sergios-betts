@@ -56,13 +56,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "600560:Calgary Flames": {
-      "athlete": "Martin Pospisil",
-      "date": "2026-11-21T22:54Z",
-      "id": "600560",
-      "status": "Day-To-Day",
-      "team": "Calgary Flames"
-    },
     "600238:Calgary Flames": {
       "athlete": "Jonathan Huberdeau",
       "date": "2026-11-19T04:00Z",
@@ -231,13 +224,6 @@
       "status": "Injured Reserve",
       "team": "Florida Panthers"
     },
-    "600691:Los Angeles Kings": {
-      "athlete": "Artemi Panarin",
-      "date": "2026-11-22T13:40Z",
-      "id": "600691",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
     "600693:Los Angeles Kings": {
       "athlete": "Trevor Moore",
       "date": "2026-11-22T13:40Z",
@@ -343,13 +329,6 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
-    "600689:New York Islanders": {
-      "athlete": "Ryan Pulock",
-      "date": "2026-11-22T13:40Z",
-      "id": "600689",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
-    },
     "596510:New York Islanders": {
       "athlete": "Alexander Romanov",
       "date": "2026-10-19T13:56Z",
@@ -406,13 +385,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "600690:Ottawa Senators": {
-      "athlete": "Hayden Hodgson",
-      "date": "2026-11-22T13:40Z",
-      "id": "600690",
-      "status": "Day-To-Day",
-      "team": "Ottawa Senators"
-    },
     "600431:Ottawa Senators": {
       "athlete": "Andre Burakovsky",
       "date": "2026-11-20T17:06Z",
@@ -468,13 +440,6 @@
       "id": "593985",
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
-    },
-    "600068:San Jose Sharks": {
-      "athlete": "Kiefer Sherwood",
-      "date": "2026-11-17T19:39Z",
-      "id": "600068",
-      "status": "Out",
-      "team": "San Jose Sharks"
     },
     "599913:San Jose Sharks": {
       "athlete": "Igor Chernyshov",
@@ -623,13 +588,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "600692:Utah Mammoth": {
-      "athlete": "Clayton Keller",
-      "date": "2026-11-22T13:40Z",
-      "id": "600692",
-      "status": "Day-To-Day",
-      "team": "Utah Mammoth"
-    },
     "600467:Utah Mammoth": {
       "athlete": "John Marino",
       "date": "2026-11-20T20:04Z",
@@ -763,13 +721,6 @@
       "status": "Day-To-Day",
       "team": "Edmonton Oilers"
     },
-    "600822:Washington Capitals": {
-      "athlete": "Jordan Kyrou",
-      "date": "2026-11-23T15:29Z",
-      "id": "600822",
-      "status": "Day-To-Day",
-      "team": "Washington Capitals"
-    },
     "600823:Tampa Bay Lightning": {
       "athlete": "Zemgus Girgensons",
       "date": "2026-11-23T14:10Z",
@@ -818,6 +769,41 @@
       "id": "600829",
       "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
+    },
+    "600824:Ottawa Senators": {
+      "athlete": "Hayden Hodgson",
+      "date": "2026-11-23T15:48Z",
+      "id": "600824",
+      "status": "Out",
+      "team": "Ottawa Senators"
+    },
+    "600842:New York Islanders": {
+      "athlete": "Ryan Pulock",
+      "date": "2026-11-23T16:34Z",
+      "id": "600842",
+      "status": "Out",
+      "team": "New York Islanders"
+    },
+    "600844:Calgary Flames": {
+      "athlete": "Martin Pospisil",
+      "date": "2026-11-23T16:46Z",
+      "id": "600844",
+      "status": "Out",
+      "team": "Calgary Flames"
+    },
+    "600849:Washington Capitals": {
+      "athlete": "Jordan Kyrou",
+      "date": "2026-11-23T17:14Z",
+      "id": "600849",
+      "status": "Out",
+      "team": "Washington Capitals"
+    },
+    "600854:San Jose Sharks": {
+      "athlete": "Kiefer Sherwood",
+      "date": "2026-11-23T17:45Z",
+      "id": "600854",
+      "status": "Injured Reserve",
+      "team": "San Jose Sharks"
     }
   }
 }
