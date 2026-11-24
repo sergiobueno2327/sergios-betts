@@ -98,13 +98,6 @@
       "status": "Out",
       "team": "Colorado Avalanche"
     },
-    "600313:Colorado Avalanche": {
-      "athlete": "Cale Makar",
-      "date": "2026-11-19T21:33Z",
-      "id": "600313",
-      "status": "Injured Reserve",
-      "team": "Colorado Avalanche"
-    },
     "599172:Colorado Avalanche": {
       "athlete": "Josh Manson",
       "date": "2026-11-09T22:18Z",
@@ -118,13 +111,6 @@
       "id": "597046",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
-    },
-    "600821:Dallas Stars": {
-      "athlete": "Tyler Myers",
-      "date": "2026-11-23T14:10Z",
-      "id": "600821",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
     },
     "600306:Dallas Stars": {
       "athlete": "Oskar Back",
@@ -322,13 +308,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "600498:New York Rangers": {
-      "athlete": "Pavel Dorofeyev",
-      "date": "2026-11-21T16:11Z",
-      "id": "600498",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
-    },
     "600420:New York Rangers": {
       "athlete": "Joe Veleno",
       "date": "2026-11-20T16:23Z",
@@ -482,13 +461,6 @@
       "id": "597280",
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
-    },
-    "600827:St. Louis Blues": {
-      "athlete": "Connor McMichael",
-      "date": "2026-11-23T14:10Z",
-      "id": "600827",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
     },
     "595648:St. Louis Blues": {
       "athlete": "Torey Krug",
@@ -812,12 +784,61 @@
       "status": "Injured Reserve",
       "team": "Washington Capitals"
     },
-    "600960:Buffalo Sabres": {
+    "600961:Buffalo Sabres": {
       "athlete": "Tyson Kozak",
       "date": "2026-11-24T17:37Z",
-      "id": "600960",
+      "id": "600961",
       "status": "Day-To-Day",
       "team": "Buffalo Sabres"
+    },
+    "600963:New York Rangers": {
+      "athlete": "Pavel Dorofeyev",
+      "date": "2026-11-24T18:03Z",
+      "id": "600963",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
+    },
+    "600972:Colorado Avalanche": {
+      "athlete": "Cale Makar",
+      "date": "2026-11-24T18:19Z",
+      "id": "600972",
+      "status": "Injured Reserve",
+      "team": "Colorado Avalanche"
+    },
+    "600978:Dallas Stars": {
+      "athlete": "Tyler Myers",
+      "date": "2026-11-24T18:29Z",
+      "id": "600978",
+      "status": "Day-To-Day",
+      "team": "Dallas Stars"
+    },
+    "600979:St. Louis Blues": {
+      "athlete": "Jimmy Snuggerud",
+      "date": "2026-11-24T18:31Z",
+      "id": "600979",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "600980:St. Louis Blues": {
+      "athlete": "Pavel Buchnevich",
+      "date": "2026-11-24T18:33Z",
+      "id": "600980",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "600982:St. Louis Blues": {
+      "athlete": "Brandon Carlo",
+      "date": "2026-11-24T18:41Z",
+      "id": "600982",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "600983:St. Louis Blues": {
+      "athlete": "Connor McMichael",
+      "date": "2026-11-24T18:41Z",
+      "id": "600983",
+      "status": "Out",
+      "team": "St. Louis Blues"
     }
   }
 }
