@@ -336,13 +336,6 @@
       "status": "Injured Reserve",
       "team": "New York Rangers"
     },
-    "600824:Ottawa Senators": {
-      "athlete": "Hayden Hodgson",
-      "date": "2026-11-23T15:48Z",
-      "id": "600824",
-      "status": "Out",
-      "team": "Ottawa Senators"
-    },
     "600431:Ottawa Senators": {
       "athlete": "Andre Burakovsky",
       "date": "2026-11-20T17:06Z",
@@ -700,13 +693,6 @@
       "status": "Day-To-Day",
       "team": "Anaheim Ducks"
     },
-    "600936:New York Islanders": {
-      "athlete": "Kyle Palmieri",
-      "date": "2026-11-24T14:14Z",
-      "id": "600936",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
-    },
     "600937:Columbus Blue Jackets": {
       "athlete": "Sean Monahan",
       "date": "2026-11-24T14:14Z",
@@ -839,6 +825,20 @@
       "id": "600983",
       "status": "Out",
       "team": "St. Louis Blues"
+    },
+    "600990:New York Islanders": {
+      "athlete": "Kyle Palmieri",
+      "date": "2026-11-24T20:00Z",
+      "id": "600990",
+      "status": "Injured Reserve",
+      "team": "New York Islanders"
+    },
+    "600993:Ottawa Senators": {
+      "athlete": "Hayden Hodgson",
+      "date": "2026-11-24T20:28Z",
+      "id": "600993",
+      "status": "Injured Reserve",
+      "team": "Ottawa Senators"
     }
   }
 }
