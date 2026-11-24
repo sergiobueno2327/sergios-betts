@@ -280,20 +280,6 @@
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
-    "600862:Los Angeles Kings": {
-      "athlete": "Joel Edmundson",
-      "date": "2026-11-23T18:37Z",
-      "id": "600862",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
-    "600860:Los Angeles Kings": {
-      "athlete": "Trevor Moore",
-      "date": "2026-11-23T18:31Z",
-      "id": "600860",
-      "status": "Day-To-Day",
-      "team": "Los Angeles Kings"
-    },
     "593688:Los Angeles Kings": {
       "athlete": "Jakub Dvorak",
       "date": "2026-09-24T19:49Z",
@@ -333,13 +319,6 @@
       "athlete": "Chris Kreider",
       "date": "2026-11-15T18:04Z",
       "id": "599873",
-      "status": "Injured Reserve",
-      "team": "Montreal Canadiens"
-    },
-    "598516:Montreal Canadiens": {
-      "athlete": "Ivan Demidov",
-      "date": "2026-11-04T21:04Z",
-      "id": "598516",
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
     },
@@ -616,13 +595,6 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "600859:Toronto Maple Leafs": {
-      "athlete": "Jack Roslovic",
-      "date": "2026-11-23T18:03Z",
-      "id": "600859",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "600718:Toronto Maple Leafs": {
       "athlete": "Colton Sissons",
       "date": "2026-11-22T17:19Z",
@@ -811,6 +783,20 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "600882:Montreal Canadiens": {
+      "athlete": "Ivan Demidov",
+      "date": "2026-11-24T00:06Z",
+      "id": "600882",
+      "status": "Injured Reserve",
+      "team": "Montreal Canadiens"
+    },
+    "600883:Toronto Maple Leafs": {
+      "athlete": "Jack Roslovic",
+      "date": "2026-11-24T00:08Z",
+      "id": "600883",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
