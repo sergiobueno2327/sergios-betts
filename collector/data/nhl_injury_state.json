@@ -63,13 +63,6 @@
       "status": "Injured Reserve",
       "team": "Calgary Flames"
     },
-    "600824:Carolina Hurricanes": {
-      "athlete": "Nikolaj Ehlers",
-      "date": "2026-11-23T14:10Z",
-      "id": "600824",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
-    },
     "600829:Chicago Blackhawks": {
       "athlete": "Anton Frondell",
       "date": "2026-11-23T14:10Z",
@@ -181,20 +174,6 @@
       "id": "595897",
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
-    },
-    "600822:Edmonton Oilers": {
-      "athlete": "Ryan Nugent-Hopkins",
-      "date": "2026-11-23T14:10Z",
-      "id": "600822",
-      "status": "Day-To-Day",
-      "team": "Edmonton Oilers"
-    },
-    "600825:Edmonton Oilers": {
-      "athlete": "Zach Hyman",
-      "date": "2026-11-23T14:10Z",
-      "id": "600825",
-      "status": "Day-To-Day",
-      "team": "Edmonton Oilers"
     },
     "594322:Edmonton Oilers": {
       "athlete": "Alec Regula",
@@ -693,13 +672,6 @@
       "status": "Out",
       "team": "Washington Capitals"
     },
-    "600415:Washington Capitals": {
-      "athlete": "Vincent Desharnais",
-      "date": "2026-11-20T16:03Z",
-      "id": "600415",
-      "status": "Injured Reserve",
-      "team": "Washington Capitals"
-    },
     "600284:Winnipeg Jets": {
       "athlete": "Dylan DeMelo",
       "date": "2026-11-19T16:39Z",
@@ -756,13 +728,6 @@
       "status": "Day-To-Day",
       "team": "Anaheim Ducks"
     },
-    "600938:New York Islanders": {
-      "athlete": "Ryan Pulock",
-      "date": "2026-11-24T14:14Z",
-      "id": "600938",
-      "status": "Day-To-Day",
-      "team": "New York Islanders"
-    },
     "600936:New York Islanders": {
       "athlete": "Kyle Palmieri",
       "date": "2026-11-24T14:14Z",
@@ -818,6 +783,41 @@
       "id": "600944",
       "status": "Injured Reserve",
       "team": "Boston Bruins"
+    },
+    "600956:New York Islanders": {
+      "athlete": "Ryan Pulock",
+      "date": "2026-11-24T17:11Z",
+      "id": "600956",
+      "status": "Out",
+      "team": "New York Islanders"
+    },
+    "600957:Edmonton Oilers": {
+      "athlete": "Zach Hyman",
+      "date": "2026-11-24T17:12Z",
+      "id": "600957",
+      "status": "Out",
+      "team": "Edmonton Oilers"
+    },
+    "600958:Carolina Hurricanes": {
+      "athlete": "Nikolaj Ehlers",
+      "date": "2026-11-24T17:27Z",
+      "id": "600958",
+      "status": "Out",
+      "team": "Carolina Hurricanes"
+    },
+    "600959:Washington Capitals": {
+      "athlete": "Vincent Desharnais",
+      "date": "2026-11-24T17:30Z",
+      "id": "600959",
+      "status": "Injured Reserve",
+      "team": "Washington Capitals"
+    },
+    "600960:Buffalo Sabres": {
+      "athlete": "Tyson Kozak",
+      "date": "2026-11-24T17:37Z",
+      "id": "600960",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
     }
   }
 }
