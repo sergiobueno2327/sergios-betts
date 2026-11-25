@@ -539,13 +539,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "600492:Toronto Maple Leafs": {
-      "athlete": "Kirill Marchenko",
-      "date": "2026-11-21T15:14Z",
-      "id": "600492",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "600491:Toronto Maple Leafs": {
       "athlete": "Cole McWard",
       "date": "2026-11-21T15:10Z",
@@ -811,6 +804,13 @@
       "id": "601061",
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
+    },
+    "601067:Toronto Maple Leafs": {
+      "athlete": "Kirill Marchenko",
+      "date": "2026-11-25T20:20Z",
+      "id": "601067",
+      "status": "Injured Reserve",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
