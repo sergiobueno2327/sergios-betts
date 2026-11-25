@@ -14,13 +14,6 @@
       "status": "Injured Reserve",
       "team": "Boston Bruins"
     },
-    "600961:Buffalo Sabres": {
-      "athlete": "Tyson Kozak",
-      "date": "2026-11-24T17:37Z",
-      "id": "600961",
-      "status": "Day-To-Day",
-      "team": "Buffalo Sabres"
-    },
     "599462:Buffalo Sabres": {
       "athlete": "Konsta Helenius",
       "date": "2026-11-12T21:00Z",
@@ -602,13 +595,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600857:Utah Mammoth": {
-      "athlete": "Michael Carcone",
-      "date": "2026-11-23T17:53Z",
-      "id": "600857",
-      "status": "Out",
-      "team": "Utah Mammoth"
-    },
     "600077:Utah Mammoth": {
       "athlete": "Nick Schmaltz",
       "date": "2026-11-17T22:14Z",
@@ -728,13 +714,6 @@
       "status": "Day-To-Day",
       "team": "Edmonton Oilers"
     },
-    "601026:Buffalo Sabres": {
-      "athlete": "Mattias Samuelsson",
-      "date": "2026-11-25T15:54Z",
-      "id": "601026",
-      "status": "Day-To-Day",
-      "team": "Buffalo Sabres"
-    },
     "601028:Washington Capitals": {
       "athlete": "Vincent Desharnais",
       "date": "2026-11-25T16:03Z",
@@ -762,13 +741,6 @@
       "id": "601036",
       "status": "Out",
       "team": "Calgary Flames"
-    },
-    "601046:Carolina Hurricanes": {
-      "athlete": "K'Andre Miller",
-      "date": "2026-11-25T17:25Z",
-      "id": "601046",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
     },
     "601056:St. Louis Blues": {
       "athlete": "Jimmy Snuggerud",
@@ -811,6 +783,41 @@
       "id": "601067",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
+    },
+    "601071:Utah Mammoth": {
+      "athlete": "Michael Carcone",
+      "date": "2026-11-25T22:58Z",
+      "id": "601071",
+      "status": "Injured Reserve",
+      "team": "Utah Mammoth"
+    },
+    "601075:Tampa Bay Lightning": {
+      "athlete": "Victor Hedman",
+      "date": "2026-11-25T23:33Z",
+      "id": "601075",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "601076:Tampa Bay Lightning": {
+      "athlete": "Erik Cernak",
+      "date": "2026-11-25T23:34Z",
+      "id": "601076",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "601077:Carolina Hurricanes": {
+      "athlete": "K'Andre Miller",
+      "date": "2026-11-25T23:35Z",
+      "id": "601077",
+      "status": "Out",
+      "team": "Carolina Hurricanes"
+    },
+    "601078:Buffalo Sabres": {
+      "athlete": "Tyson Kozak",
+      "date": "2026-11-25T23:45Z",
+      "id": "601078",
+      "status": "Out",
+      "team": "Buffalo Sabres"
     }
   }
 }
