@@ -231,13 +231,6 @@
       "status": "Injured Reserve",
       "team": "Detroit Red Wings"
     },
-    "600957:Edmonton Oilers": {
-      "athlete": "Zach Hyman",
-      "date": "2026-11-24T17:12Z",
-      "id": "600957",
-      "status": "Out",
-      "team": "Edmonton Oilers"
-    },
     "594322:Edmonton Oilers": {
       "athlete": "Alec Regula",
       "date": "2026-10-01T14:11Z",
@@ -455,13 +448,6 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
-    "600431:Ottawa Senators": {
-      "athlete": "Andre Burakovsky",
-      "date": "2026-11-20T17:06Z",
-      "id": "600431",
-      "status": "Injured Reserve",
-      "team": "Ottawa Senators"
-    },
     "599971:Ottawa Senators": {
       "athlete": "Warren Foegele",
       "date": "2026-11-16T16:53Z",
@@ -627,20 +613,6 @@
       "athlete": "Conor Geekie",
       "date": "2026-11-24T15:34Z",
       "id": "600949",
-      "status": "Injured Reserve",
-      "team": "Tampa Bay Lightning"
-    },
-    "600823:Tampa Bay Lightning": {
-      "athlete": "Zemgus Girgensons",
-      "date": "2026-11-23T14:10Z",
-      "id": "600823",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
-    "600275:Tampa Bay Lightning": {
-      "athlete": "Brandon Hagel",
-      "date": "2026-11-19T15:54Z",
-      "id": "600275",
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
@@ -839,6 +811,34 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "601015:Edmonton Oilers": {
+      "athlete": "Zach Hyman",
+      "date": "2026-11-25T14:34Z",
+      "id": "601015",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
+    },
+    "601014:Ottawa Senators": {
+      "athlete": "Andre Burakovsky",
+      "date": "2026-11-25T13:03Z",
+      "id": "601014",
+      "status": "Injured Reserve",
+      "team": "Ottawa Senators"
+    },
+    "601007:Vegas Golden Knights": {
+      "athlete": "Marc Gatcomb",
+      "date": "2026-11-25T05:18Z",
+      "id": "601007",
+      "status": "Day-To-Day",
+      "team": "Vegas Golden Knights"
+    },
+    "601001:Edmonton Oilers": {
+      "athlete": "Filip Hallander",
+      "date": "2026-11-25T02:33Z",
+      "id": "601001",
+      "status": "Day-To-Day",
+      "team": "Edmonton Oilers"
     }
   }
 }
