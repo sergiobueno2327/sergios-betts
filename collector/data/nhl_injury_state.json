@@ -63,13 +63,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "600903:Calgary Flames": {
-      "athlete": "Morgan Frost",
-      "date": "2026-11-24T04:24Z",
-      "id": "600903",
-      "status": "Day-To-Day",
-      "team": "Calgary Flames"
-    },
     "600844:Calgary Flames": {
       "athlete": "Martin Pospisil",
       "date": "2026-11-23T16:46Z",
@@ -168,20 +161,6 @@
       "status": "Injured Reserve",
       "team": "Columbus Blue Jackets"
     },
-    "600937:Columbus Blue Jackets": {
-      "athlete": "Sean Monahan",
-      "date": "2026-11-24T14:14Z",
-      "id": "600937",
-      "status": "Day-To-Day",
-      "team": "Columbus Blue Jackets"
-    },
-    "600978:Dallas Stars": {
-      "athlete": "Tyler Myers",
-      "date": "2026-11-24T18:29Z",
-      "id": "600978",
-      "status": "Day-To-Day",
-      "team": "Dallas Stars"
-    },
     "600306:Dallas Stars": {
       "athlete": "Oskar Back",
       "date": "2026-11-19T20:29Z",
@@ -258,20 +237,6 @@
       "id": "594178",
       "status": "Injured Reserve",
       "team": "Edmonton Oilers"
-    },
-    "600497:Florida Panthers": {
-      "athlete": "Brad Marchand",
-      "date": "2026-11-21T16:06Z",
-      "id": "600497",
-      "status": "Injured Reserve",
-      "team": "Florida Panthers"
-    },
-    "600496:Florida Panthers": {
-      "athlete": "Aleksander Barkov",
-      "date": "2026-11-21T15:57Z",
-      "id": "600496",
-      "status": "Injured Reserve",
-      "team": "Florida Panthers"
     },
     "600278:Florida Panthers": {
       "athlete": "Jonah Gadjovich",
@@ -468,20 +433,6 @@
       "id": "595327",
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
-    },
-    "600820:Pittsburgh Penguins": {
-      "athlete": "Evgeni Malkin",
-      "date": "2026-11-23T14:10Z",
-      "id": "600820",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
-    },
-    "600828:Pittsburgh Penguins": {
-      "athlete": "Declan Carlile",
-      "date": "2026-11-23T14:10Z",
-      "id": "600828",
-      "status": "Day-To-Day",
-      "team": "Pittsburgh Penguins"
     },
     "600430:Pittsburgh Penguins": {
       "athlete": "Bryan Rust",
@@ -728,13 +679,6 @@
       "status": "Injured Reserve",
       "team": "Utah Mammoth"
     },
-    "600826:Vancouver Canucks": {
-      "athlete": "Elias Pettersson",
-      "date": "2026-11-23T14:10Z",
-      "id": "600826",
-      "status": "Day-To-Day",
-      "team": "Vancouver Canucks"
-    },
     "600514:Vancouver Canucks": {
       "athlete": "Brendan Gallagher",
       "date": "2026-11-21T17:13Z",
@@ -762,13 +706,6 @@
       "id": "594095",
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
-    },
-    "600959:Washington Capitals": {
-      "athlete": "Vincent Desharnais",
-      "date": "2026-11-24T17:30Z",
-      "id": "600959",
-      "status": "Injured Reserve",
-      "team": "Washington Capitals"
     },
     "600948:Washington Capitals": {
       "athlete": "Rasmus Sandin",
@@ -839,6 +776,48 @@
       "id": "601001",
       "status": "Day-To-Day",
       "team": "Edmonton Oilers"
+    },
+    "601026:Buffalo Sabres": {
+      "athlete": "Mattias Samuelsson",
+      "date": "2026-11-25T15:54Z",
+      "id": "601026",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
+    },
+    "601028:Washington Capitals": {
+      "athlete": "Vincent Desharnais",
+      "date": "2026-11-25T16:03Z",
+      "id": "601028",
+      "status": "Injured Reserve",
+      "team": "Washington Capitals"
+    },
+    "601032:Vancouver Canucks": {
+      "athlete": "Elias Pettersson",
+      "date": "2026-11-25T16:25Z",
+      "id": "601032",
+      "status": "Out",
+      "team": "Vancouver Canucks"
+    },
+    "601033:Pittsburgh Penguins": {
+      "athlete": "Egor Chinakhov",
+      "date": "2026-11-25T16:25Z",
+      "id": "601033",
+      "status": "Out",
+      "team": "Pittsburgh Penguins"
+    },
+    "601036:Calgary Flames": {
+      "athlete": "Morgan Frost",
+      "date": "2026-11-25T16:35Z",
+      "id": "601036",
+      "status": "Out",
+      "team": "Calgary Flames"
+    },
+    "601046:Carolina Hurricanes": {
+      "athlete": "K'Andre Miller",
+      "date": "2026-11-25T17:25Z",
+      "id": "601046",
+      "status": "Day-To-Day",
+      "team": "Carolina Hurricanes"
     }
   }
 }
