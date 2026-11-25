@@ -1,26 +1,5 @@
 {
   "entries": {
-    "600941:Anaheim Ducks": {
-      "athlete": "Leo Carlsson",
-      "date": "2026-11-24T14:14Z",
-      "id": "600941",
-      "status": "Day-To-Day",
-      "team": "Anaheim Ducks"
-    },
-    "600528:Anaheim Ducks": {
-      "athlete": "Beckett Sennecke",
-      "date": "2026-11-21T18:32Z",
-      "id": "600528",
-      "status": "Injured Reserve",
-      "team": "Anaheim Ducks"
-    },
-    "600332:Anaheim Ducks": {
-      "athlete": "Ryan Poehling",
-      "date": "2026-11-20T03:31Z",
-      "id": "600332",
-      "status": "Injured Reserve",
-      "team": "Anaheim Ducks"
-    },
     "598256:Anaheim Ducks": {
       "athlete": "A.J. Greer",
       "date": "2026-11-02T18:46Z",
@@ -118,13 +97,6 @@
       "id": "600541",
       "status": "Injured Reserve",
       "team": "Chicago Blackhawks"
-    },
-    "600972:Colorado Avalanche": {
-      "athlete": "Cale Makar",
-      "date": "2026-11-24T18:19Z",
-      "id": "600972",
-      "status": "Injured Reserve",
-      "team": "Colorado Avalanche"
     },
     "600550:Colorado Avalanche": {
       "athlete": "Gavin Brindley",
@@ -525,20 +497,6 @@
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
     },
-    "600980:St. Louis Blues": {
-      "athlete": "Pavel Buchnevich",
-      "date": "2026-11-24T18:33Z",
-      "id": "600980",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
-    "600979:St. Louis Blues": {
-      "athlete": "Jimmy Snuggerud",
-      "date": "2026-11-24T18:31Z",
-      "id": "600979",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
     "595648:St. Louis Blues": {
       "athlete": "Torey Krug",
       "date": "2026-10-13T01:42Z",
@@ -818,6 +776,41 @@
       "id": "601046",
       "status": "Day-To-Day",
       "team": "Carolina Hurricanes"
+    },
+    "601056:St. Louis Blues": {
+      "athlete": "Jimmy Snuggerud",
+      "date": "2026-11-25T18:58Z",
+      "id": "601056",
+      "status": "Out",
+      "team": "St. Louis Blues"
+    },
+    "601058:St. Louis Blues": {
+      "athlete": "Pavel Buchnevich",
+      "date": "2026-11-25T19:01Z",
+      "id": "601058",
+      "status": "Out",
+      "team": "St. Louis Blues"
+    },
+    "601059:Anaheim Ducks": {
+      "athlete": "Leo Carlsson",
+      "date": "2026-11-25T19:06Z",
+      "id": "601059",
+      "status": "Out",
+      "team": "Anaheim Ducks"
+    },
+    "601060:Anaheim Ducks": {
+      "athlete": "Beckett Sennecke",
+      "date": "2026-11-25T19:08Z",
+      "id": "601060",
+      "status": "Injured Reserve",
+      "team": "Anaheim Ducks"
+    },
+    "601061:Anaheim Ducks": {
+      "athlete": "Ryan Poehling",
+      "date": "2026-11-25T19:08Z",
+      "id": "601061",
+      "status": "Injured Reserve",
+      "team": "Anaheim Ducks"
     }
   }
 }
