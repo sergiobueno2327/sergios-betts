@@ -1,5 +1,12 @@
 {
   "entries": {
+    "601170:Anaheim Ducks": {
+      "athlete": "Leo Carlsson",
+      "date": "2026-11-26T14:08Z",
+      "id": "601170",
+      "status": "Day-To-Day",
+      "team": "Anaheim Ducks"
+    },
     "601061:Anaheim Ducks": {
       "athlete": "Ryan Poehling",
       "date": "2026-11-25T19:08Z",
@@ -20,6 +27,13 @@
       "id": "600944",
       "status": "Injured Reserve",
       "team": "Boston Bruins"
+    },
+    "601169:Buffalo Sabres": {
+      "athlete": "Tyson Kozak",
+      "date": "2026-11-26T14:08Z",
+      "id": "601169",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
     },
     "599462:Buffalo Sabres": {
       "athlete": "Konsta Helenius",
@@ -42,6 +56,13 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
+    "601165:Calgary Flames": {
+      "athlete": "Morgan Frost",
+      "date": "2026-11-26T14:08Z",
+      "id": "601165",
+      "status": "Day-To-Day",
+      "team": "Calgary Flames"
+    },
     "600844:Calgary Flames": {
       "athlete": "Martin Pospisil",
       "date": "2026-11-23T16:46Z",
@@ -62,6 +83,27 @@
       "id": "599020",
       "status": "Injured Reserve",
       "team": "Calgary Flames"
+    },
+    "601162:Carolina Hurricanes": {
+      "athlete": "Nikolaj Ehlers",
+      "date": "2026-11-26T14:08Z",
+      "id": "601162",
+      "status": "Day-To-Day",
+      "team": "Carolina Hurricanes"
+    },
+    "601166:Carolina Hurricanes": {
+      "athlete": "K'Andre Miller",
+      "date": "2026-11-26T14:08Z",
+      "id": "601166",
+      "status": "Day-To-Day",
+      "team": "Carolina Hurricanes"
+    },
+    "601163:Chicago Blackhawks": {
+      "athlete": "Tyler Bertuzzi",
+      "date": "2026-11-26T14:08Z",
+      "id": "601163",
+      "status": "Day-To-Day",
+      "team": "Chicago Blackhawks"
     },
     "600894:Chicago Blackhawks": {
       "athlete": "Connor Bedard",
@@ -112,6 +154,13 @@
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
     },
+    "601241:Columbus Blue Jackets": {
+      "athlete": "Denton Mateychuk",
+      "date": "2026-11-26T18:59Z",
+      "id": "601241",
+      "status": "Out",
+      "team": "Columbus Blue Jackets"
+    },
     "599661:Dallas Stars": {
       "athlete": "Kyle Capobianco",
       "date": "2026-11-14T15:14Z",
@@ -132,6 +181,13 @@
       "id": "595599",
       "status": "Injured Reserve",
       "team": "Dallas Stars"
+    },
+    "601167:Detroit Red Wings": {
+      "athlete": "William Wallinder",
+      "date": "2026-11-26T14:08Z",
+      "id": "601167",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
     },
     "600787:Detroit Red Wings": {
       "athlete": "Sam Montembeault",
@@ -210,12 +266,33 @@
       "status": "Injured Reserve",
       "team": "Los Angeles Kings"
     },
+    "601102:Minnesota Wild": {
+      "athlete": "Quinn Hughes",
+      "date": "2026-11-26T04:22Z",
+      "id": "601102",
+      "status": "Injured Reserve",
+      "team": "Minnesota Wild"
+    },
     "599998:Minnesota Wild": {
       "athlete": "Olli Maatta",
       "date": "2026-11-16T21:33Z",
       "id": "599998",
       "status": "Injured Reserve",
       "team": "Minnesota Wild"
+    },
+    "601103:Montreal Canadiens": {
+      "athlete": "Kaiden Guhle",
+      "date": "2026-11-26T04:38Z",
+      "id": "601103",
+      "status": "Day-To-Day",
+      "team": "Montreal Canadiens"
+    },
+    "601094:Montreal Canadiens": {
+      "athlete": "Ivan Demidov",
+      "date": "2026-11-26T03:33Z",
+      "id": "601094",
+      "status": "Injured Reserve",
+      "team": "Montreal Canadiens"
     },
     "600938:Montreal Canadiens": {
       "athlete": "Mike Matheson",
@@ -244,6 +321,13 @@
       "id": "594183",
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
+    },
+    "601252:New Jersey Devils": {
+      "athlete": "Brenden Dillon",
+      "date": "2026-11-26T19:20Z",
+      "id": "601252",
+      "status": "Suspension",
+      "team": "New Jersey Devils"
     },
     "600052:New Jersey Devils": {
       "athlete": "Anthony Mantha",
@@ -286,6 +370,13 @@
       "id": "596510",
       "status": "Injured Reserve",
       "team": "New York Islanders"
+    },
+    "601255:New York Rangers": {
+      "athlete": "Gabe Perreault",
+      "date": "2026-11-26T19:38Z",
+      "id": "601255",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
     },
     "600963:New York Rangers": {
       "athlete": "Pavel Dorofeyev",
@@ -371,6 +462,13 @@
       "status": "Injured Reserve",
       "team": "Philadelphia Flyers"
     },
+    "601090:Pittsburgh Penguins": {
+      "athlete": "Egor Chinakhov",
+      "date": "2026-11-26T03:11Z",
+      "id": "601090",
+      "status": "Injured Reserve",
+      "team": "Pittsburgh Penguins"
+    },
     "600430:Pittsburgh Penguins": {
       "athlete": "Bryan Rust",
       "date": "2026-11-20T16:56Z",
@@ -448,6 +546,20 @@
       "status": "Injured Reserve",
       "team": "Seattle Kraken"
     },
+    "601161:St. Louis Blues": {
+      "athlete": "Pavel Buchnevich",
+      "date": "2026-11-26T14:08Z",
+      "id": "601161",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
+    "601168:St. Louis Blues": {
+      "athlete": "Jimmy Snuggerud",
+      "date": "2026-11-26T14:08Z",
+      "id": "601168",
+      "status": "Day-To-Day",
+      "team": "St. Louis Blues"
+    },
     "600997:St. Louis Blues": {
       "athlete": "Connor McMichael",
       "date": "2026-11-24T22:30Z",
@@ -483,12 +595,40 @@
       "status": "Injured Reserve",
       "team": "St. Louis Blues"
     },
+    "601160:Tampa Bay Lightning": {
+      "athlete": "Victor Hedman",
+      "date": "2026-11-26T14:08Z",
+      "id": "601160",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "601164:Tampa Bay Lightning": {
+      "athlete": "Erik Cernak",
+      "date": "2026-11-26T14:08Z",
+      "id": "601164",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "601089:Tampa Bay Lightning": {
+      "athlete": "Pontus Holmberg",
+      "date": "2026-11-26T03:04Z",
+      "id": "601089",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
     "600949:Tampa Bay Lightning": {
       "athlete": "Conor Geekie",
       "date": "2026-11-24T15:34Z",
       "id": "600949",
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
+    },
+    "601217:Toronto Maple Leafs": {
+      "athlete": "Jack Roslovic",
+      "date": "2026-11-26T16:56Z",
+      "id": "601217",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
     },
     "601067:Toronto Maple Leafs": {
       "athlete": "Kirill Marchenko",
@@ -685,146 +825,6 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
-    },
-    "601089:Tampa Bay Lightning": {
-      "athlete": "Pontus Holmberg",
-      "date": "2026-11-26T03:04Z",
-      "id": "601089",
-      "status": "Out",
-      "team": "Tampa Bay Lightning"
-    },
-    "601090:Pittsburgh Penguins": {
-      "athlete": "Egor Chinakhov",
-      "date": "2026-11-26T03:11Z",
-      "id": "601090",
-      "status": "Injured Reserve",
-      "team": "Pittsburgh Penguins"
-    },
-    "601094:Montreal Canadiens": {
-      "athlete": "Ivan Demidov",
-      "date": "2026-11-26T03:33Z",
-      "id": "601094",
-      "status": "Injured Reserve",
-      "team": "Montreal Canadiens"
-    },
-    "601102:Minnesota Wild": {
-      "athlete": "Quinn Hughes",
-      "date": "2026-11-26T04:22Z",
-      "id": "601102",
-      "status": "Injured Reserve",
-      "team": "Minnesota Wild"
-    },
-    "601103:Montreal Canadiens": {
-      "athlete": "Kaiden Guhle",
-      "date": "2026-11-26T04:38Z",
-      "id": "601103",
-      "status": "Day-To-Day",
-      "team": "Montreal Canadiens"
-    },
-    "601160:Tampa Bay Lightning": {
-      "athlete": "Victor Hedman",
-      "date": "2026-11-26T14:08Z",
-      "id": "601160",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
-    "601161:St. Louis Blues": {
-      "athlete": "Pavel Buchnevich",
-      "date": "2026-11-26T14:08Z",
-      "id": "601161",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
-    "601162:Carolina Hurricanes": {
-      "athlete": "Nikolaj Ehlers",
-      "date": "2026-11-26T14:08Z",
-      "id": "601162",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
-    },
-    "601163:Chicago Blackhawks": {
-      "athlete": "Tyler Bertuzzi",
-      "date": "2026-11-26T14:08Z",
-      "id": "601163",
-      "status": "Day-To-Day",
-      "team": "Chicago Blackhawks"
-    },
-    "601164:Tampa Bay Lightning": {
-      "athlete": "Erik Cernak",
-      "date": "2026-11-26T14:08Z",
-      "id": "601164",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
-    "601165:Calgary Flames": {
-      "athlete": "Morgan Frost",
-      "date": "2026-11-26T14:08Z",
-      "id": "601165",
-      "status": "Day-To-Day",
-      "team": "Calgary Flames"
-    },
-    "601166:Carolina Hurricanes": {
-      "athlete": "K'Andre Miller",
-      "date": "2026-11-26T14:08Z",
-      "id": "601166",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
-    },
-    "601167:Detroit Red Wings": {
-      "athlete": "William Wallinder",
-      "date": "2026-11-26T14:08Z",
-      "id": "601167",
-      "status": "Day-To-Day",
-      "team": "Detroit Red Wings"
-    },
-    "601168:St. Louis Blues": {
-      "athlete": "Jimmy Snuggerud",
-      "date": "2026-11-26T14:08Z",
-      "id": "601168",
-      "status": "Day-To-Day",
-      "team": "St. Louis Blues"
-    },
-    "601169:Buffalo Sabres": {
-      "athlete": "Tyson Kozak",
-      "date": "2026-11-26T14:08Z",
-      "id": "601169",
-      "status": "Day-To-Day",
-      "team": "Buffalo Sabres"
-    },
-    "601170:Anaheim Ducks": {
-      "athlete": "Leo Carlsson",
-      "date": "2026-11-26T14:08Z",
-      "id": "601170",
-      "status": "Day-To-Day",
-      "team": "Anaheim Ducks"
-    },
-    "601217:Toronto Maple Leafs": {
-      "athlete": "Jack Roslovic",
-      "date": "2026-11-26T16:56Z",
-      "id": "601217",
-      "status": "Out",
-      "team": "Toronto Maple Leafs"
-    },
-    "601241:Columbus Blue Jackets": {
-      "athlete": "Denton Mateychuk",
-      "date": "2026-11-26T18:59Z",
-      "id": "601241",
-      "status": "Out",
-      "team": "Columbus Blue Jackets"
-    },
-    "601252:New Jersey Devils": {
-      "athlete": "Brenden Dillon",
-      "date": "2026-11-26T19:20Z",
-      "id": "601252",
-      "status": "Suspension",
-      "team": "New Jersey Devils"
-    },
-    "601255:New York Rangers": {
-      "athlete": "Gabe Perreault",
-      "date": "2026-11-26T19:38Z",
-      "id": "601255",
-      "status": "Injured Reserve",
-      "team": "New York Rangers"
     }
   }
 }
