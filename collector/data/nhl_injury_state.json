@@ -7,13 +7,6 @@
       "status": "Injured Reserve",
       "team": "Anaheim Ducks"
     },
-    "601060:Anaheim Ducks": {
-      "athlete": "Beckett Sennecke",
-      "date": "2026-11-25T19:08Z",
-      "id": "601060",
-      "status": "Injured Reserve",
-      "team": "Anaheim Ducks"
-    },
     "598256:Anaheim Ducks": {
       "athlete": "A.J. Greer",
       "date": "2026-11-02T18:46Z",
@@ -118,13 +111,6 @@
       "id": "597046",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
-    },
-    "600995:Columbus Blue Jackets": {
-      "athlete": "Mathieu Olivier",
-      "date": "2026-11-24T22:08Z",
-      "id": "600995",
-      "status": "Injured Reserve",
-      "team": "Columbus Blue Jackets"
     },
     "599661:Dallas Stars": {
       "athlete": "Kyle Capobianco",
@@ -249,13 +235,6 @@
       "athlete": "Chris Kreider",
       "date": "2026-11-15T18:04Z",
       "id": "599873",
-      "status": "Injured Reserve",
-      "team": "Montreal Canadiens"
-    },
-    "594185:Montreal Canadiens": {
-      "athlete": "Bryce Pickford",
-      "date": "2026-09-29T16:39Z",
-      "id": "594185",
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
     },
@@ -721,13 +700,6 @@
       "status": "Injured Reserve",
       "team": "Pittsburgh Penguins"
     },
-    "601091:Columbus Blue Jackets": {
-      "athlete": "Denton Mateychuk",
-      "date": "2026-11-26T03:21Z",
-      "id": "601091",
-      "status": "Day-To-Day",
-      "team": "Columbus Blue Jackets"
-    },
     "601094:Montreal Canadiens": {
       "athlete": "Ivan Demidov",
       "date": "2026-11-26T03:33Z",
@@ -832,6 +804,27 @@
       "id": "601217",
       "status": "Out",
       "team": "Toronto Maple Leafs"
+    },
+    "601241:Columbus Blue Jackets": {
+      "athlete": "Denton Mateychuk",
+      "date": "2026-11-26T18:59Z",
+      "id": "601241",
+      "status": "Out",
+      "team": "Columbus Blue Jackets"
+    },
+    "601252:New Jersey Devils": {
+      "athlete": "Brenden Dillon",
+      "date": "2026-11-26T19:20Z",
+      "id": "601252",
+      "status": "Suspension",
+      "team": "New Jersey Devils"
+    },
+    "601255:New York Rangers": {
+      "athlete": "Gabe Perreault",
+      "date": "2026-11-26T19:38Z",
+      "id": "601255",
+      "status": "Injured Reserve",
+      "team": "New York Rangers"
     }
   }
 }
