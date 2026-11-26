@@ -518,13 +518,6 @@
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
-    "600939:Toronto Maple Leafs": {
-      "athlete": "Jack Roslovic",
-      "date": "2026-11-24T14:14Z",
-      "id": "600939",
-      "status": "Day-To-Day",
-      "team": "Toronto Maple Leafs"
-    },
     "600718:Toronto Maple Leafs": {
       "athlete": "Colton Sissons",
       "date": "2026-11-22T17:19Z",
@@ -832,6 +825,13 @@
       "id": "601170",
       "status": "Day-To-Day",
       "team": "Anaheim Ducks"
+    },
+    "601217:Toronto Maple Leafs": {
+      "athlete": "Jack Roslovic",
+      "date": "2026-11-26T16:56Z",
+      "id": "601217",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
