@@ -42,13 +42,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "601278:Buffalo Sabres": {
-      "athlete": "Noah Ostlund",
-      "date": "2026-11-27T16:31Z",
-      "id": "601278",
-      "status": "Out",
-      "team": "Buffalo Sabres"
-    },
     "601277:Buffalo Sabres": {
       "athlete": "Zach Benson",
       "date": "2026-11-27T16:30Z",
@@ -103,13 +96,6 @@
       "date": "2026-11-27T18:55Z",
       "id": "601311",
       "status": "Injured Reserve",
-      "team": "Chicago Blackhawks"
-    },
-    "601163:Chicago Blackhawks": {
-      "athlete": "Tyler Bertuzzi",
-      "date": "2026-11-26T14:08Z",
-      "id": "601163",
-      "status": "Day-To-Day",
       "team": "Chicago Blackhawks"
     },
     "600894:Chicago Blackhawks": {
@@ -188,13 +174,6 @@
       "id": "595599",
       "status": "Injured Reserve",
       "team": "Dallas Stars"
-    },
-    "601167:Detroit Red Wings": {
-      "athlete": "William Wallinder",
-      "date": "2026-11-26T14:08Z",
-      "id": "601167",
-      "status": "Day-To-Day",
-      "team": "Detroit Red Wings"
     },
     "600787:Detroit Red Wings": {
       "athlete": "Sam Montembeault",
@@ -595,13 +574,6 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "601164:Tampa Bay Lightning": {
-      "athlete": "Erik Cernak",
-      "date": "2026-11-26T14:08Z",
-      "id": "601164",
-      "status": "Day-To-Day",
-      "team": "Tampa Bay Lightning"
-    },
     "600949:Tampa Bay Lightning": {
       "athlete": "Conor Geekie",
       "date": "2026-11-24T15:34Z",
@@ -749,13 +721,6 @@
       "status": "Injured Reserve",
       "team": "Vancouver Canucks"
     },
-    "601007:Vegas Golden Knights": {
-      "athlete": "Marc Gatcomb",
-      "date": "2026-11-25T05:18Z",
-      "id": "601007",
-      "status": "Day-To-Day",
-      "team": "Vegas Golden Knights"
-    },
     "601263:Washington Capitals": {
       "athlete": "Jordan Kyrou",
       "date": "2026-11-27T15:11Z",
@@ -797,6 +762,55 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "601321:Buffalo Sabres": {
+      "athlete": "Noah Ostlund",
+      "date": "2026-11-27T19:45Z",
+      "id": "601321",
+      "status": "Injured Reserve",
+      "team": "Buffalo Sabres"
+    },
+    "601336:Chicago Blackhawks": {
+      "athlete": "Tyler Bertuzzi",
+      "date": "2026-11-27T21:13Z",
+      "id": "601336",
+      "status": "Out",
+      "team": "Chicago Blackhawks"
+    },
+    "601334:Colorado Avalanche": {
+      "athlete": "Martin Necas",
+      "date": "2026-11-27T21:01Z",
+      "id": "601334",
+      "status": "Out",
+      "team": "Colorado Avalanche"
+    },
+    "601324:Detroit Red Wings": {
+      "athlete": "William Wallinder",
+      "date": "2026-11-27T19:58Z",
+      "id": "601324",
+      "status": "Out",
+      "team": "Detroit Red Wings"
+    },
+    "601335:Philadelphia Flyers": {
+      "athlete": "Owen Tippett",
+      "date": "2026-11-27T21:10Z",
+      "id": "601335",
+      "status": "Out",
+      "team": "Philadelphia Flyers"
+    },
+    "601322:Tampa Bay Lightning": {
+      "athlete": "Erik Cernak",
+      "date": "2026-11-27T19:46Z",
+      "id": "601322",
+      "status": "Out",
+      "team": "Tampa Bay Lightning"
+    },
+    "601326:Toronto Maple Leafs": {
+      "athlete": "Chris Tanev",
+      "date": "2026-11-27T20:20Z",
+      "id": "601326",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
