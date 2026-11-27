@@ -126,13 +126,6 @@
       "status": "Injured Reserve",
       "team": "Chicago Blackhawks"
     },
-    "600550:Colorado Avalanche": {
-      "athlete": "Gavin Brindley",
-      "date": "2026-11-21T20:47Z",
-      "id": "600550",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
     "600548:Colorado Avalanche": {
       "athlete": "Nathan MacKinnon",
       "date": "2026-11-21T20:30Z",
@@ -825,6 +818,13 @@
       "id": "597009",
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
+    },
+    "601256:Colorado Avalanche": {
+      "athlete": "Gavin Brindley",
+      "date": "2026-11-27T01:27Z",
+      "id": "601256",
+      "status": "Injured Reserve",
+      "team": "Colorado Avalanche"
     }
   }
 }
