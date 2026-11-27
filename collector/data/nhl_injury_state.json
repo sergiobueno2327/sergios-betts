@@ -1,12 +1,5 @@
 {
   "entries": {
-    "601170:Anaheim Ducks": {
-      "athlete": "Leo Carlsson",
-      "date": "2026-11-26T14:08Z",
-      "id": "601170",
-      "status": "Day-To-Day",
-      "team": "Anaheim Ducks"
-    },
     "601061:Anaheim Ducks": {
       "athlete": "Ryan Poehling",
       "date": "2026-11-25T19:08Z",
@@ -39,13 +32,6 @@
       "athlete": "Konsta Helenius",
       "date": "2026-11-12T21:00Z",
       "id": "599462",
-      "status": "Injured Reserve",
-      "team": "Buffalo Sabres"
-    },
-    "597739:Buffalo Sabres": {
-      "athlete": "Justin Danforth",
-      "date": "2026-10-29T22:06Z",
-      "id": "597739",
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
@@ -88,13 +74,6 @@
       "athlete": "Nikolaj Ehlers",
       "date": "2026-11-26T14:08Z",
       "id": "601162",
-      "status": "Day-To-Day",
-      "team": "Carolina Hurricanes"
-    },
-    "601166:Carolina Hurricanes": {
-      "athlete": "K'Andre Miller",
-      "date": "2026-11-26T14:08Z",
-      "id": "601166",
       "status": "Day-To-Day",
       "team": "Carolina Hurricanes"
     },
@@ -343,13 +322,6 @@
       "status": "Injured Reserve",
       "team": "New Jersey Devils"
     },
-    "600990:New York Islanders": {
-      "athlete": "Kyle Palmieri",
-      "date": "2026-11-24T20:00Z",
-      "id": "600990",
-      "status": "Injured Reserve",
-      "team": "New York Islanders"
-    },
     "600956:New York Islanders": {
       "athlete": "Ryan Pulock",
       "date": "2026-11-24T17:11Z",
@@ -419,20 +391,6 @@
       "id": "594156",
       "status": "Injured Reserve",
       "team": "New York Rangers"
-    },
-    "601014:Ottawa Senators": {
-      "athlete": "Andre Burakovsky",
-      "date": "2026-11-25T13:03Z",
-      "id": "601014",
-      "status": "Injured Reserve",
-      "team": "Ottawa Senators"
-    },
-    "600993:Ottawa Senators": {
-      "athlete": "Hayden Hodgson",
-      "date": "2026-11-24T20:28Z",
-      "id": "600993",
-      "status": "Injured Reserve",
-      "team": "Ottawa Senators"
     },
     "599971:Ottawa Senators": {
       "athlete": "Warren Foegele",
@@ -623,20 +581,6 @@
       "status": "Out",
       "team": "Toronto Maple Leafs"
     },
-    "601067:Toronto Maple Leafs": {
-      "athlete": "Kirill Marchenko",
-      "date": "2026-11-25T20:20Z",
-      "id": "601067",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
-    "600718:Toronto Maple Leafs": {
-      "athlete": "Colton Sissons",
-      "date": "2026-11-22T17:19Z",
-      "id": "600718",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
     "600491:Toronto Maple Leafs": {
       "athlete": "Cole McWard",
       "date": "2026-11-21T15:10Z",
@@ -818,6 +762,48 @@
       "id": "601263",
       "status": "Injured Reserve",
       "team": "Washington Capitals"
+    },
+    "601287:Anaheim Ducks": {
+      "athlete": "Leo Carlsson",
+      "date": "2026-11-27T17:05Z",
+      "id": "601287",
+      "status": "Injured Reserve",
+      "team": "Anaheim Ducks"
+    },
+    "601278:Buffalo Sabres": {
+      "athlete": "Noah Ostlund",
+      "date": "2026-11-27T16:31Z",
+      "id": "601278",
+      "status": "Out",
+      "team": "Buffalo Sabres"
+    },
+    "601277:Buffalo Sabres": {
+      "athlete": "Zach Benson",
+      "date": "2026-11-27T16:30Z",
+      "id": "601277",
+      "status": "Out",
+      "team": "Buffalo Sabres"
+    },
+    "601268:New Jersey Devils": {
+      "athlete": "Declan Chisholm",
+      "date": "2026-11-27T15:59Z",
+      "id": "601268",
+      "status": "Out",
+      "team": "New Jersey Devils"
+    },
+    "601266:New York Islanders": {
+      "athlete": "Kyle Palmieri",
+      "date": "2026-11-27T15:49Z",
+      "id": "601266",
+      "status": "Injured Reserve",
+      "team": "New York Islanders"
+    },
+    "601294:Toronto Maple Leafs": {
+      "athlete": "Dakota Joshua",
+      "date": "2026-11-27T17:39Z",
+      "id": "601294",
+      "status": "Out",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
