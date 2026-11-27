@@ -434,13 +434,6 @@
       "status": "Injured Reserve",
       "team": "Ottawa Senators"
     },
-    "601305:Philadelphia Flyers": {
-      "athlete": "Matvei Michkov",
-      "date": "2026-11-27T18:32Z",
-      "id": "601305",
-      "status": "Out",
-      "team": "Philadelphia Flyers"
-    },
     "595327:Philadelphia Flyers": {
       "athlete": "Nikita Grebenkin",
       "date": "2026-10-10T16:58Z",
@@ -805,12 +798,33 @@
       "status": "Out",
       "team": "Tampa Bay Lightning"
     },
-    "601326:Toronto Maple Leafs": {
-      "athlete": "Chris Tanev",
-      "date": "2026-11-27T20:20Z",
-      "id": "601326",
+    "601346:Florida Panthers": {
+      "athlete": "Garnet Hathaway",
+      "date": "2026-11-27T23:19Z",
+      "id": "601346",
+      "status": "Out",
+      "team": "Florida Panthers"
+    },
+    "601341:Vancouver Canucks": {
+      "athlete": "Filip Chytil",
+      "date": "2026-11-27T22:13Z",
+      "id": "601341",
       "status": "Day-To-Day",
+      "team": "Vancouver Canucks"
+    },
+    "601343:Toronto Maple Leafs": {
+      "athlete": "Chris Tanev",
+      "date": "2026-11-27T23:09Z",
+      "id": "601343",
+      "status": "Out",
       "team": "Toronto Maple Leafs"
+    },
+    "601345:Tampa Bay Lightning": {
+      "athlete": "Victor Hedman",
+      "date": "2026-11-27T23:15Z",
+      "id": "601345",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
     }
   }
 }
