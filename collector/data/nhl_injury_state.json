@@ -770,25 +770,11 @@
       "status": "Day-To-Day",
       "team": "Vegas Golden Knights"
     },
-    "601028:Washington Capitals": {
-      "athlete": "Vincent Desharnais",
-      "date": "2026-11-25T16:03Z",
-      "id": "601028",
-      "status": "Injured Reserve",
-      "team": "Washington Capitals"
-    },
     "600948:Washington Capitals": {
       "athlete": "Rasmus Sandin",
       "date": "2026-11-24T15:28Z",
       "id": "600948",
       "status": "Injured Reserve",
-      "team": "Washington Capitals"
-    },
-    "600849:Washington Capitals": {
-      "athlete": "Jordan Kyrou",
-      "date": "2026-11-23T17:14Z",
-      "id": "600849",
-      "status": "Out",
       "team": "Washington Capitals"
     },
     "600284:Winnipeg Jets": {
@@ -825,6 +811,13 @@
       "id": "601256",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
+    },
+    "601263:Washington Capitals": {
+      "athlete": "Jordan Kyrou",
+      "date": "2026-11-27T15:11Z",
+      "id": "601263",
+      "status": "Injured Reserve",
+      "team": "Washington Capitals"
     }
   }
 }
