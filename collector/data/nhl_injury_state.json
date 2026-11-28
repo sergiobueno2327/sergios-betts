@@ -42,13 +42,6 @@
       "status": "Injured Reserve",
       "team": "Buffalo Sabres"
     },
-    "601277:Buffalo Sabres": {
-      "athlete": "Zach Benson",
-      "date": "2026-11-27T16:30Z",
-      "id": "601277",
-      "status": "Out",
-      "team": "Buffalo Sabres"
-    },
     "599462:Buffalo Sabres": {
       "athlete": "Konsta Helenius",
       "date": "2026-11-12T21:00Z",
@@ -105,13 +98,6 @@
       "status": "Injured Reserve",
       "team": "Chicago Blackhawks"
     },
-    "600738:Chicago Blackhawks": {
-      "athlete": "Wyatt Kaiser",
-      "date": "2026-11-22T18:51Z",
-      "id": "600738",
-      "status": "Suspension",
-      "team": "Chicago Blackhawks"
-    },
     "600541:Chicago Blackhawks": {
       "athlete": "Bowen Byram",
       "date": "2026-11-21T19:21Z",
@@ -146,13 +132,6 @@
       "id": "597046",
       "status": "Injured Reserve",
       "team": "Colorado Avalanche"
-    },
-    "601241:Columbus Blue Jackets": {
-      "athlete": "Denton Mateychuk",
-      "date": "2026-11-26T18:59Z",
-      "id": "601241",
-      "status": "Out",
-      "team": "Columbus Blue Jackets"
     },
     "599661:Dallas Stars": {
       "athlete": "Kyle Capobianco",
@@ -307,13 +286,6 @@
       "id": "594183",
       "status": "Injured Reserve",
       "team": "Montreal Canadiens"
-    },
-    "601268:New Jersey Devils": {
-      "athlete": "Declan Chisholm",
-      "date": "2026-11-27T15:59Z",
-      "id": "601268",
-      "status": "Out",
-      "team": "New Jersey Devils"
     },
     "601252:New Jersey Devils": {
       "athlete": "Brenden Dillon",
@@ -574,31 +546,10 @@
       "status": "Injured Reserve",
       "team": "Tampa Bay Lightning"
     },
-    "601294:Toronto Maple Leafs": {
-      "athlete": "Dakota Joshua",
-      "date": "2026-11-27T17:39Z",
-      "id": "601294",
-      "status": "Out",
-      "team": "Toronto Maple Leafs"
-    },
-    "601217:Toronto Maple Leafs": {
-      "athlete": "Jack Roslovic",
-      "date": "2026-11-26T16:56Z",
-      "id": "601217",
-      "status": "Out",
-      "team": "Toronto Maple Leafs"
-    },
     "600491:Toronto Maple Leafs": {
       "athlete": "Cole McWard",
       "date": "2026-11-21T15:10Z",
       "id": "600491",
-      "status": "Injured Reserve",
-      "team": "Toronto Maple Leafs"
-    },
-    "600490:Toronto Maple Leafs": {
-      "athlete": "Nick Blankenburg",
-      "date": "2026-11-21T15:07Z",
-      "id": "600490",
       "status": "Injured Reserve",
       "team": "Toronto Maple Leafs"
     },
@@ -756,48 +707,6 @@
       "status": "Injured Reserve",
       "team": "Winnipeg Jets"
     },
-    "601321:Buffalo Sabres": {
-      "athlete": "Noah Ostlund",
-      "date": "2026-11-27T19:45Z",
-      "id": "601321",
-      "status": "Injured Reserve",
-      "team": "Buffalo Sabres"
-    },
-    "601336:Chicago Blackhawks": {
-      "athlete": "Tyler Bertuzzi",
-      "date": "2026-11-27T21:13Z",
-      "id": "601336",
-      "status": "Out",
-      "team": "Chicago Blackhawks"
-    },
-    "601334:Colorado Avalanche": {
-      "athlete": "Martin Necas",
-      "date": "2026-11-27T21:01Z",
-      "id": "601334",
-      "status": "Out",
-      "team": "Colorado Avalanche"
-    },
-    "601324:Detroit Red Wings": {
-      "athlete": "William Wallinder",
-      "date": "2026-11-27T19:58Z",
-      "id": "601324",
-      "status": "Out",
-      "team": "Detroit Red Wings"
-    },
-    "601335:Philadelphia Flyers": {
-      "athlete": "Owen Tippett",
-      "date": "2026-11-27T21:10Z",
-      "id": "601335",
-      "status": "Out",
-      "team": "Philadelphia Flyers"
-    },
-    "601322:Tampa Bay Lightning": {
-      "athlete": "Erik Cernak",
-      "date": "2026-11-27T19:46Z",
-      "id": "601322",
-      "status": "Out",
-      "team": "Tampa Bay Lightning"
-    },
     "601346:Florida Panthers": {
       "athlete": "Garnet Hathaway",
       "date": "2026-11-27T23:19Z",
@@ -825,6 +734,97 @@
       "id": "601345",
       "status": "Day-To-Day",
       "team": "Tampa Bay Lightning"
+    },
+    "601487:Buffalo Sabres": {
+      "athlete": "Zach Benson",
+      "date": "2026-11-28T14:08Z",
+      "id": "601487",
+      "status": "Day-To-Day",
+      "team": "Buffalo Sabres"
+    },
+    "601392:Buffalo Sabres": {
+      "athlete": "Noah Ostlund",
+      "date": "2026-11-28T04:27Z",
+      "id": "601392",
+      "status": "Injured Reserve",
+      "team": "Buffalo Sabres"
+    },
+    "601478:Chicago Blackhawks": {
+      "athlete": "Tyler Bertuzzi",
+      "date": "2026-11-28T14:08Z",
+      "id": "601478",
+      "status": "Day-To-Day",
+      "team": "Chicago Blackhawks"
+    },
+    "601362:Chicago Blackhawks": {
+      "athlete": "Jordan Greenway",
+      "date": "2026-11-28T01:44Z",
+      "id": "601362",
+      "status": "Day-To-Day",
+      "team": "Chicago Blackhawks"
+    },
+    "601482:Colorado Avalanche": {
+      "athlete": "Martin Necas",
+      "date": "2026-11-28T14:08Z",
+      "id": "601482",
+      "status": "Day-To-Day",
+      "team": "Colorado Avalanche"
+    },
+    "601486:Columbus Blue Jackets": {
+      "athlete": "Denton Mateychuk",
+      "date": "2026-11-28T14:08Z",
+      "id": "601486",
+      "status": "Day-To-Day",
+      "team": "Columbus Blue Jackets"
+    },
+    "601485:Detroit Red Wings": {
+      "athlete": "William Wallinder",
+      "date": "2026-11-28T14:08Z",
+      "id": "601485",
+      "status": "Day-To-Day",
+      "team": "Detroit Red Wings"
+    },
+    "601483:New Jersey Devils": {
+      "athlete": "Declan Chisholm",
+      "date": "2026-11-28T14:08Z",
+      "id": "601483",
+      "status": "Day-To-Day",
+      "team": "New Jersey Devils"
+    },
+    "601481:Philadelphia Flyers": {
+      "athlete": "Owen Tippett",
+      "date": "2026-11-28T14:08Z",
+      "id": "601481",
+      "status": "Day-To-Day",
+      "team": "Philadelphia Flyers"
+    },
+    "601370:Seattle Kraken": {
+      "athlete": "Philipp Grubauer",
+      "date": "2026-11-28T03:10Z",
+      "id": "601370",
+      "status": "Day-To-Day",
+      "team": "Seattle Kraken"
+    },
+    "601479:Tampa Bay Lightning": {
+      "athlete": "Erik Cernak",
+      "date": "2026-11-28T14:08Z",
+      "id": "601479",
+      "status": "Day-To-Day",
+      "team": "Tampa Bay Lightning"
+    },
+    "601480:Toronto Maple Leafs": {
+      "athlete": "Jack Roslovic",
+      "date": "2026-11-28T14:08Z",
+      "id": "601480",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
+    },
+    "601484:Toronto Maple Leafs": {
+      "athlete": "Dakota Joshua",
+      "date": "2026-11-28T14:08Z",
+      "id": "601484",
+      "status": "Day-To-Day",
+      "team": "Toronto Maple Leafs"
     }
   }
 }
